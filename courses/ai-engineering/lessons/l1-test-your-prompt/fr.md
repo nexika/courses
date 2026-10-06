@@ -248,7 +248,8 @@ Ouvrez `exercise/starter/evaluate.py`. Il contient quelques cas, un modèle subs
 - `run_eval(cases, model, grader)` : interrogez le modèle une fois par cas, dans l'ordre, notez chaque
   réponse avec `grader(output, expected)` et renvoyez une paire : le taux de réussite (cas réussis divisés
   par le nombre total de cas) et la liste des cas en échec. Chaque cas en échec est un dictionnaire avec
-  `input`, `expected`, `output` et `error`.
+  `input`, `expected`, `output` et `error`
+  (`error` vaut `None` quand le modèle a répondu).
 
 Deux règles de plus, parce que les vraies évaluations les rencontrent :
 

@@ -296,6 +296,14 @@
    "quote": "\"type\": \"text_delta\", \"text\": \"Hello\"",
    "retrieved": "2026-10-06",
    "volatile": false
+  },
+  "stream-end": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/streaming",
+   "title": "Streaming Messages",
+   "kind": "doc",
+   "quote": "One or more message_delta events, indicating top-level changes to the final Message object. A final message_stop event.",
+   "retrieved": "2026-10-06",
+   "volatile": false
   }
  }
 }

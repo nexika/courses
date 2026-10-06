@@ -112,7 +112,10 @@ contenu vide[^stream-start]. Chaque bloc de contenu arrive ensuite sous la forme
 `content_block_start`, d'un ou plusieurs événements `content_block_delta`, et d'un événement
 `content_block_stop`[^stream-flow]. Un delta est une petite modification. Un événement `content_block_delta` dont le delta est de type `text_delta` porte le morceau de texte suivant[^stream-text-delta]. Chaque delta met à jour le
 bloc situé à un index donné, c'est-à-dire à une position donnée dans la liste `content` de la
-réponse[^stream-delta].
+réponse[^stream-delta]. Après les blocs viennent un ou plusieurs événements `message_delta`, qui portent les
+modifications générales du message final, puis un dernier événement `message_stop`[^stream-end]. Dans le flux
+d'exemple de cette leçon, `message_start` contient le nombre de tokens d'entrée, et `message_delta` contient
+le `stop_reason` et le nombre de tokens de sortie.
 Les nombres de tokens de l'événement `message_delta` sont des totaux cumulés, pas des valeurs à
 additionner[^stream-cumulative]. Un flux peut aussi contenir des événements `ping`[^stream-ping], et votre
 code doit traiter sans planter les types d'événements qu'il ne connaît pas[^stream-unknown].
@@ -287,3 +290,4 @@ de la requête, sur `stop_reason` ou sur le streaming.
 [^pricing]: Pricing, <https://platform.claude.com/docs/en/about-claude/pricing>
 [^system-top]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^max-zero]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
+[^stream-end]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>

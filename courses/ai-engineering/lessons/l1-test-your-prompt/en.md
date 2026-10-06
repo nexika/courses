@@ -229,7 +229,8 @@ Open `exercise/starter/evaluate.py`. It has a few cases, a stand-in model, and t
   The grader in "Try it" ignores only a full stop; yours also ignores a final "!".
 - `run_eval(cases, model, grader)`: ask the model about each case once, in order, grade each answer with
   `grader(output, expected)`, and return a pair: the pass rate (passed cases divided by all cases) and the
-  list of failing cases. Each failing case is a dictionary with `input`, `expected`, `output` and `error`.
+  list of failing cases. Each failing case is a dictionary with `input`, `expected`, `output` and `error`
+  (`error` is `None` when the model answered).
 
 Two more rules, because real evals meet them:
 

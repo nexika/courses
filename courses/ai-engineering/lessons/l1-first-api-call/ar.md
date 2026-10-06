@@ -100,7 +100,9 @@ Claude 4.7 والنماذج الأحدث، ومنها Claude Opus 5.5، لا ي�
 الاتصال (timeout)، أي أن يُقطع الاتصال لأن الإجابة استغرقت وقتًا أطول من اللازم[^stream-timeout]. يبدأ التدفق بحدث `message_start` يحمل رسالة محتواها فارغ[^stream-start]. ثم
 تصل كل كتلة محتوى في صورة حدث `content_block_start`، ثم حدث `content_block_delta` واحد أو أكثر، ثم حدث
 `content_block_stop`[^stream-flow]. والـ delta تغيير صغير. وحدث `content_block_delta` الذي نوع الـ delta فيه `text_delta` يحمل القطعة التالية من النص[^stream-text-delta]. كل delta يحدّث الكتلة التي في موضع معيّن (index)،
-أي ترتيب الكتلة في قائمة `content` الخاصة بالإجابة[^stream-delta].
+أي ترتيب الكتلة في قائمة `content` الخاصة بالإجابة[^stream-delta]. وبعد الكتل يأتي حدث `message_delta` واحد أو أكثر، يحمل
+التغييرات العامة على الرسالة النهائية، ثم حدث `message_stop` أخير[^stream-end]. وفي تدفق العيّنة في هذا الدرس، يحمل
+`message_start` عدد رموز الإدخال، ويحمل `message_delta` قيمة `stop_reason` وعدد رموز الإخراج.
 أعداد الرموز في حدث `message_delta` مجاميع متراكمة، لا أرقام تجمعها بنفسك[^stream-cumulative]. وقد
 يحمل التدفق أيضًا أحداث `ping`[^stream-ping]، وعلى برنامجك أن يتعامل مع أنواع الأحداث التي لا يعرفها
 دون أن يتعطل[^stream-unknown].
@@ -268,3 +270,4 @@ python3 -m unittest discover -s ../tests
 [^pricing]: Pricing, <https://platform.claude.com/docs/en/about-claude/pricing>
 [^system-top]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^max-zero]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
+[^stream-end]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>

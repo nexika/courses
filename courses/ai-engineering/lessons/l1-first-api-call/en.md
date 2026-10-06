@@ -104,7 +104,10 @@ the reply takes too long[^stream-timeout].
 The stream starts with a `message_start` event that holds a message with empty content[^stream-start].
 Each content block then arrives as a `content_block_start` event, one or more `content_block_delta`
 events, and a `content_block_stop` event[^stream-flow]. A delta is a small change. A `content_block_delta` whose delta has type `text_delta` carries the next piece of text[^stream-text-delta]. Each delta updates the block at a given index, the block's position in the reply's `content`
-list[^stream-delta]. The token counts in the `message_delta` event are running totals, not additions to
+list[^stream-delta]. After the blocks come one or more `message_delta` events, with top-level changes to the
+final message, and a final `message_stop` event[^stream-end]. In this lesson's sample stream, `message_start`
+holds the input token count, and `message_delta` holds the `stop_reason` and the output token count.
+The token counts in the `message_delta` event are running totals, not additions to
 make[^stream-cumulative]. A stream may also hold `ping` events[^stream-ping], and your code should handle
 event types it does not know without crashing[^stream-unknown].
 
@@ -272,3 +275,4 @@ Take the quiz for this lesson. If a question is hard, read the part of "The idea
 [^pricing]: Pricing, <https://platform.claude.com/docs/en/about-claude/pricing>
 [^system-top]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^max-zero]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
+[^stream-end]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>

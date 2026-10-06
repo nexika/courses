@@ -28,6 +28,20 @@
    "result": "pass",
    "hash": "b002c06333732c1b",
    "notes": "Checked ~38 cited sentences against all 36 sources.json entries. Fetched 8 platform.claude.com pages, the SDK README and usage.py, and all 36 quotes are on the pages. Each quote supports its sentence; prefill and sampling cover Opus 5.5 (4.6+/4.7+). The SDK code matches the README (key read from the env by default) and the streaming docs (text_stream). claims/*.py output 41, 28, 16 and 6, matching the text and claims.json. Minor: the pricing quote is about tool-use tokens but still supports billing."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "26ac8ec78a0a3f63",
+   "notes": "Fetched all 10 source pages; all 37 quotes are present and support en/ar/fr as written (prefill 4.6+, sampling 4.7+, Opus 5.5 rec, max_tokens 0, SSE, cumulative usage, billing). Numbers (1024, 41/28, 16, 6 deltas) match the sample files. Model id and code are identical in all 3 languages; only the comments are translated. Quiz answers and explanations are correct in all 3 (continue/raise max_tokens is per docs). No issues."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "26ac8ec78a0a3f63",
+   "notes": "Checked ~38 cited world-claim sentences against all 37 sources.json entries (9 pages fetched: get-started, models overview, messages/create, working-with-messages, thinking, stop-reasons, streaming, pricing, SDK README + usage.py). Every quote is on its page, modulo markdown formatting, and supports the sentence as written. The SDK code is consistent with the README and the streaming docs. The claims scripts print 41/28/16/6, which match the text."
   }
  ],
  "teaching": [
