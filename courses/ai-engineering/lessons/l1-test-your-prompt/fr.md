@@ -182,10 +182,19 @@ présentation des modèles d'Anthropic ; les noms de modèles changent, vérifie
 lancer le code[^model]. Comme dans votre premier appel à l'API, le code prend le bloc de texte de la
 réponse, pas `content[0]`, et laisse de la marge dans `max_tokens`.
 
+Collez tout le bloc à la fin de `try_eval.py`. Ce fichier contient déjà `CASES`, `run_eval` et
+`normalized_match` ; le bloc apporte le reste : `import anthropic`, `client`, `PROMPT` et `ask_claude`,
+puis lance l'évaluation et affiche le taux de réussite et les cas en échec.
+
 ```python
 import anthropic
 
 client = anthropic.Anthropic()  # reads your key from the ANTHROPIC_API_KEY environment variable
+
+PROMPT = (
+    "Classify the sentiment of this product review as positive, negative or mixed. "
+    "Answer with one word.\n\nReview: {review}"
+)
 
 
 def ask_claude(review):
@@ -197,7 +206,11 @@ def ask_claude(review):
     return next(block.text for block in message.content if block.type == "text")
 
 
-rate, failures = run_eval(CASES, ask_claude, normalized_match)
+if __name__ == "__main__":
+    rate, failures = run_eval(CASES, ask_claude, normalized_match)
+    print(f"claude: {len(CASES) - len(failures)} of {len(CASES)} passed, pass rate {rate:.0%}")
+    for failure in failures:
+        print(f"  FAIL {failure['input']!r}: expected {failure['expected']!r}, got {failure['output']!r}")
 ```
 
 Lancez-le plusieurs fois. Avec un vrai modèle, le taux de réussite peut varier d'une exécution à l'autre :
@@ -252,10 +265,28 @@ python3 -m unittest discover -s ../tests
 ```
 
 Ils échouent tant que vos fonctions ne sont pas écrites. Quand ils passent, lancez `python3 evaluate.py`
-pour voir le taux de réussite de chaque évaluateur, puis essayez vos propres cas ou branchez `ask_claude`.
+pour voir le taux de réussite de chaque évaluateur, puis essayez vos propres cas. Pour essayer un vrai modèle, ne collez rien dans `evaluate.py` : les tests
+l'importent, et ils auraient alors besoin d'`anthropic` et d'une clé. Créez `real_eval.py` à côté, commencez-le
+par `from evaluate import CASES, run_eval, normalized_match`, collez sous cette ligne tout le bloc de
+« Brancher un vrai modèle », et lancez `python3 real_eval.py` (il faut votre clé d'API).
 Une solution complète se trouve dans `exercise/solution/` : ouvrez-la après avoir essayé.
 
 ## Vérifiez vos acquis
 
 Répondez au quiz de cette leçon. S'il vous semble difficile, relisez « L'idée », puis comparez les deux
 sorties d'« Essayez » cas par cas.
+
+[^nondet]: Create a Message (Claude API reference), <https://platform.claude.com/docs/en/api/messages/create>
+[^temperature]: Create a Message (Claude API reference), <https://platform.claude.com/docs/en/api/messages/create>
+[^cycle]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
+[^before]: Prompt engineering overview (Claude Platform Docs), <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview>
+[^taskspecific]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
+[^automate]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
+[^codegrade]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
+[^exact]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
+[^stringmatch]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
+[^volume]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
+[^sarcasm]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
+[^sdk]: anthropics/anthropic-sdk-python (README), <https://github.com/anthropics/anthropic-sdk-python>
+[^model]: Models overview (Claude Platform Docs), <https://platform.claude.com/docs/en/about-claude/models/overview>
+[^llmgrade]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>

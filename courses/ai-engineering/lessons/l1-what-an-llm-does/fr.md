@@ -197,3 +197,5 @@ L'idée et la fin de la partie Essayez.
 [^halluc-idk]: Anthropic, Reduce hallucinations, « Allow Claude to say I don't know ».
 [^halluc-limit]: Anthropic, Reduce hallucinations.
 [^halluc-validate]: Anthropic, Reduce hallucinations.
+
+[^ftdef]: Glossary: Fine-tuning, <https://platform.claude.com/docs/en/about-claude/glossary>

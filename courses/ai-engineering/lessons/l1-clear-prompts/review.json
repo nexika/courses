@@ -28,6 +28,20 @@
    "result": "pass",
    "hash": "0d5b02f8437dc774",
    "notes": "Fetched all 4 source pages (.md). All 15 quotes are present, including diverse/example-tags (they differ only by markdown bold and backticks), and each cited sentence in en/ar/fr matches its source with no overreach. Code blocks are identical in all three files apart from translated comments. Quiz answers 2,0,3,1 and the explanations/rubric are correct and consistent across languages. I found nothing wrong."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "e939a5623cd46503",
+   "notes": "Checked 15 cited world claims against 15 sources (4 pages fetched as .md: prompting best practices, PE overview, glossary, multilingual). All quotes found verbatim; 'diverse' and 'example-tags' differ only by bold list labels. Each sentence stays within its quote, with no overreach. The SDK call (messages.create with model/max_tokens/messages, filtering for the text block) matches the docs. No uncited world claims found."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "e939a5623cd46503",
+   "notes": "Fetched all 4 source pages (best practices, overview, multilingual, glossary); all 15 quotes are present and support the sentences in en, ar and fr with no overreach. ar/fr state the same facts as en (3–5 examples, latency/cost via another model, randomness, tags). Code blocks are identical across languages apart from translated comments. Quiz answers 2/0/3/1 and explanations are correct in all three languages."
   }
  ],
  "teaching": [
@@ -51,6 +65,13 @@
    "result": "pass",
    "hash": "0d5b02f8437dc774",
    "notes": "Re-run after REVIEWING.md point 2 was clarified (prerequisites carry over). All 9 rubric points pass. Objective matches c1.prompting. Prereqs carry over (API, max_tokens, text blocks, temperature). Idea comes before code, Try it runs, 6 misconceptions. Honest about limits and injection. 9/9 tests pass on the solution, all fail on the starter. Quiz covers the 3 abilities. Headings, code, glosses and AR/FR idiom OK. Minor, not failures: EN 'blank part' unglossed (AR/FR gloss it); 'spaces' means all whitespace."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "e939a5623cd46503",
+   "notes": "Points 1-6, 8 and 9 hold; 9/9 tests pass and the quiz covers the abilities. Point 7 (beginner pass) fails: 'ticket'/'support ticket' (ar 'تذكرة', fr 'ticket') is never defined, and a beginner reads 'تذكرة' as a travel ticket. Fix: gloss it at first use in all 3 languages, e.g. 'a support ticket (a message a customer sends to ask for help)' / 'تذكرة دعم (رسالة يرسلها العميل يطلب فيها المساعدة)'."
   }
  ],
  "learners": {

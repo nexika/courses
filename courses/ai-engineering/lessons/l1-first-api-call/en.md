@@ -88,7 +88,7 @@ Three parts matter most:
   `text` instead of assuming the first block is the answer.
 - `stop_reason` says why Claude stopped writing[^stop-every]. `end_turn` means Claude finished its answer
   naturally[^stop-end]. `max_tokens` means it reached the `max_tokens` limit in your request[^stop-max]: the
-  text is cut off, and the fix is to raise `max_tokens` or continue the answer[^stop-max-do]. A stop reason
+  text is cut off, and the fix is to raise `max_tokens`[^stop-max-do]. A stop reason
   is not an error: it tells you why a successful reply ended[^stop-not-error]. Other values exist; later
   lessons meet them.
 - `usage` counts the input tokens (what you sent)[^usage] and the output tokens (what Claude
@@ -103,8 +103,7 @@ connection)[^stream-sse], so you can show text while Claude is still writing. Fo
 the reply takes too long[^stream-timeout].
 The stream starts with a `message_start` event that holds a message with empty content[^stream-start].
 Each content block then arrives as a `content_block_start` event, one or more `content_block_delta`
-events, and a `content_block_stop` event[^stream-flow]. A delta is a small change, such as the next piece of
-text. Each delta updates the block at a given index, the block's position in the reply's `content`
+events, and a `content_block_stop` event[^stream-flow]. A delta is a small change. A `content_block_delta` whose delta has type `text_delta` carries the next piece of text[^stream-text-delta]. Each delta updates the block at a given index, the block's position in the reply's `content`
 list[^stream-delta]. The token counts in the `message_delta` event are running totals, not additions to
 make[^stream-cumulative]. A stream may also hold `ping` events[^stream-ping], and your code should handle
 event types it does not know without crashing[^stream-unknown].
@@ -235,3 +234,41 @@ python3 -m unittest discover -s ../tests
 
 Take the quiz for this lesson. If a question is hard, read the part of "The idea" about the request fields,
 `stop_reason` or streaming again.
+
+[^start-key]: Get started with Claude, <https://platform.claude.com/docs/en/get-started>
+[^start-env]: Get started with Claude, <https://platform.claude.com/docs/en/get-started>
+[^sdk]: Claude SDK for Python (README), <https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/README.md>
+[^models-start]: Models overview, <https://platform.claude.com/docs/en/models/overview>
+[^model-id]: Claude SDK for Python (README), <https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/README.md>
+[^max-tokens]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
+[^max-early]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
+[^system]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
+[^content-string]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
+[^alternating]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
+[^stateless]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
+[^prefill]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
+[^prefill-error]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
+[^temperature]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
+[^sampling]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
+[^sampling-error]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
+[^thinking-blocks]: Building with thinking, <https://platform.claude.com/docs/en/build-with-claude/thinking>
+[^stop-every]: Stop reasons and fallback, <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>
+[^stop-end]: Stop reasons and fallback, <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>
+[^stop-max]: Stop reasons and fallback, <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>
+[^stop-max-do]: Stop reasons and fallback, <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>
+[^stop-not-error]: Stop reasons and fallback, <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>
+[^usage]: anthropic-sdk-python: types/usage.py, <https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/types/usage.py>
+[^usage-output]: anthropic-sdk-python: types/usage.py, <https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/types/usage.py>
+[^usage-billing]: anthropic-sdk-python: types/usage.py, <https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/types/usage.py>
+[^stream-sse]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>
+[^stream-timeout]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>
+[^stream-start]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>
+[^stream-flow]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>
+[^stream-text-delta]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>
+[^stream-delta]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>
+[^stream-cumulative]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>
+[^stream-ping]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>
+[^stream-unknown]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>
+[^pricing]: Pricing, <https://platform.claude.com/docs/en/about-claude/pricing>
+[^system-top]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
+[^max-zero]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>

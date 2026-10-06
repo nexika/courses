@@ -19,7 +19,7 @@ from urllib.parse import unquote
 from .pack import Course, Lesson, Problem
 
 CITE = re.compile(r"\[\^([\w.-]+)\]")
-CITE_DEF = re.compile(r"^\[\^[\w.-]+\]:", re.M)
+CITE_DEF = re.compile(r"^\[\^([\w.-]+)\]:", re.M)
 FENCE = re.compile(r"```.*?```", re.S)
 INLINE_CODE = re.compile(r"`[^`]*`")
 LINK = re.compile(r"\]\(([^)\s]+)\)")
@@ -344,6 +344,12 @@ def check_sources(course: Course, lesson: Lesson, online: bool = False,
         cited |= ids
         for sid in sorted(ids - set(sources)):
             problems.append(Problem("sources", where, f"{lang}.md cites [^{sid}] but sources.json has no {sid}"))
+        defined = set(CITE_DEF.findall(text))
+        used = set(CITE.findall(CITE_DEF.sub("", text)))
+        for sid in sorted(used - defined):
+            problems.append(Problem("sources", where, f"{lang}.md cites [^{sid}] but has no [^{sid}]: line for it"))
+        for sid in sorted(defined - used):
+            problems.append(Problem("sources", where, f"{lang}.md has a [^{sid}]: line but never cites it"))
         says = [c.get(_says_key(lang)) or "" for c in claims]
         for sentence in uncited_numbers(text, says, course.meta.get("plain_numbers") or []):
             problems.append(Problem("sources", where,

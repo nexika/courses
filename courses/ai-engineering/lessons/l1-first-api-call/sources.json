@@ -181,7 +181,7 @@
    "url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
    "title": "Stop reasons and fallback",
    "kind": "doc",
-   "quote": "Raise max_tokens or continue the response",
+   "quote": "The response reached your max_tokens limit. Raise max_tokens",
    "retrieved": "2026-10-06",
    "volatile": false
   },
@@ -286,6 +286,14 @@
    "title": "Streaming Messages",
    "kind": "doc",
    "quote": "your code should handle unknown event types gracefully.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stream-text-delta": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/streaming",
+   "title": "Streaming Messages",
+   "kind": "doc",
+   "quote": "\"type\": \"text_delta\", \"text\": \"Hello\"",
    "retrieved": "2026-10-06",
    "volatile": false
   }

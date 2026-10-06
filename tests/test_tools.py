@@ -35,6 +35,8 @@ A model reads text as tokens[^tok]. The word list below has 3 entries.
 ## Try it
 
 Run `python count.py` to see it.
+
+[^tok]: Anthropic, Glossary.
 """
 AR = """# عدّ الرموز
 
@@ -43,6 +45,8 @@ AR = """# عدّ الرموز
 ## جرّبها
 
 شغّل `python count.py` لترى ذلك.
+
+[^tok]: Anthropic، المسرد.
 """
 QUESTIONS = [
     {"id": "q1", "type": "choice", "prompt": both("What does a model read?", "ماذا يقرأ النموذج؟"),
@@ -380,3 +384,10 @@ def test_quotes_match_pages_despite_spaces_left_by_removed_tags():
     page = gates._normal(gates._html_text("<p>Use <code>max_tokens</code>, then read the <b>usage</b> .</p>"))
     assert gates._normal("Use max_tokens, then read the usage.") in page
     assert gates._normal("use max_tokens, then") not in page
+
+
+def test_every_citation_has_its_footnote_line(root):
+    path = lesson_path(root) / "en.md"
+    text = path.read_text(encoding="utf-8")
+    path.write_text("\n".join(line for line in text.splitlines() if not line.startswith("[^tok]:")) + "\n", encoding="utf-8")
+    assert any("no [^tok]: line" in p.message for p in problems(root))

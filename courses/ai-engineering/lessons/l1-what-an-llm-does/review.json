@@ -28,6 +28,20 @@
    "result": "pass",
    "hash": "87ebb85d24e0057c",
    "notes": "Fetched all 4 source pages (glossary, models overview, web search, reduce hallucinations). All 17 quotes are present verbatim and support the sentences. The Jun 2026, Jul 2025 and Feb 2025 cutoffs and the model names match the live table. AR and FR say the same as EN. The code is identical in all three languages (only comments differ) and its output matches what the lesson shows. The 12 exercise tests pass against the solution. Quiz answers and explanations are correct in all 3 languages."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "a7d48b8c5a19d4aa",
+   "notes": "Checked ~24 factual sentences against 17 sources over 4 live pages: glossary, models overview, web search tool and reduce-hallucinations. Every quote is on its page and supports the sentence as written. The cutoffs match the current table: training Jun 2026 x3 and Jul 2025, reliable Feb 2025 for Haiku 4.5. Both claims/*.py scripts give 3 and 1, and the Try it output matches exactly. No factual sentence lacks a citation."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "a7d48b8c5a19d4aa",
+   "notes": "Fetched all 4 source pages (glossary, models overview, web search tool, reduce hallucinations). All 18 quotes are present and support the sentences, with no overreach. Cutoffs (Jun 2026 for Fable 5.1/Opus 5.5/Sonnet 5.5, Jul 2025 for Haiku 4.5; reliable cutoff Feb 2025) match the live table. The code runs and prints exactly the stated output. Numbers, model names and code are identical in EN/AR/FR. Quiz answers and explanations are correct; the best-of-N claim in q4 is supported."
   }
  ],
  "teaching": [
@@ -44,6 +58,13 @@
    "result": "pass",
    "hash": "87ebb85d24e0057c",
    "notes": "All 9 rubric points pass. Objective matches c1.what-llm; no prerequisites used before taught; concept and example come before code; Try it runs as written; 12/12 tests pass on the solution; exercise and q1-q5 cover prediction, cutoff and hallucination; misconceptions named; en/ar/fr are native, glosses consistent; limits stated. Minor: gloss 'database' and 'context'."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "a7d48b8c5a19d4aa",
+   "notes": "Checked all 9 rubric points plus the beginner pass: objective matches c1.what-llm, prerequisites fit Level 0 (Python course), idea comes before code, Try it runs, exercise fits (12/12 tests pass), misconceptions covered, terms glossed, AR/FR read naturally, limits stated. Outside the rubric: [^ftdef] is cited but has no footnote line in en/ar/fr. Add `[^ftdef]: Anthropic, Glossary, \"Fine-tuning\".`"
   }
  ],
  "learners": {

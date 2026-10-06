@@ -176,3 +176,5 @@ python3 -m unittest discover -s ../tests
 [^halluc-idk]: Anthropic، تقليل الهلوسة، "Allow Claude to say I don't know".
 [^halluc-limit]: Anthropic، تقليل الهلوسة.
 [^halluc-validate]: Anthropic، تقليل الهلوسة.
+
+[^ftdef]: Glossary: Fine-tuning, <https://platform.claude.com/docs/en/about-claude/glossary>

@@ -18,7 +18,8 @@ nouveau, à qui manque le contexte de vos normes et de vos façons de travailler
 aussi un test valable pour tout prompt : montrez-le à un collègue qui connaît mal la tâche et
 demandez-lui de le suivre ; s'il est perdu, Claude le sera aussi[^golden].
 
-Voici un prompt vague :
+Les exemples de cette leçon trient des tickets de support : un ticket de support est un message
+qu'un client envoie pour demander de l'aide. Voici un prompt vague :
 
 ```text
 Sort this ticket: "I was charged twice this month."

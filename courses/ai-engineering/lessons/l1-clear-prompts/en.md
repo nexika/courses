@@ -17,7 +17,8 @@ lacks context on your norms and workflows"[^employee]. It also gives a test you 
 show it to a colleague who knows little about the task and ask them to follow it; if they would be
 confused, Claude will be too[^golden].
 
-Here is a vague prompt:
+The examples in this lesson sort support tickets: a support ticket is a message a customer sends to ask
+for help. Here is a vague prompt:
 
 ```text
 Sort this ticket: "I was charged twice this month."
@@ -196,7 +197,7 @@ It returns one string:
 - each example in its own `<example>` tag, all inside `<examples>`;
 - the variable input (such as the ticket) in `<input>`, last, so it never runs into your instructions;
 - a tag on its own line before and after its content, and one blank line between parts;
-- an empty or blank part, or a blank example, left out entirely;
+- an empty or blank part (only spaces, tabs or line breaks), or a blank example, left out entirely;
 - an empty task refused with a `ValueError`, because a prompt with no task has nothing to ask.
 
 Run the tests from the starter folder:
