@@ -1,0 +1,50 @@
+name: Lesson review
+description: Review a lesson (fact check, teaching, or as an expert). Accepted reviews are credited on the lesson.
+title: "Review: <course>/<lesson>"
+labels: ["review"]
+body:
+  - type: input
+    id: lesson
+    attributes:
+      label: Lesson
+      description: The lesson's folder, e.g. ai-engineering/l1-what-is-an-llm
+    validations:
+      required: true
+  - type: input
+    id: hash
+    attributes:
+      label: Content hash
+      description: Shown on the lesson page (or run `bin/courses hash <course>/<lesson>`), so the review applies to this version.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of review
+      options:
+        - Fact check
+        - Teaching (rubric in REVIEWING.md)
+        - Expert review
+    validations:
+      required: true
+  - type: dropdown
+    id: verdict
+    attributes:
+      label: Verdict
+      options:
+        - approve
+        - changes
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: What you found
+      description: For each problem, quote the sentence and say what is wrong, with a source when it is a fact.
+    validations:
+      required: true
+  - type: textarea
+    id: background
+    attributes:
+      label: Your background (for expert reviews)
+      description: Optional. What you work on, so readers know whose review it is.

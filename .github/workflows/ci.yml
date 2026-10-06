@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 6 1 * *"   # monthly: re-read every source online, so stale facts surface
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - run: pip install ruff==0.14.0
+      - run: ruff check .
+
+  tools:
+    name: tools tests (py${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install pytest==8.4.2
+      - run: pytest
+
+  gates:
+    name: lesson gates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Machine gates (structure, claims, exercises, quizzes, sources, links)
+        if: github.event_name != 'schedule'
+        run: python3 bin/courses check --stale ${{ github.event_name == 'pull_request' && 'warn' || 'fail' }}
+      - name: Machine gates with every source quote checked online
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: python3 bin/courses check --online
+      - name: Status and coverage
+        run: |
+          python3 bin/courses status
+          python3 bin/courses coverage
+
+  guard:
+    name: protected files
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Reviews, tools and CI change only through a maintainer
+        env:
+          BASE: ${{ github.base_ref }}
+          AUTHOR: ${{ github.event.pull_request.user.login }}
+        run: python3 bin/courses guard --base "origin/$BASE" --author "$AUTHOR"
+
+  ci-ok:
+    name: CI passed
+    if: always()
+    needs: [lint, tools, gates, guard]
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          if [ "${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}" = "true" ]; then
+            echo "A required job failed or was cancelled."; exit 1
+          fi

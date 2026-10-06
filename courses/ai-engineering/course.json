@@ -1,0 +1,155 @@
+{
+  "schema": "nexika.course/1",
+  "id": "ai-engineering",
+  "title": {
+    "en": "AI Engineering with Claude Code",
+    "ar": "هندسة الذكاء الاصطناعي مع Claude Code"
+  },
+  "audience": {
+    "en": "Complete beginners up to working software engineers moving into AI. Level 0 sends beginners to a free outside course for Python, the terminal and git, then teaches Claude Code itself.",
+    "ar": "من المبتدئ تمامًا حتى مهندس البرمجيات العامل الذي ينتقل إلى الذكاء الاصطناعي. يحيل المستوى 0 المبتدئين إلى دورة مجانية خارجية لتعلّم Python والطرفية و git، ثم يعلّم Claude Code نفسه."
+  },
+  "languages": [
+    "en",
+    "ar"
+  ],
+  "levels": [
+    {
+      "id": 0,
+      "title": {
+        "en": "Foundations",
+        "ar": "الأساسيات"
+      },
+      "exit": {
+        "en": "You can use the terminal, write small Python programs, track changes with git, and work with Claude Code while checking what it changes.",
+        "ar": "تستطيع استخدام الطرفية وكتابة برامج Python صغيرة وتتبّع التغييرات باستخدام git، والعمل مع Claude Code مع مراجعة ما يغيّره."
+      }
+    },
+    {
+      "id": 1,
+      "title": {
+        "en": "LLM basics",
+        "ar": "أساسيات النماذج اللغوية"
+      },
+      "exit": {
+        "en": "You can call Claude from Python, explain tokens and the context window, write a clear prompt, and test it against expected answers.",
+        "ar": "تستطيع استدعاء Claude من Python، وشرح الرموز ونافذة السياق، وكتابة موجّه (prompt) واضح واختباره مقابل إجابات متوقعة."
+      }
+    },
+    {
+      "id": 2,
+      "title": {
+        "en": "Tools and structured output",
+        "ar": "الأدوات والمخرجات المنظمة"
+      },
+      "exit": {
+        "en": "You can get validated JSON, give Claude tools and run the tool loop, and build, test and connect an MCP server.",
+        "ar": "تستطيع الحصول على JSON مُتحقَّق منه، وإعطاء Claude أدوات وتشغيل حلقة الأدوات، وبناء خادم MCP واختباره وربطه."
+      }
+    },
+    {
+      "id": 3,
+      "title": {
+        "en": "Context and retrieval",
+        "ar": "السياق والاسترجاع"
+      },
+      "exit": {
+        "en": "You can manage what goes into the context, cache it, and answer from your own documents with citations you can measure.",
+        "ar": "تستطيع إدارة ما يدخل في السياق وتخزينه مؤقتًا، والإجابة من مستنداتك مع استشهادات يمكن قياس جودتها."
+      }
+    },
+    {
+      "id": 4,
+      "title": {
+        "en": "Agents",
+        "ar": "الوكلاء"
+      },
+      "exit": {
+        "en": "You can build an agent with the Agent SDK and extend Claude Code with subagents, hooks, skills and safe permissions.",
+        "ar": "تستطيع بناء وكيل باستخدام Agent SDK، وتوسيع Claude Code بوكلاء فرعيين وخطافات ومهارات وصلاحيات آمنة."
+      }
+    },
+    {
+      "id": 5,
+      "title": {
+        "en": "Evals and reliability",
+        "ar": "التقييم والموثوقية"
+      },
+      "exit": {
+        "en": "You can measure an LLM feature or an agent with an eval set and graders, and catch regressions in CI.",
+        "ar": "تستطيع قياس ميزة مبنية على نموذج لغوي أو وكيل بمجموعة تقييم ومُقيِّمات، واكتشاف التراجعات في CI."
+      }
+    },
+    {
+      "id": 6,
+      "title": {
+        "en": "Production",
+        "ar": "الإنتاج"
+      },
+      "exit": {
+        "en": "You can ship an AI feature that is affordable, fast enough, observable, reliable and defended against prompt injection.",
+        "ar": "تستطيع إطلاق ميزة ذكاء اصطناعي معقولة التكلفة، وسريعة بما يكفي، وقابلة للمراقبة، وموثوقة، ومحمية من حقن الموجّهات (prompt injection)."
+      }
+    },
+    {
+      "id": 7,
+      "title": {
+        "en": "Capstone",
+        "ar": "المشروع الختامي"
+      },
+      "exit": {
+        "en": "You have shipped one complete agent with tools, evals in CI, observability and a security review.",
+        "ar": "أطلقت وكيلًا كاملًا واحدًا بأدوات وتقييمات في CI ومراقبة ومراجعة أمنية."
+      }
+    }
+  ],
+  "external": [
+    {
+      "title": "A free beginner course for Python, the terminal and git (to be chosen and checked before Level 0 ships)",
+      "url": "https://github.com/nexika/courses/issues",
+      "covers": []
+    }
+  ],
+  "modules": [
+    {
+      "id": "m0-claude-code",
+      "level": 0,
+      "title": {
+        "en": "Working with Claude Code",
+        "ar": "العمل مع Claude Code"
+      },
+      "lessons": [
+        "l0-set-up-claude-code"
+      ]
+    },
+    {
+      "id": "m1-llm-basics",
+      "level": 1,
+      "title": {
+        "en": "LLM basics",
+        "ar": "أساسيات النماذج اللغوية"
+      },
+      "lessons": [
+        "l1-what-an-llm-does",
+        "l1-tokens-and-context",
+        "l1-first-api-call",
+        "l1-clear-prompts",
+        "l1-test-your-prompt"
+      ]
+    }
+  ],
+  "verify": {
+    "min_learners": 3,
+    "min_pass_rate": 0.6
+  },
+  "plain_numbers": [
+    "Python 3(?:\\.\\d+)?",
+    "Level \\d",
+    "المستوى \\d",
+    "HTTP \\d{3}",
+    "Claude \\d(?:\\.\\d+)?",
+    "Opus \\d(?:\\.\\d+)?",
+    "Sonnet \\d(?:\\.\\d+)?",
+    "Haiku \\d(?:\\.\\d+)?"
+  ]
+}
