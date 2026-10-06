@@ -14,6 +14,20 @@
    "result": "fail",
    "hash": "6c7705671acdc18a",
    "notes": "Checked 16 cited sentences against 15 sources on 4 pages; all quotes are on the pages and the SDK code matches the docs. Fail: 'Your prompt does not have to be valid XML, and there is no fixed list of tag names' [^tag-names]. Neither claim is on the page, which only says 'Use consistent, descriptive tag names'. Fix: cut both claims, keeping 'use consistent, descriptive tag names such as <ticket>', or cite a source that says them."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "0d5b02f8437dc774",
+   "notes": "Checked 16 cited sentences against 15 sources on 4 pages (best practices, PE overview, glossary, multilingual), fetched 2026-10-06. Every quote is on its page (example-tags differs only in markdown backticks), and each supports its sentence as written. SDK snippet (messages.create, first text block) matches the docs. The prompt-injection caution has no citation, but it is advice, not a factual claim."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "0d5b02f8437dc774",
+   "notes": "Fetched all 4 source pages (.md). All 15 quotes are present, including diverse/example-tags (they differ only by markdown bold and backticks), and each cited sentence in en/ar/fr matches its source with no overreach. Code blocks are identical in all three files apart from translated comments. Quiz answers 2,0,3,1 and the explanations/rubric are correct and consistent across languages. I found nothing wrong."
   }
  ],
  "teaching": [
@@ -23,6 +37,20 @@
    "result": "fail",
    "hash": "6c7705671acdc18a",
    "notes": "Points 1-9 checked. Tests pass 9/9 on solution, fail on starter. Exercise and quiz match the abilities. Fail on 7 (beginner pass): EN \"latency or cost ... can sometimes be improved\" and FR \"la latence ou le coût\" use a term no earlier lesson defines. Fix: \"latency (how long the reply takes to arrive)\" / \"la latence (le temps que met la réponse à arriver)\". AR \"سرعة الاستجابة\" is fine."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "0d5b02f8437dc774",
+   "notes": "All 9 rubric points checked. The tests pass on the solution (9/9) and fail on the starter. Objectives, concept-first order, the worked example, the exercise and quiz fit, misconceptions, honesty and the three languages are all OK. One beginner-pass failure: quiz q4 option \"The examples will fill the whole context window\" (ar \"نافذة السياق\", fr \"fenêtre de contexte\") uses a term the prerequisite l1-first-api-call never defines. Fix: reword it, e.g. \"make the prompt too long to send\", or add l1-tokens-and-context as a prerequisite."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "0d5b02f8437dc774",
+   "notes": "Re-run after REVIEWING.md point 2 was clarified (prerequisites carry over). All 9 rubric points pass. Objective matches c1.prompting. Prereqs carry over (API, max_tokens, text blocks, temperature). Idea comes before code, Try it runs, 6 misconceptions. Honest about limits and injection. 9/9 tests pass on the solution, all fail on the starter. Quiz covers the 3 abilities. Headings, code, glosses and AR/FR idiom OK. Minor, not failures: EN 'blank part' unglossed (AR/FR gloss it); 'spaces' means all whitespace."
   }
  ],
  "learners": {

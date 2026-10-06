@@ -18,22 +18,21 @@ model like the one under Claude is first trained (this is called *pretraining*),
 the next word, given the previous context of text in the document"[^pretraining].
 
 Strictly speaking, the model works with *tokens*, not words. A token is a piece of text that can be a
-whole word, part of a word, a character, or even a byte[^tokens]. The next lesson is about tokens. In
+whole word, part of a word, a character, or even a byte (a small unit of computer data)[^tokens]. The next lesson is about tokens. In
 this lesson, "the next word" is close enough.
 
 Take the start of a sentence: "The cat sat on the ...". You probably thought of "mat". You did not look
 it up: you have seen that phrase many times. A language model does something similar, at a huge scale.
-It writes a whole answer by predicting one piece, adding it to the text, and predicting the next piece.
+It writes a whole answer by predicting one piece, adding it to the text, and predicting the next piece[^pretraining].
 
 Claude is more than a raw predictor: Anthropic notes that "it has already been fine-tuned to be a helpful
-assistant"[^finetune]. *Fine-tuning* means further training of a model that is already pretrained. It is
+assistant"[^finetune]. *Fine-tuning* means further training of a model that is already pretrained[^ftdef]. It is
 needed: Anthropic notes that pretrained models "are not inherently good at answering questions or following
-instructions", and fine-tuning is one of the ways it refines them[^pretrained]. This further training does not
-change the basic mechanism: the answer is still produced from patterns the model learned. Two limits
-follow from that.
+instructions", and fine-tuning is one of the ways it refines them[^pretrained]. Refined or not, Claude is still a model
+trained on text[^llm], and two limits follow from that.
 
 **First limit: no live knowledge.** A model learns from data collected up to some date: its *training data
-cutoff*. Anthropic's model overview lists this date for every current model[^models]. It gives Jun 2026
+cutoff*. Anthropic's model overview lists this date for each model in its comparison table[^models]. It gives Jun 2026
 for Claude Fable 5.1, Claude Opus 5.5 and Claude Sonnet 5.5, and Jul 2025 for Claude Haiku 4.5[^models].
 About anything after that date, the model has seen no text, so it has no patterns to draw on.
 
@@ -141,7 +140,8 @@ make likely, and likely is not the same as true.
 Build the predictor yourself, as two functions you can test. The starter is in
 `exercise/starter/predictor.py`. Write:
 
-- `build_counts(text)`: lowercase the text, split it on whitespace, and return a dict that maps each word
+- `build_counts(text)`: lowercase the text, split it on whitespace (spaces, tabs and line breaks), and return a dict (a Python dictionary,
+  which maps keys to values) that maps each word
   to a dict of the words that came right after it, with how many times.
 - `next_word(counts, word)`: return the word that most often came after `word` (compare in lowercase). On
   a tie, return the alphabetically first word. If `word` was never followed by anything, return `None`.

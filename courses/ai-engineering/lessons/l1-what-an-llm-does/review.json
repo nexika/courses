@@ -14,6 +14,20 @@
    "result": "pass",
    "hash": "9d489eadd340f1d1",
    "notes": "Fetched all 4 source pages (glossary, models overview, web search tool, reduce hallucinations). All 17 quotes are present and support the sentences in en, ar and fr. Cutoffs match the table: Jun 2026 for Fable 5.1, Opus 5.5 and Sonnet 5.5; Jul 2025 for Haiku 4.5, reliable cutoff Feb 2025. Model names and numbers match across languages, and the code is identical apart from translated comments. It ran and gave the stated output. Quiz answers and explanations are correct in all 3 languages. No problems found."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "87ebb85d24e0057c",
+   "notes": "Checked ~22 factual sentences against 17 sources on 4 live pages; all quotes found and supportive, and claims scripts give 3/1. Two sentences lack citations: (1) \"Fine-tuning means further training of a model that is already pretrained.\" Fix: add [^finetune] and quote \"further training a pretrained language model\". (2) \"It writes a whole answer by predicting one piece...\" Fix: add [^pretraining]."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "87ebb85d24e0057c",
+   "notes": "Fetched all 4 source pages (glossary, models overview, web search, reduce hallucinations). All 17 quotes are present verbatim and support the sentences. The Jun 2026, Jul 2025 and Feb 2025 cutoffs and the model names match the live table. AR and FR say the same as EN. The code is identical in all three languages (only comments differ) and its output matches what the lesson shows. The 12 exercise tests pass against the solution. Quiz answers and explanations are correct in all 3 languages."
   }
  ],
  "teaching": [
@@ -23,6 +37,13 @@
    "result": "fail",
    "hash": "9d489eadd340f1d1",
    "notes": "Pass: objective matches c1.what-llm, prereqs, concept before code, runnable Try it, exercise fits, misconceptions, honest, voice/headings, all 3 langs. 12/12 tests pass. Beginner pass fails on q5: \"pin that version in our project\" (ar \"فلنثبّت\", fr \"fixons\") uses version pinning, which is never taught. Fix: \"make our project always install that exact version\" in all 3 languages."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "87ebb85d24e0057c",
+   "notes": "All 9 rubric points pass. Objective matches c1.what-llm; no prerequisites used before taught; concept and example come before code; Try it runs as written; 12/12 tests pass on the solution; exercise and q1-q5 cover prediction, cutoff and hallucination; misconceptions named; en/ar/fr are native, glosses consistent; limits stated. Minor: gloss 'database' and 'context'."
   }
  ],
  "learners": {

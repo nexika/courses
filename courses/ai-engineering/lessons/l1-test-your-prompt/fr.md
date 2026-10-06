@@ -14,27 +14,27 @@ gens l'essaient une fois, voient une bonne réponse et passent à autre chose. C
 peu. Elle vous renseigne sur une entrée, lors d'une exécution. Vos utilisateurs enverront des entrées que
 vous n'avez jamais essayées. Et le même prompt peut répondre autrement à l'exécution suivante.
 La *température* est un réglage qui fixe la part de hasard dans une réponse. La référence de l'API indique
-que, même avec une température de 0.0, les résultats ne seront pas entièrement déterministes[^nondet].
+que, même avec une température de 0.0, les résultats ne seront pas entièrement déterministes[^nondet] : le même prompt peut donner une autre réponse.
 Sur les modèles récents, vous ne pouvez même pas la baisser : les modèles sortis après Claude Opus 4.6 ne
 permettent pas de régler la température[^temperature].
 
 Traitez donc un prompt comme du code : testez-le. Le guide d'Anthropic explique que construire une
 application fondée sur un LLM (grand modèle de langage) commence par définir clairement vos critères de réussite, puis par concevoir
 des évaluations qui mesurent les performances par rapport à ces critères[^cycle]. Sa présentation de
-l'ingénierie de prompt suppose que vous avez déjà des moyens de tester ces critères de façon empirique
-avant de chercher à améliorer un prompt[^before].
+l'ingénierie de prompt suppose que vous avez déjà un moyen de tester votre prompt sur ces critères en le faisant
+tourner, pas en devinant, avant de chercher à l'améliorer[^before].
 
 Le test d'un prompt s'appelle une *évaluation*, ou *eval*. Une première évaluation a trois parties :
 
 - **Les cas.** Des entrées, chacune avec la réponse attendue (on parle aussi de *réponse de référence*).
   Choisissez-les à l'image de votre trafic réel : le guide recommande de concevoir des évaluations qui
-  reflètent la distribution réelle de vos tâches, et ajoute de ne pas oublier les *cas limites* (*edge
+  ressemblent au mélange d'entrées que vos utilisateurs envoient vraiment, et ajoute de ne pas oublier les *cas limites* (*edge
   cases*)[^taskspecific]. Un cas limite est une entrée rare ou inhabituelle, à la frontière de ce que votre
   prompt doit traiter. Mettez ces entrées difficiles, pas seulement les faciles.
 - **Un évaluateur.** Du code qui compare la réponse du modèle à la réponse attendue et dit réussite ou
   échec. Le guide recommande de formuler les questions de façon à permettre une notation automatique[^automate].
   Il présente la notation par le code comme la plus rapide et la plus fiable, tout en notant qu'elle manque
-  de nuance pour les jugements complexes[^codegrade].
+  de nuance : elle ne saisit pas les subtilités de sens des jugements complexes[^codegrade].
 - **Le taux de réussite.** La part des cas réussis : le nombre de cas réussis divisé par le nombre total de
   cas.
 
@@ -46,7 +46,8 @@ L'évaluateur le plus simple est la *correspondance exacte* : la réponse doit �
 attendue. Il est strict. Il refuse « Mixed » et « mixed. », alors qu'une personne accepterait les deux. Un
 évaluateur *tolérant* nettoie les deux chaînes avant de les comparer. Le guide décrit les évaluations par
 correspondance exacte comme vérifiant si la sortie correspond à une réponse correcte définie à l'avance,
-généralement après normalisation des espaces et de la casse[^exact]. Dans le guide, la « correspondance
+généralement après normalisation des espaces et de la casse[^exact] : espaces, tabulations et retours à la ligne
+traités de la même façon, majuscules et minuscules confondues. Dans le guide, la « correspondance
 exacte » inclut donc souvent ce nettoyage ; cette leçon donne un nom à chacune des deux étapes pour que vous
 voyiez la différence. L'évaluateur tolérant de cette leçon ignore aussi un point final.
 
@@ -58,8 +59,8 @@ sortie[^stringmatch]. Elle peut convenir à une réponse longue qui doit mention
 des étiquettes courtes comme positive ou not positive, elle est risquée.
 
 Beaucoup de cas simples valent mieux que quelques cas parfaits : le guide indique que davantage de
-questions notées automatiquement, avec un signal un peu plus faible, valent mieux que moins de questions
-notées à la main par des humains avec une grande qualité[^volume]. Commencez petit, et ajoutez un cas
+questions notées automatiquement, chacune un peu moins informative, valent mieux que moins de questions
+notées à la main avec soin[^volume]. Commencez petit, et ajoutez un cas
 chaque fois que vous découvrez un nouvel échec.
 
 ## Essayez
@@ -219,7 +220,7 @@ une raison de plus de ne pas se fier à une seule réponse.
   tranchées, comme des étiquettes. Pour les réponses qui demandent du jugement, des leçons ultérieures
   utilisent un modèle comme évaluateur : le guide décrit la notation par un LLM comme rapide et souple,
   capable de passer à l'échelle et adaptée aux jugements complexes, et ajoute : testez d'abord sa
-  fiabilité, puis passez à l'échelle[^llmgrade].
+  fiabilité, puis passez à l'échelle[^llmgrade]. Passer à l'échelle, c'est ici l'utiliser sur beaucoup plus de cas.
 
 ## Votre exercice
 
@@ -239,7 +240,7 @@ Ouvrez `exercise/starter/evaluate.py`. Il contient quelques cas, un modèle subs
 Deux règles de plus, parce que les vraies évaluations les rencontrent :
 
 - Une liste de cas vide lève `ValueError`. Un taux de réussite calculé sur aucun cas ne veut rien dire.
-- Si le modèle lève une exception sur un cas, ce cas échoue avec `output` à `None` et `error` contenant le
+- Si le modèle lève une exception (une erreur Python) sur un cas, ce cas échoue avec `output` à `None` et `error` contenant le
   message, puis l'exécution continue avec le cas suivant. Un vrai appel d'API peut échouer ; un seul échec
   ne doit pas arrêter toute l'évaluation.
 

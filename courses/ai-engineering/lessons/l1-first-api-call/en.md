@@ -13,11 +13,13 @@ An API (application programming interface) is a door one program opens for other
 is the Messages API: your code sends a request over the internet, and a reply comes back.
 
 Your calls use an API key: a secret string that identifies your account, so keep it private. The usual
-place for it is an environment variable on your machine[^start-key]. The official Python SDK (a library
-you install) reads it from `ANTHROPIC_API_KEY` without you passing it in[^start-env]. The SDK gives
+place for it is an environment variable on your machine[^start-key]: a named value that your terminal
+hands to the programs it starts, outside your code. The official Python SDK (software development kit: a
+library you install) reads it from `ANTHROPIC_API_KEY` without you passing it in[^start-env]. The SDK gives
 Python programs access to the Claude API[^sdk].
 
-A request is a small JSON object. These are the fields you will use first:
+A request is a small JSON object. JSON is a text format for data that looks like a Python dict: names in
+quotes, each followed by a colon and a value. These are the fields you will use first:
 
 - `model`: which Claude model answers. If you are unsure, Anthropic's docs suggest starting with Claude
   Opus 5.5[^models-start], whose API name is `claude-opus-5-5`[^model-id]. Model names change, so check the
@@ -113,8 +115,10 @@ event types it does not know without crashing[^stream-unknown].
 
 This part calls the real API, so it needs an API key, and the tokens it uses are billed[^pricing].
 Skip it if you have no key: the next part and the exercise work without one. Put the key in your environment, never in your code, and
-never commit it. The second line creates a virtual environment (venv): a separate Python environment
-for this project, so what you install stays out of the rest of your system.
+never commit it (a commit is a saved snapshot of your project in Git, which others may later see). The
+first line below sets the environment variable for this terminal window. The second line creates a virtual environment (venv): a separate Python environment
+for this project, so what you install stays out of the rest of your system. The third line uses pip, Python's package
+installer, to install the SDK.
 
 ```bash
 export ANTHROPIC_API_KEY="your-key-here"
@@ -208,8 +212,8 @@ request's `max_tokens` limit. Its text ends with "that a model can", a sentence 
 Open `exercise/starter/first_call.py` and write three functions. They work offline, on the samples in
 `exercise/tests/`:
 
-- `build_request(model, max_tokens, turns, system=None)` returns the request body as a dict. `turns` is a
-  list of `(role, text)` pairs. Add `system` only when there is a system prompt. Raise `ValueError` for a
+- `build_request(model, max_tokens, turns, system=None)` returns the request body as a dict (a Python
+  dictionary, which maps names to values, like the JSON above). `turns` is a list of `(role, text)` pairs. Add `system` only when there is a system prompt. Raise `ValueError` (Python's usual error for a bad value) for a
   `max_tokens` below one or not a whole number, for no turns, for a role other than `user` or
   `assistant`, and for a last turn that is not the user's. The rule on `max_tokens` is this course's rule for a request
   that should produce an answer: the API itself also accepts 0, which fills the prompt cache (a store
@@ -225,7 +229,7 @@ cd exercise/starter
 python3 -m unittest discover -s ../tests
 ```
 
-The tests fail until your functions work. A solution is in `exercise/solution/`: try first, then compare.
+`unittest` is Python's built-in test runner. The tests fail until your functions work. A solution is in `exercise/solution/`: try first, then compare.
 
 ## Check yourself
 

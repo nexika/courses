@@ -25,20 +25,24 @@ d'un modèle à l'autre : les modèles Claude 4.7 et suivants en utilisent un pl
 texte y donne environ 30 % de tokens de plus que sur les modèles antérieurs[^tokenizer]. Un nombre de
 tokens est toujours un nombre pour un modèle donné.
 
+Votre programme parle à Claude par son **API** (interface de programmation) : il envoie une
+**requête** et reçoit en retour une **réponse**. Un aller-retour, une requête et sa réponse, s'appelle
+un **appel**. La leçon suivante, « Votre premier appel à l'API », en fait un vrai.
+
 **La fenêtre de contexte** est tout le texte auquel le modèle peut se référer pendant qu'il génère
 une réponse, y compris cette réponse elle-même[^window]. Voyez-la comme la mémoire de travail du
 modèle pour une requête. Ce n'est pas ce que le modèle a appris pendant son entraînement : c'est ce
 que vous envoyez maintenant, plus ce qu'il écrit en retour.
 
 Tout ce qui est dans la requête compte : le prompt système (les instructions que vous donnez au modèle
-avant la conversation), chaque message et les éventuelles définitions d'outils (les descriptions des fonctions que votre
+avant la conversation), chaque message (chaque tour de la conversation, le vôtre ou celui de Claude) et les éventuelles définitions d'outils (les descriptions des fonctions que votre
 programme permet au modèle de demander à appeler)[^everything]. La
 réponse que Claude écrit compte aussi[^output]. Entrée et sortie se partagent la même fenêtre.
 
 La fenêtre a une taille, mesurée en tokens. Beaucoup de modèles actuels, dont Claude Opus 5.5 et
 Claude Sonnet 5.5, ont une fenêtre de contexte d'un million de tokens (notée 1M)[^sizes-1m].
-D'autres, comme Claude Sonnet 4.5, ont 200K tokens[^sizes-200k]. Si l'entrée seule dépasse la
-fenêtre, l'API refuse la requête avec une erreur 400[^too-long] : vous recevez une réponse d'erreur au lieu
+D'autres, comme Claude Sonnet 4.5, ont 200K tokens, K voulant dire mille[^sizes-200k]. Si l'entrée seule dépasse la
+fenêtre, l'API refuse la requête avec une erreur 400 (400 est le numéro de ce type d'erreur)[^too-long] : vous recevez une réponse d'erreur au lieu
 d'une réponse du modèle, et la requête n'est pas exécutée. Une fenêtre plus grande ne garantit pas de
 meilleures réponses pour autant : plus le nombre de tokens augmente, plus la précision et le rappel
 (*recall*) se dégradent, ce qu'Anthropic appelle le *context rot*[^rot]. Le rappel, ici, veut dire
@@ -46,15 +50,15 @@ que le modèle retrouve et utilise moins bien ce qui est dans son contexte.
 
 **Tokens d'entrée et tokens de sortie.** Les tokens d'entrée sont tout ce que vous envoyez. Les
 tokens de sortie sont ce que Claude écrit. Vous ne pouvez pas connaître d'avance la longueur de la
-réponse, mais vous pouvez la plafonner : `max_tokens` est le nombre maximal de tokens à générer avant
+réponse, mais vous pouvez la plafonner avec `max_tokens`, un réglage que vous mettez dans la requête. C'est le nombre maximal de tokens à générer avant
 de s'arrêter, et le modèle peut s'arrêter avant[^max-tokens].
 Chaque modèle a aussi son propre plafond pour `max_tokens` : les modèles à fenêtre de 1M peuvent
-générer jusqu'à 128k tokens de sortie par requête[^max-out].
+générer jusqu'à 128k tokens de sortie par requête, k voulant là aussi dire mille[^max-out].
 
 **Le champ `usage`.** Inutile de deviner ce qu'un appel a consommé : chaque réponse l'indique dans son champ
-`usage`[^usage]. `input_tokens` est le nombre de tokens d'entrée utilisés[^usage-in], et
+`usage`, une partie nommée de la réponse[^usage]. `input_tokens` est le nombre de tokens d'entrée utilisés[^usage-in], et
 `output_tokens` le nombre de tokens de sortie utilisés[^usage-out]. Dans une réponse, cela ressemble
-à ceci :
+à ceci (cette notation est du JSON, un format de texte courant pour les données) :
 
 ```json
 "usage": {"input_tokens": 12, "output_tokens": 6}
@@ -99,8 +103,8 @@ C'est ainsi que l'on compare des modèles avant de choisir : mêmes nombres de t
 ### Compter les tokens avant d'envoyer
 
 L'API peut compter les tokens d'une requête avant que vous ne l'envoyiez[^count]. Vous configurerez
-une clé d'API dans les leçons suivantes ; si vous en avez déjà une, ce code compte les tokens d'entrée
-d'une courte requête (il faut `pip install anthropic`) :
+une clé d'API (un secret qui vous identifie auprès de l'API) dans les leçons suivantes ; si vous en avez déjà une, ce code compte les tokens d'entrée
+d'une courte requête (il faut la bibliothèque Python d'Anthropic, installée avec `pip install anthropic`) :
 
 ```python
 import anthropic

@@ -136,6 +136,14 @@
    "quote": "Always validate critical information, especially for high-stakes decisions",
    "retrieved": "2026-10-06",
    "volatile": false
+  },
+  "ftdef": {
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
+   "title": "Glossary: Fine-tuning",
+   "kind": "doc",
+   "quote": "Fine-tuning is the process of further training a pretrained language model using additional data.",
+   "retrieved": "2026-10-06",
+   "volatile": false
   }
  }
 }

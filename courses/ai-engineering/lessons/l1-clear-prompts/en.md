@@ -86,12 +86,12 @@ in angle brackets, `<context>`, closed by the same name with a slash, `</context
 instructions[^example-tags]. The ticket is a variable input: it changes on every call, so it gets a
 tag of its own and the customer's words never run into your instructions.
 
-XML is a way of marking up text with tags like these. Your prompt does not have to be valid XML,
-and there is no fixed list of tag names: a consistent, descriptive name such as `<ticket>` is
-enough[^tag-names].
+XML is a way of marking up text with tags like these. Use consistent, descriptive tag names, such
+as `<ticket>` for the ticket[^tag-names].
 
 A clear prompt makes a good answer more likely. It does not guarantee one: Claude can still choose
-the wrong category. And not every problem is best solved by changing the prompt: latency or cost,
+the wrong category. And not every problem is best solved by changing the prompt: latency (how long
+the reply takes to arrive) or cost,
 for example, can sometimes be improved more easily by choosing a different model[^not-always]. The next lesson shows how to test a prompt against expected
 answers, so you know whether a change helped.
 
@@ -176,13 +176,14 @@ Say what the answer should be instead[^positive].
 as the same length or the same category, can teach Claude that accident[^diverse]. Vary them on
 purpose.
 
-**"XML tags are special commands I must learn."** There is no list to memorize: use consistent,
-descriptive tag names across your prompts[^tag-names]. `<ticket>` is fine because it says what is
+**"XML tags are special commands I must learn."** A tag is a label for one part of your prompt.
+Use consistent, descriptive tag names across your prompts[^tag-names]. `<ticket>` is fine because it says what is
 inside.
 
 **"Tags make the input safe."** Tags show Claude where the input starts and ends. Do not count on
 them alone to stop text inside the input from acting like an instruction. The course comes back to
-this when it covers prompt injection.
+this when it covers prompt injection (text in the input written to make
+Claude follow it instead of your instructions).
 
 ## Your exercise
 

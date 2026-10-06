@@ -18,7 +18,7 @@ already checked by the machine gates; check that the text explains them correctl
 A lesson passes when all of these hold:
 
 1. **Objective:** it says what the learner will be able to do, and that matches its competencies.
-2. **Prerequisites:** nothing is used before it is taught (here or in a listed prerequisite).
+2. **Prerequisites:** nothing is used before it is taught (here or in a listed prerequisite, or in one of its own prerequisites: they carry over).
 3. **Concept before code:** the idea is explained with an example before the implementation.
 4. **Worked example:** at least one complete example the learner can run.
 5. **Exercise fits:** the exercise practises the objective, not something else.

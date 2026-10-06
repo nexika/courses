@@ -13,11 +13,13 @@ Une API (interface de programmation) est une porte qu'un programme ouvre aux aut
 de Claude s'appelle l'API Messages : votre code envoie une requête par Internet, et une réponse revient.
 
 Vos appels utilisent une clé d'API : une chaîne secrète qui identifie votre compte, à garder pour vous.
-On la range d'habitude dans une variable d'environnement de votre machine[^start-key]. Le SDK Python
-officiel (une bibliothèque que vous installez) la lit dans `ANTHROPIC_API_KEY` sans que vous ayez à la lui
+On la range d'habitude dans une variable d'environnement de votre machine[^start-key] : une valeur nommée
+que votre terminal transmet aux programmes qu'il lance, en dehors de votre code. Le SDK Python officiel
+(*software development kit*, kit de développement : une bibliothèque que vous installez) la lit dans `ANTHROPIC_API_KEY` sans que vous ayez à la lui
 passer[^start-env]. Ce SDK donne aux programmes Python accès à l'API Claude[^sdk].
 
-Une requête est un petit objet JSON. Voici les champs que vous utiliserez d'abord :
+Une requête est un petit objet JSON. JSON est un format texte pour les données qui ressemble à un dict
+Python : des noms entre guillemets, chacun suivi de deux-points et d'une valeur. Voici les champs que vous utiliserez d'abord :
 
 - `model` : le modèle qui répond. Si vous hésitez, la documentation d'Anthropic conseille de commencer par
   Claude Opus 5.5[^models-start], dont le nom dans l'API est `claude-opus-5-5`[^model-id]. Les noms de
@@ -122,8 +124,11 @@ code doit traiter sans planter les types d'événements qu'il ne connaît pas[^s
 Cette partie appelle la vraie API : elle demande une clé d'API, et les tokens consommés sont
 facturés[^pricing]. Passez-la si vous n'avez pas de clé : la partie suivante et l'exercice
 fonctionnent sans. Mettez la clé dans votre environnement, jamais dans votre code, et ne la mettez
-jamais dans un commit. La deuxième ligne crée un environnement virtuel (venv) : un environnement Python à
-part pour ce projet, pour que ce que vous installez n'atteigne pas le reste de votre système.
+jamais dans un commit (un commit est un instantané enregistré de votre projet dans Git, que d'autres
+pourront voir plus tard). La première ligne ci-dessous définit la variable d'environnement pour cette
+fenêtre de terminal. La deuxième ligne crée un environnement virtuel (venv) : un environnement Python à
+part pour ce projet, pour que ce que vous installez n'atteigne pas le reste de votre système. La troisième ligne utilise pip,
+l'installateur de paquets de Python, pour installer le SDK.
 
 ```bash
 export ANTHROPIC_API_KEY="your-key-here"
@@ -219,8 +224,8 @@ Ouvrez `exercise/starter/first_call.py` et écrivez trois fonctions. Elles fonct
 exemples de `exercise/tests/` :
 
 - `build_request(model, max_tokens, turns, system=None)` renvoie le corps de la requête sous forme de
-  dict. `turns` est une liste de paires `(role, text)`. N'ajoutez `system` que s'il y a un prompt système.
-  Levez `ValueError` si `max_tokens` est inférieur à un ou n'est pas un entier, s'il n'y a aucun tour, si
+  dict (un dictionnaire Python, qui associe des noms à des valeurs, comme le JSON ci-dessus). `turns` est une liste de paires `(role, text)`. N'ajoutez `system` que s'il y a un prompt système.
+  Levez `ValueError` (l'erreur habituelle de Python pour une valeur invalide) si `max_tokens` est inférieur à un ou n'est pas un entier, s'il n'y a aucun tour, si
   un rôle n'est ni `user` ni `assistant`, ou si le dernier tour n'est pas celui de l'utilisateur. Cette règle sur `max_tokens` est celle du cours pour une
   requête qui doit produire une réponse : l'API elle-même accepte aussi 0, qui remplit le cache de prompts
   (*prompt cache*, une réserve qui permet aux requêtes suivantes de réutiliser le même prompt) sans écrire
@@ -237,7 +242,7 @@ cd exercise/starter
 python3 -m unittest discover -s ../tests
 ```
 
-Les tests échouent tant que vos fonctions ne marchent pas. Une solution se trouve dans
+`unittest` est l'outil de test intégré à Python. Les tests échouent tant que vos fonctions ne marchent pas. Une solution se trouve dans
 `exercise/solution/` : essayez d'abord, comparez ensuite.
 
 ## Vérifiez vos acquis

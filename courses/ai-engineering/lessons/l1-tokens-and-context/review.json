@@ -14,6 +14,20 @@
    "result": "pass",
    "hash": "adc998cb7906f550",
    "notes": "Fetched all 6 cited pages (glossary, token-counting, context-windows, pricing, messages/create, SDK usage.py). All 27 quotes are present and support the sentences as written. Prices 4/20, 2/10, 1/5; 1M/200K; 128k; 30%; 50% batch; flat pricing from 4.6 on; model IDs all match. Math checks out in EN/AR/FR (0.009, 0.005, 90, 45, 0.018, 2000). Quiz answers and explanations are correct in all 3 languages."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "60eff92700e73ef9",
+   "notes": "Checked 30 factual sentences against 27 footnotes from 6 fetched sources: Glossary, Token counting, Context windows, Messages create, Pricing, and SDK usage.py. All quotes are on their pages; 7 matched only after ignoring table and link markup. Every quote supports its sentence as written. Prices 4/20, 2/10 and 1/5 are current, and output is 5x input. All 5 claims/*.py outputs match the text: 0.009, 0.005, 90, 45, 2000. No uncited world claims."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "60eff92700e73ef9",
+   "notes": "Fetched all 6 source pages (glossary, token-counting, context-windows, messages/create, pricing, SDK usage.py). All 27 quotes are present: 23 matched verbatim, and caching plus the 3 price rows were confirmed by hand after the Markdown formatting got in the way. Prices 4/20, 2/10, 1/5, the 30%, 1M/200K/128k, 400 error and batch 50% match. EN/AR/FR give the same facts, numbers, model IDs and code; the cost math and the 4 quiz answer keys are correct in all three languages."
   }
  ],
  "teaching": [
@@ -23,6 +37,13 @@
    "result": "fail",
    "hash": "adc998cb7906f550",
    "notes": "Rubric points 1-6, 8 and 9 pass, and the 14 solution tests pass. Point 7 (beginner pass) fails. The prerequisite never introduces the API, a request, a response or a call, yet this lesson relies on them: 'the API refuses the request with a 400 error', 'Every response reports it', 'one call costs'. Fix: at their first use, add 'Your program talks to Claude through its API: it sends a request and gets back a response; one round trip is a call.' Minor: gloss 'K' in 200K as 'thousand'."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "60eff92700e73ef9",
+   "notes": "All 9 points pass. Objective matches c1.tokens/c1.cost; nothing used before it is taught (API, call, JSON, max_tokens, 400, rate limits, recall, Batch API all glossed); concept, worked example, runnable estimate.py; 6 misconceptions corrected; EN/AR/FR use the same headings and glosses; limits stated (prices change, caching ignored). Solution 14/14 OK, starter 14 errors. Beginner pass: list empty."
   }
  ],
  "learners": {

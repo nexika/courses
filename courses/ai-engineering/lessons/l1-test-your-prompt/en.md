@@ -12,24 +12,25 @@ In the last lesson you wrote a clear prompt. How do you know it works? Most peop
 good answer and move on. That one answer proves very little. It tells you about one input, on one run.
 Your users will send inputs you never tried. And the same prompt can answer differently on another run.
 *Temperature* is a setting for how much randomness goes into an answer. The API reference says that even
-at temperature 0.0 the results will not be fully deterministic[^nondet]. On recent models you cannot
+at temperature 0.0 the results will not be fully deterministic[^nondet]: the same prompt can still give a
+different answer. On recent models you cannot
 lower it at all: models released after Claude Opus 4.6 do not support setting temperature[^temperature].
 
 So treat a prompt like code, and test it. Anthropic's guide says that building an application on a large language model (LLM) starts
 with clearly defining your success criteria and then designing evaluations to measure performance against
-them[^cycle]. Its prompt engineering overview expects you to have some ways to empirically test against
-those criteria before you start improving a prompt[^before].
+them[^cycle]. Its prompt engineering overview expects you to have some way to test your prompt against
+those criteria by running it, not by guessing, before you start improving it[^before].
 
 A test of a prompt is called an *evaluation*, or *eval*. A first eval has three parts:
 
 - **Cases.** Inputs, each with the answer you expect (people also call it the *golden answer*). Choose
-  them like your real traffic: the guide says to design evals that mirror your real-world task
-  distribution, and adds "Don't forget to factor in edge cases!"[^taskspecific]. An *edge case* is a rare or
+  them like your real traffic: the guide says to design evals that match the mix of inputs your
+  users really send, and adds "Don't forget to factor in edge cases!"[^taskspecific]. An *edge case* is a rare or
   unusual input at the limits of what your prompt must handle. Include those hard inputs, not only the
   easy ones.
 - **A grader.** Code that compares the model's answer with the expected answer and says pass or fail. The
   guide recommends structuring questions so they allow automated grading[^automate]. It calls code-based
-  grading the fastest and most reliable kind, but notes that it lacks nuance for complex judgments[^codegrade].
+  grading the fastest and most reliable kind, but notes that it lacks nuance: it misses fine shades of meaning in complex judgments[^codegrade].
 - **The pass rate.** The share of cases that pass: the cases that passed divided by all the cases.
 
 Here is a small example. The prompt asks the model to label a product review as positive, negative or
@@ -39,7 +40,8 @@ model answers "mixed", the case passes.
 The simplest grader is an *exact match*: the answer must be the same string as the expected one. It is
 strict. It fails "Mixed" and "mixed." although a person would accept both. A *tolerant* grader cleans both
 strings before it compares them. The guide describes exact-match evals as checking whether the output
-matches a predefined correct answer, typically after normalizing whitespace and case[^exact]. So in the
+matches a predefined correct answer, typically after normalizing whitespace and case[^exact]:
+treating spaces, tabs and line breaks alike and ignoring upper and lower case. So in the
 guide, "exact match" usually includes this cleaning; this lesson gives the two steps separate names so you
 can see the difference. The tolerant grader in this lesson also ignores a full stop at the end.
 
@@ -49,8 +51,8 @@ check is not always wrong: the guide lists *string match*, a check that a key ph
 output[^stringmatch]. It can suit a long answer that must mention a key phrase. For short labels such as
 positive or not positive, it is risky.
 
-Many simple cases beat a few perfect ones: the guide says more questions with slightly lower signal
-automated grading is better than fewer questions with high-quality human hand-graded evals[^volume].
+Many simple cases beat a few perfect ones: the guide says more questions graded automatically, each a little
+less informative, is better than fewer questions graded carefully by hand[^volume].
 Start small, and add a case each time you find a new failure.
 
 ## Try it
@@ -202,7 +204,7 @@ reason not to trust a single answer.
 - **Thinking exact match is enough for every task.** It suits short, clear-cut answers such as labels. For
   answers that need judgment, later lessons use a model as the grader: the guide calls LLM-based grading
   fast and flexible, scalable and suitable for complex judgment, and adds: "Test to ensure reliability first
-  then scale."[^llmgrade]
+  then scale."[^llmgrade] To scale here means to use it on many more cases.
 
 ## Your exercise
 
@@ -219,7 +221,7 @@ Open `exercise/starter/evaluate.py`. It has a few cases, a stand-in model, and t
 Two more rules, because real evals meet them:
 
 - An empty list of cases raises `ValueError`. A pass rate over no cases means nothing.
-- If the model raises an exception on one case, that case fails with `output` set to `None` and `error`
+- If the model raises an exception (a Python error) on one case, that case fails with `output` set to `None` and `error`
   holding the message, and the run goes on with the next case. A real API call can fail; one failure
   must not stop the whole eval.
 

@@ -23,32 +23,36 @@ The count also depends on the model. The tokenizer, the part that cuts text into
 between models: Claude 4.7 and later models use a newer one, and the same text gives about 30 percent
 more tokens than on earlier models[^tokenizer]. A token count is always a count for one model.
 
+Your program talks to Claude through its **API** (application programming interface): it sends a
+**request**, and it gets back a **response**. One round trip, a request and its response, is a
+**call**. The next lesson, "Your first API call", makes a real one.
+
 **The context window** is "all the text a language model can reference when generating a response,
 including the response itself"[^window]. Think of it as the model's working memory for one request.
 It is not what the model learned in training: it is what you send now, plus what it writes back.
 
 Everything in the request counts toward it: the system prompt (the instructions you give the model
-before the conversation), every message, and any tool definitions (the descriptions of the
+before the conversation), every message (each turn of the conversation, yours or Claude's), and any tool definitions (the descriptions of the
 functions your program lets the model ask to call)[^everything]. The answer Claude writes counts
 too[^output]. Input and output share the same window.
 
 The window has a size, in tokens. Many current models, including Claude Opus 5.5 and Claude Sonnet
 5.5, have a context window of one million tokens (written 1M)[^sizes-1m]. Others, such as Claude
-Sonnet 4.5, have 200K tokens[^sizes-200k]. If the input alone is larger than the window, the API
-refuses the request with a 400 error[^too-long]: you get an error response instead of an answer, and
+Sonnet 4.5, have 200K tokens, where K stands for thousand[^sizes-200k]. If the input alone is larger than the window, the API
+refuses the request with a 400 error (400 is the number of that kind of error)[^too-long]: you get an error response instead of an answer, and
 the request is not run. A bigger window does not mean better answers either: as the token count
 grows, accuracy and recall degrade, which Anthropic calls context rot[^rot]. Here "recall" means that
 the model finds and uses what is in its context less reliably.
 
 **Input and output tokens.** Input tokens are everything you send. Output tokens are what Claude
-writes. You cannot know in advance how long the answer will be, but you can cap it: `max_tokens` is
+writes. You cannot know in advance how long the answer will be, but you can cap it with `max_tokens`, a setting you put in the request. It is
 "the maximum number of tokens to generate before stopping", and the model may stop earlier[^max-tokens].
 Each model also has its own ceiling for `max_tokens`: the 1M-token models can generate up to 128k
-output tokens in one request[^max-out].
+output tokens in one request, where k again stands for thousand[^max-out].
 
 **Usage.** You do not have to guess what a call used. Every response reports it in its `usage`
-field[^usage]: `input_tokens` is the number of input tokens used[^usage-in], and `output_tokens` the
-number of output tokens used[^usage-out]. In a response, it looks like this:
+field, a named part of the response[^usage]: `input_tokens` is the number of input tokens used[^usage-in], and `output_tokens` the
+number of output tokens used[^usage-out]. In a response, it looks like this (the notation is JSON, a common text format for data):
 
 ```json
 "usage": {"input_tokens": 12, "output_tokens": 6}
@@ -89,9 +93,9 @@ This is how you compare models before you choose one: same token counts, differe
 
 ### Count tokens before you send
 
-The API can count the tokens of a request before you send it[^count]. You will set up an API key in
-the next lessons; if you already have one, this counts the input tokens of a short request (it needs
-`pip install anthropic`):
+The API can count the tokens of a request before you send it[^count]. You will set up an API key (a secret
+that identifies you to the API) in the next lessons; if you already have one, this counts the input tokens of a short request (it needs
+Anthropic's Python library, installed with `pip install anthropic`):
 
 ```python
 import anthropic

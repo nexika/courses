@@ -14,6 +14,20 @@
    "result": "pass",
    "hash": "c891ba0e1fde13f6",
    "notes": "Fetched all 14 source pages: develop-tests, the prompt-engineering overview, messages/create (the 'temperature 0.0 ... not fully deterministic' line and 'after Claude Opus 4.6' are both live), the models overview (claude-opus-5-5 is listed) and the SDK README. Every quote is present and backs its sentence in en/ar/fr, with no overreach. The code blocks match byte for byte across languages. Running the code gives 4/10 (40%) and 8/10 (80%), as the text says. Quiz answers and explanations are correct in all three languages."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "238218406bb67c7b",
+   "notes": "Checked 14 cited factual sentences against 13 sources (develop-tests, PE overview, Messages create, models overview, SDK README). Fetched every page; all quotes are verbatim and support the sentences as written (temperature: >Opus 4.6 only 1.0 accepted). SDK code matches the README and claude-opus-5-5 is a current ID. Claims scripts give 40 and 80; en.md code = example.py; output matches."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "238218406bb67c7b",
+   "notes": "Fetched all 5 sources: every quote is present and supports EN. The code blocks are byte-identical in EN/AR/FR, and the script reproduces 40%/80% and the case table. Quiz answers and explanations are correct in all 3 languages. One problem, in AR [^volume]: \"أسئلة أكثر يقيّمها الكود آليًا\" narrows the guide's \"automated grading\", which includes LLM grading, to code only. Fix: \"أسئلة أكثر تُقيَّم آليًا\"."
   }
  ],
  "teaching": [
@@ -23,6 +37,13 @@
    "result": "fail",
    "hash": "c891ba0e1fde13f6",
    "notes": "Checked rubric 1-9. Passing: objective, prereqs, concept first, runnable example, exercise (9/9 tests pass), quiz, mistakes, honesty, AR/FR. Fails 7 (beginner pass) on unglossed jargon: 'empirically test' -> 'test by running'; 'real-world task distribution' -> 'the mix of inputs your users send'; 'slightly lower signal' -> 'each a little less informative'. Same in AR/FR."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "238218406bb67c7b",
+   "notes": "Checked rubric 1-9: objective, prereqs, idea before code, runnable example, exercise (9/9 tests pass) and quiz all OK. Beginner pass fails: 'try your own cases or swap in `ask_claude`' (all 3 languages), but evaluate.py has no PROMPT, import or client, so pasting ask_claude raises NameError. 'Swap in a real model' also prints nothing. Fix: say to copy PROMPT, import and client too, and print rate/failures."
   }
  ],
  "learners": {

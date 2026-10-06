@@ -21,24 +21,24 @@ de *pré-entraînement*, ou *pretraining*), il apprend « à prédire le mot sui
 le précède dans le document »[^pretraining].
 
 Pour être exact, le modèle ne travaille pas avec des mots mais avec des *tokens*. Un token est un morceau
-de texte : un mot entier, une partie de mot, un caractère, voire un octet[^tokens]. La prochaine leçon
+de texte : un mot entier, une partie de mot, un caractère, voire un octet (une petite unité de données informatiques)[^tokens]. La prochaine leçon
 porte sur les tokens. Dans celle-ci, « le mot suivant » suffit.
 
 Prenez le début d'une phrase : « Il était une ... ». Vous avez sans doute pensé à « fois ». Vous ne
 l'avez cherché nulle part : vous avez déjà lu et entendu cette tournure bien des fois. Un modèle de langage
 fait quelque chose de semblable, à une échelle immense. Il écrit toute une réponse en prédisant un
-morceau, en l'ajoutant au texte, puis en prédisant le morceau suivant.
+morceau, en l'ajoutant au texte, puis en prédisant le morceau suivant[^pretraining].
 
 Claude est plus qu'un simple prédicteur brut : Anthropic précise qu'il « a déjà été affiné (*fine-tuned*)
 pour être un assistant utile »[^finetune]. L'affinage (*fine-tuning*) est un entraînement supplémentaire
-d'un modèle déjà pré-entraîné. Il est nécessaire : Anthropic note que les modèles seulement pré-entraînés
+d'un modèle déjà pré-entraîné[^ftdef]. Il est nécessaire : Anthropic note que les modèles seulement pré-entraînés
 « ne sont pas naturellement doués pour répondre aux questions ou suivre des instructions », et l'affinage
-est l'un des moyens de les améliorer[^pretrained]. Cet entraînement supplémentaire ne change pas le mécanisme de base : la réponse est toujours produite à partir
-des motifs que le modèle a appris. Deux limites en découlent.
+est l'un des moyens de les améliorer[^pretrained]. Affiné ou non, Claude reste un modèle entraîné sur du
+texte[^llm], et deux limites en découlent.
 
 **Première limite : aucune connaissance en temps réel.** Un modèle apprend à partir de données collectées
 jusqu'à une certaine date : sa *date limite des données d'entraînement* (*training data cutoff*). La page
-de présentation des modèles d'Anthropic indique cette date pour chaque modèle actuel[^models]. Elle donne
+de présentation des modèles d'Anthropic indique cette date pour chaque modèle de son tableau comparatif[^models]. Elle donne
 juin 2026 pour Claude Fable 5.1, Claude Opus 5.5 et Claude Sonnet 5.5, et juillet 2025 pour Claude Haiku 4.5[^models].
 Sur tout ce qui s'est passé après cette date, le modèle n'a lu aucun texte : il n'a aucun motif sur
 lequel s'appuyer.
@@ -159,8 +159,8 @@ motifs rendent probable, et probable ne veut pas dire vrai.
 Construisez le prédicteur vous-même, sous forme de deux fonctions que vous pouvez tester. Le fichier de
 départ est `exercise/starter/predictor.py`. Écrivez :
 
-- `build_counts(text)` : mettez le texte en minuscules, découpez-le sur les espaces, et renvoyez un
-  dictionnaire qui associe à chaque mot un dictionnaire des mots venus juste après lui, avec leur nombre.
+- `build_counts(text)` : mettez le texte en minuscules, découpez-le sur les espaces (espaces, tabulations et retours à la ligne),
+  et renvoyez un dictionnaire (un `dict` Python, qui associe des clés à des valeurs) qui associe à chaque mot un dictionnaire des mots venus juste après lui, avec leur nombre.
 - `next_word(counts, word)` : renvoyez le mot qui est venu le plus souvent après `word` (comparez en
   minuscules). En cas d'égalité, renvoyez le premier dans l'ordre alphabétique. Si rien n'a jamais suivi
   `word`, renvoyez `None`.

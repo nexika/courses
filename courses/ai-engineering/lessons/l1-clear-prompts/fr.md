@@ -97,12 +97,11 @@ balise `<examples>`, pour que Claude les distingue des instructions[^example-tag
 entrée variable : il change à chaque appel, donc il a sa propre balise, et les mots du client ne se
 mêlent jamais à vos instructions.
 
-XML est une façon de baliser un texte avec des balises comme celles-ci. Votre prompt n'a pas besoin
-d'être du XML valide, et il n'existe pas de liste fixe de noms de balises : un nom cohérent et
-descriptif comme `<ticket>` suffit[^tag-names].
+XML est une façon de baliser un texte avec des balises comme celles-ci. Utilisez des noms de
+balises cohérents et descriptifs, comme `<ticket>` pour le ticket[^tag-names].
 
 Un prompt clair rend une bonne réponse plus probable. Il ne la garantit pas : Claude peut encore
-choisir la mauvaise catégorie. Et tous les problèmes ne se règlent pas en changeant le prompt : la latence ou le
+choisir la mauvaise catégorie. Et tous les problèmes ne se règlent pas en changeant le prompt : la latence (le temps que met la réponse à arriver) ou le
 coût, par exemple, s'améliorent parfois plus facilement en choisissant un autre modèle[^not-always]. La leçon suivante montre comment
 tester un prompt face à des réponses attendues, pour savoir si une modification a aidé.
 
@@ -188,13 +187,14 @@ réponse ouverte. Dites plutôt ce que la réponse doit être[^positive].
 hasard, comme la même longueur ou la même catégorie, peuvent apprendre ce hasard à Claude[^diverse].
 Variez-les exprès.
 
-**« Les balises XML sont des commandes spéciales à apprendre. »** Il n'y a pas de liste à retenir :
-utilisez des noms de balises cohérents et descriptifs dans tous vos prompts[^tag-names]. `<ticket>`
+**« Les balises XML sont des commandes spéciales à apprendre. »** Une balise est une étiquette pour
+une partie de votre prompt. Utilisez des noms de balises cohérents et descriptifs dans tous vos prompts[^tag-names]. `<ticket>`
 convient parce qu'il dit ce qu'il contient.
 
 **« Les balises rendent l'entrée sûre. »** Les balises montrent à Claude où l'entrée commence et où
 elle finit. Ne comptez pas sur elles seules pour empêcher un texte dans l'entrée d'agir comme une
-instruction. Le cours y reviendra en traitant l'injection de prompt.
+instruction. Le cours y reviendra en traitant l'injection de prompt (un texte placé dans l'entrée
+pour que Claude le suive à la place de vos instructions).
 
 ## Votre exercice
 
