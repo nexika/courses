@@ -1,0 +1,34 @@
+{
+ "schema": "nexika.review/1",
+ "fact_checks": [
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "6c7705671acdc18a",
+   "notes": "Fetched all 4 source pages (best practices, PE overview, multilingual, glossary). All 15 quotes are present verbatim and back the sentences they support, with no overreach and nothing outdated. Every factual sentence in ar/fr matches en. All code and prompt blocks are identical across languages; only the API snippet's comments are translated. The script's output matches the clear prompt shown. Quiz answers and explanations are correct in all 3 languages. The solution passes all 9 exercise tests."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "6c7705671acdc18a",
+   "notes": "Checked 16 cited sentences against 15 sources on 4 pages; all quotes are on the pages and the SDK code matches the docs. Fail: 'Your prompt does not have to be valid XML, and there is no fixed list of tag names' [^tag-names]. Neither claim is on the page, which only says 'Use consistent, descriptive tag names'. Fix: cut both claims, keeping 'use consistent, descriptive tag names such as <ticket>', or cite a source that says them."
+  }
+ ],
+ "teaching": [
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "6c7705671acdc18a",
+   "notes": "Points 1-9 checked. Tests pass 9/9 on solution, fail on starter. Exercise and quiz match the abilities. Fail on 7 (beginner pass): EN \"latency or cost ... can sometimes be improved\" and FR \"la latence ou le coût\" use a term no earlier lesson defines. Fix: \"latency (how long the reply takes to arrive)\" / \"la latence (le temps que met la réponse à arriver)\". AR \"سرعة الاستجابة\" is fine."
+  }
+ ],
+ "learners": {
+  "attempts": 0,
+  "passes": 0,
+  "hash": ""
+ },
+ "experts": []
+}
