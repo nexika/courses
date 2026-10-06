@@ -28,6 +28,20 @@
    "result": "fail",
    "hash": "238218406bb67c7b",
    "notes": "Fetched all 5 sources: every quote is present and supports EN. The code blocks are byte-identical in EN/AR/FR, and the script reproduces 40%/80% and the case table. Quiz answers and explanations are correct in all 3 languages. One problem, in AR [^volume]: \"أسئلة أكثر يقيّمها الكود آليًا\" narrows the guide's \"automated grading\", which includes LLM grading, to code only. Fix: \"أسئلة أكثر تُقيَّم آليًا\"."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "ddd96bbfafae89b0",
+   "notes": "Checked 14 cited claims across 5 sources (develop-tests, prompt-eng overview, messages/create, models overview, SDK README), all fetched live. Every quote is on its page and supports the sentence as written. SDK code (messages.create, text-block extraction, claude-opus-5-5 in API ID table) matches the docs. claims/*.py print 40 and 80, and the example output matches en.md."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "ddd96bbfafae89b0",
+   "notes": "Fetched all 5 source pages; all 14 quotes are present and support the AR and FR sentences as written (temperature deprecation after Opus 4.6, non-determinism at 0.0, claude-opus-5-5 listed, SDK README). Code and output blocks are byte-identical in EN, AR and FR. I ran the code: 40% and 80% reproduce. Quiz answers and explanations are correct and consistent in all three languages. Only nit: the AR whitespace gloss leaves out tabs, which is not an error."
   }
  ],
  "teaching": [
@@ -44,6 +58,13 @@
    "result": "fail",
    "hash": "238218406bb67c7b",
    "notes": "Checked rubric 1-9: objective, prereqs, idea before code, runnable example, exercise (9/9 tests pass) and quiz all OK. Beginner pass fails: 'try your own cases or swap in `ask_claude`' (all 3 languages), but evaluate.py has no PROMPT, import or client, so pasting ask_claude raises NameError. 'Swap in a real model' also prints nothing. Fix: say to copy PROMPT, import and client too, and print rate/failures."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "ddd96bbfafae89b0",
+   "notes": "Checked all 9 rubric points (objective, prereqs via clear-prompts/first-api-call, concept, worked example, exercise, misconceptions, beginner pass, en/ar/fr, honesty). Tests: 9 OK on the solution. One fail: \"Each failing case is a dictionary with input, expected, output and error\" never says what error holds for a wrong answer, and the tests require None. Fix: add \"(error is None when the model answered)\" in all 3 languages."
   }
  ],
  "learners": {

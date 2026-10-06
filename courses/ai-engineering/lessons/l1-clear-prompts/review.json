@@ -42,6 +42,20 @@
    "result": "pass",
    "hash": "e939a5623cd46503",
    "notes": "Fetched all 4 source pages (best practices, overview, multilingual, glossary); all 15 quotes are present and support the sentences in en, ar and fr with no overreach. ar/fr state the same facts as en (3–5 examples, latency/cost via another model, randomness, tags). Code blocks are identical across languages apart from translated comments. Quiz answers 2/0/3/1 and explanations are correct in all three languages."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "098be9581c8ae1f6",
+   "notes": "Checked 15 cited claims against their 15 sources.json entries on 4 live pages (best-practices, PE overview, glossary, multilingual), fetched as .md. All 15 quotes are on the pages (2 sit inside markdown bullets) and support the sentences as written, with no overreach. I found no uncited world claims; the rest is advice or definitions. The SDK snippet (messages.create with model/max_tokens/messages, then reading the first text block) matches the docs."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "098be9581c8ae1f6",
+   "notes": "Fetched all 4 source pages: all 15 quotes are present and current. Code blocks match across languages except translated comments. Quiz answers and explanations agree in en/ar/fr. FR has no problems. AR overreaches on one point: it says 'شرح السبب وراء التعليمة يساعد Claude' (it helps), but EN and the source say 'can help'. Fix: change it to 'قد يساعد Claude على فهم أهدافك...'."
   }
  ],
  "teaching": [
@@ -72,6 +86,13 @@
    "result": "fail",
    "hash": "e939a5623cd46503",
    "notes": "Points 1-6, 8 and 9 hold; 9/9 tests pass and the quiz covers the abilities. Point 7 (beginner pass) fails: 'ticket'/'support ticket' (ar 'تذكرة', fr 'ticket') is never defined, and a beginner reads 'تذكرة' as a travel ticket. Fix: gloss it at first use in all 3 languages, e.g. 'a support ticket (a message a customer sends to ask for help)' / 'تذكرة دعم (رسالة يرسلها العميل يطلب فيها المساعدة)'."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "098be9581c8ae1f6",
+   "notes": "Checked all 9 rubric points. Objectives match c1.prompting; terms are defined. The idea and a vague-to-clear example come before the code. Try it runs offline. The exercise, 9/9 tests passing on the solution, practises tags, order and leaving parts out; the quiz covers all 3 abilities. 6 misconceptions corrected; limits stated. Beginner pass found nothing. Minor wording: 'spaces around it' (and 'مسافات'/'espaces') should say spaces, tabs or line breaks, as the tests strip \\n."
   }
  ],
  "learners": {

@@ -42,6 +42,20 @@
    "result": "pass",
    "hash": "a7d48b8c5a19d4aa",
    "notes": "Fetched all 4 source pages (glossary, models overview, web search tool, reduce hallucinations). All 18 quotes are present and support the sentences, with no overreach. Cutoffs (Jun 2026 for Fable 5.1/Opus 5.5/Sonnet 5.5, Jul 2025 for Haiku 4.5; reliable cutoff Feb 2025) match the live table. The code runs and prints exactly the stated output. Numbers, model names and code are identical in EN/AR/FR. Quiz answers and explanations are correct; the best-of-N claim in q4 is supported."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "6b3a4b814240fecd",
+   "notes": "Fetched all 4 source pages: all 18 quotes in sources.json are present verbatim, and each supports its sentence as written. The cutoffs match the live models table (Jun 2026 for Fable 5.1/Opus 5.5/Sonnet 5.5; Haiku 4.5 Jul 2025, reliable Feb 2025). Facts, numbers, dates and model names in ar/fr match en. Code is identical in all three (comments aside), and running it gives the stated output. Quiz answers and explanations are correct in all three languages; q4 is backed by Best-of-N."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "6b3a4b814240fecd",
+   "notes": "Checked about 30 factual sentences in en.md against all 18 sources.json entries. I fetched 4 pages: the glossary, models overview, web search tool and reduce hallucinations. All 18 quotes appear on their pages and support the sentences as written. Cutoff dates (Jun 2026 x3, Haiku 4.5 Jul 2025 / reliable Feb 2025) are current. The Try-it output matches, and claims/*.py give 3 and 1 as stated. No uncited world claims."
   }
  ],
  "teaching": [
@@ -65,6 +79,13 @@
    "result": "pass",
    "hash": "a7d48b8c5a19d4aa",
    "notes": "Checked all 9 rubric points plus the beginner pass: objective matches c1.what-llm, prerequisites fit Level 0 (Python course), idea comes before code, Try it runs, exercise fits (12/12 tests pass), misconceptions covered, terms glossed, AR/FR read naturally, limits stated. Outside the rubric: [^ftdef] is cited but has no footnote line in en/ar/fr. Add `[^ftdef]: Anthropic, Glossary, \"Fine-tuning\".`"
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "6b3a4b814240fecd",
+   "notes": "Checked all 9 points in en/ar/fr. Objective matches c1.what-llm; nothing is used before it is taught (Level 0 covers Python); concept and example come before code; Try it runs as shown; exercise passes 12/12 on the solution, starter fails, and it practises prediction and pattern-over-truth; quiz covers all three abilities, answers at positions 2,0,3,1; misconceptions and limits stated. Beginner pass found nothing. Minor: [^ftdef] footnote styled differently from the others."
   }
  ],
  "learners": {
