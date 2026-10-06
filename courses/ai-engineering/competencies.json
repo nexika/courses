@@ -14,7 +14,8 @@
    ],
    "can": {
     "en": "Move around folders in a terminal, run a program and read its error message.",
-    "ar": "تتنقّل بين المجلدات في الطرفية، وتشغّل برنامجًا، وتقرأ رسالة الخطأ."
+    "ar": "تتنقّل بين المجلدات في الطرفية، وتشغّل برنامجًا، وتقرأ رسالة الخطأ.",
+    "fr": "Se déplacer entre les dossiers dans un terminal, lancer un programme et lire son message d'erreur."
    }
   },
   {
@@ -30,7 +31,8 @@
    ],
    "can": {
     "en": "Write and run a small Python program with functions, lists, dictionaries and files.",
-    "ar": "تكتب برنامج Python صغيرًا وتشغّله، فيه دوال وقوائم وقواميس وملفات."
+    "ar": "تكتب برنامج Python صغيرًا وتشغّله، فيه دوال وقوائم وقواميس وملفات.",
+    "fr": "Écrire et exécuter un petit programme Python avec des fonctions, des listes, des dictionnaires et des fichiers."
    }
   },
   {
@@ -44,7 +46,8 @@
    ],
    "can": {
     "en": "Track changes with git: commit, branch and read a diff.",
-    "ar": "تتتبّع التغييرات باستخدام git: تُنشئ إيداعًا (commit)، وتنشئ فرعًا، وتقرأ الفروق."
+    "ar": "تتتبّع التغييرات باستخدام git: تُنشئ إيداعًا (commit)، وتنشئ فرعًا، وتقرأ الفروق.",
+    "fr": "Suivre ses modifications avec git : faire un commit, créer une branche et lire un diff."
    }
   },
   {
@@ -59,7 +62,8 @@
    ],
    "can": {
     "en": "Install Claude Code, start a session, and have it read, explain and change code while you approve or refuse each action.",
-    "ar": "تثبّت Claude Code وتبدأ جلسة، وتجعله يقرأ الكود ويشرحه ويعدّله بينما توافق على كل إجراء أو ترفضه."
+    "ar": "تثبّت Claude Code وتبدأ جلسة، وتجعله يقرأ الكود ويشرحه ويعدّله بينما توافق على كل إجراء أو ترفضه.",
+    "fr": "Installer Claude Code, ouvrir une session, lui faire lire, expliquer et modifier du code en approuvant ou refusant chaque action."
    }
   },
   {
@@ -73,7 +77,8 @@
    ],
    "can": {
     "en": "Check what Claude changed (the diff, the tests) before you accept it.",
-    "ar": "تراجع ما غيّره Claude (الفروق والاختبارات) قبل أن تقبله."
+    "ar": "تراجع ما غيّره Claude (الفروق والاختبارات) قبل أن تقبله.",
+    "fr": "Vérifier ce que Claude a modifié (le diff, les tests) avant de l'accepter."
    }
   },
   {
@@ -88,7 +93,8 @@
    ],
    "can": {
     "en": "Take one change from plan to commit with Claude Code: plan mode, implementation, tests, commit.",
-    "ar": "تنقل تغييرًا واحدًا من الخطة إلى الإيداع مع Claude Code: وضع التخطيط، ثم التنفيذ، ثم الاختبارات، ثم الإيداع."
+    "ar": "تنقل تغييرًا واحدًا من الخطة إلى الإيداع مع Claude Code: وضع التخطيط، ثم التنفيذ، ثم الاختبارات، ثم الإيداع.",
+    "fr": "Mener une modification du plan au commit avec Claude Code : mode plan, implémentation, tests, commit."
    }
   },
   {
@@ -103,7 +109,8 @@
    ],
    "can": {
     "en": "Explain what an LLM does and name what it cannot do: no live knowledge, and confident mistakes.",
-    "ar": "تشرح ما يفعله النموذج اللغوي، وتسمّي ما لا يستطيعه: لا معرفة آنية، وأخطاء تُقال بثقة."
+    "ar": "تشرح ما يفعله النموذج اللغوي، وتسمّي ما لا يستطيعه: لا معرفة آنية، وأخطاء تُقال بثقة.",
+    "fr": "Expliquer ce que fait un LLM et ce qu'il ne sait pas faire : pas de connaissances en temps réel, et des erreurs affirmées avec assurance."
    }
   },
   {
@@ -117,7 +124,8 @@
    ],
    "can": {
     "en": "Count the tokens of a request and relate them to the context window and to cost.",
-    "ar": "تحسب الرموز (tokens) في الطلب وتربطها بنافذة السياق وبالتكلفة."
+    "ar": "تحسب الرموز (tokens) في الطلب وتربطها بنافذة السياق وبالتكلفة.",
+    "fr": "Compter les tokens d'une requête et les relier à la fenêtre de contexte et au coût."
    }
   },
   {
@@ -132,7 +140,8 @@
    ],
    "can": {
     "en": "Call Claude from Python with the official SDK and read the answer and its token usage.",
-    "ar": "تستدعي Claude من Python بالمكتبة الرسمية، وتقرأ الإجابة واستهلاك الرموز."
+    "ar": "تستدعي Claude من Python بالمكتبة الرسمية، وتقرأ الإجابة واستهلاك الرموز.",
+    "fr": "Appeler Claude depuis Python avec le SDK officiel et lire la réponse et sa consommation de tokens."
    }
   },
   {
@@ -146,7 +155,8 @@
    ],
    "can": {
     "en": "Build a multi-turn conversation with a system prompt and user and assistant turns.",
-    "ar": "تبني محادثة متعددة الجولات فيها موجّه النظام (system prompt) وأدوار للمستخدم والمساعد."
+    "ar": "تبني محادثة متعددة الجولات فيها موجّه النظام (system prompt) وأدوار للمستخدم والمساعد.",
+    "fr": "Construire une conversation à plusieurs tours avec un prompt système et des tours utilisateur et assistant."
    }
   },
   {
@@ -161,7 +171,8 @@
    ],
    "can": {
     "en": "Choose the model and parameters for a task and handle the reason a response stopped.",
-    "ar": "تختار النموذج والمعاملات المناسبة لمهمة، وتتعامل مع سبب توقّف الإجابة."
+    "ar": "تختار النموذج والمعاملات المناسبة لمهمة، وتتعامل مع سبب توقّف الإجابة.",
+    "fr": "Choisir le modèle et les paramètres d'une tâche et traiter la raison pour laquelle une réponse s'est arrêtée."
    }
   },
   {
@@ -176,7 +187,8 @@
    ],
    "can": {
     "en": "Write a clear prompt: the task, the context, examples and the output format.",
-    "ar": "تكتب موجّهًا (prompt) واضحًا: المهمة والسياق والأمثلة وشكل المخرجات."
+    "ar": "تكتب موجّهًا (prompt) واضحًا: المهمة والسياق والأمثلة وشكل المخرجات.",
+    "fr": "Écrire un prompt clair : la tâche, le contexte, des exemples et le format de sortie."
    }
   },
   {
@@ -190,7 +202,8 @@
    ],
    "can": {
     "en": "Test a prompt against a small set of cases with expected answers and report its pass rate.",
-    "ar": "تختبر الموجّه على مجموعة صغيرة من الحالات ذات الإجابات المتوقعة، وتقيس نسبة النجاح."
+    "ar": "تختبر الموجّه على مجموعة صغيرة من الحالات ذات الإجابات المتوقعة، وتقيس نسبة النجاح.",
+    "fr": "Tester un prompt sur un petit ensemble de cas aux réponses attendues et indiquer son taux de réussite."
    }
   },
   {
@@ -203,7 +216,8 @@
    ],
    "can": {
     "en": "Estimate what one call and a whole workload will cost.",
-    "ar": "تقدّر تكلفة استدعاء واحد وتكلفة حمل عمل كامل."
+    "ar": "تقدّر تكلفة استدعاء واحد وتكلفة حمل عمل كامل.",
+    "fr": "Estimer le coût d'un appel et celui d'une charge de travail entière."
    }
   },
   {
@@ -216,7 +230,8 @@
    ],
    "can": {
     "en": "Stream a response and show it as it arrives.",
-    "ar": "تستقبل الإجابة متدفقة وتعرضها أثناء وصولها."
+    "ar": "تستقبل الإجابة متدفقة وتعرضها أثناء وصولها.",
+    "fr": "Recevoir une réponse en flux continu et l'afficher au fur et à mesure."
    }
   },
   {
@@ -230,7 +245,8 @@
    ],
    "can": {
     "en": "Get JSON that matches a schema and validate it before use.",
-    "ar": "تحصل على JSON مطابق لمخطط وتتحقق منه قبل استخدامه."
+    "ar": "تحصل على JSON مطابق لمخطط وتتحقق منه قبل استخدامه.",
+    "fr": "Obtenir un JSON conforme à un schéma et le valider avant de l'utiliser."
    }
   },
   {
@@ -245,7 +261,8 @@
    ],
    "can": {
     "en": "Define a tool and run one round of the tool exchange: Claude asks for the tool, you return its result.",
-    "ar": "تعرّف أداة وتنفّذ جولة واحدة من تبادل الأدوات: يطلب Claude الأداة وتعيد إليه نتيجتها."
+    "ar": "تعرّف أداة وتنفّذ جولة واحدة من تبادل الأدوات: يطلب Claude الأداة وتعيد إليه نتيجتها.",
+    "fr": "Définir un outil et mener un échange d'outil : Claude demande l'outil, vous lui renvoyez le résultat."
    }
   },
   {
@@ -258,7 +275,8 @@
    ],
    "can": {
     "en": "Report tool failures so the model can recover instead of guessing.",
-    "ar": "تبلّغ عن فشل الأداة بطريقة تسمح للنموذج بالتعافي بدل التخمين."
+    "ar": "تبلّغ عن فشل الأداة بطريقة تسمح للنموذج بالتعافي بدل التخمين.",
+    "fr": "Signaler les échecs d'un outil pour que le modèle puisse se rattraper au lieu de deviner."
    }
   },
   {
@@ -276,7 +294,8 @@
    ],
    "can": {
     "en": "Explain MCP: hosts, clients and servers, and what tools, resources and prompts are.",
-    "ar": "تشرح MCP: المضيف والعميل والخادم، وما الأدوات والموارد وقوالب الموجّهات (prompts)."
+    "ar": "تشرح MCP: المضيف والعميل والخادم، وما الأدوات والموارد وقوالب الموجّهات (prompts).",
+    "fr": "Expliquer MCP : hôtes, clients et serveurs, et ce que sont les outils, les ressources et les modèles de prompts."
    }
   },
   {
@@ -290,7 +309,8 @@
    ],
    "can": {
     "en": "Build an MCP server with a typed tool and test it.",
-    "ar": "تبني خادم MCP بأداة ذات أنواع محددة وتختبره."
+    "ar": "تبني خادم MCP بأداة ذات أنواع محددة وتختبره.",
+    "fr": "Construire un serveur MCP avec un outil typé et le tester."
    }
   },
   {
@@ -304,7 +324,8 @@
    ],
    "can": {
     "en": "Connect an MCP server to Claude Code, use it, and judge whether to trust it.",
-    "ar": "تربط خادم MCP بـ Claude Code وتستخدمه، وتحكم هل تثق به."
+    "ar": "تربط خادم MCP بـ Claude Code وتستخدمه، وتحكم هل تثق به.",
+    "fr": "Connecter un serveur MCP à Claude Code, l'utiliser, et juger s'il est digne de confiance."
    }
   },
   {
@@ -317,7 +338,8 @@
    ],
    "can": {
     "en": "Send images and PDFs to Claude and check what it extracts.",
-    "ar": "ترسل صورًا وملفات PDF إلى Claude وتتحقق مما يستخرجه."
+    "ar": "ترسل صورًا وملفات PDF إلى Claude وتتحقق مما يستخرجه.",
+    "fr": "Envoyer des images et des PDF à Claude et vérifier ce qu'il en extrait."
    }
   },
   {
@@ -331,7 +353,8 @@
    ],
    "can": {
     "en": "Keep a long conversation within the context: what to keep, summarize or drop.",
-    "ar": "تُبقي محادثة طويلة داخل حدود السياق: ما الذي تحتفظ به أو تلخّصه أو تحذفه."
+    "ar": "تُبقي محادثة طويلة داخل حدود السياق: ما الذي تحتفظ به أو تلخّصه أو تحذفه.",
+    "fr": "Garder une longue conversation dans les limites du contexte : quoi conserver, résumer ou abandonner."
    }
   },
   {
@@ -345,7 +368,8 @@
    ],
    "can": {
     "en": "Use prompt caching and measure what it saves.",
-    "ar": "تستخدم التخزين المؤقت للموجّهات (prompt caching) وتقيس ما يوفّره."
+    "ar": "تستخدم التخزين المؤقت للموجّهات (prompt caching) وتقيس ما يوفّره.",
+    "fr": "Utiliser la mise en cache des prompts et mesurer ce qu'elle fait économiser."
    }
   },
   {
@@ -359,7 +383,8 @@
    ],
    "can": {
     "en": "Explain embeddings and build a simple semantic search.",
-    "ar": "تشرح التضمينات (embeddings) وتبني بحثًا دلاليًا بسيطًا."
+    "ar": "تشرح التضمينات (embeddings) وتبني بحثًا دلاليًا بسيطًا.",
+    "fr": "Expliquer les embeddings et construire une recherche sémantique simple."
    }
   },
   {
@@ -374,7 +399,8 @@
    ],
    "can": {
     "en": "Answer questions from your own documents with citations.",
-    "ar": "تجيب عن الأسئلة من مستنداتك مع ذكر المصادر."
+    "ar": "تجيب عن الأسئلة من مستنداتك مع ذكر المصادر.",
+    "fr": "Répondre à des questions à partir de vos propres documents, avec des citations."
    }
   },
   {
@@ -387,7 +413,8 @@
    ],
    "can": {
     "en": "Measure retrieval quality and whether answers stay faithful to the sources.",
-    "ar": "تقيس جودة الاسترجاع ومدى التزام الإجابات بالمصادر."
+    "ar": "تقيس جودة الاسترجاع ومدى التزام الإجابات بالمصادر.",
+    "fr": "Mesurer la qualité de la recherche et la fidélité des réponses aux sources."
    }
   },
   {
@@ -401,7 +428,8 @@
    ],
    "can": {
     "en": "Give Claude Code the context of a project with CLAUDE.md, memory and skills.",
-    "ar": "تعطي Claude Code سياق المشروع عبر CLAUDE.md والذاكرة والمهارات."
+    "ar": "تعطي Claude Code سياق المشروع عبر CLAUDE.md والذاكرة والمهارات.",
+    "fr": "Donner à Claude Code le contexte d'un projet avec CLAUDE.md, la mémoire et les skills."
    }
   },
   {
@@ -415,7 +443,8 @@
    ],
    "can": {
     "en": "Keep a Claude Code session's context useful: when to compact, clear or hand off.",
-    "ar": "تُبقي سياق جلسة Claude Code مفيدًا: متى تضغطه ومتى تمسحه ومتى تسلّمه."
+    "ar": "تُبقي سياق جلسة Claude Code مفيدًا: متى تضغطه ومتى تمسحه ومتى تسلّمه.",
+    "fr": "Garder utile le contexte d'une session Claude Code : quand le compacter, l'effacer ou le transmettre."
    }
   },
   {
@@ -428,7 +457,8 @@
    ],
    "can": {
     "en": "Use extended thinking for hard tasks and weigh its cost.",
-    "ar": "تستخدم التفكير الموسّع للمهام الصعبة وتوازن تكلفته."
+    "ar": "تستخدم التفكير الموسّع للمهام الصعبة وتوازن تكلفته.",
+    "fr": "Utiliser la réflexion étendue pour les tâches difficiles et en peser le coût."
    }
   },
   {
@@ -442,7 +472,8 @@
    ],
    "can": {
     "en": "Turn the tool exchange into an agent loop with a real model: deciding the next step, stop conditions and a budget.",
-    "ar": "تحوّل تبادل الأدوات إلى حلقة وكيل بنموذج حقيقي: اختيار الخطوة التالية وشروط التوقّف والميزانية."
+    "ar": "تحوّل تبادل الأدوات إلى حلقة وكيل بنموذج حقيقي: اختيار الخطوة التالية وشروط التوقّف والميزانية.",
+    "fr": "Transformer l'échange d'outils en boucle d'agent avec un vrai modèle : choix de l'étape suivante, conditions d'arrêt et budget."
    }
   },
   {
@@ -457,7 +488,8 @@
    ],
    "can": {
     "en": "Choose a fixed workflow (chaining, routing, parallel calls) or an agent for a task, and say why.",
-    "ar": "تختار لمهمةٍ سير عمل ثابتًا (تسلسل، توجيه، استدعاءات متوازية) أو وكيلًا، وتشرح السبب."
+    "ar": "تختار لمهمةٍ سير عمل ثابتًا (تسلسل، توجيه، استدعاءات متوازية) أو وكيلًا، وتشرح السبب.",
+    "fr": "Choisir pour une tâche un workflow fixe (enchaînement, routage, appels parallèles) ou un agent, et expliquer pourquoi."
    }
   },
   {
@@ -471,7 +503,8 @@
    ],
    "can": {
     "en": "Build an agent with the Claude Agent SDK.",
-    "ar": "تبني وكيلًا باستخدام Claude Agent SDK."
+    "ar": "تبني وكيلًا باستخدام Claude Agent SDK.",
+    "fr": "Construire un agent avec le Claude Agent SDK."
    }
   },
   {
@@ -485,7 +518,8 @@
    ],
    "can": {
     "en": "Split work across subagents and combine their results.",
-    "ar": "توزّع العمل على وكلاء فرعيين وتجمع نتائجهم."
+    "ar": "توزّع العمل على وكلاء فرعيين وتجمع نتائجهم.",
+    "fr": "Répartir le travail entre des sous-agents et combiner leurs résultats."
    }
   },
   {
@@ -499,7 +533,8 @@
    ],
    "can": {
     "en": "Use Claude Code hooks to check, block or enrich actions.",
-    "ar": "تستخدم خطافات Claude Code لفحص الإجراءات أو منعها أو إثرائها."
+    "ar": "تستخدم خطافات Claude Code لفحص الإجراءات أو منعها أو إثرائها.",
+    "fr": "Utiliser les hooks de Claude Code pour vérifier, bloquer ou enrichir des actions."
    }
   },
   {
@@ -513,7 +548,8 @@
    ],
    "can": {
     "en": "Write a Claude Code skill and package it in a plugin.",
-    "ar": "تكتب مهارة لـ Claude Code وتغلّفها في إضافة."
+    "ar": "تكتب مهارة لـ Claude Code وتغلّفها في إضافة.",
+    "fr": "Écrire une skill pour Claude Code et l'empaqueter dans un plugin."
    }
   },
   {
@@ -527,7 +563,8 @@
    ],
    "can": {
     "en": "Set permissions and sandboxing that limit what an agent can do, and know what they do not stop.",
-    "ar": "تضبط الصلاحيات والعزل بما يحدّ ما يستطيع الوكيل فعله، وتعرف ما لا تمنعه."
+    "ar": "تضبط الصلاحيات والعزل بما يحدّ ما يستطيع الوكيل فعله، وتعرف ما لا تمنعه.",
+    "fr": "Régler permissions et bac à sable pour limiter ce qu'un agent peut faire, et savoir ce qu'ils n'empêchent pas."
    }
   },
   {
@@ -541,7 +578,8 @@
    ],
    "can": {
     "en": "Design human approval for risky actions.",
-    "ar": "تصمّم موافقة بشرية للإجراءات الخطرة."
+    "ar": "تصمّم موافقة بشرية للإجراءات الخطرة.",
+    "fr": "Concevoir une validation humaine pour les actions risquées."
    }
   },
   {
@@ -555,7 +593,8 @@
    ],
    "can": {
     "en": "Run Claude Code without a person at the keyboard: in scripts and in CI.",
-    "ar": "تشغّل Claude Code دون شخص أمام لوحة المفاتيح: في السكربتات وفي CI."
+    "ar": "تشغّل Claude Code دون شخص أمام لوحة المفاتيح: في السكربتات وفي CI.",
+    "fr": "Faire tourner Claude Code sans personne au clavier : dans des scripts et en CI."
    }
   },
   {
@@ -569,7 +608,8 @@
    ],
    "can": {
     "en": "Build an eval set that covers normal cases and edge cases.",
-    "ar": "تبني مجموعة تقييم تغطي الحالات العادية والحالات الحدّية."
+    "ar": "تبني مجموعة تقييم تغطي الحالات العادية والحالات الحدّية.",
+    "fr": "Construire un jeu d'évaluation qui couvre les cas courants et les cas limites."
    }
   },
   {
@@ -583,7 +623,8 @@
    ],
    "can": {
     "en": "Write code graders and model graders and know where each fails.",
-    "ar": "تكتب مُقيِّمات برمجية ومُقيِّمات بالنموذج، وتعرف حدود كل منها."
+    "ar": "تكتب مُقيِّمات برمجية ومُقيِّمات بالنموذج، وتعرف حدود كل منها.",
+    "fr": "Écrire des évaluateurs par code et par modèle, et savoir où chacun échoue."
    }
   },
   {
@@ -597,7 +638,8 @@
    ],
    "can": {
     "en": "Run evals in CI to catch regressions from prompt or model changes.",
-    "ar": "تشغّل التقييمات في CI لاكتشاف التراجعات الناتجة عن تغيير الموجّه أو النموذج."
+    "ar": "تشغّل التقييمات في CI لاكتشاف التراجعات الناتجة عن تغيير الموجّه أو النموذج.",
+    "fr": "Lancer les évaluations en CI pour détecter les régressions dues à un changement de prompt ou de modèle."
    }
   },
   {
@@ -611,7 +653,8 @@
    ],
    "can": {
     "en": "Evaluate an agent on tasks: success rate, steps and cost.",
-    "ar": "تقيّم وكيلًا على مهام: نسبة النجاح وعدد الخطوات والتكلفة."
+    "ar": "تقيّم وكيلًا على مهام: نسبة النجاح وعدد الخطوات والتكلفة.",
+    "fr": "Évaluer un agent sur des tâches : taux de réussite, nombre d'étapes et coût."
    }
   },
   {
@@ -625,7 +668,8 @@
    ],
    "can": {
     "en": "Read traces, find the failure patterns and fix their cause.",
-    "ar": "تقرأ سجلات التتبّع (traces)، وتجد أنماط الإخفاق، وتعالج سببها."
+    "ar": "تقرأ سجلات التتبّع (traces)، وتجد أنماط الإخفاق، وتعالج سببها.",
+    "fr": "Lire les traces, repérer les schémas d'échec et en corriger la cause."
    }
   },
   {
@@ -640,7 +684,8 @@
    ],
    "can": {
     "en": "Measure and reduce cost and latency.",
-    "ar": "تقيس التكلفة وزمن الاستجابة وتخفّضهما."
+    "ar": "تقيس التكلفة وزمن الاستجابة وتخفّضهما.",
+    "fr": "Mesurer et réduire le coût et la latence."
    }
   },
   {
@@ -654,7 +699,8 @@
    ],
    "can": {
     "en": "Defend tools and retrieval against prompt injection and data leaks.",
-    "ar": "تحمي الأدوات والاسترجاع من حقن الموجّهات (prompt injection) وتسريب البيانات."
+    "ar": "تحمي الأدوات والاسترجاع من حقن الموجّهات (prompt injection) وتسريب البيانات.",
+    "fr": "Protéger les outils et la recherche contre l'injection de prompt et les fuites de données."
    }
   },
   {
@@ -668,7 +714,8 @@
    ],
    "can": {
     "en": "Log and trace model calls and agent runs.",
-    "ar": "تسجّل استدعاءات النموذج وتشغيلات الوكيل وتتتبّعها."
+    "ar": "تسجّل استدعاءات النموذج وتشغيلات الوكيل وتتتبّعها.",
+    "fr": "Journaliser et tracer les appels au modèle et les exécutions d'agents."
    }
   },
   {
@@ -683,7 +730,8 @@
    ],
    "can": {
     "en": "Handle rate limits, timeouts, retries and fallbacks.",
-    "ar": "تتعامل مع حدود المعدّل والمهلات وإعادة المحاولة والبدائل."
+    "ar": "تتعامل مع حدود المعدّل والمهلات وإعادة المحاولة والبدائل.",
+    "fr": "Gérer les limites de débit, les délais d'attente, les nouvelles tentatives et les solutions de repli."
    }
   },
   {
@@ -697,7 +745,8 @@
    ],
    "can": {
     "en": "Deploy an AI feature behind an API with configuration and secrets handled safely.",
-    "ar": "تنشر ميزة ذكاء اصطناعي خلف واجهة برمجية مع إدارة آمنة للإعدادات والأسرار."
+    "ar": "تنشر ميزة ذكاء اصطناعي خلف واجهة برمجية مع إدارة آمنة للإعدادات والأسرار.",
+    "fr": "Déployer une fonctionnalité d'IA derrière une API en gérant la configuration et les secrets en sécurité."
    }
   },
   {
@@ -711,7 +760,8 @@
    ],
    "can": {
     "en": "Decide what user data may be sent to a model and how long it is kept.",
-    "ar": "تقرّر أي بيانات المستخدم يجوز إرسالها إلى النموذج وكم تُحفظ."
+    "ar": "تقرّر أي بيانات المستخدم يجوز إرسالها إلى النموذج وكم تُحفظ.",
+    "fr": "Décider quelles données utilisateur peuvent être envoyées à un modèle et combien de temps elles sont conservées."
    }
   },
   {
@@ -726,7 +776,8 @@
    ],
    "can": {
     "en": "Ship one agent with tools over MCP, evals in CI, observability and a security review.",
-    "ar": "تطلق وكيلًا واحدًا بأدوات عبر MCP وتقييمات في CI ومراقبة ومراجعة أمنية."
+    "ar": "تطلق وكيلًا واحدًا بأدوات عبر MCP وتقييمات في CI ومراقبة ومراجعة أمنية.",
+    "fr": "Livrer un agent avec des outils via MCP, des évaluations en CI, de l'observabilité et une revue de sécurité."
    }
   }
  ]

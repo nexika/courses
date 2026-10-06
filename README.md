@@ -8,7 +8,8 @@ fails on the starter and passes on the solution, and real learners pass it. Each
 honestly how far it got.
 
 **First course (in progress):** AI Engineering with Claude Code, from complete beginners to
-working engineers moving into AI.
+working engineers moving into AI, in **English, Arabic and French**: every lesson, exercise goal,
+quiz and checked claim exists in all three, and the gates refuse a lesson that is missing one.
 
 *Status: foundations being built. Nothing here is ready for learners yet.*
 

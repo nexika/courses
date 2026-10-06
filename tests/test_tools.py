@@ -339,3 +339,12 @@ def test_guard_blocks_protected_changes_from_others(monkeypatch, capsys):
     assert cli.main(["guard", "--base", "origin/main", "--author", "someone-else"]) == 1
     assert "review.json" in capsys.readouterr().out
     assert cli.main(["guard", "--base", "origin/main", "--author", "loaiattar"]) == 0
+
+
+def test_every_course_language_is_required(root):
+    edit_json(root / "course.json", lambda d: d.update(languages=["en", "ar", "fr"]))
+    found = [p.message for p in problems(root)]
+    assert any("fr.md is missing" in m for m in found)
+    assert any("title" in m and "fr" in m for m in found)
+    assert any("says_fr" in m for m in found)
+    assert any("prompt in every language" in m for m in found)

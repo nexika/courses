@@ -18,7 +18,7 @@ courses/<course>/
 ├── syllabi/<name>.json    external syllabi mapped onto our competencies (what we cover, what we leave out and why)
 └── lessons/<lesson>/
     ├── lesson.json        id, title, level, minutes, competencies, prerequisites
-    ├── en.md, ar.md       the lesson text, one file per course language
+    ├── en.md, ar.md, fr.md  the lesson text, one file per course language
     ├── sources.json       every source the text cites, with a quote from it
     ├── claims.json        every result the text states that code can produce, and the code that produces it
     ├── claims/*.py        those checks
@@ -32,7 +32,7 @@ A lesson listed in `course.json` without a folder yet is **planned**.
 ## Files
 
 **course.json** (`"schema": "nexika.course/1"`): `id`, `title` and `audience` per language,
-`languages` (e.g. `["en", "ar"]`), `levels` (`id`, `title`, `exit`: what a learner can do when the
+`languages` (e.g. `["en", "ar", "fr"]`; every text field and every lesson file is required in each), `levels` (`id`, `title`, `exit`: what a learner can do when the
 level is done), `modules` (`id`, `level`, `title`, `lessons`: lesson ids in order),
 `external` (outside courses a level relies on: `title`, `url`, `covers`: competency ids),
 `verify` (`min_learners`, `min_pass_rate`).
@@ -52,7 +52,7 @@ which the uncited-number check ignores.
 The text cites with footnote markers: `... a context window of 200K tokens[^models].`
 
 **claims.json** (`nexika.claims/1`): each claim has an `id`, `says` (the exact words in `en.md` that
-state the result; `says_ar` for `ar.md`), `check` (a script in `claims/` that prints the value as
+state the result; `says_ar`, `says_fr` for the other languages), `check` (a script in `claims/` that prints the value as
 JSON on its last line of standard output) and `expect` (the value, or `{"approx": x, "tol": t}`). The
 `says` words must themselves state that value (Arabic-Indic digits count). A check that only prints a
 constant passes the machine gate: catching that is the fact checkers' job.

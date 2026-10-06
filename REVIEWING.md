@@ -25,8 +25,9 @@ A lesson passes when all of these hold:
 6. **Misconceptions:** the common wrong ideas about the topic are named and corrected.
 7. **Beginner pass:** read it as someone who only has the prerequisites: list every sentence they
    would misunderstand or every word they would not know. The lesson passes when the list is empty.
-8. **Plain language:** short sentences, defined terms, no filler; the Arabic reads as Arabic, not
-   as a translation.
+8. **Plain language:** short sentences, defined terms, no filler; the Arabic and the French each
+   read as written in that language, not as a translation; technical terms are glossed the same way
+   in every lesson.
 9. **Honest:** limits and trade-offs are stated; nothing is presented as simpler or safer than it is.
 
 ## Expert review

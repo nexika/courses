@@ -3,103 +3,122 @@
   "id": "ai-engineering",
   "title": {
     "en": "AI Engineering with Claude Code",
-    "ar": "هندسة الذكاء الاصطناعي مع Claude Code"
+    "ar": "هندسة الذكاء الاصطناعي مع Claude Code",
+    "fr": "Ingénierie de l'IA avec Claude Code"
   },
   "audience": {
     "en": "Complete beginners up to working software engineers moving into AI. Level 0 sends beginners to a free outside course for Python, the terminal and git, then teaches Claude Code itself.",
-    "ar": "من المبتدئ تمامًا حتى مهندس البرمجيات العامل الذي ينتقل إلى الذكاء الاصطناعي. يحيل المستوى 0 المبتدئين إلى دورة مجانية خارجية لتعلّم Python والطرفية و git، ثم يعلّم Claude Code نفسه."
+    "ar": "من المبتدئ تمامًا حتى مهندس البرمجيات العامل الذي ينتقل إلى الذكاء الاصطناعي. يحيل المستوى 0 المبتدئين إلى دورة مجانية خارجية لتعلّم Python والطرفية و git، ثم يعلّم Claude Code نفسه.",
+    "fr": "Des débutants complets jusqu'aux ingénieurs logiciels en poste qui se tournent vers l'IA. Le niveau 0 oriente les débutants vers un cours externe gratuit pour Python, le terminal et git, puis enseigne Claude Code lui-même."
   },
   "languages": [
     "en",
-    "ar"
+    "ar",
+    "fr"
   ],
   "levels": [
     {
       "id": 0,
       "title": {
         "en": "Foundations",
-        "ar": "الأساسيات"
+        "ar": "الأساسيات",
+        "fr": "Les bases"
       },
       "exit": {
         "en": "You can use the terminal, write small Python programs, track changes with git, and work with Claude Code while checking what it changes.",
-        "ar": "تستطيع استخدام الطرفية وكتابة برامج Python صغيرة وتتبّع التغييرات باستخدام git، والعمل مع Claude Code مع مراجعة ما يغيّره."
+        "ar": "تستطيع استخدام الطرفية وكتابة برامج Python صغيرة وتتبّع التغييرات باستخدام git، والعمل مع Claude Code مع مراجعة ما يغيّره.",
+        "fr": "Vous savez utiliser le terminal, écrire de petits programmes Python, suivre vos modifications avec git, et travailler avec Claude Code en vérifiant ce qu'il modifie."
       }
     },
     {
       "id": 1,
       "title": {
         "en": "LLM basics",
-        "ar": "أساسيات النماذج اللغوية"
+        "ar": "أساسيات النماذج اللغوية",
+        "fr": "Les bases des LLM"
       },
       "exit": {
         "en": "You can call Claude from Python, explain tokens and the context window, write a clear prompt, and test it against expected answers.",
-        "ar": "تستطيع استدعاء Claude من Python، وشرح الرموز ونافذة السياق، وكتابة موجّه (prompt) واضح واختباره مقابل إجابات متوقعة."
+        "ar": "تستطيع استدعاء Claude من Python، وشرح الرموز ونافذة السياق، وكتابة موجّه (prompt) واضح واختباره مقابل إجابات متوقعة.",
+        "fr": "Vous savez appeler Claude depuis Python, expliquer les tokens et la fenêtre de contexte, écrire un prompt clair et le tester face à des réponses attendues."
       }
     },
     {
       "id": 2,
       "title": {
         "en": "Tools and structured output",
-        "ar": "الأدوات والمخرجات المنظمة"
+        "ar": "الأدوات والمخرجات المنظمة",
+        "fr": "Outils et sorties structurées"
       },
       "exit": {
         "en": "You can get validated JSON, give Claude tools and run the tool loop, and build, test and connect an MCP server.",
-        "ar": "تستطيع الحصول على JSON مُتحقَّق منه، وإعطاء Claude أدوات وتشغيل حلقة الأدوات، وبناء خادم MCP واختباره وربطه."
+        "ar": "تستطيع الحصول على JSON مُتحقَّق منه، وإعطاء Claude أدوات وتشغيل حلقة الأدوات، وبناء خادم MCP واختباره وربطه.",
+        "fr": "Vous savez obtenir un JSON validé, donner des outils à Claude et faire tourner la boucle d'outils, et construire, tester et connecter un serveur MCP."
       }
     },
     {
       "id": 3,
       "title": {
         "en": "Context and retrieval",
-        "ar": "السياق والاسترجاع"
+        "ar": "السياق والاسترجاع",
+        "fr": "Contexte et recherche"
       },
       "exit": {
         "en": "You can manage what goes into the context, cache it, and answer from your own documents with citations you can measure.",
-        "ar": "تستطيع إدارة ما يدخل في السياق وتخزينه مؤقتًا، والإجابة من مستنداتك مع استشهادات يمكن قياس جودتها."
+        "ar": "تستطيع إدارة ما يدخل في السياق وتخزينه مؤقتًا، والإجابة من مستنداتك مع استشهادات يمكن قياس جودتها.",
+        "fr": "Vous savez gérer ce qui entre dans le contexte, le mettre en cache, et répondre à partir de vos propres documents avec des citations dont vous mesurez la qualité."
       }
     },
     {
       "id": 4,
       "title": {
         "en": "Agents",
-        "ar": "الوكلاء"
+        "ar": "الوكلاء",
+        "fr": "Agents"
       },
       "exit": {
         "en": "You can build an agent with the Agent SDK and extend Claude Code with subagents, hooks, skills and safe permissions.",
-        "ar": "تستطيع بناء وكيل باستخدام Agent SDK، وتوسيع Claude Code بوكلاء فرعيين وخطافات ومهارات وصلاحيات آمنة."
+        "ar": "تستطيع بناء وكيل باستخدام Agent SDK، وتوسيع Claude Code بوكلاء فرعيين وخطافات ومهارات وصلاحيات آمنة.",
+        "fr": "Vous savez construire un agent avec l'Agent SDK et étendre Claude Code avec des sous-agents, des hooks, des skills et des permissions sûres."
       }
     },
     {
       "id": 5,
       "title": {
         "en": "Evals and reliability",
-        "ar": "التقييم والموثوقية"
+        "ar": "التقييم والموثوقية",
+        "fr": "Évaluations et fiabilité"
       },
       "exit": {
         "en": "You can measure an LLM feature or an agent with an eval set and graders, and catch regressions in CI.",
-        "ar": "تستطيع قياس ميزة مبنية على نموذج لغوي أو وكيل بمجموعة تقييم ومُقيِّمات، واكتشاف التراجعات في CI."
+        "ar": "تستطيع قياس ميزة مبنية على نموذج لغوي أو وكيل بمجموعة تقييم ومُقيِّمات، واكتشاف التراجعات في CI.",
+        "fr": "Vous savez mesurer une fonctionnalité fondée sur un LLM ou un agent avec un jeu d'évaluation et des évaluateurs, et détecter les régressions en CI."
       }
     },
     {
       "id": 6,
       "title": {
         "en": "Production",
-        "ar": "الإنتاج"
+        "ar": "الإنتاج",
+        "fr": "Production"
       },
       "exit": {
         "en": "You can ship an AI feature that is affordable, fast enough, observable, reliable and defended against prompt injection.",
-        "ar": "تستطيع إطلاق ميزة ذكاء اصطناعي معقولة التكلفة، وسريعة بما يكفي، وقابلة للمراقبة، وموثوقة، ومحمية من حقن الموجّهات (prompt injection)."
+        "ar": "تستطيع إطلاق ميزة ذكاء اصطناعي معقولة التكلفة، وسريعة بما يكفي، وقابلة للمراقبة، وموثوقة، ومحمية من حقن الموجّهات (prompt injection).",
+        "fr": "Vous savez livrer une fonctionnalité d'IA abordable, assez rapide, observable, fiable et protégée contre l'injection de prompt."
       }
     },
     {
       "id": 7,
       "title": {
         "en": "Capstone",
-        "ar": "المشروع الختامي"
+        "ar": "المشروع الختامي",
+        "fr": "Projet final"
       },
       "exit": {
         "en": "You have shipped one complete agent with tools, evals in CI, observability and a security review.",
-        "ar": "أطلقت وكيلًا كاملًا واحدًا بأدوات وتقييمات في CI ومراقبة ومراجعة أمنية."
+        "ar": "أطلقت وكيلًا كاملًا واحدًا بأدوات وتقييمات في CI ومراقبة ومراجعة أمنية.",
+        "fr": "Vous avez livré un agent complet avec des outils, des évaluations en CI, de l'observabilité et une revue de sécurité."
       }
     }
   ],
@@ -116,7 +135,8 @@
       "level": 0,
       "title": {
         "en": "Working with Claude Code",
-        "ar": "العمل مع Claude Code"
+        "ar": "العمل مع Claude Code",
+        "fr": "Travailler avec Claude Code"
       },
       "lessons": [
         "l0-set-up-claude-code"
@@ -127,7 +147,8 @@
       "level": 1,
       "title": {
         "en": "LLM basics",
-        "ar": "أساسيات النماذج اللغوية"
+        "ar": "أساسيات النماذج اللغوية",
+        "fr": "Les bases des LLM"
       },
       "lessons": [
         "l1-what-an-llm-does",
@@ -150,6 +171,7 @@
     "Claude \\d(?:\\.\\d+)?",
     "Opus \\d(?:\\.\\d+)?",
     "Sonnet \\d(?:\\.\\d+)?",
-    "Haiku \\d(?:\\.\\d+)?"
+    "Haiku \\d(?:\\.\\d+)?",
+    "Niveau \\d"
   ]
 }
