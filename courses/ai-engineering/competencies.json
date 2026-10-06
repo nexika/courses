@@ -1,0 +1,784 @@
+{
+ "schema": "nexika.competencies/1",
+ "course": "ai-engineering",
+ "competencies": [
+  {
+   "id": "c0.terminal",
+   "level": 0,
+   "evidence": "exercise",
+   "concepts": [
+    "shell",
+    "paths",
+    "running programs",
+    "reading errors"
+   ],
+   "can": {
+    "en": "Move around folders in a terminal, run a program and read its error message.",
+    "ar": "تتنقّل بين المجلدات في الطرفية، وتشغّل برنامجًا، وتقرأ رسالة الخطأ.",
+    "fr": "Se déplacer entre les dossiers dans un terminal, lancer un programme et lire son message d'erreur."
+   }
+  },
+  {
+   "id": "c0.python",
+   "level": 0,
+   "evidence": "exercise",
+   "concepts": [
+    "functions",
+    "lists",
+    "dictionaries",
+    "files",
+    "packages"
+   ],
+   "can": {
+    "en": "Write and run a small Python program with functions, lists, dictionaries and files.",
+    "ar": "تكتب برنامج Python صغيرًا وتشغّله، فيه دوال وقوائم وقواميس وملفات.",
+    "fr": "Écrire et exécuter un petit programme Python avec des fonctions, des listes, des dictionnaires et des fichiers."
+   }
+  },
+  {
+   "id": "c0.git",
+   "level": 0,
+   "evidence": "exercise",
+   "concepts": [
+    "commit",
+    "branch",
+    "diff"
+   ],
+   "can": {
+    "en": "Track changes with git: commit, branch and read a diff.",
+    "ar": "تتتبّع التغييرات باستخدام git: تُنشئ إيداعًا (commit)، وتنشئ فرعًا، وتقرأ الفروق.",
+    "fr": "Suivre ses modifications avec git : faire un commit, créer une branche et lire un diff."
+   }
+  },
+  {
+   "id": "c0.claude-code",
+   "level": 0,
+   "evidence": "exercise",
+   "concepts": [
+    "install",
+    "session",
+    "permissions",
+    "approving actions"
+   ],
+   "can": {
+    "en": "Install Claude Code, start a session, and have it read, explain and change code while you approve or refuse each action.",
+    "ar": "تثبّت Claude Code وتبدأ جلسة، وتجعله يقرأ الكود ويشرحه ويعدّله بينما توافق على كل إجراء أو ترفضه.",
+    "fr": "Installer Claude Code, ouvrir une session, lui faire lire, expliquer et modifier du code en approuvant ou refusant chaque action."
+   }
+  },
+  {
+   "id": "c0.review-ai-output",
+   "level": 0,
+   "evidence": "exercise",
+   "concepts": [
+    "diff review",
+    "running tests",
+    "spotting mistakes"
+   ],
+   "can": {
+    "en": "Check what Claude changed (the diff, the tests) before you accept it.",
+    "ar": "تراجع ما غيّره Claude (الفروق والاختبارات) قبل أن تقبله.",
+    "fr": "Vérifier ce que Claude a modifié (le diff, les tests) avant de l'accepter."
+   }
+  },
+  {
+   "id": "c0.claude-code-workflow",
+   "level": 0,
+   "evidence": "exercise",
+   "concepts": [
+    "plan mode",
+    "implement",
+    "test",
+    "commit"
+   ],
+   "can": {
+    "en": "Take one change from plan to commit with Claude Code: plan mode, implementation, tests, commit.",
+    "ar": "تنقل تغييرًا واحدًا من الخطة إلى الإيداع مع Claude Code: وضع التخطيط، ثم التنفيذ، ثم الاختبارات، ثم الإيداع.",
+    "fr": "Mener une modification du plan au commit avec Claude Code : mode plan, implémentation, tests, commit."
+   }
+  },
+  {
+   "id": "c1.what-llm",
+   "level": 1,
+   "evidence": "quiz",
+   "concepts": [
+    "next-token prediction",
+    "training data",
+    "knowledge cutoff",
+    "hallucination"
+   ],
+   "can": {
+    "en": "Explain what an LLM does and name what it cannot do: no live knowledge, and confident mistakes.",
+    "ar": "تشرح ما يفعله النموذج اللغوي، وتسمّي ما لا يستطيعه: لا معرفة آنية، وأخطاء تُقال بثقة.",
+    "fr": "Expliquer ce que fait un LLM et ce qu'il ne sait pas faire : pas de connaissances en temps réel, et des erreurs affirmées avec assurance."
+   }
+  },
+  {
+   "id": "c1.tokens",
+   "level": 1,
+   "evidence": "exercise",
+   "concepts": [
+    "tokens",
+    "context window",
+    "input and output tokens"
+   ],
+   "can": {
+    "en": "Count the tokens of a request and relate them to the context window and to cost.",
+    "ar": "تحسب الرموز (tokens) في الطلب وتربطها بنافذة السياق وبالتكلفة.",
+    "fr": "Compter les tokens d'une requête et les relier à la fenêtre de contexte et au coût."
+   }
+  },
+  {
+   "id": "c1.call-api",
+   "level": 1,
+   "evidence": "exercise",
+   "concepts": [
+    "API key",
+    "SDK",
+    "Messages API",
+    "usage"
+   ],
+   "can": {
+    "en": "Call Claude from Python with the official SDK and read the answer and its token usage.",
+    "ar": "تستدعي Claude من Python بالمكتبة الرسمية، وتقرأ الإجابة واستهلاك الرموز.",
+    "fr": "Appeler Claude depuis Python avec le SDK officiel et lire la réponse et sa consommation de tokens."
+   }
+  },
+  {
+   "id": "c1.messages",
+   "level": 1,
+   "evidence": "exercise",
+   "concepts": [
+    "system prompt",
+    "roles",
+    "multi-turn"
+   ],
+   "can": {
+    "en": "Build a multi-turn conversation with a system prompt and user and assistant turns.",
+    "ar": "تبني محادثة متعددة الجولات فيها موجّه النظام (system prompt) وأدوار للمستخدم والمساعد.",
+    "fr": "Construire une conversation à plusieurs tours avec un prompt système et des tours utilisateur et assistant."
+   }
+  },
+  {
+   "id": "c1.params",
+   "level": 1,
+   "evidence": "exercise",
+   "concepts": [
+    "model choice",
+    "max_tokens",
+    "temperature",
+    "stop reasons"
+   ],
+   "can": {
+    "en": "Choose the model and parameters for a task and handle the reason a response stopped.",
+    "ar": "تختار النموذج والمعاملات المناسبة لمهمة، وتتعامل مع سبب توقّف الإجابة.",
+    "fr": "Choisir le modèle et les paramètres d'une tâche et traiter la raison pour laquelle une réponse s'est arrêtée."
+   }
+  },
+  {
+   "id": "c1.prompting",
+   "level": 1,
+   "evidence": "exercise",
+   "concepts": [
+    "clarity",
+    "context",
+    "examples",
+    "output format"
+   ],
+   "can": {
+    "en": "Write a clear prompt: the task, the context, examples and the output format.",
+    "ar": "تكتب موجّهًا (prompt) واضحًا: المهمة والسياق والأمثلة وشكل المخرجات.",
+    "fr": "Écrire un prompt clair : la tâche, le contexte, des exemples et le format de sortie."
+   }
+  },
+  {
+   "id": "c1.first-eval",
+   "level": 1,
+   "evidence": "exercise",
+   "concepts": [
+    "test cases",
+    "expected outputs",
+    "pass rate"
+   ],
+   "can": {
+    "en": "Test a prompt against a small set of cases with expected answers and report its pass rate.",
+    "ar": "تختبر الموجّه على مجموعة صغيرة من الحالات ذات الإجابات المتوقعة، وتقيس نسبة النجاح.",
+    "fr": "Tester un prompt sur un petit ensemble de cas aux réponses attendues et indiquer son taux de réussite."
+   }
+  },
+  {
+   "id": "c1.cost",
+   "level": 1,
+   "evidence": "exercise",
+   "concepts": [
+    "pricing per token",
+    "workload estimate"
+   ],
+   "can": {
+    "en": "Estimate what one call and a whole workload will cost.",
+    "ar": "تقدّر تكلفة استدعاء واحد وتكلفة حمل عمل كامل.",
+    "fr": "Estimer le coût d'un appel et celui d'une charge de travail entière."
+   }
+  },
+  {
+   "id": "c1.streaming",
+   "level": 1,
+   "evidence": "exercise",
+   "concepts": [
+    "streaming responses",
+    "events"
+   ],
+   "can": {
+    "en": "Stream a response and show it as it arrives.",
+    "ar": "تستقبل الإجابة متدفقة وتعرضها أثناء وصولها.",
+    "fr": "Recevoir une réponse en flux continu et l'afficher au fur et à mesure."
+   }
+  },
+  {
+   "id": "c2.structured",
+   "level": 2,
+   "evidence": "exercise",
+   "concepts": [
+    "JSON schema",
+    "validation",
+    "retries"
+   ],
+   "can": {
+    "en": "Get JSON that matches a schema and validate it before use.",
+    "ar": "تحصل على JSON مطابق لمخطط وتتحقق منه قبل استخدامه.",
+    "fr": "Obtenir un JSON conforme à un schéma et le valider avant de l'utiliser."
+   }
+  },
+  {
+   "id": "c2.tool-use",
+   "level": 2,
+   "evidence": "exercise",
+   "concepts": [
+    "tool definition",
+    "tool_use",
+    "tool_result",
+    "the tool loop"
+   ],
+   "can": {
+    "en": "Define a tool and run one round of the tool exchange: Claude asks for the tool, you return its result.",
+    "ar": "تعرّف أداة وتنفّذ جولة واحدة من تبادل الأدوات: يطلب Claude الأداة وتعيد إليه نتيجتها.",
+    "fr": "Définir un outil et mener un échange d'outil : Claude demande l'outil, vous lui renvoyez le résultat."
+   }
+  },
+  {
+   "id": "c2.tool-errors",
+   "level": 2,
+   "evidence": "exercise",
+   "concepts": [
+    "error results",
+    "recovery"
+   ],
+   "can": {
+    "en": "Report tool failures so the model can recover instead of guessing.",
+    "ar": "تبلّغ عن فشل الأداة بطريقة تسمح للنموذج بالتعافي بدل التخمين.",
+    "fr": "Signaler les échecs d'un outil pour que le modèle puisse se rattraper au lieu de deviner."
+   }
+  },
+  {
+   "id": "c2.mcp-concepts",
+   "level": 2,
+   "evidence": "quiz",
+   "concepts": [
+    "host",
+    "client",
+    "server",
+    "tools",
+    "resources",
+    "prompts",
+    "transports"
+   ],
+   "can": {
+    "en": "Explain MCP: hosts, clients and servers, and what tools, resources and prompts are.",
+    "ar": "تشرح MCP: المضيف والعميل والخادم، وما الأدوات والموارد وقوالب الموجّهات (prompts).",
+    "fr": "Expliquer MCP : hôtes, clients et serveurs, et ce que sont les outils, les ressources et les modèles de prompts."
+   }
+  },
+  {
+   "id": "c2.mcp-server",
+   "level": 2,
+   "evidence": "exercise",
+   "concepts": [
+    "server SDK",
+    "typed tools",
+    "testing a server"
+   ],
+   "can": {
+    "en": "Build an MCP server with a typed tool and test it.",
+    "ar": "تبني خادم MCP بأداة ذات أنواع محددة وتختبره.",
+    "fr": "Construire un serveur MCP avec un outil typé et le tester."
+   }
+  },
+  {
+   "id": "c2.mcp-use",
+   "level": 2,
+   "evidence": "exercise",
+   "concepts": [
+    "connecting servers",
+    "scopes",
+    "trust"
+   ],
+   "can": {
+    "en": "Connect an MCP server to Claude Code, use it, and judge whether to trust it.",
+    "ar": "تربط خادم MCP بـ Claude Code وتستخدمه، وتحكم هل تثق به.",
+    "fr": "Connecter un serveur MCP à Claude Code, l'utiliser, et juger s'il est digne de confiance."
+   }
+  },
+  {
+   "id": "c2.multimodal",
+   "level": 2,
+   "evidence": "exercise",
+   "concepts": [
+    "images",
+    "PDFs"
+   ],
+   "can": {
+    "en": "Send images and PDFs to Claude and check what it extracts.",
+    "ar": "ترسل صورًا وملفات PDF إلى Claude وتتحقق مما يستخرجه.",
+    "fr": "Envoyer des images et des PDF à Claude et vérifier ce qu'il en extrait."
+   }
+  },
+  {
+   "id": "c3.context",
+   "level": 3,
+   "evidence": "exercise",
+   "concepts": [
+    "what to keep",
+    "summaries",
+    "context limits"
+   ],
+   "can": {
+    "en": "Keep a long conversation within the context: what to keep, summarize or drop.",
+    "ar": "تُبقي محادثة طويلة داخل حدود السياق: ما الذي تحتفظ به أو تلخّصه أو تحذفه.",
+    "fr": "Garder une longue conversation dans les limites du contexte : quoi conserver, résumer ou abandonner."
+   }
+  },
+  {
+   "id": "c3.caching",
+   "level": 3,
+   "evidence": "exercise",
+   "concepts": [
+    "prompt caching",
+    "cache hits",
+    "savings"
+   ],
+   "can": {
+    "en": "Use prompt caching and measure what it saves.",
+    "ar": "تستخدم التخزين المؤقت للموجّهات (prompt caching) وتقيس ما يوفّره.",
+    "fr": "Utiliser la mise en cache des prompts et mesurer ce qu'elle fait économiser."
+   }
+  },
+  {
+   "id": "c3.embeddings",
+   "level": 3,
+   "evidence": "exercise",
+   "concepts": [
+    "embeddings",
+    "similarity",
+    "semantic search"
+   ],
+   "can": {
+    "en": "Explain embeddings and build a simple semantic search.",
+    "ar": "تشرح التضمينات (embeddings) وتبني بحثًا دلاليًا بسيطًا.",
+    "fr": "Expliquer les embeddings et construire une recherche sémantique simple."
+   }
+  },
+  {
+   "id": "c3.rag",
+   "level": 3,
+   "evidence": "exercise",
+   "concepts": [
+    "chunking",
+    "retrieval",
+    "grounded answers",
+    "citations"
+   ],
+   "can": {
+    "en": "Answer questions from your own documents with citations.",
+    "ar": "تجيب عن الأسئلة من مستنداتك مع ذكر المصادر.",
+    "fr": "Répondre à des questions à partir de vos propres documents, avec des citations."
+   }
+  },
+  {
+   "id": "c3.rag-eval",
+   "level": 3,
+   "evidence": "exercise",
+   "concepts": [
+    "recall@k",
+    "faithfulness"
+   ],
+   "can": {
+    "en": "Measure retrieval quality and whether answers stay faithful to the sources.",
+    "ar": "تقيس جودة الاسترجاع ومدى التزام الإجابات بالمصادر.",
+    "fr": "Mesurer la qualité de la recherche et la fidélité des réponses aux sources."
+   }
+  },
+  {
+   "id": "c3.project-context",
+   "level": 3,
+   "evidence": "exercise",
+   "concepts": [
+    "CLAUDE.md",
+    "memory",
+    "skills as context"
+   ],
+   "can": {
+    "en": "Give Claude Code the context of a project with CLAUDE.md, memory and skills.",
+    "ar": "تعطي Claude Code سياق المشروع عبر CLAUDE.md والذاكرة والمهارات.",
+    "fr": "Donner à Claude Code le contexte d'un projet avec CLAUDE.md, la mémoire et les skills."
+   }
+  },
+  {
+   "id": "c3.session-context",
+   "level": 3,
+   "evidence": "exercise",
+   "concepts": [
+    "/compact",
+    "/clear",
+    "handoff notes"
+   ],
+   "can": {
+    "en": "Keep a Claude Code session's context useful: when to compact, clear or hand off.",
+    "ar": "تُبقي سياق جلسة Claude Code مفيدًا: متى تضغطه ومتى تمسحه ومتى تسلّمه.",
+    "fr": "Garder utile le contexte d'une session Claude Code : quand le compacter, l'effacer ou le transmettre."
+   }
+  },
+  {
+   "id": "c3.thinking",
+   "level": 3,
+   "evidence": "exercise",
+   "concepts": [
+    "extended thinking",
+    "budget"
+   ],
+   "can": {
+    "en": "Use extended thinking for hard tasks and weigh its cost.",
+    "ar": "تستخدم التفكير الموسّع للمهام الصعبة وتوازن تكلفته.",
+    "fr": "Utiliser la réflexion étendue pour les tâches difficiles et en peser le coût."
+   }
+  },
+  {
+   "id": "c4.agent-loop",
+   "level": 4,
+   "evidence": "exercise",
+   "concepts": [
+    "observe, decide, act",
+    "stop conditions",
+    "budgets"
+   ],
+   "can": {
+    "en": "Turn the tool exchange into an agent loop with a real model: deciding the next step, stop conditions and a budget.",
+    "ar": "تحوّل تبادل الأدوات إلى حلقة وكيل بنموذج حقيقي: اختيار الخطوة التالية وشروط التوقّف والميزانية.",
+    "fr": "Transformer l'échange d'outils en boucle d'agent avec un vrai modèle : choix de l'étape suivante, conditions d'arrêt et budget."
+   }
+  },
+  {
+   "id": "c4.workflows",
+   "level": 4,
+   "evidence": "exercise",
+   "concepts": [
+    "chaining",
+    "routing",
+    "parallel calls",
+    "when to use an agent"
+   ],
+   "can": {
+    "en": "Choose a fixed workflow (chaining, routing, parallel calls) or an agent for a task, and say why.",
+    "ar": "تختار لمهمةٍ سير عمل ثابتًا (تسلسل، توجيه، استدعاءات متوازية) أو وكيلًا، وتشرح السبب.",
+    "fr": "Choisir pour une tâche un workflow fixe (enchaînement, routage, appels parallèles) ou un agent, et expliquer pourquoi."
+   }
+  },
+  {
+   "id": "c4.agent-sdk",
+   "level": 4,
+   "evidence": "exercise",
+   "concepts": [
+    "Agent SDK",
+    "tools",
+    "sessions"
+   ],
+   "can": {
+    "en": "Build an agent with the Claude Agent SDK.",
+    "ar": "تبني وكيلًا باستخدام Claude Agent SDK.",
+    "fr": "Construire un agent avec le Claude Agent SDK."
+   }
+  },
+  {
+   "id": "c4.subagents",
+   "level": 4,
+   "evidence": "exercise",
+   "concepts": [
+    "delegation",
+    "isolated context",
+    "combining results"
+   ],
+   "can": {
+    "en": "Split work across subagents and combine their results.",
+    "ar": "توزّع العمل على وكلاء فرعيين وتجمع نتائجهم.",
+    "fr": "Répartir le travail entre des sous-agents et combiner leurs résultats."
+   }
+  },
+  {
+   "id": "c4.hooks",
+   "level": 4,
+   "evidence": "exercise",
+   "concepts": [
+    "hook events",
+    "blocking",
+    "context injection"
+   ],
+   "can": {
+    "en": "Use Claude Code hooks to check, block or enrich actions.",
+    "ar": "تستخدم خطافات Claude Code لفحص الإجراءات أو منعها أو إثرائها.",
+    "fr": "Utiliser les hooks de Claude Code pour vérifier, bloquer ou enrichir des actions."
+   }
+  },
+  {
+   "id": "c4.skills-plugins",
+   "level": 4,
+   "evidence": "exercise",
+   "concepts": [
+    "skills",
+    "plugins",
+    "marketplaces"
+   ],
+   "can": {
+    "en": "Write a Claude Code skill and package it in a plugin.",
+    "ar": "تكتب مهارة لـ Claude Code وتغلّفها في إضافة.",
+    "fr": "Écrire une skill pour Claude Code et l'empaqueter dans un plugin."
+   }
+  },
+  {
+   "id": "c4.permissions",
+   "level": 4,
+   "evidence": "exercise",
+   "concepts": [
+    "permission modes",
+    "sandboxing",
+    "least privilege"
+   ],
+   "can": {
+    "en": "Set permissions and sandboxing that limit what an agent can do, and know what they do not stop.",
+    "ar": "تضبط الصلاحيات والعزل بما يحدّ ما يستطيع الوكيل فعله، وتعرف ما لا تمنعه.",
+    "fr": "Régler permissions et bac à sable pour limiter ce qu'un agent peut faire, et savoir ce qu'ils n'empêchent pas."
+   }
+  },
+  {
+   "id": "c4.human-in-loop",
+   "level": 4,
+   "evidence": "exercise",
+   "concepts": [
+    "approvals",
+    "risky actions",
+    "escalation"
+   ],
+   "can": {
+    "en": "Design human approval for risky actions.",
+    "ar": "تصمّم موافقة بشرية للإجراءات الخطرة.",
+    "fr": "Concevoir une validation humaine pour les actions risquées."
+   }
+  },
+  {
+   "id": "c4.headless",
+   "level": 4,
+   "evidence": "exercise",
+   "concepts": [
+    "claude -p",
+    "GitHub Actions",
+    "scripts"
+   ],
+   "can": {
+    "en": "Run Claude Code without a person at the keyboard: in scripts and in CI.",
+    "ar": "تشغّل Claude Code دون شخص أمام لوحة المفاتيح: في السكربتات وفي CI.",
+    "fr": "Faire tourner Claude Code sans personne au clavier : dans des scripts et en CI."
+   }
+  },
+  {
+   "id": "c5.eval-set",
+   "level": 5,
+   "evidence": "exercise",
+   "concepts": [
+    "test sets",
+    "edge cases",
+    "expected behaviour"
+   ],
+   "can": {
+    "en": "Build an eval set that covers normal cases and edge cases.",
+    "ar": "تبني مجموعة تقييم تغطي الحالات العادية والحالات الحدّية.",
+    "fr": "Construire un jeu d'évaluation qui couvre les cas courants et les cas limites."
+   }
+  },
+  {
+   "id": "c5.graders",
+   "level": 5,
+   "evidence": "exercise",
+   "concepts": [
+    "code graders",
+    "model graders",
+    "grader limits"
+   ],
+   "can": {
+    "en": "Write code graders and model graders and know where each fails.",
+    "ar": "تكتب مُقيِّمات برمجية ومُقيِّمات بالنموذج، وتعرف حدود كل منها.",
+    "fr": "Écrire des évaluateurs par code et par modèle, et savoir où chacun échoue."
+   }
+  },
+  {
+   "id": "c5.regression",
+   "level": 5,
+   "evidence": "exercise",
+   "concepts": [
+    "evals in CI",
+    "baselines",
+    "thresholds"
+   ],
+   "can": {
+    "en": "Run evals in CI to catch regressions from prompt or model changes.",
+    "ar": "تشغّل التقييمات في CI لاكتشاف التراجعات الناتجة عن تغيير الموجّه أو النموذج.",
+    "fr": "Lancer les évaluations en CI pour détecter les régressions dues à un changement de prompt ou de modèle."
+   }
+  },
+  {
+   "id": "c5.agent-eval",
+   "level": 5,
+   "evidence": "exercise",
+   "concepts": [
+    "task success",
+    "steps",
+    "cost per task"
+   ],
+   "can": {
+    "en": "Evaluate an agent on tasks: success rate, steps and cost.",
+    "ar": "تقيّم وكيلًا على مهام: نسبة النجاح وعدد الخطوات والتكلفة.",
+    "fr": "Évaluer un agent sur des tâches : taux de réussite, nombre d'étapes et coût."
+   }
+  },
+  {
+   "id": "c5.failure-analysis",
+   "level": 5,
+   "evidence": "exercise",
+   "concepts": [
+    "traces",
+    "failure patterns",
+    "root cause"
+   ],
+   "can": {
+    "en": "Read traces, find the failure patterns and fix their cause.",
+    "ar": "تقرأ سجلات التتبّع (traces)، وتجد أنماط الإخفاق، وتعالج سببها.",
+    "fr": "Lire les traces, repérer les schémas d'échec et en corriger la cause."
+   }
+  },
+  {
+   "id": "c6.cost-latency",
+   "level": 6,
+   "evidence": "exercise",
+   "concepts": [
+    "model routing",
+    "caching",
+    "batching",
+    "streaming"
+   ],
+   "can": {
+    "en": "Measure and reduce cost and latency.",
+    "ar": "تقيس التكلفة وزمن الاستجابة وتخفّضهما.",
+    "fr": "Mesurer et réduire le coût et la latence."
+   }
+  },
+  {
+   "id": "c6.security",
+   "level": 6,
+   "evidence": "exercise",
+   "concepts": [
+    "prompt injection",
+    "data leaks",
+    "untrusted content"
+   ],
+   "can": {
+    "en": "Defend tools and retrieval against prompt injection and data leaks.",
+    "ar": "تحمي الأدوات والاسترجاع من حقن الموجّهات (prompt injection) وتسريب البيانات.",
+    "fr": "Protéger les outils et la recherche contre l'injection de prompt et les fuites de données."
+   }
+  },
+  {
+   "id": "c6.observability",
+   "level": 6,
+   "evidence": "exercise",
+   "concepts": [
+    "logging",
+    "tracing",
+    "metrics"
+   ],
+   "can": {
+    "en": "Log and trace model calls and agent runs.",
+    "ar": "تسجّل استدعاءات النموذج وتشغيلات الوكيل وتتتبّعها.",
+    "fr": "Journaliser et tracer les appels au modèle et les exécutions d'agents."
+   }
+  },
+  {
+   "id": "c6.reliability",
+   "level": 6,
+   "evidence": "exercise",
+   "concepts": [
+    "rate limits",
+    "timeouts",
+    "retries",
+    "fallbacks"
+   ],
+   "can": {
+    "en": "Handle rate limits, timeouts, retries and fallbacks.",
+    "ar": "تتعامل مع حدود المعدّل والمهلات وإعادة المحاولة والبدائل.",
+    "fr": "Gérer les limites de débit, les délais d'attente, les nouvelles tentatives et les solutions de repli."
+   }
+  },
+  {
+   "id": "c6.deploy",
+   "level": 6,
+   "evidence": "project",
+   "concepts": [
+    "serving",
+    "configuration",
+    "secrets"
+   ],
+   "can": {
+    "en": "Deploy an AI feature behind an API with configuration and secrets handled safely.",
+    "ar": "تنشر ميزة ذكاء اصطناعي خلف واجهة برمجية مع إدارة آمنة للإعدادات والأسرار.",
+    "fr": "Déployer une fonctionnalité d'IA derrière une API en gérant la configuration et les secrets en sécurité."
+   }
+  },
+  {
+   "id": "c6.privacy",
+   "level": 6,
+   "evidence": "exercise",
+   "concepts": [
+    "what to send",
+    "retention",
+    "user consent"
+   ],
+   "can": {
+    "en": "Decide what user data may be sent to a model and how long it is kept.",
+    "ar": "تقرّر أي بيانات المستخدم يجوز إرسالها إلى النموذج وكم تُحفظ.",
+    "fr": "Décider quelles données utilisateur peuvent être envoyées à un modèle et combien de temps elles sont conservées."
+   }
+  },
+  {
+   "id": "c7.capstone",
+   "level": 7,
+   "evidence": "project",
+   "concepts": [
+    "tools over MCP",
+    "evals in CI",
+    "observability",
+    "security review"
+   ],
+   "can": {
+    "en": "Ship one agent with tools over MCP, evals in CI, observability and a security review.",
+    "ar": "تطلق وكيلًا واحدًا بأدوات عبر MCP وتقييمات في CI ومراقبة ومراجعة أمنية.",
+    "fr": "Livrer un agent avec des outils via MCP, des évaluations en CI, de l'observabilité et une revue de sécurité."
+   }
+  }
+ ]
+}
