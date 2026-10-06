@@ -56,6 +56,20 @@
    "result": "fail",
    "hash": "098be9581c8ae1f6",
    "notes": "Fetched all 4 source pages: all 15 quotes are present and current. Code blocks match across languages except translated comments. Quiz answers and explanations agree in en/ar/fr. FR has no problems. AR overreaches on one point: it says 'شرح السبب وراء التعليمة يساعد Claude' (it helps), but EN and the source say 'can help'. Fix: change it to 'قد يساعد Claude على فهم أهدافك...'."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "0216ab42ff06ad5f",
+   "notes": "Checked 17 cited factual sentences against 15 sources. I fetched all 4 pages: best practices, PE overview, multilingual, glossary. Every quote is on its page verbatim, and each supports its sentence as written, including the 3-5 examples tip, the diverse/unintended-patterns claim, the what-to-do formatting advice and the temperature/randomness claim. No world claim lacks a citation. The SDK call (messages.create with model, max_tokens, messages, then reading text blocks) matches the docs."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "0216ab42ff06ad5f",
+   "notes": "Fetched all 4 cited pages; all 15 quotes are present (diverse/example-tags differ only by markdown bold/backticks) and support ar/fr sentences as written. Hedges kept (can/may/sometimes → قد/أحيانًا, peut/parfois); 3–5 examples is current. Code identical across en/ar/fr except the translated comments. Extra ar/fr glosses are accurate. Quiz answers (2,0,3,1) and explanations are correct in all 3 languages."
   }
  ],
  "teaching": [
@@ -93,6 +107,13 @@
    "result": "pass",
    "hash": "098be9581c8ae1f6",
    "notes": "Checked all 9 rubric points. Objectives match c1.prompting; terms are defined. The idea and a vague-to-clear example come before the code. Try it runs offline. The exercise, 9/9 tests passing on the solution, practises tags, order and leaving parts out; the quiz covers all 3 abilities. 6 misconceptions corrected; limits stated. Beginner pass found nothing. Minor wording: 'spaces around it' (and 'مسافات'/'espaces') should say spaces, tabs or line breaks, as the tests strip \\n."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "0216ab42ff06ad5f",
+   "notes": "All 9 checked: objective=c1.prompting; prereqs (what-an-llm-does/tokens/first-api-call) cover API, thinking, randomness; idea before code; Try-it runs, output equals The idea; 9 tests pass on solution, fail on starter; 6 misconceptions; beginner pass clean; ar/fr natural, same headings; honest. Minor: <input> vs advice for descriptive names; next() not taught; ar/fr 'spaces' drops tabs/newlines."
   }
  ],
  "learners": {
