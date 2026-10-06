@@ -109,7 +109,7 @@
    "explain": {
     "en": "\"not positive\" contains \"positive\", so a contains check passes a wrong answer. A grader that is too loose gives a high pass rate that means nothing.",
     "ar": "\"not positive\" تحتوي كلمة \"positive\"، فيقبل فحص الاحتواء إجابة خاطئة. والمُقيِّم المتساهل أكثر من اللازم يعطي نسبة نجاح عالية لا معنى لها.",
-    "fr": "« not positive » contient « positive », donc un test de contenance accepte une mauvaise réponse. Un évaluateur trop permissif donne un taux de réussite élevé qui ne veut rien dire."
+    "fr": "« not positive » contient « positive », donc un test d'inclusion accepte une mauvaise réponse. Un évaluateur trop permissif donne un taux de réussite élevé qui ne veut rien dire."
    }
   },
   {

@@ -8,6 +8,8 @@ def build_request(model, max_tokens, turns, system=None):
 
     turns: a list of (role, text) pairs, oldest first; role is "user" or "assistant".
     system: the system prompt, or None to leave it out.
+    max_tokens must be at least 1: the course's rule for a request that should produce an answer
+    (the API itself also accepts 0, which fills the prompt cache and generates no answer).
     """
     if isinstance(max_tokens, bool) or not isinstance(max_tokens, int) or max_tokens < 1:
         raise ValueError("max_tokens must be a whole number of at least 1")

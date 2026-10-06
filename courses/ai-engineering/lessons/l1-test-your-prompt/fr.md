@@ -12,12 +12,14 @@
 Dans la leçon précédente, vous avez écrit un prompt clair. Comment savoir s'il fonctionne ? La plupart des
 gens l'essaient une fois, voient une bonne réponse et passent à autre chose. Cette réponse prouve très
 peu. Elle vous renseigne sur une entrée, lors d'une exécution. Vos utilisateurs enverront des entrées que
-vous n'avez jamais essayées. Et le même prompt peut répondre autrement à l'exécution suivante : la
-référence de l'API indique que, même avec la température au plus bas, les résultats ne seront pas
-entièrement déterministes[^nondet].
+vous n'avez jamais essayées. Et le même prompt peut répondre autrement à l'exécution suivante.
+La *température* est un réglage qui fixe la part de hasard dans une réponse. La référence de l'API indique
+que, même avec une température de 0.0, les résultats ne seront pas entièrement déterministes[^nondet].
+Sur les modèles récents, vous ne pouvez même pas la baisser : les modèles sortis après Claude Opus 4.6 ne
+permettent pas de régler la température[^temperature].
 
 Traitez donc un prompt comme du code : testez-le. Le guide d'Anthropic explique que construire une
-application fondée sur un LLM commence par définir clairement vos critères de réussite, puis par concevoir
+application fondée sur un LLM (grand modèle de langage) commence par définir clairement vos critères de réussite, puis par concevoir
 des évaluations qui mesurent les performances par rapport à ces critères[^cycle]. Sa présentation de
 l'ingénierie de prompt suppose que vous avez déjà des moyens de tester ces critères de façon empirique
 avant de chercher à améliorer un prompt[^before].
@@ -26,8 +28,9 @@ Le test d'un prompt s'appelle une *évaluation*, ou *eval*. Une première évalu
 
 - **Les cas.** Des entrées, chacune avec la réponse attendue (on parle aussi de *réponse de référence*).
   Choisissez-les à l'image de votre trafic réel : le guide recommande de concevoir des évaluations qui
-  reflètent la distribution réelle de vos tâches[^taskspecific]. Mettez aussi les entrées difficiles, pas
-  seulement les faciles.
+  reflètent la distribution réelle de vos tâches, et ajoute de ne pas oublier les *cas limites* (*edge
+  cases*)[^taskspecific]. Un cas limite est une entrée rare ou inhabituelle, à la frontière de ce que votre
+  prompt doit traiter. Mettez ces entrées difficiles, pas seulement les faciles.
 - **Un évaluateur.** Du code qui compare la réponse du modèle à la réponse attendue et dit réussite ou
   échec. Le guide recommande de formuler les questions de façon à permettre une notation automatique[^automate].
   Il présente la notation par le code comme la plus rapide et la plus fiable, tout en notant qu'elle manque
@@ -43,12 +46,16 @@ L'évaluateur le plus simple est la *correspondance exacte* : la réponse doit �
 attendue. Il est strict. Il refuse « Mixed » et « mixed. », alors qu'une personne accepterait les deux. Un
 évaluateur *tolérant* nettoie les deux chaînes avant de les comparer. Le guide décrit les évaluations par
 correspondance exacte comme vérifiant si la sortie correspond à une réponse correcte définie à l'avance,
-généralement après normalisation des espaces et de la casse[^exact]. L'évaluateur tolérant de cette leçon
-ignore aussi un point final.
+généralement après normalisation des espaces et de la casse[^exact]. Dans le guide, la « correspondance
+exacte » inclut donc souvent ce nettoyage ; cette leçon donne un nom à chacune des deux étapes pour que vous
+voyiez la différence. L'évaluateur tolérant de cette leçon ignore aussi un point final.
 
 La tolérance a ses limites. Un évaluateur qui accepte toute réponse *contenant* le mot « positive »
 accepterait aussi « not positive ». Un évaluateur trop permissif vous donne un taux de réussite élevé qui
-ne veut rien dire.
+ne veut rien dire. Une vérification « contient » n'est pas toujours une erreur : le guide cite la
+*correspondance de chaîne* (*string match*), qui vérifie qu'une expression clé figure dans la
+sortie[^stringmatch]. Elle peut convenir à une réponse longue qui doit mentionner une expression clé. Pour
+des étiquettes courtes comme positive ou not positive, elle est risquée.
 
 Beaucoup de cas simples valent mieux que quelques cas parfaits : le guide indique que davantage de
 questions notées automatiquement, avec un signal un peu plus faible, valent mieux que moins de questions
@@ -156,9 +163,10 @@ sous une forme un peu différente.
 Avec l'évaluateur tolérant, 8 cas sur 10 réussissent, soit un taux de réussite de 80 %. Les deux échecs
 restants sont réels, et ce sont deux problèmes différents :
 
-- « Oh great, it stopped working again. » est ironique, et le modèle s'est trompé d'étiquette. L'exemple
-  d'évaluation d'Anthropic classe lui-même l'ironie (*sarcasm*) parmi les cas limites[^sarcasm]. La
-  correction se fait dans le prompt, par exemple une phrase sur l'ironie, puis vous relancez l'évaluation.
+- « Oh great, it stopped working again. » est sarcastique, et le modèle s'est trompé d'étiquette.
+  L'exemple d'évaluation d'Anthropic classe lui-même le sarcasme parmi les cas limites[^sarcasm]. La
+  correction se fait dans le prompt, par exemple une phrase sur le sarcasme, puis vous relancez
+  l'évaluation.
 - « The sentiment is mixed. » porte la bonne étiquette, mais le prompt demandait un seul mot. Rendez le
   prompt plus strict sur le format avant de rendre l'évaluateur plus permissif.
 
@@ -170,7 +178,8 @@ aucun problème.
 Le SDK Python officiel donne accès à l'API Claude depuis Python[^sdk]. Si vous avez une clé d'API, vous
 pouvez remplacer le substitut par un vrai appel. Le nom de modèle ci-dessous est l'un des identifiants d'API listés dans la
 présentation des modèles d'Anthropic ; les noms de modèles changent, vérifiez donc cette liste avant de
-lancer le code[^model].
+lancer le code[^model]. Comme dans votre premier appel à l'API, le code prend le bloc de texte de la
+réponse, pas `content[0]`, et laisse de la marge dans `max_tokens`.
 
 ```python
 import anthropic
@@ -181,10 +190,10 @@ client = anthropic.Anthropic()  # reads your key from the ANTHROPIC_API_KEY envi
 def ask_claude(review):
     message = client.messages.create(
         model="claude-opus-5-5",
-        max_tokens=10,
+        max_tokens=1024,
         messages=[{"role": "user", "content": PROMPT.format(review=review)}],
     )
-    return message.content[0].text
+    return next(block.text for block in message.content if block.type == "text")
 
 
 rate, failures = run_eval(CASES, ask_claude, normalized_match)
@@ -198,7 +207,7 @@ une raison de plus de ne pas se fier à une seule réponse.
 - **« Ça a marché quand je l'ai essayé. »** Une entrée, une exécution. Testez un ensemble de cas et
   regardez le taux de réussite.
 - **Uniquement des cas faciles.** Si tous les cas sont évidents, un taux de réussite élevé ne vous apprend
-  rien. Ajoutez les entrées qui vous inquiètent : ironie, avis mitigés, textes très courts ou très longs.
+  rien. Ajoutez les entrées qui vous inquiètent : sarcasme, avis mitigés, textes très courts ou très longs.
 - **Modifier les réponses attendues jusqu'à ce que les tests passent.** La réponse attendue, c'est ce dont
   vous avez besoin, décidé avant de voir la sortie. Ne la changez que si vous découvrez qu'elle était
   fausse.
@@ -209,7 +218,8 @@ une raison de plus de ne pas se fier à une seule réponse.
 - **Croire que la correspondance exacte suffit à toutes les tâches.** Elle convient aux réponses courtes et
   tranchées, comme des étiquettes. Pour les réponses qui demandent du jugement, des leçons ultérieures
   utilisent un modèle comme évaluateur : le guide décrit la notation par un LLM comme rapide et souple,
-  capable de passer à l'échelle et adaptée aux jugements complexes[^llmgrade].
+  capable de passer à l'échelle et adaptée aux jugements complexes, et ajoute : testez d'abord sa
+  fiabilité, puis passez à l'échelle[^llmgrade].
 
 ## Votre exercice
 
@@ -219,7 +229,8 @@ Ouvrez `exercise/starter/evaluate.py`. Il contient quelques cas, un modèle subs
 - `exact_match(output, expected)` : vrai seulement si les deux chaînes sont identiques.
 - `normalized_match(output, expected)` : vrai si elles sont égales une fois ignorés les majuscules et
   minuscules, les espaces en trop, et un point ou un point d'exclamation final. « not positive » doit
-  toujours échouer face à « positive ».
+  toujours échouer face à « positive ». L'évaluateur d'« Essayez » n'ignore que le point ; le vôtre ignore
+  aussi un « ! » final.
 - `run_eval(cases, model, grader)` : interrogez le modèle une fois par cas, dans l'ordre, notez chaque
   réponse avec `grader(output, expected)` et renvoyez une paire : le taux de réussite (cas réussis divisés
   par le nombre total de cas) et la liste des cas en échec. Chaque cas en échec est un dictionnaire avec

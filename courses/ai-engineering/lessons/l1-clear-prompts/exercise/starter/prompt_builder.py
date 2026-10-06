@@ -5,16 +5,18 @@ Fill in build_prompt. Run the tests from this folder with:
 """
 
 
-def build_prompt(task, context="", examples=(), output_format=""):
-    """Return a prompt with the task, context, examples and output format in separate XML tags.
+def build_prompt(task, context="", examples=(), output_format="", input_text=""):
+    """Return a prompt with the task, context, examples, output format and input in separate XML tags.
 
     - task (str): what Claude should do. Required: an empty or blank task raises ValueError.
     - context (str): what Claude needs to know and does not. Optional.
     - examples (list of str): sample inputs with their answers. Optional.
     - output_format (str): the shape the answer must have. Optional.
+    - input_text (str): the variable input that changes on every call, such as a ticket. Optional.
 
     Each non-empty part, with surrounding spaces removed, goes in its own tag, in this order:
-    <task>, <context>, <examples> (one <example> per example inside it), <output_format>.
+    <task>, <context>, <examples> (one <example> per example inside it), <output_format>, <input>.
+    The input goes last, so the variable text never runs into your instructions.
     A tag sits on its own line, before and after its content. Parts are separated by one blank line.
     Empty or blank parts, and blank examples, are left out entirely.
     """

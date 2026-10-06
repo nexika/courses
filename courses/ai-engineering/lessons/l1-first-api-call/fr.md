@@ -10,13 +10,12 @@
 ## L'idée
 
 Une API (interface de programmation) est une porte qu'un programme ouvre aux autres programmes. La porte
-de Claude s'appelle la Messages API : votre code envoie une requête par Internet, et une réponse revient.
+de Claude s'appelle l'API Messages : votre code envoie une requête par Internet, et une réponse revient.
 
 Vos appels utilisent une clé d'API : une chaîne secrète qui identifie votre compte, à garder pour vous.
 On la range d'habitude dans une variable d'environnement de votre machine[^start-key]. Le SDK Python
 officiel (une bibliothèque que vous installez) la lit dans `ANTHROPIC_API_KEY` sans que vous ayez à la lui
-passer[^start-env]. Ce SDK est la façon dont Anthropic donne aux programmes Python accès à l'API
-Claude[^sdk].
+passer[^start-env]. Ce SDK donne aux programmes Python accès à l'API Claude[^sdk].
 
 Une requête est un petit objet JSON. Voici les champs que vous utiliserez d'abord :
 
@@ -28,8 +27,10 @@ Une requête est un petit objet JSON. Voici les champs que vous utiliserez d'abo
 - `system` (facultatif) : le prompt système, qui sert à donner à Claude du contexte et des consignes,
   par exemple un objectif ou un rôle[^system].
 - `messages` : la conversation jusqu'ici, du plus ancien au plus récent. Chaque tour a un `role`, `user`
-  ou `assistant`, et un `content`. Les modèles sont entraînés sur des tours qui alternent entre
-  utilisateur et assistant[^alternating].
+  ou `assistant`, et un `content`. Dans une requête, `content` peut être une simple chaîne, comme dans
+  l'exemple ci-dessous[^content-string] ; dans une réponse, c'est une liste de blocs, comme vous le verrez
+  plus loin. Les modèles sont entraînés sur des tours qui alternent entre utilisateur et
+  assistant[^alternating] : placez donc vos tours dans cet ordre, utilisateur, assistant, utilisateur, etc.
 
 ```json
 {
@@ -46,12 +47,14 @@ L'API est sans état (*stateless*) : elle ne se souvient pas de vos appels préc
 tout l'historique de la conversation à chaque fois[^stateless]. Pour poser une question de suivi, vous
 ajoutez la réponse de Claude comme tour `assistant` et votre nouvelle question comme tour `user`, puis
 vous renvoyez le tout. Le dernier tour doit être celui de l'utilisateur. Terminer par un tour assistant
-(le *prefill*) n'est pas pris en charge sur Claude 4.6 et les modèles plus récents[^prefill]. Une telle
+(le *prefill*) n'est pas pris en charge sur Claude 4.6 et les modèles plus récents, dont Claude Opus 5.5, le
+modèle utilisé ici[^prefill]. Une telle
 requête renvoie une erreur[^prefill-error].
 
 Vous croiserez peut-être `temperature` dans d'anciens exemples : ce paramètre règle la part de hasard
-dans la réponse[^temperature]. Sur Claude 4.7 et les modèles plus récents, `temperature`, `top_p` et
-`top_k` ne sont pas pris en charge[^sampling], et toute valeur autre que la valeur par défaut fait échouer
+dans la réponse[^temperature]. Sur Claude 4.7 et les modèles plus récents, dont Claude Opus 5.5,
+`temperature` et les autres paramètres d'échantillonnage (*sampling*), `top_p` et `top_k`, ne sont pas
+pris en charge[^sampling], et toute valeur autre que la valeur par défaut fait échouer
 la requête[^sampling-error]. Guidez plutôt la réponse avec votre prompt.
 
 Voici une réponse, affichée en JSON. C'est un exemple qui a la forme d'une vraie réponse, pas
@@ -81,27 +84,33 @@ l'enregistrement d'un vrai appel : ses nombres de tokens sont donnés à titre d
 Trois parties comptent le plus :
 
 - `content` est une liste de blocs, pas une seule chaîne. Un bloc `text` contient des mots de la réponse.
-  Il existe d'autres sortes de blocs, par exemple les blocs de réflexion (*thinking*)[^thinking-blocks] :
-  rassemblez donc les blocs de type `text` au lieu de supposer que le premier bloc est la réponse.
+  Il existe d'autres sortes de blocs. Par exemple, quand la réflexion (*thinking*) est activée, Claude
+  réfléchit dans des blocs de réflexion avant de répondre, et ces blocs arrivent avant les blocs de
+  texte[^thinking-blocks]. Rassemblez donc les blocs de type `text` au lieu de supposer que le premier
+  bloc est la réponse.
 - `stop_reason` indique pourquoi Claude a cessé d'écrire[^stop-every]. `end_turn` signifie que Claude a
   terminé sa réponse naturellement[^stop-end]. `max_tokens` signifie qu'il a atteint la limite
   `max_tokens` de votre requête[^stop-max] : le texte est coupé, et la solution est d'augmenter
   `max_tokens` ou de poursuivre la réponse[^stop-max-do]. Une raison d'arrêt n'est pas une erreur : elle
   dit pourquoi une réponse réussie s'est terminée[^stop-not-error]. Il existe d'autres valeurs, que
   d'autres leçons présenteront.
-- `usage` compte les tokens d'entrée (ce que vous avez envoyé) et les tokens de sortie (ce que Claude a
-  écrit)[^usage]. Le nombre de tokens de sortie est le total retenu pour la facturation[^usage-billing].
+- `usage` compte les tokens d'entrée (ce que vous avez envoyé)[^usage] et les tokens de sortie (ce que
+  Claude a écrit)[^usage-output]. Le nombre de tokens de sortie inclut tous les tokens de sortie, réflexion
+  comprise, et c'est lui qui est facturé pour la sortie[^usage-billing].
   Comme vous renvoyez l'historique à chaque appel, le nombre de tokens d'entrée grandit avec la
   conversation.
 
 Le streaming change la façon dont la réponse voyage, pas ce qu'elle dit. Avec `"stream": true`, l'API
 envoie la réponse en morceaux, sous forme d'événements envoyés par le serveur (*server-sent
-events*)[^stream-sse] : vous pouvez afficher le texte pendant que Claude écrit encore. Pour les requêtes
+events*), une façon standard pour un serveur d'envoyer de nombreux petits messages sur une seule connexion
+ouverte[^stream-sse] : vous pouvez afficher le texte pendant que Claude écrit encore. Pour les requêtes
 avec de grandes valeurs de `max_tokens`, le SDK exige le streaming pour éviter les délais d'attente
-dépassés[^stream-timeout]. Le flux commence par un événement `message_start` qui contient un message au
+dépassés (*timeouts*), quand la connexion abandonne parce que la réponse tarde trop[^stream-timeout]. Le flux commence par un événement `message_start` qui contient un message au
 contenu vide[^stream-start]. Chaque bloc de contenu arrive ensuite sous la forme d'un événement
 `content_block_start`, d'un ou plusieurs événements `content_block_delta`, et d'un événement
-`content_block_stop`[^stream-flow]. Chaque delta met à jour le bloc situé à un index donné[^stream-delta].
+`content_block_stop`[^stream-flow]. Un delta est une petite modification, par exemple le morceau de texte suivant. Chaque delta met à jour le
+bloc situé à un index donné, c'est-à-dire à une position donnée dans la liste `content` de la
+réponse[^stream-delta].
 Les nombres de tokens de l'événement `message_delta` sont des totaux cumulés, pas des valeurs à
 additionner[^stream-cumulative]. Un flux peut aussi contenir des événements `ping`[^stream-ping], et votre
 code doit traiter sans planter les types d'événements qu'il ne connaît pas[^stream-unknown].
@@ -111,9 +120,10 @@ code doit traiter sans planter les types d'événements qu'il ne connaît pas[^s
 ### Avec votre propre clé (facultatif)
 
 Cette partie appelle la vraie API : elle demande une clé d'API, et les tokens consommés sont
-facturés[^usage-billing]. Passez-la si vous n'avez pas de clé : la partie suivante et l'exercice
+facturés[^pricing]. Passez-la si vous n'avez pas de clé : la partie suivante et l'exercice
 fonctionnent sans. Mettez la clé dans votre environnement, jamais dans votre code, et ne la mettez
-jamais dans un commit.
+jamais dans un commit. La deuxième ligne crée un environnement virtuel (venv) : un environnement Python à
+part pour ce projet, pour que ce que vous installez n'atteigne pas le reste de votre système.
 
 ```bash
 export ANTHROPIC_API_KEY="your-key-here"
@@ -159,12 +169,14 @@ with client.messages.stream(
 print()
 ```
 
+Enregistrez ce code dans un fichier, par exemple `live_call.py`, et lancez-le avec `python3 live_call.py`.
 Votre réponse ne sera pas identique mot pour mot aux exemples ci-dessous, ses nombres de tokens non plus.
 
 ### Sans clé : lire une réponse d'exemple
 
 Le dossier de la leçon contient l'exemple ci-dessus, une réponse coupée et un exemple de flux, dans
-`exercise/tests/`. Depuis le dossier de la leçon, lancez :
+`exercise/tests/`. Enregistrez ce code dans un fichier du dossier de la leçon, par exemple
+`read_samples.py`, et lancez `python3 read_samples.py` depuis ce dossier :
 
 ```python
 import json
@@ -209,7 +221,10 @@ exemples de `exercise/tests/` :
 - `build_request(model, max_tokens, turns, system=None)` renvoie le corps de la requête sous forme de
   dict. `turns` est une liste de paires `(role, text)`. N'ajoutez `system` que s'il y a un prompt système.
   Levez `ValueError` si `max_tokens` est inférieur à un ou n'est pas un entier, s'il n'y a aucun tour, si
-  un rôle n'est ni `user` ni `assistant`, ou si le dernier tour n'est pas celui de l'utilisateur.
+  un rôle n'est ni `user` ni `assistant`, ou si le dernier tour n'est pas celui de l'utilisateur. Cette règle sur `max_tokens` est celle du cours pour une
+  requête qui doit produire une réponse : l'API elle-même accepte aussi 0, qui remplit le cache de prompts
+  (*prompt cache*, une réserve qui permet aux requêtes suivantes de réutiliser le même prompt) sans écrire
+  de réponse[^max-zero].
 - `read_reply(response)` renvoie un dict avec `text` (tous les blocs de texte mis bout à bout),
   `stop_reason`, `input_tokens`, `output_tokens` et `cut_off`, qui vaut True quand la réponse s'est arrêtée
   à `max_tokens`.

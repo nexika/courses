@@ -173,5 +173,9 @@
     "Sonnet \\d(?:\\.\\d+)?",
     "Haiku \\d(?:\\.\\d+)?",
     "Niveau \\d"
-  ]
+  ],
+  "cite_final": {
+    "docs.claude.com": "platform.claude.com",
+    "docs.anthropic.com": "platform.claude.com"
+  }
 }

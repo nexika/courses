@@ -14,8 +14,8 @@ is the Messages API: your code sends a request over the internet, and a reply co
 
 Your calls use an API key: a secret string that identifies your account, so keep it private. The usual
 place for it is an environment variable on your machine[^start-key]. The official Python SDK (a library
-you install) reads it from `ANTHROPIC_API_KEY` without you passing it in[^start-env]. The SDK is how
-Anthropic gives Python programs access to the Claude API[^sdk].
+you install) reads it from `ANTHROPIC_API_KEY` without you passing it in[^start-env]. The SDK gives
+Python programs access to the Claude API[^sdk].
 
 A request is a small JSON object. These are the fields you will use first:
 
@@ -27,7 +27,9 @@ A request is a small JSON object. These are the fields you will use first:
 - `system` (optional): the system prompt, a way to give Claude context and instructions, such as a goal or
   a role[^system].
 - `messages`: the conversation so far, oldest first. Each turn has a `role`, `user` or `assistant`, and its
-  `content`. The models are trained on alternating user and assistant turns[^alternating].
+  `content`. In a request, `content` can be a plain string, as in the example below[^content-string]; in a
+  reply it is a list of blocks, as you will see further down. The models are trained on alternating user
+  and assistant turns[^alternating], so put your turns in that order: user, assistant, user, and so on.
 
 ```json
 {
@@ -43,12 +45,13 @@ A request is a small JSON object. These are the fields you will use first:
 The API is stateless: it does not remember your earlier calls, so you send the full conversation history
 every time[^stateless]. To ask a follow-up, you add Claude's answer as an `assistant` turn and your new
 question as a `user` turn, then send all of it again. The last turn should be the user's. Ending on an
-assistant turn ("prefill") is not supported on Claude 4.6 and later models[^prefill]. Such a request
-returns an error[^prefill-error].
+assistant turn ("prefill") is not supported on Claude 4.6 and later models, including Claude Opus 5.5,
+the model used here[^prefill]. Such a request returns an error[^prefill-error].
 
 You may meet `temperature` in older examples: it sets how much randomness goes into the answer[^temperature].
-On Claude 4.7 and later models, `temperature`, `top_p` and `top_k` are not supported[^sampling], and a
-value other than the default makes the request fail[^sampling-error]. Guide the answer with your prompt
+On Claude 4.7 and later models, including Claude Opus 5.5, `temperature` and the other sampling settings,
+`top_p` and `top_k`, are not supported[^sampling], and a value other than the default makes the request
+fail[^sampling-error]. Guide the answer with your prompt
 instead.
 
 Here is a reply, shown as JSON. It is a sample shaped like a real reply, not a recording of a real call,
@@ -78,24 +81,29 @@ so its token counts are illustrative.
 Three parts matter most:
 
 - `content` is a list of blocks, not one string. A `text` block holds words of the answer. Other kinds of
-  blocks exist, for example thinking blocks[^thinking-blocks], so collect the blocks whose type is `text`
-  instead of assuming the first block is the answer.
+  blocks exist. For example, when thinking is turned on, Claude reasons in thinking blocks before it
+  answers, and they arrive before the text blocks[^thinking-blocks]. So collect the blocks whose type is
+  `text` instead of assuming the first block is the answer.
 - `stop_reason` says why Claude stopped writing[^stop-every]. `end_turn` means Claude finished its answer
   naturally[^stop-end]. `max_tokens` means it reached the `max_tokens` limit in your request[^stop-max]: the
   text is cut off, and the fix is to raise `max_tokens` or continue the answer[^stop-max-do]. A stop reason
   is not an error: it tells you why a successful reply ended[^stop-not-error]. Other values exist; later
   lessons meet them.
-- `usage` counts the input tokens (what you sent) and the output tokens (what Claude wrote)[^usage]. The
-  output count is the total used for billing[^usage-billing]. Because you resend the history on every
+- `usage` counts the input tokens (what you sent)[^usage] and the output tokens (what Claude
+  wrote)[^usage-output]. The output count includes every output token, thinking included, and is the
+  figure billed for output[^usage-billing]. Because you resend the history on every
   call, the input count grows as a conversation gets longer.
 
 Streaming changes how the reply travels, not what it says. With `"stream": true` the API sends the reply
-in pieces, as server-sent events[^stream-sse], so you can show text while Claude is still writing. For
-requests with large `max_tokens` values, the SDK requires streaming to avoid timeouts[^stream-timeout].
+in pieces, as server-sent events (a standard way for a server to send many small messages over one open
+connection)[^stream-sse], so you can show text while Claude is still writing. For requests with large
+`max_tokens` values, the SDK requires streaming to avoid timeouts, where the connection gives up because
+the reply takes too long[^stream-timeout].
 The stream starts with a `message_start` event that holds a message with empty content[^stream-start].
 Each content block then arrives as a `content_block_start` event, one or more `content_block_delta`
-events, and a `content_block_stop` event[^stream-flow]. Each delta updates the block at a given
-index[^stream-delta]. The token counts in the `message_delta` event are running totals, not additions to
+events, and a `content_block_stop` event[^stream-flow]. A delta is a small change, such as the next piece of
+text. Each delta updates the block at a given index, the block's position in the reply's `content`
+list[^stream-delta]. The token counts in the `message_delta` event are running totals, not additions to
 make[^stream-cumulative]. A stream may also hold `ping` events[^stream-ping], and your code should handle
 event types it does not know without crashing[^stream-unknown].
 
@@ -103,9 +111,10 @@ event types it does not know without crashing[^stream-unknown].
 
 ### With your own key (optional)
 
-This part calls the real API, so it needs an API key, and the tokens it uses are billed[^usage-billing].
+This part calls the real API, so it needs an API key, and the tokens it uses are billed[^pricing].
 Skip it if you have no key: the next part and the exercise work without one. Put the key in your environment, never in your code, and
-never commit it.
+never commit it. The second line creates a virtual environment (venv): a separate Python environment
+for this project, so what you install stays out of the rest of your system.
 
 ```bash
 export ANTHROPIC_API_KEY="your-key-here"
@@ -151,12 +160,14 @@ with client.messages.stream(
 print()
 ```
 
-Your answer will not match the samples below word for word, and neither will its token counts.
+Save this code as a file, for example `live_call.py`, and run it with `python3 live_call.py`. Your answer
+will not match the samples below word for word, and neither will its token counts.
 
 ### Without a key: read a sample reply
 
 The lesson folder holds the sample reply above, a reply that was cut off, and a sample stream, in
-`exercise/tests/`. From the lesson folder, run:
+`exercise/tests/`. Save this code as a file in the lesson folder, for example `read_samples.py`, and run
+`python3 read_samples.py` from that folder:
 
 ```python
 import json
@@ -200,7 +211,9 @@ Open `exercise/starter/first_call.py` and write three functions. They work offli
 - `build_request(model, max_tokens, turns, system=None)` returns the request body as a dict. `turns` is a
   list of `(role, text)` pairs. Add `system` only when there is a system prompt. Raise `ValueError` for a
   `max_tokens` below one or not a whole number, for no turns, for a role other than `user` or
-  `assistant`, and for a last turn that is not the user's.
+  `assistant`, and for a last turn that is not the user's. The rule on `max_tokens` is this course's rule for a request
+  that should produce an answer: the API itself also accepts 0, which fills the prompt cache (a store
+  that lets later requests reuse the same prompt) and writes no answer[^max-zero].
 - `read_reply(response)` returns a dict with `text` (all text blocks joined), `stop_reason`,
   `input_tokens`, `output_tokens`, and `cut_off`, which is true when the reply stopped at `max_tokens`.
 - `join_stream(events)` returns the same dict from a list of streaming events.

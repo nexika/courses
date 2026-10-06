@@ -48,6 +48,8 @@ class BuildRequest(unittest.TestCase):
         with self.assertRaises(ValueError):
             build_request("m", "300", [("user", "Hi")])
         with self.assertRaises(ValueError):
+            build_request("m", True, [("user", "Hi")])
+        with self.assertRaises(ValueError):
             build_request("m", 100, [])
         with self.assertRaises(ValueError):
             build_request("m", 100, [("system", "Be brief."), ("user", "Hi")])
@@ -75,6 +77,14 @@ class ReadReply(unittest.TestCase):
                                 {"type": "text", "text": "Hello"}, {"type": "text", "text": ", world."}],
                     "stop_reason": "end_turn", "usage": {"input_tokens": 9, "output_tokens": 7}}
         self.assertEqual(read_reply(response)["text"], "Hello, world.")
+
+    def test_a_cut_off_reply_with_several_text_blocks(self):
+        response = {"content": [{"type": "text", "text": "First part. "}, {"type": "text", "text": "Second, cut"}],
+                    "stop_reason": "max_tokens", "usage": {"input_tokens": 12, "output_tokens": 8}}
+        reply = read_reply(response)
+        self.assertEqual(reply["text"], "First part. Second, cut")
+        self.assertTrue(reply["cut_off"])
+        self.assertEqual((reply["input_tokens"], reply["output_tokens"]), (12, 8))
 
     def test_the_response_is_not_changed(self):
         response = load("sample_reply.json")
@@ -106,6 +116,21 @@ class JoinStream(unittest.TestCase):
                   {"type": "message_delta", "delta": {"stop_reason": "end_turn"}, "usage": {"output_tokens": 2}},
                   {"type": "message_stop"}]
         self.assertEqual(join_stream(events)["text"], "Yes.")
+
+    def test_thinking_before_the_text_is_not_part_of_the_answer(self):
+        events = [start(4),
+                  {"type": "content_block_start", "index": 0, "content_block": {"type": "thinking", "thinking": ""}},
+                  {"type": "content_block_delta", "index": 0,
+                   "delta": {"type": "thinking_delta", "thinking": "A short answer will do."}},
+                  {"type": "content_block_stop", "index": 0},
+                  {"type": "content_block_start", "index": 1, "content_block": {"type": "text", "text": ""}},
+                  {"type": "content_block_delta", "index": 1, "delta": {"type": "text_delta", "text": "Hello."}},
+                  {"type": "content_block_stop", "index": 1},
+                  {"type": "message_delta", "delta": {"stop_reason": "end_turn"}, "usage": {"output_tokens": 9}},
+                  {"type": "message_stop"}]
+        reply = join_stream(events)
+        self.assertEqual(reply["text"], "Hello.")
+        self.assertEqual((reply["stop_reason"], reply["output_tokens"]), ("end_turn", 9))
 
 
 if __name__ == "__main__":

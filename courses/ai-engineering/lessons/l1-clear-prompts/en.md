@@ -24,7 +24,8 @@ Sort this ticket: "I was charged twice this month."
 ```
 
 Sort it into what? Which answers are allowed? Should the reply be one word, a sentence, or a
-paragraph that explains its reasoning? Claude has to guess, and two calls can guess differently.
+paragraph that explains its reasoning? Claude has to guess. The model's predictions have some randomness[^random], so two calls can guess
+differently.
 
 Here is the same request, written clearly:
 
@@ -69,9 +70,9 @@ company is and what a wrong category costs. Claude cannot know either fact unles
 
 **Show examples.** Examples are one of the most reliable ways to steer the format, tone and
 structure of Claude's answers[^examples]. The guide recommends three to five of them[^count], and
-asks that they be diverse: they should cover edge cases and vary enough that Claude does not pick up
+asks that they be diverse: they should cover edge cases (unusual or borderline inputs) and vary enough that Claude does not pick up
 patterns you did not intend[^diverse]. The prompt above has only two, to stay short. A real
-classifier would add more, including a hard case such as a refund request caused by a bug.
+classifier (a program that sorts inputs into fixed categories) would add more, including a hard case such as a refund request caused by a bug.
 
 **Specify the output format.** Be specific about the format and the constraints you want[^format].
 Your code will compare Claude's reply with a list of categories: `billing` matches,
@@ -85,9 +86,13 @@ in angle brackets, `<context>`, closed by the same name with a slash, `</context
 instructions[^example-tags]. The ticket is a variable input: it changes on every call, so it gets a
 tag of its own and the customer's words never run into your instructions.
 
+XML is a way of marking up text with tags like these. Your prompt does not have to be valid XML,
+and there is no fixed list of tag names: a consistent, descriptive name such as `<ticket>` is
+enough[^tag-names].
+
 A clear prompt makes a good answer more likely. It does not guarantee one: Claude can still choose
-the wrong category. And not every problem is best solved by changing the prompt; sometimes another
-model is the better fix[^not-always]. The next lesson shows how to test a prompt against expected
+the wrong category. And not every problem is best solved by changing the prompt: latency or cost,
+for example, can sometimes be improved more easily by choosing a different model[^not-always]. The next lesson shows how to test a prompt against expected
 answers, so you know whether a change helped.
 
 ## Try it
@@ -145,10 +150,11 @@ client = anthropic.Anthropic()
 for prompt in (vague, clear):
     message = client.messages.create(
         model=MODEL,
-        max_tokens=100,
+        max_tokens=1024,
         messages=[{"role": "user", "content": prompt}],
     )
-    print(message.content[0].text)
+    # the reply can start with other blocks, such as thinking: print the first text block
+    print(next(block.text for block in message.content if block.type == "text"))
     print("---")
 ```
 
@@ -180,12 +186,14 @@ this when it covers prompt injection.
 
 ## Your exercise
 
-Open `exercise/starter/prompt_builder.py` and write `build_prompt(task, context, examples, output_format)`.
+Open `exercise/starter/prompt_builder.py` and write
+`build_prompt(task, context, examples, output_format, input_text)`.
 It returns one string:
 
 - each part, with the spaces around it removed, in its own tag, in this order: `<task>`,
-  `<context>`, `<examples>`, `<output_format>`;
+  `<context>`, `<examples>`, `<output_format>`, and last `<input>`;
 - each example in its own `<example>` tag, all inside `<examples>`;
+- the variable input (such as the ticket) in `<input>`, last, so it never runs into your instructions;
 - a tag on its own line before and after its content, and one blank line between parts;
 - an empty or blank part, or a blank example, left out entirely;
 - an empty task refused with a `ValueError`, because a prompt with no task has nothing to ask.
@@ -217,4 +225,5 @@ of the five parts of the clear prompt gives Claude.
 [^example-tags]: Anthropic, Prompting best practices.
 [^tag-names]: Anthropic, Prompting best practices.
 [^not-always]: Anthropic, Prompt engineering overview.
+[^random]: Anthropic, Glossary, "Temperature".
 [^languages]: Anthropic, Multilingual support.

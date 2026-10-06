@@ -356,3 +356,27 @@ def test_numbers_can_be_written_in_each_language_style():
     assert gates.states_value("2 000 tokens", 2000) and gates.states_value("2,000 tokens", 2000)
     assert gates.states_value("٢٬٠٠٠ رمز", 2000) and gates.states_value("٠٫٠٠٩", 0.009)
     assert not gates.states_value("costs 0,009 $", 9.5)
+
+
+def test_old_documentation_addresses_must_be_replaced(root):
+    edit_json(root / "course.json", lambda d: d.update(cite_final={"example.org": "example.com"}))
+    assert any("cite the final address" in p.message for p in problems(root))
+
+
+def test_ignored_caches_are_not_part_of_the_lesson_but_tracked_bytecode_is(root):
+    import subprocess
+    subprocess.run(["git", "init", "-q", str(root)], check=True)
+    (root / ".gitignore").write_text("__pycache__/\n")
+    lesson = pack.load_course(root).lessons[0]
+    before = pack.content_hash(lesson)
+    write(lesson_path(root) / "exercise" / "tests" / "__pycache__" / "test_work.cpython-313.pyc", "x")
+    assert pack.content_hash(lesson) == before
+    assert not any("compiled or cached" in p.message for p in problems(root))
+    subprocess.run(["git", "-C", str(root), "add", "-f", "."], check=True)
+    assert any("compiled or cached" in p.message for p in problems(root))
+
+
+def test_quotes_match_pages_despite_spaces_left_by_removed_tags():
+    page = gates._normal(gates._html_text("<p>Use <code>max_tokens</code>, then read the <b>usage</b> .</p>"))
+    assert gates._normal("Use max_tokens, then read the usage.") in page
+    assert gates._normal("use max_tokens, then") not in page

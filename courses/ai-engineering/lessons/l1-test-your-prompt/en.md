@@ -10,11 +10,12 @@
 
 In the last lesson you wrote a clear prompt. How do you know it works? Most people try it once, see a
 good answer and move on. That one answer proves very little. It tells you about one input, on one run.
-Your users will send inputs you never tried. And the same prompt can answer differently on another run:
-the API reference says that even with the temperature at its lowest, the results will not be fully
-deterministic[^nondet].
+Your users will send inputs you never tried. And the same prompt can answer differently on another run.
+*Temperature* is a setting for how much randomness goes into an answer. The API reference says that even
+at temperature 0.0 the results will not be fully deterministic[^nondet]. On recent models you cannot
+lower it at all: models released after Claude Opus 4.6 do not support setting temperature[^temperature].
 
-So treat a prompt like code, and test it. Anthropic's guide says that building an LLM application starts
+So treat a prompt like code, and test it. Anthropic's guide says that building an application on a large language model (LLM) starts
 with clearly defining your success criteria and then designing evaluations to measure performance against
 them[^cycle]. Its prompt engineering overview expects you to have some ways to empirically test against
 those criteria before you start improving a prompt[^before].
@@ -23,7 +24,9 @@ A test of a prompt is called an *evaluation*, or *eval*. A first eval has three 
 
 - **Cases.** Inputs, each with the answer you expect (people also call it the *golden answer*). Choose
   them like your real traffic: the guide says to design evals that mirror your real-world task
-  distribution[^taskspecific]. Include the hard inputs too, not only the easy ones.
+  distribution, and adds "Don't forget to factor in edge cases!"[^taskspecific]. An *edge case* is a rare or
+  unusual input at the limits of what your prompt must handle. Include those hard inputs, not only the
+  easy ones.
 - **A grader.** Code that compares the model's answer with the expected answer and says pass or fail. The
   guide recommends structuring questions so they allow automated grading[^automate]. It calls code-based
   grading the fastest and most reliable kind, but notes that it lacks nuance for complex judgments[^codegrade].
@@ -36,11 +39,15 @@ model answers "mixed", the case passes.
 The simplest grader is an *exact match*: the answer must be the same string as the expected one. It is
 strict. It fails "Mixed" and "mixed." although a person would accept both. A *tolerant* grader cleans both
 strings before it compares them. The guide describes exact-match evals as checking whether the output
-matches a predefined correct answer, typically after normalizing whitespace and case[^exact]. The tolerant
-grader in this lesson also ignores a full stop at the end.
+matches a predefined correct answer, typically after normalizing whitespace and case[^exact]. So in the
+guide, "exact match" usually includes this cleaning; this lesson gives the two steps separate names so you
+can see the difference. The tolerant grader in this lesson also ignores a full stop at the end.
 
 Tolerance has a limit. A grader that accepts any answer *containing* the word "positive" would also accept
-"not positive". A grader that is too loose gives you a high pass rate that means nothing.
+"not positive". A grader that is too loose gives you a high pass rate that means nothing. A "contains"
+check is not always wrong: the guide lists *string match*, a check that a key phrase is in the
+output[^stringmatch]. It can suit a long answer that must mention a key phrase. For short labels such as
+positive or not positive, it is risky.
 
 Many simple cases beat a few perfect ones: the guide says more questions with slightly lower signal
 automated grading is better than fewer questions with high-quality human hand-graded evals[^volume].
@@ -158,7 +165,8 @@ nothing wrong.
 
 The official Python SDK gives access to the Claude API from Python[^sdk]. If you have an API key, you can
 replace the stand-in with a real call. The model name below is one of the API model IDs in Anthropic's models overview;
-model names change, so check that list before you run it[^model].
+model names change, so check that list before you run it[^model]. As in your first API call, the code
+takes the text block of the reply, not `content[0]`, and leaves room in `max_tokens`.
 
 ```python
 import anthropic
@@ -169,10 +177,10 @@ client = anthropic.Anthropic()  # reads your key from the ANTHROPIC_API_KEY envi
 def ask_claude(review):
     message = client.messages.create(
         model="claude-opus-5-5",
-        max_tokens=10,
+        max_tokens=1024,
         messages=[{"role": "user", "content": PROMPT.format(review=review)}],
     )
-    return message.content[0].text
+    return next(block.text for block in message.content if block.type == "text")
 
 
 rate, failures = run_eval(CASES, ask_claude, normalized_match)
@@ -193,7 +201,8 @@ reason not to trust a single answer.
 - **Reporting only the number.** The pass rate tells you how often; the failing cases tell you why.
 - **Thinking exact match is enough for every task.** It suits short, clear-cut answers such as labels. For
   answers that need judgment, later lessons use a model as the grader: the guide calls LLM-based grading
-  fast and flexible, scalable and suitable for complex judgment[^llmgrade].
+  fast and flexible, scalable and suitable for complex judgment, and adds: "Test to ensure reliability first
+  then scale."[^llmgrade]
 
 ## Your exercise
 
@@ -202,6 +211,7 @@ Open `exercise/starter/evaluate.py`. It has a few cases, a stand-in model, and t
 - `exact_match(output, expected)`: true only when the two strings are identical.
 - `normalized_match(output, expected)`: true when they are equal once you ignore upper and lower case,
   extra spaces, and a final full stop or exclamation mark. "not positive" must still fail for "positive".
+  The grader in "Try it" ignores only a full stop; yours also ignores a final "!".
 - `run_eval(cases, model, grader)`: ask the model about each case once, in order, grade each answer with
   `grader(output, expected)`, and return a pair: the pass rate (passed cases divided by all cases) and the
   list of failing cases. Each failing case is a dictionary with `input`, `expected`, `output` and `error`.

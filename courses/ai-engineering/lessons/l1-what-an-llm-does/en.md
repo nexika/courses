@@ -6,6 +6,8 @@
 - Name what it cannot do: know about things after its training data ends, and always be right.
 - Say what these limits mean for the software you build with one.
 
+This lesson assumes Level 0: you can use a terminal and run a small Python program.
+
 ## The idea
 
 A large language model (LLM) is a program trained on a very large amount of text. Anthropic describes
@@ -24,7 +26,9 @@ it up: you have seen that phrase many times. A language model does something sim
 It writes a whole answer by predicting one piece, adding it to the text, and predicting the next piece.
 
 Claude is more than a raw predictor: Anthropic notes that "it has already been fine-tuned to be a helpful
-assistant"[^finetune]. That training makes it follow instructions and answer questions well. It does not
+assistant"[^finetune]. *Fine-tuning* means further training of a model that is already pretrained. It is
+needed: Anthropic notes that pretrained models "are not inherently good at answering questions or following
+instructions", and fine-tuning is one of the ways it refines them[^pretrained]. This further training does not
 change the basic mechanism: the answer is still produced from patterns the model learned. Two limits
 follow from that.
 
@@ -33,8 +37,11 @@ cutoff*. Anthropic's model overview lists this date for every current model[^mod
 for Claude Fable 5.1, Claude Opus 5.5 and Claude Sonnet 5.5, and Jul 2025 for Claude Haiku 4.5[^models].
 About anything after that date, the model has seen no text, so it has no patterns to draw on.
 
+The same page also gives a *reliable knowledge cutoff*, which can be earlier: Feb 2025 for Claude Haiku
+4.5[^reliable]. So do not count on a model knowing the last months before its training data cutoff well.
+
 The model can only work with newer facts if you give them to it. You can paste a document into the
-prompt. You can let your code fetch relevant documents and pass them in with the question; Anthropic's
+prompt (the text you send to the model). You can let your code fetch relevant documents and pass them in with the question; Anthropic's
 glossary says this "allows the model to access and use information beyond its training data"[^rag]. Or
 you can give it a tool, such as web search, which lets Claude "answer questions with up-to-date
 information beyond its knowledge cutoff"[^websearch].
@@ -42,7 +49,7 @@ information beyond its knowledge cutoff"[^websearch].
 **Second limit: confident mistakes.** A pattern that is common is not the same as a fact that is true.
 Anthropic warns that even the most advanced models "can sometimes generate text that is factually
 incorrect or inconsistent with the given context", and calls this *hallucination*[^halluc]. A wrong
-answer comes out as fluent and as sure of itself as a right one. The tone tells you nothing.
+answer can come out as fluent and confident as a right one, so tone is not proof.
 
 **Why this matters to you as an engineer.** Treat what a model writes as a draft to check, not as the
 result of a database lookup. Put the facts it needs into the prompt, and tell it to use only those:
@@ -57,7 +64,7 @@ Here is a next-word predictor small enough to read in one go. It learns from a t
 is trained on): a few messages from a team chat. It counts which word comes right after which, then
 predicts the word that came next most often.
 
-Save this as `predict.py` and run `python3 predict.py`:
+Save this as `predict.py` and run `python3 predict.py` (it needs Python 3.10 or later, for `pairwise`):
 
 ```python
 from collections import Counter
@@ -78,7 +85,7 @@ def predict(word):
     followers = {b: n for (a, b), n in pairs.items() if a == word}
     if not followers:
         return None  # never seen: no pattern to follow
-    return max(followers, key=followers.get)
+    return max(followers, key=followers.get)  # on a tie: the first one seen
 
 
 print("after 'on':", {b: n for (a, b), n in pairs.items() if a == "on"})
@@ -121,9 +128,11 @@ make likely, and likely is not the same as true.
   Check what matters, whatever the tone.
 - **"It knows today's news."** Without documents or tools, it has no information past its training data
   cutoff[^websearch]. Ask it about a recent version, price or event and it may answer from older patterns.
-- **"Temperature at zero makes it correct."** Lower temperatures give outputs "that stick to the most
-  probable phrasing and answers"[^temperature]. Most probable is what our toy predictor always picks, and
-  it still said Monday.
+- **"Temperature at zero makes it correct."** Temperature is a setting that "controls the randomness of a
+  model's predictions"[^temperature-def]: how random the choice of the next word is. Lower temperatures
+  give outputs "that stick to the most probable phrasing and answers"[^temperature]. Most probable is what
+  our toy predictor always picks, and it still said Monday. And "even with temperature set to 0, the
+  results will not be fully deterministic"[^temperature-zero]: the same question can get different answers.
 - **"A few prompt tricks remove hallucinations."** They reduce them; the guide advises you to "always
   validate critical information, especially for high-stakes decisions"[^halluc-validate].
 
@@ -137,7 +146,7 @@ Build the predictor yourself, as two functions you can test. The starter is in
 - `next_word(counts, word)`: return the word that most often came after `word` (compare in lowercase). On
   a tie, return the alphabetically first word. If `word` was never followed by anything, return `None`.
 
-Run the tests from the starter folder:
+From the lesson folder, go to the starter folder and run the tests:
 
 ```bash
 cd exercise/starter
@@ -154,11 +163,15 @@ Try it.
 
 [^llm]: Anthropic, Glossary, "LLM".
 [^pretraining]: Anthropic, Glossary, "Pretraining".
+[^pretrained]: Anthropic, Glossary, "Pretraining".
 [^tokens]: Anthropic, Glossary, "Tokens".
 [^finetune]: Anthropic, Glossary, "Fine-tuning".
 [^rag]: Anthropic, Glossary, "RAG (Retrieval augmented generation)".
 [^temperature]: Anthropic, Glossary, "Temperature".
+[^temperature-def]: Anthropic, Glossary, "Temperature".
+[^temperature-zero]: Anthropic, Glossary, "Temperature".
 [^models]: Anthropic, Models overview.
+[^reliable]: Anthropic, Models overview.
 [^websearch]: Anthropic, Web search tool.
 [^halluc]: Anthropic, Reduce hallucinations.
 [^halluc-docs]: Anthropic, Reduce hallucinations, "External knowledge restriction".

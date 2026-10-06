@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -124,11 +125,26 @@ def all_courses(root: Path | None = None) -> list[Course]:
 
 # ------------------------------------------------------------------ hash
 
+def lesson_files(lesson: Lesson) -> list[Path]:
+    """The lesson's files as they would ship: inside a git checkout, what git tracks or would add (so caches
+    that .gitignore keeps out, such as a learner's __pycache__, are not part of the lesson); elsewhere, all."""
+    try:
+        out = subprocess.run(["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard", "--", "."],
+                             cwd=lesson.path, capture_output=True, timeout=30, check=True).stdout
+        top = subprocess.run(["git", "rev-parse", "--show-prefix"], cwd=lesson.path, capture_output=True,
+                             text=True, timeout=30, check=True).stdout.strip()
+    except (OSError, subprocess.SubprocessError):
+        return sorted(p for p in lesson.path.rglob("*") if p.is_file() or p.is_symlink())
+    names = {name[len(top):] if name.startswith(top) else name for name in out.decode().split("\0") if name}
+    return sorted(lesson.path / name for name in names if (lesson.path / name).is_file()
+                  or (lesson.path / name).is_symlink())
+
+
 def content_hash(lesson: Lesson, course: Course | None = None) -> str:
     """A hash of everything a reviewer judges: every file of the lesson except review.json (images and
     bytecode included), plus the lesson's module and competencies in the course. Reviews carry it."""
     digest = hashlib.sha256()
-    files = sorted(p for p in lesson.path.rglob("*") if (p.is_file() or p.is_symlink()) and p.name != "review.json")
+    files = [p for p in lesson_files(lesson) if p.name != "review.json"]
     for file in files:
         digest.update(file.relative_to(lesson.path).as_posix().encode())
         digest.update(b"\0")
@@ -145,12 +161,12 @@ def content_hash(lesson: Lesson, course: Course | None = None) -> str:
 def unsafe_files(lesson: Lesson) -> list[str]:
     """Files that would run without being what reviewers read: bytecode, caches, links, binaries."""
     found = []
-    for sub in CODE_DIRS:
-        for p in sorted((lesson.path / sub).rglob("*")) if (lesson.path / sub).exists() else []:
-            rel = p.relative_to(lesson.path).as_posix()
+    for p in lesson_files(lesson):
+        rel = p.relative_to(lesson.path).as_posix()
+        if rel.split("/")[0] in CODE_DIRS:
             if p.is_symlink():
                 found.append(f"{rel} is a symbolic link")
-            elif p.name == "__pycache__" or p.suffix in (".pyc", ".pyo", ".so", ".pyd", ".pth"):
+            elif "__pycache__" in rel.split("/") or p.suffix in (".pyc", ".pyo", ".so", ".pyd", ".pth"):
                 found.append(f"{rel} is compiled or cached code")
             elif p.is_file() and b"\0" in p.read_bytes()[:8192]:
                 found.append(f"{rel} is a binary file")

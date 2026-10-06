@@ -17,6 +17,8 @@ def build_request(model, max_tokens, turns, system=None):
     plus "system" only when a system prompt is given.
     Raise ValueError when max_tokens is not a whole number of at least 1, when there are no turns,
     when a role is not "user" or "assistant", or when the last turn is not from the user.
+    (max_tokens of at least 1 is this course's rule for a request that should produce an answer:
+    the API itself also accepts 0, which fills the prompt cache and generates no answer.)
     """
     raise NotImplementedError
 

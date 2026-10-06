@@ -2,7 +2,7 @@
  "schema": "nexika.sources/1",
  "sources": {
   "llm": {
-   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
    "title": "Glossary: LLM",
    "kind": "doc",
    "quote": "These models are trained on vast amounts of text data and can generate human-like text",
@@ -10,15 +10,23 @@
    "volatile": false
   },
   "pretraining": {
-   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
    "title": "Glossary: Pretraining",
    "kind": "doc",
    "quote": "are pretrained to predict the next word, given the previous context of text in the document",
    "retrieved": "2026-10-06",
    "volatile": false
   },
+  "pretrained": {
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
+   "title": "Glossary: Pretraining",
+   "kind": "doc",
+   "quote": "These pretrained models are not inherently good at answering questions or following instructions, and often require deep skill in prompt engineering to elicit desired behaviors. Fine-tuning and RLHF are used to refine these pretrained models",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
   "tokens": {
-   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
    "title": "Glossary: Tokens",
    "kind": "doc",
    "quote": "can correspond to words, subwords, characters, or even bytes",
@@ -26,7 +34,7 @@
    "volatile": false
   },
   "finetune": {
-   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
    "title": "Glossary: Fine-tuning",
    "kind": "doc",
    "quote": "it has already been fine-tuned to be a helpful assistant",
@@ -34,7 +42,7 @@
    "volatile": false
   },
   "rag": {
-   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
    "title": "Glossary: RAG (retrieval augmented generation)",
    "kind": "doc",
    "quote": "This allows the model to access and use information beyond its training data",
@@ -42,23 +50,47 @@
    "volatile": false
   },
   "temperature": {
-   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
    "title": "Glossary: Temperature",
    "kind": "doc",
    "quote": "Lower temperatures result in more conservative and deterministic outputs that stick to the most probable phrasing and answers",
    "retrieved": "2026-10-06",
    "volatile": false
   },
+  "temperature-def": {
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
+   "title": "Glossary: Temperature",
+   "kind": "doc",
+   "quote": "Temperature is a parameter that controls the randomness of a model's predictions during text generation",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "temperature-zero": {
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
+   "title": "Glossary: Temperature",
+   "kind": "doc",
+   "quote": "Even with temperature set to 0, the results will not be fully deterministic",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
   "models": {
-   "url": "https://docs.claude.com/en/docs/about-claude/models/overview",
+   "url": "https://platform.claude.com/docs/en/models/overview",
    "title": "Models overview",
    "kind": "doc",
-   "quote": "training data cutoff Jun 2026 Jun 2026 Jun 2026 Jul 2025",
+   "quote": "Training data cutoff Jun 2026 Jun 2026 Jun 2026 Jul 2025",
+   "retrieved": "2026-10-06",
+   "volatile": true
+  },
+  "reliable": {
+   "url": "https://platform.claude.com/docs/en/models/overview",
+   "title": "Models overview: reliable knowledge cutoff",
+   "kind": "doc",
+   "quote": "Reliable knowledge cutoff Jun 2026 Jun 2026 Jun 2026 Feb 2025",
    "retrieved": "2026-10-06",
    "volatile": true
   },
   "websearch": {
-   "url": "https://docs.claude.com/en/docs/agents-and-tools/tool-use/web-search-tool",
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
    "title": "Web search tool",
    "kind": "doc",
    "quote": "allowing it to answer questions with up-to-date information beyond its knowledge cutoff",
@@ -66,7 +98,7 @@
    "volatile": false
   },
   "halluc": {
-   "url": "https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
    "title": "Reduce hallucinations",
    "kind": "doc",
    "quote": "can sometimes generate text that is factually incorrect or inconsistent with the given context",
@@ -74,15 +106,15 @@
    "volatile": false
   },
   "halluc-docs": {
-   "url": "https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
    "title": "Reduce hallucinations: external knowledge restriction",
    "kind": "doc",
-   "quote": "explicitly instruct Claude to only use information from provided documents and not its general knowledge",
+   "quote": "Explicitly instruct Claude to only use information from provided documents and not its general knowledge",
    "retrieved": "2026-10-06",
    "volatile": false
   },
   "halluc-idk": {
-   "url": "https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
    "title": "Reduce hallucinations: allow Claude to say I don't know",
    "kind": "doc",
    "quote": "Explicitly give Claude permission to admit uncertainty",
@@ -90,7 +122,7 @@
    "volatile": false
   },
   "halluc-limit": {
-   "url": "https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
    "title": "Reduce hallucinations",
    "kind": "doc",
    "quote": "while these techniques significantly reduce hallucinations, they don't eliminate them entirely",
@@ -98,7 +130,7 @@
    "volatile": false
   },
   "halluc-validate": {
-   "url": "https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
    "title": "Reduce hallucinations",
    "kind": "doc",
    "quote": "Always validate critical information, especially for high-stakes decisions",

@@ -3,7 +3,7 @@
  "id": "l1-test-your-prompt",
  "title": {
   "en": "Test your prompt",
-  "ar": "اختبر الموجّه (prompt) الخاص بك",
+  "ar": "اختبر موجّهك (prompt)",
   "fr": "Tester votre prompt"
  },
  "module": "m1-llm-basics",

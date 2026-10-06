@@ -95,9 +95,9 @@
      "fr": "Les garder pour l'anglais, recompter les autres langues"
     },
     {
-     "en": "Divide each count by 3.5 to convert it to words",
-     "ar": "اقسم كل عدد على 3.5 لتحويله إلى كلمات",
-     "fr": "Diviser chaque nombre par 3,5 pour avoir des mots"
+     "en": "Scale each count by the ratio of the two models' prices",
+     "ar": "اضرب كل عدد في نسبة سعر النموذج الجديد إلى سعر القديم",
+     "fr": "Les ajuster selon le rapport des prix des deux modèles"
     },
     {
      "en": "Count again: the tokenizer can differ between models",
@@ -158,9 +158,9 @@
     "fr": "Votre équipe veut une fonctionnalité qui résume chaque ticket de support, quelques milliers par jour. Expliquez comment vous estimeriez son coût par jour, et ce qui pourrait faire différer la vraie facture de votre estimation."
    },
    "rubric": {
-    "en": "Measures input tokens on real tickets (with the token counting API or the usage of test calls), not by counting words; includes the instructions and system prompt in the input. Estimates output tokens per summary and caps them with max_tokens. Prices input and output separately, per million tokens, with the current prices from the pricing page, then multiplies by the number of calls per day. Names reasons the bill can differ: tickets vary in length, output length varies, counts are estimates, the tokenizer differs between models, prices change, and options such as batches or caching change the price.",
-    "ar": "يقيس رموز الإدخال على تذاكر حقيقية (بواجهة عدّ الرموز أو بحقل usage في استدعاءات تجريبية) لا بعدّ الكلمات، ويحسب التعليمات وموجّه النظام (system prompt) ضمن المدخلات. يقدّر رموز الإخراج لكل ملخص ويضع لها حدًّا بـ max_tokens. يسعّر الإدخال والإخراج كلًّا على حدة لكل مليون رمز بالأسعار الحالية من صفحة الأسعار، ثم يضرب في عدد الاستدعاءات اليومية. يذكر أسبابًا لاختلاف الفاتورة: تفاوت أطوال التذاكر، وتفاوت طول المخرجات، وأن الأعداد تقديرية، واختلاف المُرمِّز بين النماذج، وتغيّر الأسعار، وخيارات مثل الدفعات (batches) أو التخزين المؤقت التي تغيّر السعر.",
-    "fr": "Mesure les tokens d'entrée sur de vrais tickets (avec l'API de comptage ou l'usage d'appels de test), pas en comptant des mots ; inclut les instructions et le prompt système dans l'entrée. Estime les tokens de sortie par résumé et les plafonne avec max_tokens. Facture l'entrée et la sortie séparément, par million de tokens, aux prix actuels de la page des tarifs, puis multiplie par le nombre d'appels par jour. Cite des raisons d'écart : la longueur des tickets varie, celle des réponses aussi, les comptages sont des estimations, le tokenizer change selon le modèle, les prix changent, et des options comme les lots (batches) ou le cache modifient le prix."
+    "en": "Measures input tokens on real tickets (with the token counting API or the usage of test calls), not by counting words; includes the instructions and system prompt in the input. Estimates output tokens per summary and caps them with max_tokens. Prices input and output separately, per million tokens, with the current prices from the pricing page, then multiplies by the number of calls per day. Names reasons the bill can differ: tickets vary in length, output length varies, counts are estimates, the tokenizer differs between models, prices change, and options such as the Batch API change the price. Bonus: mentions prompt caching, which also changes the bill.",
+    "ar": "يقيس رموز الإدخال على تذاكر حقيقية (بواجهة عدّ الرموز أو بحقل usage في استدعاءات تجريبية) لا بعدّ الكلمات، ويحسب التعليمات وموجّه النظام (system prompt) ضمن المدخلات. يقدّر رموز الإخراج لكل ملخص ويضع لها حدًّا بـ max_tokens. يسعّر الإدخال والإخراج كلًّا على حدة لكل مليون رمز بالأسعار الحالية من صفحة الأسعار، ثم يضرب في عدد الاستدعاءات اليومية. يذكر أسبابًا لاختلاف الفاتورة: تفاوت أطوال التذاكر، وتفاوت طول المخرجات، وأن الأعداد تقديرية، واختلاف المُرمِّز بين النماذج، وتغيّر الأسعار، وخيارات مثل Batch API التي تغيّر السعر. نقطة إضافية: يذكر التخزين المؤقت للموجّه (prompt caching)، فهو يغيّر الفاتورة أيضًا.",
+    "fr": "Mesure les tokens d'entrée sur de vrais tickets (avec l'API de comptage ou l'usage d'appels de test), pas en comptant des mots ; inclut les instructions et le prompt système dans l'entrée. Estime les tokens de sortie par résumé et les plafonne avec max_tokens. Facture l'entrée et la sortie séparément, par million de tokens, aux prix actuels de la page des tarifs, puis multiplie par le nombre d'appels par jour. Cite des raisons d'écart : la longueur des tickets varie, celle des réponses aussi, les comptages sont des estimations, le tokenizer change selon le modèle, les prix changent, et des options comme la Batch API modifient le prix. Bonus : mentionne le cache de prompt (*prompt caching*), qui change aussi la facture."
    }
   }
  ]

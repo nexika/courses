@@ -70,6 +70,10 @@ class LeavesRoom(unittest.TestCase):
     def test_negative_counts_are_refused(self):
         with self.assertRaises(ValueError):
             leaves_room(-1, 10, 200_000)
+        with self.assertRaises(ValueError):
+            leaves_room(10, -1, 200_000)
+        with self.assertRaises(ValueError):
+            leaves_room(10, 10, -200_000)
 
 
 class RoughTokens(unittest.TestCase):

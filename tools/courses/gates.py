@@ -311,13 +311,21 @@ def _page_text(url: str, budget: float = 30.0) -> str:
                 break
             chunks.append(chunk)
             size += len(chunk)
-    raw = b"".join(chunks).decode("utf-8", "replace")
+    return _html_text(b"".join(chunks).decode("utf-8", "replace"))
+
+
+def _html_text(raw: str) -> str:
     raw = re.sub(r"(?is)<(script|style).*?</\1>", " ", raw)
-    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", raw))).lower()
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", raw)))
 
 
 def _normal(text: str) -> str:
-    return re.sub(r"\s+", " ", text).strip().lower()
+    """Whitespace folded; case kept, so a quote must match the page exactly ("200k" is not "200K").
+
+    Spaces before closing punctuation and after an opening bracket are dropped on both sides, because
+    removing HTML tags leaves them ("<code>x</code>, y" reads "x , y")."""
+    text = re.sub(r"\s+", " ", text)
+    return re.sub(r"\s+(?=[,.;:!?)\]])|(?<=[(\[])\s+", "", text).strip()
 
 
 def check_sources(course: Course, lesson: Lesson, online: bool = False,
@@ -346,6 +354,10 @@ def check_sources(course: Course, lesson: Lesson, online: bool = False,
         url = str(src.get("url", ""))
         if not url.startswith("https://"):
             problems.append(Problem("sources", where, f"source {sid}: url must be https"))
+        for old, final in (course.meta.get("cite_final") or {}).items():
+            if url.startswith(f"https://{old}/"):
+                problems.append(Problem("sources", where,
+                                        f"source {sid}: {old} redirects to {final}; cite the final address"))
         if len(str(src.get("quote", "")).strip()) < 20:
             problems.append(Problem("sources", where, f"source {sid}: quote the words that support the text"))
         if src.get("kind") not in ("doc", "spec", "paper", "book", "repo"):
@@ -361,7 +373,7 @@ def check_sources(course: Course, lesson: Lesson, online: bool = False,
             problems.append(Problem("stale", where, f"source {sid}: volatile and last read {read}: read it again"))
         if online and url.startswith("https://"):
             try:
-                page = _page_text(url)
+                page = _normal(_page_text(url))
             except Exception as error:  # noqa: BLE001 (any network failure is reported, not raised)
                 problems.append(Problem("sources", where, f"source {sid}: could not read {url}: {error}"))
                 continue

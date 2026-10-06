@@ -6,8 +6,8 @@ def tag(name, text):
     return f"<{name}>\n{text}\n</{name}>"
 
 
-def build_prompt(task, context="", examples=(), output_format=""):
-    """Return a prompt with the task, context, examples and output format in separate XML tags."""
+def build_prompt(task, context="", examples=(), output_format="", input_text=""):
+    """Return a prompt with the task, context, examples, output format and input in separate XML tags."""
     task = task.strip()
     if not task:
         raise ValueError("a prompt needs a task")
@@ -19,4 +19,6 @@ def build_prompt(task, context="", examples=(), output_format=""):
         parts.append(tag("examples", "\n".join(tag("example", example) for example in kept)))
     if output_format.strip():
         parts.append(tag("output_format", output_format.strip()))
+    if input_text.strip():
+        parts.append(tag("input", input_text.strip()))
     return "\n\n".join(parts)

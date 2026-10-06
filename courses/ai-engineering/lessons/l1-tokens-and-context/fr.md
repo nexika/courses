@@ -10,8 +10,11 @@
 
 Un modèle ne lit ni des mots ni des lettres. Il lit des **tokens**. Le glossaire d'Anthropic les
 décrit comme les plus petites unités d'un modèle de langage : un token peut correspondre à un mot, à
-un morceau de mot, à un caractère, voire à un octet[^tokens]. Un mot courant tient parfois en un seul
-token ; un mot rare, un nom propre ou une ligne de code est souvent découpé en plusieurs.
+un morceau de mot, à un caractère, voire à un octet[^tokens]. Un morceau de mot (*subword*) est une partie
+d'un mot ; un octet (*byte*) est l'une des petites unités dans lesquelles un ordinateur stocke le
+texte. C'est en utilisant des morceaux plus petits que des mots qu'un modèle peut traiter des mots
+rares ou jamais vus[^rare]. Par exemple, un mot courant peut tenir en un seul token, alors qu'un mot
+rare ou un nom propre peut être découpé en plusieurs.
 
 La quantité de texte que contient un token dépend du texte. Pour Claude, un token représente environ
 3,5 caractères de texte anglais, et ce chiffre varie selon la langue[^chars]. Si vous écrivez en
@@ -28,22 +31,27 @@ modèle pour une requête. Ce n'est pas ce que le modèle a appris pendant son e
 que vous envoyez maintenant, plus ce qu'il écrit en retour.
 
 Tout ce qui est dans la requête compte : le prompt système (les instructions que vous donnez au modèle
-avant la conversation), chaque message et les éventuelles définitions d'outils[^everything]. La
+avant la conversation), chaque message et les éventuelles définitions d'outils (les descriptions des fonctions que votre
+programme permet au modèle de demander à appeler)[^everything]. La
 réponse que Claude écrit compte aussi[^output]. Entrée et sortie se partagent la même fenêtre.
 
 La fenêtre a une taille, mesurée en tokens. Beaucoup de modèles actuels, dont Claude Opus 5.5 et
 Claude Sonnet 5.5, ont une fenêtre de contexte d'un million de tokens (notée 1M)[^sizes-1m].
 D'autres, comme Claude Sonnet 4.5, ont 200K tokens[^sizes-200k]. Si l'entrée seule dépasse la
-fenêtre, l'API refuse la requête avec une erreur 400[^too-long]. Une fenêtre plus grande ne garantit
-pas de meilleures réponses pour autant : plus le nombre de tokens augmente, plus la précision et le
-rappel se dégradent, ce qu'Anthropic appelle le *context rot*[^rot].
+fenêtre, l'API refuse la requête avec une erreur 400[^too-long] : vous recevez une réponse d'erreur au lieu
+d'une réponse du modèle, et la requête n'est pas exécutée. Une fenêtre plus grande ne garantit pas de
+meilleures réponses pour autant : plus le nombre de tokens augmente, plus la précision et le rappel
+(*recall*) se dégradent, ce qu'Anthropic appelle le *context rot*[^rot]. Le rappel, ici, veut dire
+que le modèle retrouve et utilise moins bien ce qui est dans son contexte.
 
 **Tokens d'entrée et tokens de sortie.** Les tokens d'entrée sont tout ce que vous envoyez. Les
 tokens de sortie sont ce que Claude écrit. Vous ne pouvez pas connaître d'avance la longueur de la
 réponse, mais vous pouvez la plafonner : `max_tokens` est le nombre maximal de tokens à générer avant
 de s'arrêter, et le modèle peut s'arrêter avant[^max-tokens].
+Chaque modèle a aussi son propre plafond pour `max_tokens` : les modèles à fenêtre de 1M peuvent
+générer jusqu'à 128k tokens de sortie par requête[^max-out].
 
-**L'usage.** Inutile de deviner ce qu'un appel a consommé : chaque réponse l'indique dans son champ
+**Le champ `usage`.** Inutile de deviner ce qu'un appel a consommé : chaque réponse l'indique dans son champ
 `usage`[^usage]. `input_tokens` est le nombre de tokens d'entrée utilisés[^usage-in], et
 `output_tokens` le nombre de tokens de sortie utilisés[^usage-out]. Dans une réponse, cela ressemble
 à ceci :
@@ -51,6 +59,12 @@ de s'arrêter, et le modèle peut s'arrêter avant[^max-tokens].
 ```json
 "usage": {"input_tokens": 12, "output_tokens": 6}
 ```
+
+Ce n'est toute l'entrée que si vous n'utilisez pas le cache de prompt (*prompt caching*), une façon
+de réutiliser le début d'une requête d'un appel à l'autre, que cette leçon ne traite pas. Avec le
+cache, l'entrée se répartit entre `input_tokens`, `cache_read_input_tokens` et
+`cache_creation_input_tokens`, et les trois comptent dans la fenêtre[^caching]. La formule de coût de
+cette leçon ignore le cache.
 
 **Le coût.** Anthropic facture séparément les tokens d'entrée et les tokens de sortie, en dollars
 américains[^usd], par million de tokens, noté MTok[^mtok]. Un appel coûte donc :
@@ -68,8 +82,10 @@ dollars par MTok :
 | Claude Sonnet 5.5[^price-sonnet] | 2 | 10 |
 | Claude Haiku 4.5[^price-haiku] | 1 | 5 |
 
-Le prix d'un token n'augmente pas avec la taille de la requête : une très grosse requête est facturée
-au même prix par token qu'une petite[^flat].
+Sur les modèles Claude 4.6 et suivants, le prix d'un token n'augmente pas avec la taille de la
+requête : une très grosse requête est facturée au même prix par token qu'une petite[^flat]. Claude
+Haiku 4.5, dans la table ci-dessus, ne fait pas partie de ces modèles : la page ne promet rien de tel
+pour lui.
 
 Un exemple chiffré.
 Sur Claude Sonnet 5.5, un appel qui envoie 2 000 tokens d'entrée et reçoit 500 tokens de sortie coûte 0,009 $.
@@ -99,7 +115,8 @@ print(count.input_tokens)
 ```
 
 Ce nombre est une estimation[^estimate], et il ne couvre que l'entrée : la sortie n'existe pas encore.
-Le comptage est gratuit, mais il a ses propres limites de débit[^count-free]. Les nombres exacts que
+Le comptage est gratuit, mais il a ses propres limites de débit, c'est-à-dire un plafond de
+requêtes par minute[^count-free]. Les nombres exacts que
 vous payez sont ceux du champ `usage` de la vraie réponse.
 
 ### Estimer le coût d'un appel
@@ -166,8 +183,8 @@ d'entrée.
 - **« `count_tokens` me donne la facture. »** C'est une estimation de l'entrée[^estimate]. Le champ
   `usage` de la réponse indique ce qui a vraiment été consommé[^usage].
 - **« Ces prix sont fixes. »** Ils changent : relisez la page des tarifs avant de prévoir un budget.
-  Certaines options les modifient aussi : par exemple, la Batch API accorde une remise de 50 % sur les
-  tokens d'entrée et de sortie[^batch]. D'autres leçons reviendront sur le coût.
+  Certaines options les modifient aussi : par exemple, la Batch API (des requêtes envoyées en lot et traitées plus
+  tard, pas tout de suite) accorde une remise de 50 % sur les tokens d'entrée et de sortie[^batch]. D'autres leçons reviendront sur le coût.
 
 ## Votre exercice
 
@@ -203,6 +220,7 @@ refaites l'exemple chiffré à la main : tokens d'entrée et tokens de sortie, c
 million.
 
 [^tokens]: Anthropic, Glossary.
+[^rare]: Anthropic, Glossary.
 [^chars]: Anthropic, Glossary.
 [^tokenizer]: Anthropic, Token counting.
 [^window]: Anthropic, Context windows.
@@ -213,9 +231,11 @@ million.
 [^too-long]: Anthropic, Context windows.
 [^rot]: Anthropic, Context windows.
 [^max-tokens]: Anthropic, Create a Message (référence de l'API).
+[^max-out]: Anthropic, Context windows.
 [^usage]: Anthropic, Context windows.
 [^usage-in]: SDK Python d'Anthropic, types/usage.py.
 [^usage-out]: SDK Python d'Anthropic, types/usage.py.
+[^caching]: Anthropic, Context windows.
 [^usd]: Anthropic, Pricing.
 [^mtok]: Anthropic, Pricing.
 [^price-opus]: Anthropic, Pricing.

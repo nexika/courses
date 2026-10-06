@@ -2,15 +2,23 @@
  "schema": "nexika.sources/1",
  "sources": {
   "tokens": {
-   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
    "title": "Glossary",
    "kind": "doc",
-   "quote": "Tokens are the smallest individual units of a language model, and can correspond to words, subwords, characters, or even bytes",
+   "quote": "Tokens are the smallest individual units of a language model, and can correspond to words, subwords, characters, or even bytes (in the case of Unicode).",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "rare": {
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
+   "title": "Glossary",
+   "kind": "doc",
+   "quote": "smaller tokens allow a model to handle uncommon or never-before-seen words",
    "retrieved": "2026-10-06",
    "volatile": false
   },
   "chars": {
-   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
    "title": "Glossary",
    "kind": "doc",
    "quote": "For Claude, a token approximately represents 3.5 English characters, though the exact number can vary depending on the language used.",
@@ -18,7 +26,7 @@
    "volatile": false
   },
   "tokenizer": {
-   "url": "https://docs.claude.com/en/docs/build-with-claude/token-counting",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/token-counting",
    "title": "Token counting",
    "kind": "doc",
    "quote": "Claude 4.7 and later models and Claude Mythos Preview use a newer tokenizer. The same input text produces approximately 30 percent more tokens than on earlier models.",
@@ -26,7 +34,7 @@
    "volatile": true
   },
   "window": {
-   "url": "https://docs.claude.com/en/docs/build-with-claude/context-windows",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
    "title": "Context windows",
    "kind": "doc",
    "quote": "refers to all the text a language model can reference when generating a response, including the response itself",
@@ -34,15 +42,15 @@
    "volatile": false
   },
   "everything": {
-   "url": "https://docs.claude.com/en/docs/build-with-claude/context-windows",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
    "title": "Context windows",
    "kind": "doc",
-   "quote": "Everything in the request counts toward the context window",
+   "quote": "Everything in the request counts toward the context window: the system prompt, every message in messages (including tool results, images, and documents), and your tool definitions.",
    "retrieved": "2026-10-06",
    "volatile": false
   },
   "output": {
-   "url": "https://docs.claude.com/en/docs/build-with-claude/context-windows",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
    "title": "Context windows",
    "kind": "doc",
    "quote": "The output Claude generates for the turn, including its extended thinking, counts too.",
@@ -50,7 +58,7 @@
    "volatile": false
   },
   "sizes-1m": {
-   "url": "https://docs.claude.com/en/docs/build-with-claude/context-windows",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
    "title": "Context windows",
    "kind": "doc",
    "quote": "Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, and Claude Mythos Preview have a 1M-token context window.",
@@ -58,15 +66,15 @@
    "volatile": true
   },
   "sizes-200k": {
-   "url": "https://docs.claude.com/en/docs/build-with-claude/context-windows",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
    "title": "Context windows",
    "kind": "doc",
-   "quote": "Other Claude models, including Claude Sonnet 4.5, have a 200K-token context window.",
+   "quote": "Other Claude models, including Claude Sonnet 4.5, have a 200k-token context window.",
    "retrieved": "2026-10-06",
    "volatile": true
   },
   "too-long": {
-   "url": "https://docs.claude.com/en/docs/build-with-claude/context-windows",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
    "title": "Context windows",
    "kind": "doc",
    "quote": "If the input alone already exceeds the model's context window, the API returns a 400 invalid_request_error",
@@ -74,7 +82,7 @@
    "volatile": false
   },
   "rot": {
-   "url": "https://docs.claude.com/en/docs/build-with-claude/context-windows",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
    "title": "Context windows",
    "kind": "doc",
    "quote": "As token count grows, accuracy and recall degrade, a phenomenon known as context rot",
@@ -82,7 +90,7 @@
    "volatile": false
   },
   "usage": {
-   "url": "https://docs.claude.com/en/docs/build-with-claude/context-windows",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
    "title": "Context windows",
    "kind": "doc",
    "quote": "Every response reports what the request consumed in its usage field.",
@@ -90,12 +98,20 @@
    "volatile": false
   },
   "max-tokens": {
-   "url": "https://docs.claude.com/en/api/messages/create",
+   "url": "https://platform.claude.com/docs/en/api/messages/create",
    "title": "Create a Message (API reference)",
    "kind": "doc",
    "quote": "The maximum number of tokens to generate before stopping. Note that our models may stop before reaching this maximum.",
    "retrieved": "2026-10-06",
    "volatile": false
+  },
+  "max-out": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+   "title": "Context windows",
+   "kind": "doc",
+   "quote": "A single request to any of them can generate up to 128k output tokens",
+   "retrieved": "2026-10-06",
+   "volatile": true
   },
   "usage-in": {
    "url": "https://github.com/anthropics/anthropic-sdk-python/blob/main/src/anthropic/types/usage.py",
@@ -113,8 +129,16 @@
    "retrieved": "2026-10-06",
    "volatile": false
   },
+  "caching": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+   "title": "Context windows",
+   "kind": "doc",
+   "quote": "If you use prompt caching, the input count is split across input_tokens, cache_read_input_tokens, and cache_creation_input_tokens, and all three count toward the window.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
   "count": {
-   "url": "https://docs.claude.com/en/docs/build-with-claude/token-counting",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/token-counting",
    "title": "Token counting",
    "kind": "doc",
    "quote": "Token counting lets you determine the number of tokens in a message before you send it to Claude.",
@@ -122,7 +146,7 @@
    "volatile": false
   },
   "estimate": {
-   "url": "https://docs.claude.com/en/docs/build-with-claude/token-counting",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/token-counting",
    "title": "Token counting",
    "kind": "doc",
    "quote": "The token count is an estimate",
@@ -130,7 +154,7 @@
    "volatile": false
   },
   "count-free": {
-   "url": "https://docs.claude.com/en/docs/build-with-claude/token-counting",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/token-counting",
    "title": "Token counting",
    "kind": "doc",
    "quote": "Token counting is free to use but subject to requests per minute rate limits",
@@ -138,7 +162,7 @@
    "volatile": true
   },
   "usd": {
-   "url": "https://docs.claude.com/en/docs/about-claude/pricing",
+   "url": "https://platform.claude.com/docs/en/about-claude/pricing",
    "title": "Pricing",
    "kind": "doc",
    "quote": "All prices are in USD.",
@@ -146,15 +170,15 @@
    "volatile": false
   },
   "mtok": {
-   "url": "https://docs.claude.com/en/docs/about-claude/pricing",
+   "url": "https://platform.claude.com/docs/en/about-claude/pricing.md",
    "title": "Pricing",
    "kind": "doc",
-   "quote": "a cache hit costs 5% of the standard input price ($0.20 USD per million tokens)",
+   "quote": "Million tokens. $5 / MTok is $5 for every million tokens.",
    "retrieved": "2026-10-06",
    "volatile": true
   },
   "price-opus": {
-   "url": "https://docs.claude.com/en/docs/about-claude/pricing",
+   "url": "https://platform.claude.com/docs/en/about-claude/pricing",
    "title": "Pricing",
    "kind": "doc",
    "quote": "Claude Opus 5.5 For long-running agentic coding and knowledge work $4 / MTok $20 / MTok",
@@ -162,7 +186,7 @@
    "volatile": true
   },
   "price-sonnet": {
-   "url": "https://docs.claude.com/en/docs/about-claude/pricing",
+   "url": "https://platform.claude.com/docs/en/about-claude/pricing",
    "title": "Pricing",
    "kind": "doc",
    "quote": "Claude Sonnet 5.5 The best combination of speed and intelligence $2 / MTok $10 / MTok",
@@ -170,7 +194,7 @@
    "volatile": true
   },
   "price-haiku": {
-   "url": "https://docs.claude.com/en/docs/about-claude/pricing",
+   "url": "https://platform.claude.com/docs/en/about-claude/pricing",
    "title": "Pricing",
    "kind": "doc",
    "quote": "Claude Haiku 4.5 The fastest model with near-frontier intelligence $1 / MTok $5 / MTok",
@@ -178,15 +202,15 @@
    "volatile": true
   },
   "flat": {
-   "url": "https://docs.claude.com/en/docs/about-claude/pricing",
+   "url": "https://platform.claude.com/docs/en/about-claude/pricing",
    "title": "Pricing",
    "kind": "doc",
-   "quote": "A 900K-token request is billed at the same per-token rate as a 9K-token request.",
+   "quote": "Claude 4.6 and later models and Claude Mythos Preview include the full 1M token context window at standard pricing. (A 900k-token request is billed at the same per-token rate as a 9k-token request.)",
    "retrieved": "2026-10-06",
    "volatile": true
   },
   "batch": {
-   "url": "https://docs.claude.com/en/docs/about-claude/pricing",
+   "url": "https://platform.claude.com/docs/en/about-claude/pricing",
    "title": "Pricing",
    "kind": "doc",
    "quote": "with a 50% discount on both input and output tokens",

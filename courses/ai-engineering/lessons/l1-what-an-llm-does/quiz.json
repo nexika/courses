@@ -85,9 +85,9 @@
    },
    "options": [
     {
-     "en": "Monday is the newest information in the corpus",
+     "en": "monday is the newest information in the corpus",
      "ar": "لأن monday هي أحدث معلومة في المدوّنة",
-     "fr": "Lundi est l'information la plus récente du corpus"
+     "fr": "monday est l'information la plus récente du corpus"
     },
     {
      "en": "The code checks the calendar on your computer",
@@ -100,16 +100,16 @@
      "fr": "Il tire au hasard un des mots qui suivent « on »"
     },
     {
-     "en": "Monday follows \"on\" more often than Friday does",
+     "en": "monday follows \"on\" more often than friday does",
      "ar": "لأن monday تأتي بعد on أكثر مما تأتي friday",
-     "fr": "Lundi suit « on » plus souvent que vendredi"
+     "fr": "monday suit « on » plus souvent que friday"
     }
    ],
    "answer": 3,
    "explain": {
-    "en": "The predictor only counts word pairs and returns the most frequent follower. Monday is more common after \"on\" in the corpus, so it wins, even though the latest message says the meeting moved to Friday. Frequent is not the same as true.",
+    "en": "The predictor only counts word pairs and returns the most frequent follower. `monday` comes after \"on\" more often in the corpus, so it wins, even though the latest message says the meeting moved to Friday. Frequent is not the same as true.",
     "ar": "الأداة تعدّ أزواج الكلمات فقط وتعيد الكلمة الأكثر مجيئًا. وmonday أكثر شيوعًا بعد on في المدوّنة، فتفوز، رغم أن آخر رسالة تقول إن الاجتماع انتقل إلى الجمعة. الشائع ليس هو الصحيح بالضرورة.",
-    "fr": "Le prédicteur ne fait que compter les paires de mots et renvoie le suivant le plus fréquent. Lundi est plus fréquent après « on » dans le corpus, donc il l'emporte, alors que le dernier message dit que la réunion est passée au vendredi. Fréquent ne veut pas dire vrai."
+    "fr": "Le prédicteur ne fait que compter les paires de mots et renvoie le suivant le plus fréquent. `monday` vient plus souvent après « on » dans le corpus, donc il l'emporte, alors que le dernier message dit que la réunion est passée au vendredi. Fréquent ne veut pas dire vrai."
    }
   },
   {
@@ -127,9 +127,9 @@
      "fr": "Demander à Claude de répondre sur un ton d'expert plus assuré"
     },
     {
-     "en": "Put the policy in the prompt and allow \"I don't know\"",
-     "ar": "ضع نص السياسة في الموجّه واسمح له بقول \"لا أعرف\"",
-     "fr": "Mettre la politique dans le prompt et autoriser « je ne sais pas »"
+     "en": "Answer only from the policy text; allow \"I don't know\"",
+     "ar": "أجب من نص السياسة وحده، واسمح بقول \"لا أعرف\"",
+     "fr": "Répondre d'après la seule politique ; permettre « je ne sais pas »"
     },
     {
      "en": "Set the temperature to zero so every answer is true",
@@ -144,9 +144,9 @@
    ],
    "answer": 1,
    "explain": {
-    "en": "Giving the model the facts and letting it admit uncertainty are two of the techniques Anthropic recommends. A confident tone changes nothing, a low temperature only favours the most probable wording, and an answer that looks right still has to be checked.",
-    "ar": "إعطاء النموذج الحقائق والسماح له بالاعتراف بعدم اليقين أسلوبان مما توصي به Anthropic. النبرة الواثقة لا تغيّر شيئًا، ودرجة الحرارة المنخفضة تفضّل الصياغة الأكثر احتمالًا فقط، والإجابة التي تبدو صحيحة تحتاج مع ذلك إلى تحقّق.",
-    "fr": "Donner les faits au modèle et le laisser admettre son incertitude font partie des techniques recommandées par Anthropic. Un ton assuré ne change rien, une température basse favorise seulement la formulation la plus probable, et une réponse qui semble juste doit quand même être vérifiée."
+    "en": "Anthropic recommends giving Claude the documents and telling it to use only them, and letting it admit uncertainty. A confident tone changes nothing, and a low temperature only favours the most probable wording. Comparing several answers to the same prompt can expose a hallucination, but stopping at the one that looks right checks nothing.",
+    "ar": "توصي Anthropic بأن تعطي Claude المستندات وتطلب منه ألّا يستخدم غيرها، وبأن تسمح له بالاعتراف بعدم اليقين. النبرة الواثقة لا تغيّر شيئًا، ودرجة الحرارة المنخفضة تفضّل الصياغة الأكثر احتمالًا فقط. أمّا مقارنة عدة إجابات عن الموجّه نفسه فقد تكشف هلوسة، لكن التوقف عند الإجابة التي تبدو صحيحة لا يتحقق من شيء.",
+    "fr": "Anthropic recommande de donner les documents à Claude en lui demandant de n'utiliser qu'eux, et de le laisser admettre son incertitude. Un ton assuré ne change rien, et une température basse favorise seulement la formulation la plus probable. Comparer plusieurs réponses au même prompt peut révéler une hallucination, mais s'arrêter à celle qui semble juste ne vérifie rien."
    }
   },
   {

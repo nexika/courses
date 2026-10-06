@@ -5,7 +5,7 @@
    "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
-   "quote": "think of Claude as a brilliant but new employee who lacks context on your norms and workflows",
+   "quote": "Think of Claude as a brilliant but new employee who lacks context on your norms and workflows.",
    "retrieved": "2026-10-06",
    "volatile": false
   },
@@ -13,7 +13,7 @@
    "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
-   "quote": "show your prompt to a colleague with minimal context on the task and ask them to follow it. If they'd be confused, Claude will be too.",
+   "quote": "Show your prompt to a colleague with minimal context on the task and ask them to follow it. If they'd be confused, Claude will be too.",
    "retrieved": "2026-10-06",
    "volatile": false
   },
@@ -85,7 +85,7 @@
    "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
-   "quote": "wrap examples in <example> tags (multiple examples in <examples> tags) so Claude can distinguish them from instructions",
+   "quote": "Wrap examples in <example> tags (multiple examples in <examples> tags) so Claude can distinguish them from instructions.",
    "retrieved": "2026-10-06",
    "volatile": false
   },
@@ -112,6 +112,14 @@
    "quote": "Claude excels at tasks across multiple languages, maintaining strong cross-lingual performance relative to English.",
    "retrieved": "2026-10-06",
    "volatile": true
+  },
+  "random": {
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
+   "title": "Anthropic: Glossary",
+   "kind": "doc",
+   "quote": "Temperature is a parameter that controls the randomness of a model's predictions during text generation.",
+   "retrieved": "2026-10-06",
+   "volatile": false
   }
  }
 }

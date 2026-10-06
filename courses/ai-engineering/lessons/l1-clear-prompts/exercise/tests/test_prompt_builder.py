@@ -9,6 +9,7 @@ TASK = "Classify the ticket as billing, bug or feature_request."
 CONTEXT = "We sell a photo-editing app."
 EXAMPLES = ["Ticket: Export does nothing.\nCategory: bug", "Ticket: Add a dark mode?\nCategory: feature_request"]
 FORMAT = "Reply with the category only."
+INPUT = "I was charged twice this month."
 
 
 def blocks(prompt):
@@ -24,11 +25,17 @@ def blocks(prompt):
 
 class BuildPrompt(unittest.TestCase):
     def test_every_part_sits_in_its_own_tag_in_order(self):
-        parts = blocks(build_prompt(TASK, CONTEXT, EXAMPLES, FORMAT))
-        self.assertEqual([name for name, _ in parts], ["task", "context", "examples", "output_format"])
+        parts = blocks(build_prompt(TASK, CONTEXT, EXAMPLES, FORMAT, INPUT))
+        self.assertEqual([name for name, _ in parts], ["task", "context", "examples", "output_format", "input"])
         self.assertEqual(parts[0][1], TASK)
         self.assertEqual(parts[1][1], CONTEXT)
         self.assertEqual(parts[3][1], FORMAT)
+        self.assertEqual(parts[4][1], INPUT)
+
+    def test_the_input_comes_last_even_with_few_parts(self):
+        self.assertEqual(blocks(build_prompt(TASK, input_text=INPUT)), [("task", TASK), ("input", INPUT)])
+        parts = blocks(build_prompt(TASK, input_text=f"  {INPUT}\n", context=CONTEXT))
+        self.assertEqual(parts, [("task", TASK), ("context", CONTEXT), ("input", INPUT)])
 
     def test_each_example_has_its_own_example_tag_inside_examples(self):
         content = dict(blocks(build_prompt(TASK, examples=EXAMPLES)))["examples"]
@@ -40,9 +47,9 @@ class BuildPrompt(unittest.TestCase):
         self.assertEqual(build_prompt(TASK), f"<task>\n{TASK}\n</task>")
 
     def test_empty_and_blank_parts_are_left_out(self):
-        prompt = build_prompt(TASK, context="   ", examples=["", "  \n"], output_format="\n")
+        prompt = build_prompt(TASK, context="   ", examples=["", "  \n"], output_format="\n", input_text=" \n ")
         self.assertEqual(blocks(prompt), [("task", TASK)])
-        for name in ("context", "examples", "example", "output_format"):
+        for name in ("context", "examples", "example", "output_format", "input"):
             self.assertNotIn(f"<{name}>", prompt)
 
     def test_missing_parts_keep_the_order_of_the_others(self):

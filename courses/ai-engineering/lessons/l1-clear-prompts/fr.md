@@ -26,7 +26,8 @@ Sort this ticket: "I was charged twice this month."
 
 Autrement dit : « Trie ce ticket : "On m'a débité deux fois ce mois-ci." ». Le trier dans quoi ?
 Quelles réponses sont permises ? Faut-il un mot, une phrase, ou un paragraphe qui explique le
-raisonnement ? Claude doit deviner, et deux appels peuvent deviner différemment.
+raisonnement ? Claude doit deviner. Les prédictions du modèle ont une part de hasard[^random] : deux appels
+peuvent donc deviner différemment.
 
 Voici la même demande, écrite clairement :
 
@@ -60,7 +61,7 @@ I was charged twice this month.
 ```
 
 Ce prompt demande à Claude de classer le ticket dans une seule catégorie parmi trois : facturation
-(billing), bug (bug) ou demande de fonctionnalité (feature_request). Il explique que l'entreprise vend
+(billing), bug ou demande de fonctionnalité (feature_request). Il explique que l'entreprise vend
 une application de retouche photo et qu'une mauvaise catégorie envoie le client vers la mauvaise
 équipe, donne deux exemples, et demande le seul nom de la catégorie, en minuscules.
 
@@ -77,9 +78,9 @@ vous ne l'écrivez pas.
 
 **Montrez des exemples.** Les exemples sont l'un des moyens les plus fiables d'orienter le format, le
 ton et la structure des réponses de Claude[^examples]. Le guide en recommande trois à cinq[^count], et
-les veut variés : ils doivent couvrir les cas limites et varier assez pour que Claude ne retienne pas
+les veut variés : ils doivent couvrir les cas limites (entrées inhabituelles ou à la frontière entre deux catégories) et varier assez pour que Claude ne retienne pas
 des motifs que vous n'avez pas voulus[^diverse]. Le prompt ci-dessus n'en a que deux, pour rester
-court. Un vrai classifieur en ajouterait, dont un cas difficile comme une demande de remboursement
+court. Un vrai classifieur (un programme qui range des entrées dans des catégories fixes) en ajouterait, dont un cas difficile comme une demande de remboursement
 causée par un bug.
 
 **Précisez le format de sortie.** Soyez précis sur le format et les contraintes que vous voulez[^format].
@@ -96,9 +97,13 @@ balise `<examples>`, pour que Claude les distingue des instructions[^example-tag
 entrée variable : il change à chaque appel, donc il a sa propre balise, et les mots du client ne se
 mêlent jamais à vos instructions.
 
+XML est une façon de baliser un texte avec des balises comme celles-ci. Votre prompt n'a pas besoin
+d'être du XML valide, et il n'existe pas de liste fixe de noms de balises : un nom cohérent et
+descriptif comme `<ticket>` suffit[^tag-names].
+
 Un prompt clair rend une bonne réponse plus probable. Il ne la garantit pas : Claude peut encore
-choisir la mauvaise catégorie. Et tous les problèmes ne se règlent pas en changeant le prompt ;
-parfois, choisir un autre modèle est la meilleure solution[^not-always]. La leçon suivante montre comment
+choisir la mauvaise catégorie. Et tous les problèmes ne se règlent pas en changeant le prompt : la latence ou le
+coût, par exemple, s'améliorent parfois plus facilement en choisissant un autre modèle[^not-always]. La leçon suivante montre comment
 tester un prompt face à des réponses attendues, pour savoir si une modification a aidé.
 
 ## Essayez
@@ -157,10 +162,11 @@ client = anthropic.Anthropic()
 for prompt in (vague, clear):
     message = client.messages.create(
         model=MODEL,
-        max_tokens=100,
+        max_tokens=1024,
         messages=[{"role": "user", "content": prompt}],
     )
-    print(message.content[0].text)
+    # la réponse peut commencer par d'autres blocs, comme la réflexion (thinking) : on affiche le premier bloc de texte
+    print(next(block.text for block in message.content if block.type == "text"))
     print("---")
 ```
 
@@ -169,7 +175,7 @@ Lancez-le plusieurs fois. Demandez-vous si votre code pourrait utiliser la répo
 ## Erreurs fréquentes
 
 **« Claude sait ce que je veux dire. »** Il ne sait que ce qui est dans le prompt. Si un nouveau
-collègue aurait besoin de poser une question, écrivez la réponse dans le prompt.
+collègue avait besoin de poser une question, écrivez la réponse dans le prompt.
 
 **« Un prompt plus long est un meilleur prompt. »** La longueur n'est pas le but. Chaque partie doit
 apprendre à Claude quelque chose dont il a besoin. Une balise `<context>` vide, ou une section qui dit
@@ -192,12 +198,14 @@ instruction. Le cours y reviendra en traitant l'injection de prompt.
 
 ## Votre exercice
 
-Ouvrez `exercise/starter/prompt_builder.py` et écrivez `build_prompt(task, context, examples, output_format)`.
+Ouvrez `exercise/starter/prompt_builder.py` et écrivez
+`build_prompt(task, context, examples, output_format, input_text)`.
 Elle renvoie une seule chaîne :
 
 - chaque partie, sans les espaces autour, dans sa propre balise, dans cet ordre : `<task>`,
-  `<context>`, `<examples>`, `<output_format>` ;
+  `<context>`, `<examples>`, `<output_format>`, et en dernier `<input>` ;
 - chaque exemple dans sa propre balise `<example>`, toutes dans `<examples>` ;
+- l'entrée variable (comme le ticket) dans `<input>`, en dernier, pour qu'elle ne se mêle pas à vos instructions ;
 - une balise seule sur sa ligne avant et après son contenu, et une ligne vide entre deux parties ;
 - une partie vide ou faite seulement d'espaces, ou un exemple vide, entièrement omis ;
 - une tâche vide refusée avec une `ValueError`, car un prompt sans tâche ne demande rien.
@@ -230,4 +238,5 @@ chacune des cinq parties du prompt clair apporte à Claude.
 [^example-tags]: Anthropic, Prompting best practices.
 [^tag-names]: Anthropic, Prompting best practices.
 [^not-always]: Anthropic, Prompt engineering overview.
+[^random]: Anthropic, Glossary, « Temperature ».
 [^languages]: Anthropic, Multilingual support.

@@ -144,9 +144,9 @@
    ],
    "answer": 1,
    "explain": {
-    "en": "Examples that all share an accident, here the same category, can teach Claude that accident, for example to lean towards billing. The guide asks for diverse examples that cover edge cases. Refusing, copying word for word and filling the window are not what goes wrong here.",
-    "ar": "الأمثلة التي تشترك كلها في صدفة واحدة، هنا الفئة نفسها، قد تعلّم Claude تلك الصدفة، كأن يميل إلى الفوترة. يطلب الدليل أمثلة متنوعة تغطي الحالات الحدّية. أما الرفض أو النسخ الحرفي أو امتلاء النافذة فليست المشكلة هنا.",
-    "fr": "Des exemples qui partagent tous un hasard, ici la même catégorie, peuvent apprendre ce hasard à Claude, par exemple pencher vers la facturation. Le guide demande des exemples variés qui couvrent les cas limites. Refuser, recopier ou remplir la fenêtre n'est pas le problème ici."
+    "en": "Examples that all share an accident, here the same category (or the same length and tone), can teach Claude that accident, for example to lean towards billing. The guide asks for diverse examples that cover edge cases. Refusing, copying word for word and filling the window are not what goes wrong here.",
+    "ar": "الأمثلة التي تشترك كلها في صدفة واحدة، هنا الفئة نفسها (أو الطول والنبرة نفسهما)، قد تعلّم Claude تلك الصدفة، كأن يميل إلى الفوترة. يطلب الدليل أمثلة متنوعة تغطي الحالات الحدّية. أما الرفض أو النسخ الحرفي أو امتلاء النافذة فليست المشكلة هنا.",
+    "fr": "Des exemples qui partagent tous un hasard, ici la même catégorie (ou la même longueur et le même ton), peuvent apprendre ce hasard à Claude, par exemple pencher vers la facturation. Le guide demande des exemples variés qui couvrent les cas limites. Refuser, recopier ou remplir la fenêtre n'est pas le problème ici."
    }
   },
   {
