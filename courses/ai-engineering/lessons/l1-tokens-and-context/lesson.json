@@ -1,0 +1,19 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l1-tokens-and-context",
+ "title": {
+  "en": "Tokens, the context window and cost",
+  "ar": "الرموز ونافذة السياق والتكلفة",
+  "fr": "Les tokens, la fenêtre de contexte et le coût"
+ },
+ "module": "m1-llm-basics",
+ "level": 1,
+ "minutes": 40,
+ "competencies": [
+  "c1.tokens",
+  "c1.cost"
+ ],
+ "prerequisites": [
+  "l1-what-an-llm-does"
+ ]
+}

@@ -1,0 +1,117 @@
+{
+ "schema": "nexika.sources/1",
+ "sources": {
+  "employee": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+   "title": "Anthropic: Prompting best practices",
+   "kind": "doc",
+   "quote": "think of Claude as a brilliant but new employee who lacks context on your norms and workflows",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "golden": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+   "title": "Anthropic: Prompting best practices",
+   "kind": "doc",
+   "quote": "show your prompt to a colleague with minimal context on the task and ask them to follow it. If they'd be confused, Claude will be too.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "clear": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+   "title": "Anthropic: Prompting best practices",
+   "kind": "doc",
+   "quote": "Claude responds well to clear, explicit instructions.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "context": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+   "title": "Anthropic: Prompting best practices",
+   "kind": "doc",
+   "quote": "Providing context or motivation behind your instructions, such as explaining to Claude why such behavior is important, can help Claude better understand your goals and deliver more targeted responses.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "examples": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+   "title": "Anthropic: Prompting best practices",
+   "kind": "doc",
+   "quote": "Examples are one of the most reliable ways to steer Claude's output format, tone, and structure.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "count": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+   "title": "Anthropic: Prompting best practices",
+   "kind": "doc",
+   "quote": "Include 3–5 examples for best results.",
+   "retrieved": "2026-10-06",
+   "volatile": true
+  },
+  "diverse": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+   "title": "Anthropic: Prompting best practices",
+   "kind": "doc",
+   "quote": "Diverse: Cover edge cases and vary enough that Claude doesn't pick up unintended patterns.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "format": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+   "title": "Anthropic: Prompting best practices",
+   "kind": "doc",
+   "quote": "Be specific about the desired output format and constraints.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "positive": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+   "title": "Anthropic: Prompting best practices",
+   "kind": "doc",
+   "quote": "Tell Claude what to do instead of what not to do",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "xml": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+   "title": "Anthropic: Prompting best practices",
+   "kind": "doc",
+   "quote": "XML tags help Claude parse complex prompts unambiguously, especially when your prompt mixes instructions, context, examples, and variable inputs.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "example-tags": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+   "title": "Anthropic: Prompting best practices",
+   "kind": "doc",
+   "quote": "wrap examples in <example> tags (multiple examples in <examples> tags) so Claude can distinguish them from instructions",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "tag-names": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+   "title": "Anthropic: Prompting best practices",
+   "kind": "doc",
+   "quote": "Use consistent, descriptive tag names across your prompts.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "not-always": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview",
+   "title": "Anthropic: Prompt engineering overview",
+   "kind": "doc",
+   "quote": "Not every success criteria or failing eval is best solved by prompt engineering. For example, you can sometimes improve latency and cost more easily by selecting a different model.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "languages": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/multilingual-support",
+   "title": "Anthropic: Multilingual support",
+   "kind": "doc",
+   "quote": "Claude excels at tasks across multiple languages, maintaining strong cross-lingual performance relative to English.",
+   "retrieved": "2026-10-06",
+   "volatile": true
+  }
+ }
+}

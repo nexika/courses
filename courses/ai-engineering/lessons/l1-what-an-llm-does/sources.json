@@ -1,0 +1,109 @@
+{
+ "schema": "nexika.sources/1",
+ "sources": {
+  "llm": {
+   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "title": "Glossary: LLM",
+   "kind": "doc",
+   "quote": "These models are trained on vast amounts of text data and can generate human-like text",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "pretraining": {
+   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "title": "Glossary: Pretraining",
+   "kind": "doc",
+   "quote": "are pretrained to predict the next word, given the previous context of text in the document",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "tokens": {
+   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "title": "Glossary: Tokens",
+   "kind": "doc",
+   "quote": "can correspond to words, subwords, characters, or even bytes",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "finetune": {
+   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "title": "Glossary: Fine-tuning",
+   "kind": "doc",
+   "quote": "it has already been fine-tuned to be a helpful assistant",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "rag": {
+   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "title": "Glossary: RAG (retrieval augmented generation)",
+   "kind": "doc",
+   "quote": "This allows the model to access and use information beyond its training data",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "temperature": {
+   "url": "https://docs.claude.com/en/docs/about-claude/glossary",
+   "title": "Glossary: Temperature",
+   "kind": "doc",
+   "quote": "Lower temperatures result in more conservative and deterministic outputs that stick to the most probable phrasing and answers",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "models": {
+   "url": "https://docs.claude.com/en/docs/about-claude/models/overview",
+   "title": "Models overview",
+   "kind": "doc",
+   "quote": "training data cutoff Jun 2026 Jun 2026 Jun 2026 Jul 2025",
+   "retrieved": "2026-10-06",
+   "volatile": true
+  },
+  "websearch": {
+   "url": "https://docs.claude.com/en/docs/agents-and-tools/tool-use/web-search-tool",
+   "title": "Web search tool",
+   "kind": "doc",
+   "quote": "allowing it to answer questions with up-to-date information beyond its knowledge cutoff",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "halluc": {
+   "url": "https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+   "title": "Reduce hallucinations",
+   "kind": "doc",
+   "quote": "can sometimes generate text that is factually incorrect or inconsistent with the given context",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "halluc-docs": {
+   "url": "https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+   "title": "Reduce hallucinations: external knowledge restriction",
+   "kind": "doc",
+   "quote": "explicitly instruct Claude to only use information from provided documents and not its general knowledge",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "halluc-idk": {
+   "url": "https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+   "title": "Reduce hallucinations: allow Claude to say I don't know",
+   "kind": "doc",
+   "quote": "Explicitly give Claude permission to admit uncertainty",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "halluc-limit": {
+   "url": "https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+   "title": "Reduce hallucinations",
+   "kind": "doc",
+   "quote": "while these techniques significantly reduce hallucinations, they don't eliminate them entirely",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "halluc-validate": {
+   "url": "https://docs.claude.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+   "title": "Reduce hallucinations",
+   "kind": "doc",
+   "quote": "Always validate critical information, especially for high-stakes decisions",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  }
+ }
+}

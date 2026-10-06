@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "choice",
+   "prompt": {
+    "en": "Claude answered your first question. You now send a follow-up. What must the request contain so Claude knows the first exchange?",
+    "ar": "أجاب Claude عن سؤالك الأول، وأنت الآن ترسل سؤالًا تابعًا. ماذا يجب أن يحتوي الطلب حتى يعرف Claude ما دار في التبادل الأول؟",
+    "fr": "Claude a répondu à votre première question. Vous envoyez maintenant une question de suivi. Que doit contenir la requête pour que Claude connaisse le premier échange ?"
+   },
+   "options": [
+    {
+     "en": "Only the new question: the API keeps the earlier turns for you",
+     "ar": "السؤال الجديد وحده: فالواجهة تحتفظ لك بالجولات السابقة",
+     "fr": "Seulement la nouvelle question : l'API garde les tours précédents"
+    },
+    {
+     "en": "The new question plus the id of Claude's previous message",
+     "ar": "السؤال الجديد ومعه معرّف (id) رسالة Claude السابقة",
+     "fr": "La nouvelle question avec l'id du message précédent de Claude"
+    },
+    {
+     "en": "The first question, Claude's answer, then the new question",
+     "ar": "السؤال الأول، ثم إجابة Claude، ثم السؤال الجديد",
+     "fr": "La première question, la réponse de Claude, puis la nouvelle"
+    },
+    {
+     "en": "The new question, with the old answer pasted in max_tokens",
+     "ar": "السؤال الجديد، مع لصق الإجابة القديمة في max_tokens",
+     "fr": "La nouvelle question, avec l'ancienne réponse dans max_tokens"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "The Messages API is stateless: it remembers nothing between calls, so every request carries the whole conversation, with Claude's earlier answer as an assistant turn and the new question as the last user turn.",
+    "ar": "واجهة Messages API عديمة الحالة: لا تتذكر شيئًا بين الاستدعاءات، لذلك يحمل كل طلب المحادثة كاملة، فتكون إجابة Claude السابقة جولةً للمساعد، والسؤال الجديد آخر جولة للمستخدم.",
+    "fr": "La Messages API est sans état : elle ne retient rien d'un appel à l'autre. Chaque requête porte donc toute la conversation, avec la réponse précédente de Claude en tour assistant et la nouvelle question en dernier tour utilisateur."
+   }
+  },
+  {
+   "id": "q2",
+   "type": "choice",
+   "prompt": {
+    "en": "A reply comes back with stop_reason \"max_tokens\". What does that tell you?",
+    "ar": "عادت إجابة قيمة stop_reason فيها \"max_tokens\". ماذا يخبرك ذلك؟",
+    "fr": "Une réponse revient avec stop_reason \"max_tokens\". Qu'est-ce que cela vous apprend ?"
+   },
+   "options": [
+    {
+     "en": "It hit the max_tokens limit you set, so the text is cut off",
+     "ar": "بلغت حد max_tokens الذي وضعته، فالنص مقطوع",
+     "fr": "Elle a atteint votre limite max_tokens : le texte est coupé"
+    },
+    {
+     "en": "Claude finished early because the question needed few tokens",
+     "ar": "أنهى Claude مبكرًا لأن السؤال احتاج رموزًا قليلة",
+     "fr": "Claude a fini tôt car la question demandait peu de tokens"
+    },
+    {
+     "en": "The request failed; read the error message instead of the text",
+     "ar": "فشل الطلب؛ اقرأ رسالة الخطأ بدلًا من النص",
+     "fr": "La requête a échoué : lisez le message d'erreur, pas le texte"
+    },
+    {
+     "en": "Your account used up its tokens for the day and must wait",
+     "ar": "استهلك حسابك رموزه لهذا اليوم وعليه أن ينتظر",
+     "fr": "Votre compte a épuisé ses tokens du jour et doit attendre"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "max_tokens means Claude reached the limit set in your request. The reply is a success, not an error, but the text is incomplete: raise max_tokens or continue the answer, and do not show it as finished.",
+    "ar": "القيمة max_tokens تعني أن Claude بلغ الحد الذي وضعته في طلبك. الإجابة ناجحة وليست خطأً، لكن نصها ناقص: ارفع max_tokens أو أكمل الإجابة، ولا تعرضها على أنها مكتملة.",
+    "fr": "max_tokens signifie que Claude a atteint la limite fixée dans votre requête. La réponse est un succès, pas une erreur, mais le texte est incomplet : augmentez max_tokens ou poursuivez la réponse, et ne la présentez pas comme terminée."
+   }
+  },
+  {
+   "id": "q3",
+   "type": "choice",
+   "prompt": {
+    "en": "You have a reply as a Python dict. Which way of getting the answer's text is safe?",
+    "ar": "لديك إجابة في صورة dict في Python. أي طريقة لاستخراج نص الإجابة آمنة؟",
+    "fr": "Vous avez une réponse sous forme de dict Python. Quelle façon d'obtenir le texte de la réponse est sûre ?"
+   },
+   "options": [
+    {
+     "en": "Take content[0][\"text\"]: the first block is always the text",
+     "ar": "خذ content[0][\"text\"]: فالكتلة الأولى هي النص دائمًا",
+     "fr": "Prendre content[0][\"text\"] : le premier bloc est toujours le texte"
+    },
+    {
+     "en": "Read the reply's \"text\" field, which holds the whole answer",
+     "ar": "اقرأ الحقل \"text\" في الإجابة، فهو يحمل الإجابة كلها",
+     "fr": "Lire le champ \"text\" de la réponse, qui contient tout le texte"
+    },
+    {
+     "en": "Decode usage[\"output_tokens\"] back into words, in order",
+     "ar": "حوّل usage[\"output_tokens\"] إلى كلمات بالترتيب",
+     "fr": "Décoder usage[\"output_tokens\"] en mots, dans l'ordre"
+    },
+    {
+     "en": "Join the text of every content block whose type is \"text\"",
+     "ar": "اجمع نص كل كتلة في content يكون نوعها \"text\" بالترتيب",
+     "fr": "Joindre le texte de chaque bloc de content de type \"text\""
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "content is a list of blocks, and not every block is text: thinking blocks, for example, can come first. usage only counts tokens; it holds no words. Join the text blocks.",
+    "ar": "content قائمة من الكتل، وليست كل كتلة نصًا: فقد تأتي كتل التفكير أولًا مثلًا. و usage يعدّ الرموز فقط ولا يحمل كلمات. اجمع كتل النص.",
+    "fr": "content est une liste de blocs, et tous ne sont pas du texte : des blocs de réflexion peuvent arriver en premier, par exemple. usage ne fait que compter les tokens, il ne contient aucun mot. Joignez les blocs de texte."
+   }
+  },
+  {
+   "id": "q4",
+   "type": "choice",
+   "prompt": {
+    "en": "You stream a reply. In which events do the pieces of the answer's text arrive?",
+    "ar": "تستقبل إجابة متدفقة. في أي أحداث تصل قطع نص الإجابة؟",
+    "fr": "Vous recevez une réponse en streaming. Dans quels événements arrivent les morceaux du texte ?"
+   },
+   "options": [
+    {
+     "en": "In message_start, which carries the full answer up front",
+     "ar": "في message_start، الذي يحمل الإجابة كاملة من البداية",
+     "fr": "Dans message_start, qui porte toute la réponse dès le début"
+    },
+    {
+     "en": "In content_block_delta events whose delta is a text_delta",
+     "ar": "في أحداث content_block_delta التي نوع delta فيها text_delta",
+     "fr": "Dans les événements content_block_delta de type text_delta"
+    },
+    {
+     "en": "In ping events, which the server sends with each new word",
+     "ar": "في أحداث ping، التي يرسلها الخادم مع كل كلمة جديدة",
+     "fr": "Dans les événements ping, envoyés à chaque nouveau mot"
+    },
+    {
+     "en": "In message_stop, which repeats the whole text at the very end",
+     "ar": "في message_stop، الذي يكرر النص كله مرة أخرى في النهاية",
+     "fr": "Dans message_stop, qui répète tout le texte à la toute fin"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": "message_start holds a message with empty content. The text arrives in content_block_delta events whose delta has type text_delta; ping events carry no text and can be ignored.",
+    "ar": "يحمل message_start رسالة محتواها فارغ. أما النص فيصل في أحداث content_block_delta التي نوع delta فيها text_delta، وأحداث ping لا تحمل نصًا ويمكن تجاهلها.",
+    "fr": "message_start contient un message au contenu vide. Le texte arrive dans les événements content_block_delta dont le delta est de type text_delta ; les événements ping ne portent aucun texte et peuvent être ignorés."
+   }
+  },
+  {
+   "id": "q5",
+   "type": "open",
+   "prompt": {
+    "en": "Your chat app calls Claude and prints each answer. Users say some answers stop mid-sentence, and your bill grows faster than expected as chats get longer. Explain both problems and what you would change in your code.",
+    "ar": "تطبيق المحادثة الخاص بك يستدعي Claude ويطبع كل إجابة. يقول المستخدمون إن بعض الإجابات تتوقف في منتصف الجملة، وفاتورتك تكبر أسرع من المتوقع كلما طالت المحادثات. اشرح المشكلتين، وما الذي ستغيّره في الكود.",
+    "fr": "Votre application de chat appelle Claude et affiche chaque réponse. Des utilisateurs signalent des réponses qui s'arrêtent au milieu d'une phrase, et votre facture augmente plus vite que prévu quand les conversations s'allongent. Expliquez les deux problèmes et ce que vous changeriez dans votre code."
+   },
+   "rubric": {
+    "en": "A good answer: (1) says the cut answers stopped at max_tokens, which stop_reason shows; (2) says the code should check stop_reason before showing the text, then raise max_tokens, continue the answer, or tell the user the answer is incomplete; (3) explains that the API is stateless, so every call resends the whole history and input tokens grow with each turn; (4) proposes reading usage to measure input and output tokens per call, and keeping the history shorter (for example dropping or summarising old turns), accepting that Claude then sees less context.",
+    "ar": "الإجابة الجيدة: (1) تذكر أن الإجابات المقطوعة توقفت عند max_tokens، وأن stop_reason يكشف ذلك؛ (2) تذكر أن على الكود فحص stop_reason قبل عرض النص، ثم رفع max_tokens، أو إكمال الإجابة، أو إخبار المستخدم بأن الإجابة ناقصة؛ (3) تشرح أن الواجهة عديمة الحالة، فكل استدعاء يعيد إرسال التاريخ كاملًا، وتكبر رموز (tokens) الإدخال مع كل جولة؛ (4) تقترح قراءة usage لقياس رموز الإدخال والإخراج في كل استدعاء، وتقصير التاريخ (مثلًا بحذف الجولات القديمة أو تلخيصها)، مع قبول أن Claude سيرى سياقًا أقل.",
+    "fr": "Une bonne réponse : (1) dit que les réponses coupées se sont arrêtées à max_tokens, ce que montre stop_reason ; (2) dit que le code doit vérifier stop_reason avant d'afficher le texte, puis augmenter max_tokens, poursuivre la réponse ou prévenir l'utilisateur que la réponse est incomplète ; (3) explique que l'API est sans état, donc chaque appel renvoie tout l'historique et les tokens d'entrée augmentent à chaque tour ; (4) propose de lire usage pour mesurer les tokens d'entrée et de sortie de chaque appel, et de raccourcir l'historique (par exemple en supprimant ou en résumant les anciens tours), en acceptant que Claude voie alors moins de contexte."
+   }
+  }
+ ]
+}

@@ -1,0 +1,18 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l1-clear-prompts",
+ "title": {
+  "en": "Writing clear prompts",
+  "ar": "كتابة موجّه (prompt) واضح",
+  "fr": "Écrire des prompts clairs"
+ },
+ "module": "m1-llm-basics",
+ "level": 1,
+ "minutes": 40,
+ "competencies": [
+  "c1.prompting"
+ ],
+ "prerequisites": [
+  "l1-first-api-call"
+ ]
+}

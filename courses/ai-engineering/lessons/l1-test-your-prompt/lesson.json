@@ -1,0 +1,14 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l1-test-your-prompt",
+ "title": {
+  "en": "Test your prompt",
+  "ar": "اختبر الموجّه (prompt) الخاص بك",
+  "fr": "Tester votre prompt"
+ },
+ "module": "m1-llm-basics",
+ "level": 1,
+ "minutes": 40,
+ "competencies": ["c1.first-eval"],
+ "prerequisites": ["l1-clear-prompts"]
+}

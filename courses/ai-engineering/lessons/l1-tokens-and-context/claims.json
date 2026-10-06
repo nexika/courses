@@ -1,0 +1,57 @@
+{
+ "schema": "nexika.claims/1",
+ "claims": [
+  {
+   "id": "call-cost",
+   "says": "2,000 input tokens and gets 500 output tokens back costs $0.009",
+   "says_ar": "يرسل 2,000 رمز إدخال ويتلقى 500 رمز إخراج يكلّف 0.009 دولار",
+   "says_fr": "envoie 2 000 tokens d'entrée et reçoit 500 tokens de sortie coûte 0,009 $",
+   "check": "call_cost.py",
+   "expect": {
+    "approx": 0.009,
+    "tol": 1e-09
+   }
+  },
+  {
+   "id": "output-part",
+   "says": "The 500 output tokens alone cost $0.005",
+   "says_ar": "وحدها رموز الإخراج الـ500 تكلّف 0.005 دولار",
+   "says_fr": "Les 500 tokens de sortie coûtent à eux seuls 0,005 $",
+   "check": "output_part.py",
+   "expect": {
+    "approx": 0.005,
+    "tol": 1e-09
+   }
+  },
+  {
+   "id": "day-sonnet",
+   "says": "10,000 such calls a day cost $90 a day",
+   "says_ar": "10,000 استدعاء مماثل في اليوم تكلّف 90 دولارًا في اليوم",
+   "says_fr": "10 000 appels de ce type par jour coûtent 90 $ par jour",
+   "check": "day_sonnet.py",
+   "expect": {
+    "approx": 90,
+    "tol": 1e-06
+   }
+  },
+  {
+   "id": "day-haiku",
+   "says": "Claude Haiku 4.5 cost $45 a day",
+   "says_ar": "على Claude Haiku 4.5 تكلّف 45 دولارًا في اليوم",
+   "says_fr": "Claude Haiku 4.5 coûtent 45 $ par jour",
+   "check": "day_haiku.py",
+   "expect": {
+    "approx": 45,
+    "tol": 1e-06
+   }
+  },
+  {
+   "id": "rough-tokens",
+   "says": "7,000 characters of English text come to about 2,000 tokens",
+   "says_ar": "7,000 حرف من نص إنجليزي تساوي نحو 2,000 رمز",
+   "says_fr": "7 000 caractères de texte anglais font environ 2 000 tokens",
+   "check": "rough.py",
+   "expect": 2000
+  }
+ ]
+}

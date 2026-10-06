@@ -1,0 +1,16 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l1-what-an-llm-does",
+ "title": {
+  "en": "What an LLM does",
+  "ar": "ماذا يفعل النموذج اللغوي الكبير",
+  "fr": "Ce que fait un LLM"
+ },
+ "module": "m1-llm-basics",
+ "level": 1,
+ "minutes": 35,
+ "competencies": [
+  "c1.what-llm"
+ ],
+ "prerequisites": []
+}

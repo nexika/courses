@@ -68,9 +68,18 @@ def _matches(value, expect) -> bool:
     return type(value) is type(expect) and value == expect
 
 
+GROUPED = re.compile(r"(?<=\d)[\u00a0\u202f\u2009 ](?=\d{3}\b)")
+
+
 def _numbers(text: str) -> list[float]:
-    flat = text.translate(DIGITS).replace(",", "").replace("٬", "").replace("٫", ".")
-    return [float(n) for n in NUMBER.findall(flat)]
+    """Every number the text writes, in English, French or Arabic style: 2,000.5 / 2 000,5 / ٢٬٠٠٠٫٥.
+
+    A comma is read both ways (thousands separator, decimal comma), so either style can state a value.
+    """
+    flat = GROUPED.sub("", text.translate(DIGITS)).replace("٬", "").replace("٫", ".")
+    found = [float(n) for n in NUMBER.findall(flat.replace(",", ""))]
+    found += [float(n) for n in NUMBER.findall(flat.replace(",", "."))]
+    return found
 
 
 def states_value(says: str, expect) -> bool:

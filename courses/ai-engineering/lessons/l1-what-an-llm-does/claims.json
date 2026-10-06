@@ -1,0 +1,21 @@
+{
+ "schema": "nexika.claims/1",
+ "claims": [
+  {
+   "id": "on-monday",
+   "says": "`monday` follows `on` 3 times",
+   "says_ar": "تأتي `monday` بعد `on` ثلاث مرات (3)",
+   "says_fr": "`monday` suit `on` 3 fois",
+   "check": "on_monday.py",
+   "expect": 3
+  },
+  {
+   "id": "on-friday",
+   "says": "`friday` follows it only 1 time",
+   "says_ar": "مرة واحدة (1)",
+   "says_fr": "`friday`, 1 fois seulement",
+   "check": "on_friday.py",
+   "expect": 1
+  }
+ ]
+}

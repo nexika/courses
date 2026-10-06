@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "choice",
+   "prompt": {
+    "en": "At its core, what does an LLM do when it writes an answer?",
+    "ar": "في جوهره، ماذا يفعل النموذج اللغوي الكبير حين يكتب إجابة؟",
+    "fr": "Au fond, que fait un LLM quand il écrit une réponse ?"
+   },
+   "options": [
+    {
+     "en": "It finds the matching fact in a database and copies it out",
+     "ar": "يجد الحقيقة المطابقة في قاعدة بيانات وينسخها كما هي",
+     "fr": "Il trouve le fait correspondant dans une base de données et le recopie"
+    },
+    {
+     "en": "It follows answer rules written by hand by its engineers",
+     "ar": "يتبع قواعد إجابة كتبها مهندسوه يدويًا واحدة واحدة",
+     "fr": "Il applique des règles de réponse écrites à la main par ses ingénieurs"
+    },
+    {
+     "en": "It predicts the next piece of text from learned patterns",
+     "ar": "يتنبأ بالقطعة التالية من النص انطلاقًا من أنماط تعلّمها",
+     "fr": "Il prédit le morceau de texte suivant à partir de motifs appris"
+    },
+    {
+     "en": "It searches the live web for the answer before replying",
+     "ar": "يبحث عن الإجابة في الويب مباشرةً قبل أن يرد عليك",
+     "fr": "Il cherche la réponse sur le web en direct avant de répondre"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "Language models are pretrained to predict the next word (strictly, the next token) from the text before it, and write an answer one piece at a time. There is no fact database behind it, and the web is only reachable through a tool you provide.",
+    "ar": "يُدرَّب النموذج اللغوي مسبقًا على التنبؤ بالكلمة التالية (أو بدقة: الرمز التالي) انطلاقًا من النص السابق، ويكتب الإجابة قطعةً بعد قطعة. لا توجد خلفه قاعدة بيانات للحقائق، ولا يصل إلى الويب إلا عبر أداة تعطيه إياها.",
+    "fr": "Un modèle de langage est pré-entraîné à prédire le mot suivant (plus exactement, le token suivant) à partir du texte qui précède, et écrit sa réponse morceau par morceau. Il n'y a pas de base de faits derrière, et le web n'est accessible que par un outil que vous lui donnez."
+   }
+  },
+  {
+   "id": "q2",
+   "type": "choice",
+   "prompt": {
+    "en": "With no tools and no documents, you ask Claude about an event after its training data cutoff. What should you expect?",
+    "ar": "دون أدوات ودون مستندات، تسأل Claude عن حدث وقع بعد تاريخ انتهاء بيانات تدريبه. ماذا تتوقع؟",
+    "fr": "Sans outils ni documents, vous interrogez Claude sur un événement postérieur à sa date limite des données d'entraînement. À quoi vous attendre ?"
+   },
+   "options": [
+    {
+     "en": "It saw no text about it, so it may guess or say it is unsure",
+     "ar": "لم يرَ عنه أي نص، فقد يخمّن أو يقول إنه غير متأكد",
+     "fr": "Il n'a lu aucun texte dessus : il peut deviner ou se dire incertain"
+    },
+    {
+     "en": "It reads about the event on the live web without being asked",
+     "ar": "يقرأ عن الحدث في الويب مباشرةً دون أن تطلب منه ذلك",
+     "fr": "Il lit des articles sur l'événement sur le web sans qu'on le lui demande"
+    },
+    {
+     "en": "It refuses any question about anything that came after that date",
+     "ar": "يرفض أي سؤال عن أي شيء جاء بعد ذلك التاريخ",
+     "fr": "Il refuse toute question sur tout ce qui a suivi cette date"
+    },
+    {
+     "en": "It knows about it, because the model learns from every new day",
+     "ar": "يعرف عنه، لأن النموذج يتعلّم من كل يوم جديد",
+     "fr": "Il le connaît, car le modèle apprend de chaque nouvelle journée"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "The model learned from data collected up to its training data cutoff. Without documents in the prompt or a tool such as web search, it has no information about later events, and it may still produce a fluent answer from older patterns.",
+    "ar": "تعلّم النموذج من بيانات جُمعت حتى تاريخ انتهاء بيانات تدريبه. ودون مستندات في الموجّه أو أداة مثل البحث في الويب، لا معلومات لديه عن الأحداث اللاحقة، وقد يكتب مع ذلك إجابة طلقة من أنماط أقدم.",
+    "fr": "Le modèle a appris sur des données collectées jusqu'à sa date limite. Sans documents dans le prompt ni outil comme la recherche web, il n'a aucune information sur les événements ultérieurs, et il peut quand même produire une réponse fluide à partir de motifs plus anciens."
+   }
+  },
+  {
+   "id": "q3",
+   "type": "choice",
+   "prompt": {
+    "en": "In the Try it predictor, why does it write \"monday\" after \"on\"?",
+    "ar": "في أداة التنبؤ في قسم جرّبها، لماذا تكتب \"monday\" بعد \"on\"؟",
+    "fr": "Dans le prédicteur de la partie Essayez, pourquoi écrit-il « monday » après « on » ?"
+   },
+   "options": [
+    {
+     "en": "Monday is the newest information in the corpus",
+     "ar": "لأن monday هي أحدث معلومة في المدوّنة",
+     "fr": "Lundi est l'information la plus récente du corpus"
+    },
+    {
+     "en": "The code checks the calendar on your computer",
+     "ar": "لأن الشيفرة تتحقق من التقويم في حاسوبك",
+     "fr": "Le code consulte le calendrier de votre ordinateur"
+    },
+    {
+     "en": "It picks one of the followers of \"on\" at random",
+     "ar": "لأنها تختار إحدى الكلمات التالية لـ on عشوائيًا",
+     "fr": "Il tire au hasard un des mots qui suivent « on »"
+    },
+    {
+     "en": "Monday follows \"on\" more often than Friday does",
+     "ar": "لأن monday تأتي بعد on أكثر مما تأتي friday",
+     "fr": "Lundi suit « on » plus souvent que vendredi"
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "The predictor only counts word pairs and returns the most frequent follower. Monday is more common after \"on\" in the corpus, so it wins, even though the latest message says the meeting moved to Friday. Frequent is not the same as true.",
+    "ar": "الأداة تعدّ أزواج الكلمات فقط وتعيد الكلمة الأكثر مجيئًا. وmonday أكثر شيوعًا بعد on في المدوّنة، فتفوز، رغم أن آخر رسالة تقول إن الاجتماع انتقل إلى الجمعة. الشائع ليس هو الصحيح بالضرورة.",
+    "fr": "Le prédicteur ne fait que compter les paires de mots et renvoie le suivant le plus fréquent. Lundi est plus fréquent après « on » dans le corpus, donc il l'emporte, alors que le dernier message dit que la réunion est passée au vendredi. Fréquent ne veut pas dire vrai."
+   }
+  },
+  {
+   "id": "q4",
+   "type": "choice",
+   "prompt": {
+    "en": "Your app uses Claude to answer customers about your refund policy. Which step most directly reduces made-up answers?",
+    "ar": "يستخدم تطبيقك Claude للإجابة عن أسئلة العملاء حول سياسة الاسترداد لديك. أي خطوة تقلّل الإجابات المختلَقة بأكثر شكل مباشر؟",
+    "fr": "Votre application utilise Claude pour répondre aux clients sur votre politique de remboursement. Quelle mesure réduit le plus directement les réponses inventées ?"
+   },
+   "options": [
+    {
+     "en": "Ask Claude to answer in a more confident, expert tone",
+     "ar": "اطلب من Claude أن يجيب بنبرة خبير أكثر ثقة",
+     "fr": "Demander à Claude de répondre sur un ton d'expert plus assuré"
+    },
+    {
+     "en": "Put the policy in the prompt and allow \"I don't know\"",
+     "ar": "ضع نص السياسة في الموجّه واسمح له بقول \"لا أعرف\"",
+     "fr": "Mettre la politique dans le prompt et autoriser « je ne sais pas »"
+    },
+    {
+     "en": "Set the temperature to zero so every answer is true",
+     "ar": "اضبط درجة الحرارة على صفر لتصبح كل إجابة صحيحة",
+     "fr": "Régler la température à zéro pour que tout soit exact"
+    },
+    {
+     "en": "Re-ask the same question until an answer looks right",
+     "ar": "أعد السؤال نفسه حتى تبدو إحدى الإجابات صحيحة",
+     "fr": "Reposer la même question jusqu'à ce qu'une réponse semble juste"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": "Giving the model the facts and letting it admit uncertainty are two of the techniques Anthropic recommends. A confident tone changes nothing, a low temperature only favours the most probable wording, and an answer that looks right still has to be checked.",
+    "ar": "إعطاء النموذج الحقائق والسماح له بالاعتراف بعدم اليقين أسلوبان مما توصي به Anthropic. النبرة الواثقة لا تغيّر شيئًا، ودرجة الحرارة المنخفضة تفضّل الصياغة الأكثر احتمالًا فقط، والإجابة التي تبدو صحيحة تحتاج مع ذلك إلى تحقّق.",
+    "fr": "Donner les faits au modèle et le laisser admettre son incertitude font partie des techniques recommandées par Anthropic. Un ton assuré ne change rien, une température basse favorise seulement la formulation la plus probable, et une réponse qui semble juste doit quand même être vérifiée."
+   }
+  },
+  {
+   "id": "q5",
+   "type": "open",
+   "prompt": {
+    "en": "A teammate says: \"Claude told me the latest version of a library, so let's pin that version in our project.\" Explain what could be wrong, and what you would do instead.",
+    "ar": "يقول زميلك: \"أخبرني Claude بآخر إصدار من مكتبة ما، فلنثبّت هذا الإصدار في مشروعنا.\" اشرح ما الذي قد يكون خاطئًا، وماذا ستفعل بدلًا من ذلك.",
+    "fr": "Un collègue dit : « Claude m'a donné la dernière version d'une bibliothèque, fixons cette version dans notre projet. » Expliquez ce qui pourrait clocher, et ce que vous feriez à la place."
+   },
+   "rubric": {
+    "en": "A good answer: (1) says the model writes its answer by predicting text from patterns in its training data, not by looking anything up; (2) points out the training data cutoff: newer versions may exist that the model has never seen; (3) notes that it can state a wrong version number fluently and confidently (a hallucination), so the tone proves nothing; (4) proposes checking an authoritative source such as the package index or the library's own release notes, or giving Claude that source or a search tool, before pinning.",
+    "ar": "الإجابة الجيدة: (1) تقول إن النموذج يكتب إجابته بالتنبؤ بالنص من أنماط في بيانات تدريبه، لا بالبحث عن شيء؛ (2) تشير إلى تاريخ انتهاء بيانات التدريب: قد توجد إصدارات أحدث لم يرها النموذج قط؛ (3) تلاحظ أنه قد يذكر رقم إصدار خاطئًا بطلاقة وثقة (هلوسة)، فالنبرة لا تثبت شيئًا؛ (4) تقترح التحقق من مصدر موثوق مثل فهرس الحزم أو ملاحظات الإصدار الخاصة بالمكتبة، أو إعطاء Claude ذلك المصدر أو أداة بحث، قبل تثبيت الإصدار.",
+    "fr": "Une bonne réponse : (1) dit que le modèle écrit sa réponse en prédisant du texte à partir des motifs de ses données d'entraînement, sans rien aller chercher ; (2) mentionne la date limite des données d'entraînement : des versions plus récentes, que le modèle n'a jamais vues, peuvent exister ; (3) note qu'il peut donner un mauvais numéro de version de façon fluide et assurée (une hallucination), donc le ton ne prouve rien ; (4) propose de vérifier une source qui fait foi, comme l'index des paquets ou les notes de version de la bibliothèque, ou de donner cette source ou un outil de recherche à Claude, avant de fixer la version."
+   }
+  }
+ ]
+}

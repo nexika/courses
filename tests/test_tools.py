@@ -348,3 +348,11 @@ def test_every_course_language_is_required(root):
     assert any("title" in m and "fr" in m for m in found)
     assert any("says_fr" in m for m in found)
     assert any("prompt in every language" in m for m in found)
+
+
+def test_numbers_can_be_written_in_each_language_style():
+    assert gates.states_value("costs 0,009 $", 0.009)
+    assert gates.states_value("costs $0.009", 0.009)
+    assert gates.states_value("2 000 tokens", 2000) and gates.states_value("2,000 tokens", 2000)
+    assert gates.states_value("٢٬٠٠٠ رمز", 2000) and gates.states_value("٠٫٠٠٩", 0.009)
+    assert not gates.states_value("costs 0,009 $", 9.5)

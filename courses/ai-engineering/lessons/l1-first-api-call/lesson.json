@@ -1,0 +1,21 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l1-first-api-call",
+ "title": {
+  "en": "Your first API call",
+  "ar": "أول استدعاء لواجهة Claude البرمجية",
+  "fr": "Votre premier appel à l'API"
+ },
+ "module": "m1-llm-basics",
+ "level": 1,
+ "minutes": 40,
+ "competencies": [
+  "c1.call-api",
+  "c1.messages",
+  "c1.params",
+  "c1.streaming"
+ ],
+ "prerequisites": [
+  "l1-tokens-and-context"
+ ]
+}

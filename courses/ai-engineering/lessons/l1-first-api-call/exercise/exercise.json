@@ -1,0 +1,9 @@
+{
+ "schema": "nexika.exercise/1",
+ "runner": "python-unittest",
+ "goal": {
+  "en": "In first_call.py, write build_request() to build a Messages API request body (model, max_tokens, optional system prompt, user and assistant turns), read_reply() to get the text, stop reason and token usage from a reply and flag a reply cut off by max_tokens, and join_stream() to rebuild the same summary from streaming events. Everything runs offline on sample replies.",
+  "ar": "في الملف first_call.py، اكتب build_request() لتبني جسم طلب Messages API (النموذج، و max_tokens، وموجّه النظام (system prompt) الاختياري، وجولات المستخدم والمساعد)، و read_reply() لتستخرج من الإجابة نصها وسبب توقفها واستهلاك الرموز (tokens) وتنبّه إلى الإجابة التي قطعها max_tokens، و join_stream() لتعيد بناء الملخص نفسه من أحداث التدفق. كل شيء يعمل دون اتصال على إجابات نموذجية.",
+  "fr": "Dans first_call.py, écrivez build_request() pour construire le corps d'une requête à la Messages API (modèle, max_tokens, prompt système facultatif, tours utilisateur et assistant), read_reply() pour tirer d'une réponse son texte, sa raison d'arrêt et sa consommation de tokens en signalant une réponse coupée par max_tokens, et join_stream() pour reconstruire le même résumé à partir d'événements de streaming. Tout fonctionne hors ligne, sur des réponses d'exemple."
+ }
+}

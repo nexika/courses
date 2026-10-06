@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1-one-answer",
+   "type": "choice",
+   "prompt": {
+    "en": "You try your new prompt once and the answer is perfect. What does that show?",
+    "ar": "جرّبت موجّهك الجديد مرة واحدة فكانت الإجابة مثالية. ماذا يُثبت ذلك؟",
+    "fr": "Vous essayez votre nouveau prompt une fois et la réponse est parfaite. Qu'est-ce que cela montre ?"
+   },
+   "options": [
+    {
+     "en": "The prompt will work for most inputs your users send",
+     "ar": "أن الموجّه سيعمل مع أغلب المُدخلات التي يرسلها المستخدمون",
+     "fr": "Le prompt marchera pour la plupart des entrées de vos utilisateurs"
+    },
+    {
+     "en": "The model will give this same answer on every run",
+     "ar": "أن النموذج سيعطي الإجابة نفسها في كل تشغيل",
+     "fr": "Le modèle donnera cette même réponse à chaque exécution"
+    },
+    {
+     "en": "It worked for this one input, on this one run",
+     "ar": "أنه نجح مع هذا المُدخل وحده، في هذا التشغيل وحده",
+     "fr": "Il a marché pour cette entrée, lors de cette exécution"
+    },
+    {
+     "en": "The prompt is finished and needs no test cases",
+     "ar": "أن الموجّه اكتمل ولا يحتاج إلى حالات اختبار",
+     "fr": "Le prompt est terminé et n'a pas besoin de cas de test"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "One answer is one input on one run. Other inputs can fail, and even the same input can get a different answer on another run, because the results are not fully deterministic.",
+    "ar": "الإجابة الواحدة مُدخل واحد في تشغيل واحد. قد تفشل مُدخلات أخرى، بل قد يتلقى المُدخل نفسه إجابة مختلفة في تشغيل آخر، لأن النتائج ليست حتمية تمامًا.",
+    "fr": "Une réponse, c'est une entrée lors d'une exécution. D'autres entrées peuvent échouer, et la même entrée peut même recevoir une autre réponse à l'exécution suivante, car les résultats ne sont pas entièrement déterministes."
+   }
+  },
+  {
+   "id": "q2-strict-grader",
+   "type": "choice",
+   "prompt": {
+    "en": "The expected answer is \"negative\". The model answers \"Negative.\" and your exact-match grader marks it as failed. What is the best reading?",
+    "ar": "الإجابة المتوقعة \"negative\". أجاب النموذج \"Negative.\" فاعتبرها مُقيِّم المطابقة التامة فاشلة. ما أفضل تفسير؟",
+    "fr": "La réponse attendue est « negative ». Le modèle répond « Negative. » et votre évaluateur à correspondance exacte la marque en échec. Quelle est la meilleure lecture ?"
+   },
+   "options": [
+    {
+     "en": "The label is right; the grader is stricter than you need",
+     "ar": "التصنيف صحيح؛ لكن المُقيِّم أشد صرامة مما تحتاج",
+     "fr": "L'étiquette est juste ; l'évaluateur est plus strict que nécessaire"
+    },
+    {
+     "en": "The model got the sentiment of this particular review wrong",
+     "ar": "أخطأ النموذج في تحديد الشعور الذي تعبّر عنه هذه المراجعة",
+     "fr": "Le modèle s'est trompé sur le sentiment exprimé dans cet avis"
+    },
+    {
+     "en": "The expected answer is wrong and should be changed",
+     "ar": "الإجابة المتوقعة خاطئة ويجب تغييرها",
+     "fr": "La réponse attendue est fausse et doit être changée"
+    },
+    {
+     "en": "The pass rate is now useless and should be ignored",
+     "ar": "نسبة النجاح صارت بلا فائدة ويجب تجاهلها",
+     "fr": "Le taux de réussite est devenu inutile, il faut l'ignorer"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "\"Negative.\" has the right label in a different case and with a full stop. A grader that normalizes case, spaces and a final full stop would pass it; the model and the expected answer are fine.",
+    "ar": "\"Negative.\" فيها التصنيف الصحيح، لكن بحرف كبير ونقطة في آخرها. المُقيِّم الذي يوحّد حالة الأحرف والمسافات ويتجاهل النقطة الأخيرة سيقبلها؛ فلا مشكلة في النموذج ولا في الإجابة المتوقعة.",
+    "fr": "« Negative. » porte la bonne étiquette, avec une majuscule et un point final. Un évaluateur qui normalise la casse, les espaces et le point final l'accepterait ; le modèle et la réponse attendue sont corrects."
+   }
+  },
+  {
+   "id": "q3-loose-grader",
+   "type": "choice",
+   "prompt": {
+    "en": "To be tolerant, a grader passes any answer that contains the expected word. What is the risk?",
+    "ar": "ليكون متسامحًا، يقبل مُقيِّمٌ أي إجابة تحتوي الكلمة المتوقعة. ما الخطر في ذلك؟",
+    "fr": "Pour être tolérant, un évaluateur accepte toute réponse qui contient le mot attendu. Quel est le risque ?"
+   },
+   "options": [
+    {
+     "en": "It fails right answers that are written in capitals",
+     "ar": "يُفشل الإجابات الصحيحة إذا كُتبت كلها بأحرف كبيرة",
+     "fr": "Il refuse les bonnes réponses écrites en majuscules"
+    },
+    {
+     "en": "It makes every case take longer than exact match",
+     "ar": "يجعل كل حالة تستغرق وقتًا أطول من المطابقة التامة",
+     "fr": "Il rend chaque cas plus lent que la correspondance exacte"
+    },
+    {
+     "en": "It has to call the model a second time for each case",
+     "ar": "يضطر إلى استدعاء النموذج مرة ثانية لكل حالة",
+     "fr": "Il doit appeler le modèle une seconde fois pour chaque cas"
+    },
+    {
+     "en": "It passes \"not positive\" when \"positive\" is expected",
+     "ar": "يقبل \"not positive\" حين تكون \"positive\" هي المتوقعة",
+     "fr": "Il accepte « not positive » quand « positive » est attendu"
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "\"not positive\" contains \"positive\", so a contains check passes a wrong answer. A grader that is too loose gives a high pass rate that means nothing.",
+    "ar": "\"not positive\" تحتوي كلمة \"positive\"، فيقبل فحص الاحتواء إجابة خاطئة. والمُقيِّم المتساهل أكثر من اللازم يعطي نسبة نجاح عالية لا معنى لها.",
+    "fr": "« not positive » contient « positive », donc un test de contenance accepte une mauvaise réponse. Un évaluateur trop permissif donne un taux de réussite élevé qui ne veut rien dire."
+   }
+  },
+  {
+   "id": "q4-next-step",
+   "type": "choice",
+   "prompt": {
+    "en": "Your eval passes most cases, and a few fail. What should you do next?",
+    "ar": "ينجح تقييمك في أغلب الحالات، وتفشل بضع حالات. ما الخطوة التالية؟",
+    "fr": "Votre évaluation réussit la plupart des cas, et quelques-uns échouent. Que faire ensuite ?"
+   },
+   "options": [
+    {
+     "en": "Change their expected answers so that every case passes",
+     "ar": "تغيير إجاباتها المتوقعة حتى تنجح كل الحالات",
+     "fr": "Changer leurs réponses attendues pour que tout réussisse"
+    },
+    {
+     "en": "Read each failing case to see why it failed",
+     "ar": "قراءة كل حالة فاشلة لمعرفة سبب فشلها",
+     "fr": "Lire chaque cas en échec pour comprendre pourquoi"
+    },
+    {
+     "en": "Delete the failing cases because they are edge cases",
+     "ar": "حذف الحالات الفاشلة لأنها حالات حدّية",
+     "fr": "Supprimer les cas en échec, car ce sont des cas limites"
+    },
+    {
+     "en": "Ship the prompt, since most of the cases passed",
+     "ar": "إطلاق الموجّه، ما دامت أغلب الحالات قد نجحت",
+     "fr": "Livrer le prompt, puisque la plupart des cas ont réussi"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": "The pass rate tells you how often; the failing cases tell you why. A failure can be a wrong answer (fix the prompt), a format slip (tighten the prompt or the grader) or, rarely, a wrong expected answer.",
+    "ar": "نسبة النجاح تخبرك كم مرة؛ والحالات الفاشلة تخبرك لماذا. قد يكون الفشل إجابة خاطئة (أصلح الموجّه)، أو خطأً في الشكل (اضبط الموجّه أو المُقيِّم)، أو، نادرًا، إجابة متوقعة خاطئة.",
+    "fr": "Le taux de réussite dit combien de fois ; les cas en échec disent pourquoi. Un échec peut être une mauvaise réponse (corrigez le prompt), un écart de format (resserrez le prompt ou l'évaluateur) ou, plus rarement, une réponse attendue fausse."
+   }
+  },
+  {
+   "id": "q5-teammate",
+   "type": "open",
+   "prompt": {
+    "en": "A teammate says: \"I tested the new prompt and it gave a great answer, so it is ready.\" What would you ask them to do instead, and why?",
+    "ar": "يقول زميلك: \"اختبرت الموجّه الجديد فأعطى إجابة رائعة، إذن هو جاهز.\" ماذا ستطلب منه أن يفعل بدلًا من ذلك، ولماذا؟",
+    "fr": "Un collègue dit : « J'ai testé le nouveau prompt, il a donné une excellente réponse, donc il est prêt. » Que lui demanderiez-vous de faire à la place, et pourquoi ?"
+   },
+   "rubric": {
+    "en": "A good answer says that one answer covers one input on one run, and that results are not fully deterministic; asks for a set of cases with expected answers, including hard or edge cases like the real inputs; asks for a grader in code (exact match, or a tolerant one that is not too loose); asks for the pass rate and for reading the failing cases; and says to run the eval again after each prompt change.",
+    "ar": "الإجابة الجيدة تذكر أن الإجابة الواحدة تغطي مُدخلًا واحدًا في تشغيل واحد، وأن النتائج ليست حتمية تمامًا؛ وتطلب مجموعة حالات بإجابات متوقعة، فيها حالات صعبة أو حدّية تشبه المُدخلات الحقيقية؛ وتطلب مُقيِّمًا مكتوبًا بالكود (مطابقة تامة، أو مُقيِّمًا متسامحًا غير متساهل أكثر من اللازم)؛ وتطلب نسبة النجاح وقراءة الحالات الفاشلة؛ وتوصي بإعادة التقييم بعد كل تعديل على الموجّه.",
+    "fr": "Une bonne réponse dit qu'une réponse couvre une entrée lors d'une exécution, et que les résultats ne sont pas entièrement déterministes ; demande un ensemble de cas avec des réponses attendues, y compris des cas difficiles ou limites proches des vraies entrées ; demande un évaluateur en code (correspondance exacte, ou tolérant sans être trop permissif) ; demande le taux de réussite et la lecture des cas en échec ; et conseille de relancer l'évaluation après chaque modification du prompt."
+   }
+  }
+ ]
+}

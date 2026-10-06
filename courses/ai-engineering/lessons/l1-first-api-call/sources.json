@@ -1,0 +1,261 @@
+{
+ "schema": "nexika.sources/1",
+ "sources": {
+  "start-key": {
+   "url": "https://docs.claude.com/en/docs/get-started",
+   "title": "Get started with Claude",
+   "kind": "doc",
+   "quote": "Export your API key as an environment variable.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "start-env": {
+   "url": "https://docs.claude.com/en/docs/get-started",
+   "title": "Get started with Claude",
+   "kind": "doc",
+   "quote": "The SDK reads ANTHROPIC_API_KEY automatically.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "sdk": {
+   "url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/README.md",
+   "title": "Claude SDK for Python (README)",
+   "kind": "repo",
+   "quote": "The Claude SDK for Python provides access to the",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "models-start": {
+   "url": "https://docs.claude.com/en/docs/about-claude/models/overview",
+   "title": "Models overview",
+   "kind": "doc",
+   "quote": "If you're unsure which model to use, start with Claude Opus 5.5 for most workloads.",
+   "retrieved": "2026-10-06",
+   "volatile": true
+  },
+  "model-id": {
+   "url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/README.md",
+   "title": "Claude SDK for Python (README)",
+   "kind": "repo",
+   "quote": "model=\"claude-opus-5-5\",",
+   "retrieved": "2026-10-06",
+   "volatile": true
+  },
+  "max-tokens": {
+   "url": "https://docs.claude.com/en/api/messages/create",
+   "title": "Create a Message - Claude API reference",
+   "kind": "doc",
+   "quote": "The maximum number of tokens to generate before stopping.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "max-early": {
+   "url": "https://docs.claude.com/en/api/messages/create",
+   "title": "Create a Message - Claude API reference",
+   "kind": "doc",
+   "quote": "Note that our models may stop before reaching this maximum.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "system": {
+   "url": "https://docs.claude.com/en/api/messages/create",
+   "title": "Create a Message - Claude API reference",
+   "kind": "doc",
+   "quote": "A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "system-top": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/working-with-messages",
+   "title": "Using the Messages API",
+   "kind": "doc",
+   "quote": "Use the top-level system field for instructions that apply from the start.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "alternating": {
+   "url": "https://docs.claude.com/en/api/messages/create",
+   "title": "Create a Message - Claude API reference",
+   "kind": "doc",
+   "quote": "Our models are trained to operate on alternating user and assistant conversational turns.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stateless": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/working-with-messages",
+   "title": "Using the Messages API",
+   "kind": "doc",
+   "quote": "The Messages API is stateless, which means that you always send the full conversational history to the API.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "prefill": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/working-with-messages",
+   "title": "Using the Messages API",
+   "kind": "doc",
+   "quote": "Prefilling is not supported on Claude 4.6 and later models",
+   "retrieved": "2026-10-06",
+   "volatile": true
+  },
+  "prefill-error": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/working-with-messages",
+   "title": "Using the Messages API",
+   "kind": "doc",
+   "quote": "Requests using prefill with these models return a 400 error.",
+   "retrieved": "2026-10-06",
+   "volatile": true
+  },
+  "temperature": {
+   "url": "https://docs.claude.com/en/api/messages/create",
+   "title": "Create a Message - Claude API reference",
+   "kind": "doc",
+   "quote": "Amount of randomness injected into the response.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "sampling": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/working-with-messages",
+   "title": "Using the Messages API",
+   "kind": "doc",
+   "quote": "sampling parameters are not supported on Claude 4.7 and later models",
+   "retrieved": "2026-10-06",
+   "volatile": true
+  },
+  "sampling-error": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/working-with-messages",
+   "title": "Using the Messages API",
+   "kind": "doc",
+   "quote": "Setting them to a non-default value returns a 400 error.",
+   "retrieved": "2026-10-06",
+   "volatile": true
+  },
+  "thinking-blocks": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/streaming",
+   "title": "Streaming Messages",
+   "kind": "doc",
+   "quote": "These deltas correspond to the thinking field of the thinking content blocks.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stop-every": {
+   "url": "https://docs.claude.com/en/api/handling-stop-reasons",
+   "title": "Stop reasons and fallback",
+   "kind": "doc",
+   "quote": "Every Messages API response includes a stop_reason field that tells you why Claude stopped generating.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stop-end": {
+   "url": "https://docs.claude.com/en/api/handling-stop-reasons",
+   "title": "Stop reasons and fallback",
+   "kind": "doc",
+   "quote": "Indicates Claude finished its response naturally.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stop-max": {
+   "url": "https://docs.claude.com/en/api/handling-stop-reasons",
+   "title": "Stop reasons and fallback",
+   "kind": "doc",
+   "quote": "Claude stopped because it reached the max_tokens limit specified in your request.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stop-max-do": {
+   "url": "https://docs.claude.com/en/api/handling-stop-reasons",
+   "title": "Stop reasons and fallback",
+   "kind": "doc",
+   "quote": "Raise max_tokens or continue the response",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stop-not-error": {
+   "url": "https://docs.claude.com/en/api/handling-stop-reasons",
+   "title": "Stop reasons and fallback",
+   "kind": "doc",
+   "quote": "Unlike errors, which indicate failures in processing your request, stop_reason tells you why Claude completed its response generation.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "usage": {
+   "url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/types/usage.py",
+   "title": "anthropic-sdk-python: types/usage.py",
+   "kind": "repo",
+   "quote": "The number of input tokens which were used.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "usage-billing": {
+   "url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/types/usage.py",
+   "title": "anthropic-sdk-python: types/usage.py",
+   "kind": "repo",
+   "quote": "remains the inclusive, authoritative total used for billing.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stream-sse": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/streaming",
+   "title": "Streaming Messages",
+   "kind": "doc",
+   "quote": "to incrementally stream the response using server-sent events (SSE).",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stream-timeout": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/streaming",
+   "title": "Streaming Messages",
+   "kind": "doc",
+   "quote": "the SDK requires streaming to avoid HTTP timeouts.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stream-start": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/streaming",
+   "title": "Streaming Messages",
+   "kind": "doc",
+   "quote": "contains a Message object with empty content",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stream-flow": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/streaming",
+   "title": "Streaming Messages",
+   "kind": "doc",
+   "quote": "one or more content_block_delta events, and a content_block_stop event.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stream-delta": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/streaming",
+   "title": "Streaming Messages",
+   "kind": "doc",
+   "quote": "Each content_block_delta event contains a delta of a type that updates the content block at a given index",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stream-cumulative": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/streaming",
+   "title": "Streaming Messages",
+   "kind": "doc",
+   "quote": "The token counts shown in the usage field of the message_delta event are cumulative",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stream-ping": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/streaming",
+   "title": "Streaming Messages",
+   "kind": "doc",
+   "quote": "Event streams may also include any number of ping events.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "stream-unknown": {
+   "url": "https://docs.claude.com/en/docs/build-with-claude/streaming",
+   "title": "Streaming Messages",
+   "kind": "doc",
+   "quote": "your code should handle unknown event types gracefully.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  }
+ }
+}
