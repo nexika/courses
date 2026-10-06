@@ -1,0 +1,9 @@
+{
+ "schema": "nexika.exercise/1",
+ "runner": "python-unittest",
+ "goal": {
+  "en": "Write call_cost, workload_cost, total_usage, leaves_room and rough_tokens in cost.py: estimate what one call and a whole workload cost from token counts and a price table, add up the usage of recorded responses, and check that a request leaves room for its answer in the context window.",
+  "ar": "اكتب الدوال call_cost و workload_cost و total_usage و leaves_room و rough_tokens في الملف cost.py: قدّر تكلفة استدعاء واحد وتكلفة عبء عمل كامل من أعداد الرموز (tokens) وجدول أسعار، واجمع استهلاك استجابات مسجّلة، وتحقق من أن الطلب يترك للإجابة مكانًا في نافذة السياق.",
+  "fr": "Écrivez call_cost, workload_cost, total_usage, leaves_room et rough_tokens dans cost.py : estimer le coût d'un appel et d'une charge de travail entière à partir des nombres de tokens et d'une table des prix, additionner l'usage de réponses enregistrées, et vérifier qu'une requête laisse de la place pour sa réponse dans la fenêtre de contexte."
+ }
+}

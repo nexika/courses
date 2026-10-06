@@ -1,0 +1,37 @@
+{
+ "schema": "nexika.claims/1",
+ "claims": [
+  {
+   "id": "sample-input-tokens",
+   "says": "41 input tokens",
+   "says_ar": "41 رمزًا للإدخال",
+   "says_fr": "41 tokens d'entrée",
+   "check": "reply_input_tokens.py",
+   "expect": 41
+  },
+  {
+   "id": "sample-output-tokens",
+   "says": "28 output tokens",
+   "says_ar": "28 رمزًا للإخراج",
+   "says_fr": "28 tokens de sortie",
+   "check": "reply_output_tokens.py",
+   "expect": 28
+  },
+  {
+   "id": "cut-off-output-tokens",
+   "says": "Claude wrote 16 output tokens",
+   "says_ar": "كتب Claude ما مجموعه 16 رمزًا للإخراج",
+   "says_fr": "Claude a écrit 16 tokens de sortie",
+   "check": "cut_off_output_tokens.py",
+   "expect": 16
+  },
+  {
+   "id": "stream-text-pieces",
+   "says": "arrives in 6 text pieces",
+   "says_ar": "في 6 قطع نصية",
+   "says_fr": "en 6 morceaux de texte",
+   "check": "stream_text_pieces.py",
+   "expect": 6
+  }
+ ]
+}

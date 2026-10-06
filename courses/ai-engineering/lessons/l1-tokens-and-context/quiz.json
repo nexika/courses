@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "choice",
+   "prompt": {
+    "en": "Which tokens count toward the context window of one request?",
+    "ar": "ما الرموز (tokens) التي تُحسب من نافذة السياق في طلب واحد؟",
+    "fr": "Quels tokens comptent dans la fenêtre de contexte d'une requête ?"
+   },
+   "options": [
+    {
+     "en": "Only the messages you send in this request",
+     "ar": "الرسائل التي ترسلها في هذا الطلب وحدها",
+     "fr": "Seulement les messages envoyés dans cette requête"
+    },
+    {
+     "en": "Only the system prompt and the tool definitions you send",
+     "ar": "موجّه النظام (system prompt) وتعريفات الأدوات وحدها",
+     "fr": "Seulement le prompt système et les définitions d'outils"
+    },
+    {
+     "en": "Everything you send, plus the answer Claude writes",
+     "ar": "كل ما ترسله، مضافًا إليه الإجابة التي يكتبها Claude",
+     "fr": "Tout ce que vous envoyez, plus la réponse de Claude"
+    },
+    {
+     "en": "All the text the model read during its training",
+     "ar": "كل النص الذي قرأه النموذج أثناء تدريبه",
+     "fr": "Tout le texte lu par le modèle pendant son entraînement"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "The window holds everything in the request (system prompt, messages, tool definitions) and the output Claude generates. Training data is not in it.",
+    "ar": "تضم النافذة كل ما في الطلب (موجّه النظام والرسائل وتعريفات الأدوات) والمخرجات التي يولّدها Claude. أما بيانات التدريب فليست فيها.",
+    "fr": "La fenêtre contient tout ce qui est dans la requête (prompt système, messages, définitions d'outils) et la sortie générée par Claude. Les données d'entraînement n'y sont pas."
+   }
+  },
+  {
+   "id": "q2",
+   "type": "choice",
+   "prompt": {
+    "en": "A model costs $3 per million input tokens and $15 per million output tokens. A call uses 1,000 input tokens and 1,000 output tokens. What does it cost?",
+    "ar": "نموذج سعره 3 دولارات لكل مليون رمز إدخال و15 دولارًا لكل مليون رمز إخراج. استدعاء استخدم 1,000 رمز إدخال و1,000 رمز إخراج. كم يكلّف؟",
+    "fr": "Un modèle coûte 3 $ par million de tokens d'entrée et 15 $ par million de tokens de sortie. Un appel utilise 1 000 tokens d'entrée et 1 000 tokens de sortie. Combien coûte-t-il ?"
+   },
+   "options": [
+    {
+     "en": "$0.018",
+     "ar": "0.018 دولار",
+     "fr": "0,018 $"
+    },
+    {
+     "en": "$0.030",
+     "ar": "0.030 دولار",
+     "fr": "0,030 $"
+    },
+    {
+     "en": "$0.006",
+     "ar": "0.006 دولار",
+     "fr": "0,006 $"
+    },
+    {
+     "en": "$18.00",
+     "ar": "18.00 دولار",
+     "fr": "18,00 $"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "Each kind of token has its own price: 1,000 × 3 / 1,000,000 = $0.003 for input, 1,000 × 15 / 1,000,000 = $0.015 for output, $0.018 in all. $0.030 and $0.006 use one price for both; $18.00 forgets that prices are per million.",
+    "ar": "لكل نوع من الرموز سعره: 1,000 × 3 / 1,000,000 = 0.003 دولار للإدخال، و1,000 × 15 / 1,000,000 = 0.015 دولار للإخراج، فالمجموع 0.018 دولار. الخياران 0.030 و0.006 يستعملان سعرًا واحدًا للنوعين، والخيار 18.00 ينسى أن السعر لكل مليون رمز.",
+    "fr": "Chaque type de token a son prix : 1 000 × 3 / 1 000 000 = 0,003 $ pour l'entrée, 1 000 × 15 / 1 000 000 = 0,015 $ pour la sortie, soit 0,018 $ au total. 0,030 $ et 0,006 $ appliquent un seul prix aux deux ; 18,00 $ oublie que les prix sont par million."
+   }
+  },
+  {
+   "id": "q3",
+   "type": "choice",
+   "prompt": {
+    "en": "You measured your prompts' token counts on an older model, and now you switch to a newer one. What should you do with those counts?",
+    "ar": "قست أعداد الرموز في موجّهاتك على نموذج أقدم، والآن تنتقل إلى نموذج أحدث. ماذا تفعل بتلك الأعداد؟",
+    "fr": "Vous avez mesuré le nombre de tokens de vos prompts sur un ancien modèle, et vous passez à un modèle récent. Que faire de ces nombres ?"
+   },
+   "options": [
+    {
+     "en": "Keep them: a token is the same unit on every model",
+     "ar": "احتفظ بها: الرمز وحدة واحدة على كل النماذج",
+     "fr": "Les garder : un token est la même unité partout"
+    },
+    {
+     "en": "Keep them for English and recount only the other languages",
+     "ar": "احتفظ بها للإنجليزية وأعد العدّ للغات الأخرى",
+     "fr": "Les garder pour l'anglais, recompter les autres langues"
+    },
+    {
+     "en": "Scale each count by the ratio of the two models' prices",
+     "ar": "اضرب كل عدد في نسبة سعر النموذج الجديد إلى سعر القديم",
+     "fr": "Les ajuster selon le rapport des prix des deux modèles"
+    },
+    {
+     "en": "Count again: the tokenizer can differ between models",
+     "ar": "أعد العدّ: المُرمِّز قد يختلف من نموذج لآخر",
+     "fr": "Recompter : le tokenizer peut changer selon le modèle"
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "Tokenizers can change between models: on newer Claude models the same text gives about 30 percent more tokens. Count again with the model you will use.",
+    "ar": "قد يتغير المُرمِّز (tokenizer) بين النماذج: على نماذج Claude الأحدث يعطي النص نفسه رموزًا أكثر بنحو 30 بالمئة. أعد العدّ على النموذج الذي ستستخدمه.",
+    "fr": "Le tokenizer peut changer d'un modèle à l'autre : sur les modèles Claude récents, le même texte donne environ 30 % de tokens en plus. Recomptez avec le modèle que vous utiliserez."
+   }
+  },
+  {
+   "id": "q4",
+   "type": "choice",
+   "prompt": {
+    "en": "Where do you find how many tokens a call really used?",
+    "ar": "أين تجد عدد الرموز التي استهلكها الاستدعاء فعلًا؟",
+    "fr": "Où trouver le nombre de tokens qu'un appel a vraiment consommés ?"
+   },
+   "options": [
+    {
+     "en": "In the count_tokens result you got before sending",
+     "ar": "في نتيجة count_tokens التي حصلت عليها قبل الإرسال",
+     "fr": "Dans le résultat de count_tokens obtenu avant l'envoi"
+    },
+    {
+     "en": "In the usage field of the response to that call",
+     "ar": "في الحقل usage من الاستجابة على ذلك الاستدعاء",
+     "fr": "Dans le champ usage de la réponse à cet appel"
+    },
+    {
+     "en": "In max_tokens, since every call uses all of it",
+     "ar": "في max_tokens، لأن كل استدعاء يستهلكه كاملًا",
+     "fr": "Dans max_tokens, car chaque appel l'utilise en entier"
+    },
+    {
+     "en": "In the prompt's length in characters, over 3.5",
+     "ar": "في طول الموجّه بالحروف مقسومًا على 3.5",
+     "fr": "Dans la longueur du prompt en caractères, sur 3,5"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": "Every response reports input_tokens and output_tokens in its usage field. count_tokens is an estimate of the input only, max_tokens is only a cap, and characters over 3.5 is a rough guess for English.",
+    "ar": "كل استجابة تبلّغ عن input_tokens و output_tokens في الحقل usage. أما count_tokens فتقدير للمدخلات وحدها، و max_tokens حد أعلى فقط، وقسمة الحروف على 3.5 تخمين تقريبي للإنجليزية.",
+    "fr": "Chaque réponse indique input_tokens et output_tokens dans son champ usage. count_tokens est une estimation de l'entrée seulement, max_tokens n'est qu'un plafond, et les caractères divisés par 3,5 ne sont qu'une estimation grossière pour l'anglais."
+   }
+  },
+  {
+   "id": "q5",
+   "type": "open",
+   "prompt": {
+    "en": "Your team wants a feature that summarizes every support ticket, a few thousand a day. Explain how you would estimate what it will cost per day, and what could make the real bill differ from your estimate.",
+    "ar": "يريد فريقك ميزة تلخّص كل تذكرة دعم، وعددها بضعة آلاف في اليوم. اشرح كيف تقدّر تكلفتها اليومية، وما الذي قد يجعل الفاتورة الحقيقية تختلف عن تقديرك.",
+    "fr": "Votre équipe veut une fonctionnalité qui résume chaque ticket de support, quelques milliers par jour. Expliquez comment vous estimeriez son coût par jour, et ce qui pourrait faire différer la vraie facture de votre estimation."
+   },
+   "rubric": {
+    "en": "Measures input tokens on real tickets (with the token counting API or the usage of test calls), not by counting words; includes the instructions and system prompt in the input. Estimates output tokens per summary and caps them with max_tokens. Prices input and output separately, per million tokens, with the current prices from the pricing page, then multiplies by the number of calls per day. Names reasons the bill can differ: tickets vary in length, output length varies, counts are estimates, the tokenizer differs between models, prices change, and options such as the Batch API change the price. Bonus: mentions prompt caching, which also changes the bill.",
+    "ar": "يقيس رموز الإدخال على تذاكر حقيقية (بواجهة عدّ الرموز أو بحقل usage في استدعاءات تجريبية) لا بعدّ الكلمات، ويحسب التعليمات وموجّه النظام (system prompt) ضمن المدخلات. يقدّر رموز الإخراج لكل ملخص ويضع لها حدًّا بـ max_tokens. يسعّر الإدخال والإخراج كلًّا على حدة لكل مليون رمز بالأسعار الحالية من صفحة الأسعار، ثم يضرب في عدد الاستدعاءات اليومية. يذكر أسبابًا لاختلاف الفاتورة: تفاوت أطوال التذاكر، وتفاوت طول المخرجات، وأن الأعداد تقديرية، واختلاف المُرمِّز بين النماذج، وتغيّر الأسعار، وخيارات مثل Batch API التي تغيّر السعر. نقطة إضافية: يذكر التخزين المؤقت للموجّه (prompt caching)، فهو يغيّر الفاتورة أيضًا.",
+    "fr": "Mesure les tokens d'entrée sur de vrais tickets (avec l'API de comptage ou l'usage d'appels de test), pas en comptant des mots ; inclut les instructions et le prompt système dans l'entrée. Estime les tokens de sortie par résumé et les plafonne avec max_tokens. Facture l'entrée et la sortie séparément, par million de tokens, aux prix actuels de la page des tarifs, puis multiplie par le nombre d'appels par jour. Cite des raisons d'écart : la longueur des tickets varie, celle des réponses aussi, les comptages sont des estimations, le tokenizer change selon le modèle, les prix changent, et des options comme la Batch API modifient le prix. Bonus : mentionne le cache de prompt (*prompt caching*), qui change aussi la facture."
+   }
+  }
+ ]
+}

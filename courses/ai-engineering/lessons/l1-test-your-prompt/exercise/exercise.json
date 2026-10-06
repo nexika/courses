@@ -1,0 +1,9 @@
+{
+ "schema": "nexika.exercise/1",
+ "runner": "python-unittest",
+ "goal": {
+  "en": "In evaluate.py, write exact_match, a tolerant normalized_match, and run_eval(cases, model, grader), which asks the model about every case, grades each answer and returns the pass rate and the failing cases; an empty case list is an error, and a model error fails only its own case.",
+  "ar": "في evaluate.py، اكتب exact_match، ومُقيِّمًا متسامحًا normalized_match، والدالة run_eval(cases, model, grader) التي تسأل النموذج عن كل حالة، وتُقيّم كل إجابة، وتعيد نسبة النجاح والحالات الفاشلة؛ قائمة الحالات الفارغة خطأ، وخطأ النموذج يُفشل حالته وحدها.",
+  "fr": "Dans evaluate.py, écrivez exact_match, un évaluateur tolérant normalized_match, et run_eval(cases, model, grader), qui interroge le modèle sur chaque cas, note chaque réponse et renvoie le taux de réussite et les cas en échec ; une liste de cas vide est une erreur, et une erreur du modèle ne fait échouer que son propre cas."
+ }
+}

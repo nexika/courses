@@ -1,0 +1,9 @@
+{
+ "schema": "nexika.exercise/1",
+ "runner": "python-unittest",
+ "goal": {
+  "en": "In predictor.py, write build_counts(text), which counts for every word the words that come right after it, and next_word(counts, word), which returns the most frequent follower (ties go to the alphabetically first word, an unseen word gives None).",
+  "ar": "في الملف predictor.py، اكتب الدالة build_counts(text) التي تعدّ لكل كلمة الكلمات التي تأتي بعدها مباشرة، والدالة next_word(counts, word) التي تعيد الكلمة الأكثر مجيئًا بعدها (عند التعادل تُعاد الكلمة الأسبق أبجديًا، والكلمة غير المرئية من قبل تعطي None).",
+  "fr": "Dans predictor.py, écrivez build_counts(text), qui compte pour chaque mot les mots qui viennent juste après lui, et next_word(counts, word), qui renvoie le suivant le plus fréquent (en cas d'égalité, le premier dans l'ordre alphabétique ; un mot jamais vu donne None)."
+ }
+}

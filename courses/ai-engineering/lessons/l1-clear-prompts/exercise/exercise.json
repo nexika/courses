@@ -1,0 +1,9 @@
+{
+ "schema": "nexika.exercise/1",
+ "runner": "python-unittest",
+ "goal": {
+  "en": "Write build_prompt(task, context, examples, output_format, input_text) in prompt_builder.py: it returns a prompt whose parts are each wrapped in their own XML tag (task, context, examples with one example tag per example, output_format, and the variable input last in an input tag), in that order and separated by a blank line. Parts that are empty are left out, and an empty task is refused with a ValueError.",
+  "ar": "اكتب الدالة build_prompt(task, context, examples, output_format, input_text) في الملف prompt_builder.py: تعيد موجّهًا (prompt) يُحاط كل جزء فيه بوسم XML خاص به (task و context و examples مع وسم example لكل مثال، ثم output_format، ثم المُدخل المتغير أخيرًا في وسم input)، بهذا الترتيب، وبين كل جزأين سطر فارغ. الأجزاء الفارغة تُحذف، والمهمة الفارغة تُرفض برفع ValueError.",
+  "fr": "Écrivez build_prompt(task, context, examples, output_format, input_text) dans prompt_builder.py : la fonction renvoie un prompt dont chaque partie est entourée de sa propre balise XML (task, context, examples avec une balise example par exemple, output_format, et l'entrée variable en dernier dans une balise input), dans cet ordre et séparées par une ligne vide. Les parties vides sont omises, et une tâche vide est refusée avec une ValueError."
+ }
+}

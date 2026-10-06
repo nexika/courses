@@ -1,0 +1,21 @@
+{
+ "schema": "nexika.claims/1",
+ "claims": [
+  {
+   "id": "exact-pass-rate",
+   "says": "4 of 10 cases pass: a pass rate of 40%",
+   "says_ar": "تنجح 4 من 10 حالات، أي نسبة نجاح 40%",
+   "says_fr": "4 cas sur 10 réussissent, soit un taux de réussite de 40 %",
+   "check": "exact_rate.py",
+   "expect": 40
+  },
+  {
+   "id": "tolerant-pass-rate",
+   "says": "8 of 10 cases pass: a pass rate of 80%",
+   "says_ar": "تنجح 8 من 10 حالات، أي نسبة نجاح 80%",
+   "says_fr": "8 cas sur 10 réussissent, soit un taux de réussite de 80 %",
+   "check": "tolerant_rate.py",
+   "expect": 80
+  }
+ ]
+}

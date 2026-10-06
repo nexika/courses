@@ -1,0 +1,118 @@
+{
+ "schema": "nexika.review/1",
+ "fact_checks": [
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "59376d952f6cf662",
+   "notes": "I fetched all 37 sources.json entries on 2026-10-06. Every quote is on its page and supports the claim as worded, e.g. prefill on 4.6+, sampling params on 4.7+ returning 400, the SDK streaming need for large max_tokens, and top-level system. ar/fr give the same facts as en. Numbers (1024, 41/28, 16, 6 pieces, 4.6/4.7), the model ID claude-opus-5-5 and code match in all three; sample JSON files confirm the numbers. Quiz answers and explanations are correct in en/ar/fr."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "59376d952f6cf662",
+   "notes": "Checked about 40 factual sentences against all 36 sources.json footnotes, using 10 fetched pages (8 docs, SDK README, usage.py). Every quote is on its page and supports the sentence as written; contexts confirm the 4.6+ prefill 400 and 4.7+ sampling 400. SDK code matches the README and the streaming docs (messages.stream/text_stream). claims/*.py give 41, 28, 16 and 6, matching the text and samples. No uncited world claims."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "b002c06333732c1b",
+   "notes": "Fetched all 37 sources (.md plus HTML for models overview, messages/create, streaming, stop-reasons): every quote is present and supports the sentence. ar/fr state the same facts as en, with identical numbers, model IDs and code. Verified sample files: 41/28 end_turn, cut-off reply 16 tokens ending at max_tokens with 'that a model can', 6 text deltas. Quiz answers and explanations are correct in all 3 languages."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "b002c06333732c1b",
+   "notes": "Checked ~38 cited sentences against all 36 sources.json entries. Fetched 8 platform.claude.com pages, the SDK README and usage.py, and all 36 quotes are on the pages. Each quote supports its sentence; prefill and sampling cover Opus 5.5 (4.6+/4.7+). The SDK code matches the README (key read from the env by default) and the streaming docs (text_stream). claims/*.py output 41, 28, 16 and 6, matching the text and claims.json. Minor: the pricing quote is about tool-use tokens but still supports billing."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "26ac8ec78a0a3f63",
+   "notes": "Fetched all 10 source pages; all 37 quotes are present and support en/ar/fr as written (prefill 4.6+, sampling 4.7+, Opus 5.5 rec, max_tokens 0, SSE, cumulative usage, billing). Numbers (1024, 41/28, 16, 6 deltas) match the sample files. Model id and code are identical in all 3 languages; only the comments are translated. Quiz answers and explanations are correct in all 3 (continue/raise max_tokens is per docs). No issues."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "26ac8ec78a0a3f63",
+   "notes": "Checked ~38 cited world-claim sentences against all 37 sources.json entries (9 pages fetched: get-started, models overview, messages/create, working-with-messages, thinking, stop-reasons, streaming, pricing, SDK README + usage.py). Every quote is on its page, modulo markdown formatting, and supports the sentence as written. The SDK code is consistent with the README and the streaming docs. The claims scripts print 41/28/16/6, which match the text."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "51804e0a137f07d1",
+   "notes": "Fetched all 9 source pages. All 37 quotes are present (only markdown/backtick formatting differs) and support the sentences as written: prefill on 4.6+, sampling params on 4.7+, max_tokens=0, stream event flow, cumulative usage, billing. ar/fr match en on every fact, number (41/28, 16, 6 pieces), model id and code block. Sample files match the text. Quiz answers 2/0/3/1 and the explanations are correct in all three languages. No problems found."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "51804e0a137f07d1",
+   "notes": "Checked ~40 world sentences against 38 quotes from 10 fetched pages; all quotes found on their pages, the 4 claims scripts give 41/28/16/6, the sample text checks are correct, and the SDK code matches the README and streaming docs. Problems: (1) \"the fix is to raise `max_tokens`\" claims more than the source, which says \"Raise max_tokens or continue the response\". Fix: \"one fix is to raise `max_tokens`\". (2) \"`content` is a list of blocks, not one string\" (and \"in a reply it is a list of blocks\") has no citation. Fix: cite the API reference, \"This is an array of content blocks\"."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "a579e8bee9a35e18",
+   "notes": "Fetched all 11 source pages; all 39 quotes are present and support the sentences in en/ar/fr (prefill 4.6+, sampling 4.7+, 400 errors, Opus 5.5/claude-opus-5-5, max_tokens 0, the stream event order, cumulative usage). The AR and FR text states the same facts as EN, with no overreach. Code and numbers are identical in all three, and match the sample files (41/28, 16 output tokens, 'that a model can', 6 text_deltas). Quiz answers and explanations are right in all 3 languages."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "a579e8bee9a35e18",
+   "notes": "I checked 40 cited sentences in en.md against 39 sources.json entries. I fetched all 11 pages (8 docs, README, usage.py, message.py). Every quote is on its page, with only markdown or table formatting in between, and each one supports its sentence as written. I found no uncited world claim. The SDK code matches the README and the streaming doc. The claims scripts give 41, 28, 16 and 6, which match the text and the samples in exercise/tests."
+  }
+ ],
+ "teaching": [
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "59376d952f6cf662",
+   "notes": "Checked 1-9: headings match in all 3 languages, code identical, 15/15 tests pass on solution and fail on starter, exercise and quiz cover messages, params, stop_reason and streaming, misconceptions and limits stated. Beginner pass fails: \"A request is a small JSON object\". JSON is never defined here or in the prereqs. Fix: gloss it in en/ar/fr, e.g. \"JSON, a text format for data that looks like a Python dict\"."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "b002c06333732c1b",
+   "notes": "Rubric 1-9 checked; the 15 tests pass on the solution and fail on the starter. Beginner pass fails: 'the fix is to raise max_tokens or continue the answer' says nothing about how to continue, and the lesson has just said ending on an assistant turn returns an error. Fix: say how, with a source, or keep only 'raise max_tokens'. Quiz q4 needs text_delta, which en/ar/fr never name. Fix: name text_delta in the streaming paragraph."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "26ac8ec78a0a3f63",
+   "notes": "Pass: 1-6, 8, 9; 15/15 tests pass on the solution; headings match; quiz covers all 4 abilities. Fail on 7 (beginner pass): 'The token counts in the `message_delta` event are running totals' uses message_delta without saying what it is. Fix: before that line, say a message_delta event near the end carries stop_reason and the output token count, and message_start carries input usage (join_stream needs both). Then message_stop ends the stream."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "51804e0a137f07d1",
+   "notes": "All 9 rubric points hold. Objectives match c1.call-api/messages/params/streaming; terms are glossed or come from the prereqs; concept comes before code; the samples run offline; code is identical in EN/AR/FR; headings match; 15/15 tests pass on the solution and fail on the starter. Quiz q1-q4 cover the stated abilities. Minor: q2's explanation and the q5 rubric say 'continue the answer', which the lesson never teaches."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "a579e8bee9a35e18",
+   "notes": "Checked all 9 points. 15/15 tests pass on solution. Quiz covers messages, stop_reason, blocks, streaming; open Q covers usage/statelessness. Prereq terms (JSON, dict, SDK, env var, venv, delta) taught or glossed; AR/FR gloss terms per guide. Minor: AR 'الحقل system في أعلى الطلب' could read as position, not outer level; Exercise could say 'from the lesson folder'."
+  }
+ ],
+ "learners": {
+  "attempts": 0,
+  "passes": 0,
+  "hash": ""
+ },
+ "experts": []
+}

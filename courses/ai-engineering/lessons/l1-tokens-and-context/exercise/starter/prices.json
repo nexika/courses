@@ -1,0 +1,6 @@
+{
+ "_note": "US dollars per million tokens (MTok), copied from https://docs.claude.com/en/docs/about-claude/pricing on 2026-10-06. Prices change: read the page again before you rely on them.",
+ "claude-opus-5-5": {"input": 4, "output": 20},
+ "claude-sonnet-5-5": {"input": 2, "output": 10},
+ "claude-haiku-4-5": {"input": 1, "output": 5}
+}

@@ -1,0 +1,97 @@
+{
+ "schema": "nexika.review/1",
+ "fact_checks": [
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "9d489eadd340f1d1",
+   "notes": "Checked ~30 factual sentences against 17 sources on 4 pages. Every quote is on its page, and the cutoff dates and the 3/1 claims match. Problem: \"lists this date for every current model\" goes too far, because the page also names Claude Mythos 5.1 (pricing note) with no cutoff. Fix: \"lists this date for each model in its comparison table\". Minor: \"This further training does not change the basic mechanism\" has no citation."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "9d489eadd340f1d1",
+   "notes": "Fetched all 4 source pages (glossary, models overview, web search tool, reduce hallucinations). All 17 quotes are present and support the sentences in en, ar and fr. Cutoffs match the table: Jun 2026 for Fable 5.1, Opus 5.5 and Sonnet 5.5; Jul 2025 for Haiku 4.5, reliable cutoff Feb 2025. Model names and numbers match across languages, and the code is identical apart from translated comments. It ran and gave the stated output. Quiz answers and explanations are correct in all 3 languages. No problems found."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "87ebb85d24e0057c",
+   "notes": "Checked ~22 factual sentences against 17 sources on 4 live pages; all quotes found and supportive, and claims scripts give 3/1. Two sentences lack citations: (1) \"Fine-tuning means further training of a model that is already pretrained.\" Fix: add [^finetune] and quote \"further training a pretrained language model\". (2) \"It writes a whole answer by predicting one piece...\" Fix: add [^pretraining]."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "87ebb85d24e0057c",
+   "notes": "Fetched all 4 source pages (glossary, models overview, web search, reduce hallucinations). All 17 quotes are present verbatim and support the sentences. The Jun 2026, Jul 2025 and Feb 2025 cutoffs and the model names match the live table. AR and FR say the same as EN. The code is identical in all three languages (only comments differ) and its output matches what the lesson shows. The 12 exercise tests pass against the solution. Quiz answers and explanations are correct in all 3 languages."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "a7d48b8c5a19d4aa",
+   "notes": "Checked ~24 factual sentences against 17 sources over 4 live pages: glossary, models overview, web search tool and reduce-hallucinations. Every quote is on its page and supports the sentence as written. The cutoffs match the current table: training Jun 2026 x3 and Jul 2025, reliable Feb 2025 for Haiku 4.5. Both claims/*.py scripts give 3 and 1, and the Try it output matches exactly. No factual sentence lacks a citation."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "a7d48b8c5a19d4aa",
+   "notes": "Fetched all 4 source pages (glossary, models overview, web search tool, reduce hallucinations). All 18 quotes are present and support the sentences, with no overreach. Cutoffs (Jun 2026 for Fable 5.1/Opus 5.5/Sonnet 5.5, Jul 2025 for Haiku 4.5; reliable cutoff Feb 2025) match the live table. The code runs and prints exactly the stated output. Numbers, model names and code are identical in EN/AR/FR. Quiz answers and explanations are correct; the best-of-N claim in q4 is supported."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "6b3a4b814240fecd",
+   "notes": "Fetched all 4 source pages: all 18 quotes in sources.json are present verbatim, and each supports its sentence as written. The cutoffs match the live models table (Jun 2026 for Fable 5.1/Opus 5.5/Sonnet 5.5; Haiku 4.5 Jul 2025, reliable Feb 2025). Facts, numbers, dates and model names in ar/fr match en. Code is identical in all three (comments aside), and running it gives the stated output. Quiz answers and explanations are correct in all three languages; q4 is backed by Best-of-N."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "6b3a4b814240fecd",
+   "notes": "Checked about 30 factual sentences in en.md against all 18 sources.json entries. I fetched 4 pages: the glossary, models overview, web search tool and reduce hallucinations. All 18 quotes appear on their pages and support the sentences as written. Cutoff dates (Jun 2026 x3, Haiku 4.5 Jul 2025 / reliable Feb 2025) are current. The Try-it output matches, and claims/*.py give 3 and 1 as stated. No uncited world claims."
+  }
+ ],
+ "teaching": [
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "9d489eadd340f1d1",
+   "notes": "Pass: objective matches c1.what-llm, prereqs, concept before code, runnable Try it, exercise fits, misconceptions, honest, voice/headings, all 3 langs. 12/12 tests pass. Beginner pass fails on q5: \"pin that version in our project\" (ar \"فلنثبّت\", fr \"fixons\") uses version pinning, which is never taught. Fix: \"make our project always install that exact version\" in all 3 languages."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "87ebb85d24e0057c",
+   "notes": "All 9 rubric points pass. Objective matches c1.what-llm; no prerequisites used before taught; concept and example come before code; Try it runs as written; 12/12 tests pass on the solution; exercise and q1-q5 cover prediction, cutoff and hallucination; misconceptions named; en/ar/fr are native, glosses consistent; limits stated. Minor: gloss 'database' and 'context'."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "a7d48b8c5a19d4aa",
+   "notes": "Checked all 9 rubric points plus the beginner pass: objective matches c1.what-llm, prerequisites fit Level 0 (Python course), idea comes before code, Try it runs, exercise fits (12/12 tests pass), misconceptions covered, terms glossed, AR/FR read naturally, limits stated. Outside the rubric: [^ftdef] is cited but has no footnote line in en/ar/fr. Add `[^ftdef]: Anthropic, Glossary, \"Fine-tuning\".`"
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "6b3a4b814240fecd",
+   "notes": "Checked all 9 points in en/ar/fr. Objective matches c1.what-llm; nothing is used before it is taught (Level 0 covers Python); concept and example come before code; Try it runs as shown; exercise passes 12/12 on the solution, starter fails, and it practises prediction and pattern-over-truth; quiz covers all three abilities, answers at positions 2,0,3,1; misconceptions and limits stated. Beginner pass found nothing. Minor: [^ftdef] footnote styled differently from the others."
+  }
+ ],
+ "learners": {
+  "attempts": 0,
+  "passes": 0,
+  "hash": ""
+ },
+ "experts": []
+}

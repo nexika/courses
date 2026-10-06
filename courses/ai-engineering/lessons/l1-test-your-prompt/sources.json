@@ -1,0 +1,117 @@
+{
+ "schema": "nexika.sources/1",
+ "sources": {
+  "cycle": {
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+   "title": "Define success criteria and build evaluations (Claude Platform Docs)",
+   "kind": "doc",
+   "quote": "Building a successful LLM-based application starts with clearly defining your success criteria and then designing evaluations to measure performance against them.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "before": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview",
+   "title": "Prompt engineering overview (Claude Platform Docs)",
+   "kind": "doc",
+   "quote": "Some ways to empirically test against those criteria",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "taskspecific": {
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+   "title": "Define success criteria and build evaluations (Claude Platform Docs)",
+   "kind": "doc",
+   "quote": "Design evals that mirror your real-world task distribution. Don't forget to factor in edge cases!",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "sarcasm": {
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+   "title": "Define success criteria and build evaluations (Claude Platform Docs)",
+   "kind": "doc",
+   "quote": "# Edge case: Sarcasm",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "automate": {
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+   "title": "Define success criteria and build evaluations (Claude Platform Docs)",
+   "kind": "doc",
+   "quote": "Structure questions to allow for automated grading",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "codegrade": {
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+   "title": "Define success criteria and build evaluations (Claude Platform Docs)",
+   "kind": "doc",
+   "quote": "Code-based grading: Fastest and most reliable, extremely scalable, but also lacks nuance for more complex judgments",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "exact": {
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+   "title": "Define success criteria and build evaluations (Claude Platform Docs)",
+   "kind": "doc",
+   "quote": "Exact match evals measure whether the model's output matches a predefined correct answer, typically after normalizing whitespace and case.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "volume": {
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+   "title": "Define success criteria and build evaluations (Claude Platform Docs)",
+   "kind": "doc",
+   "quote": "More questions with slightly lower signal automated grading is better than fewer questions with high-quality human hand-graded evals.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "llmgrade": {
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+   "title": "Define success criteria and build evaluations (Claude Platform Docs)",
+   "kind": "doc",
+   "quote": "LLM-based grading: Fast and flexible, scalable and suitable for complex judgment. Test to ensure reliability first then scale.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "nondet": {
+   "url": "https://platform.claude.com/docs/en/api/messages/create",
+   "title": "Create a Message (Claude API reference)",
+   "kind": "doc",
+   "quote": "the results will not be fully deterministic",
+   "retrieved": "2026-10-06",
+   "volatile": true
+  },
+  "sdk": {
+   "url": "https://github.com/anthropics/anthropic-sdk-python",
+   "title": "anthropics/anthropic-sdk-python (README)",
+   "kind": "repo",
+   "quote": "The Claude SDK for Python provides access to the Claude API from Python applications.",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "model": {
+   "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+   "title": "Models overview (Claude Platform Docs)",
+   "kind": "doc",
+   "quote": "Claude API ID claude-fable-5-1 claude-opus-5-5",
+   "retrieved": "2026-10-06",
+   "volatile": true
+  },
+  "stringmatch": {
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+   "title": "Define success criteria and build evaluations (Claude Platform Docs)",
+   "kind": "doc",
+   "quote": "String match: key_phrase in output",
+   "retrieved": "2026-10-06",
+   "volatile": false
+  },
+  "temperature": {
+   "url": "https://platform.claude.com/docs/en/api/messages/create",
+   "title": "Create a Message (Claude API reference)",
+   "kind": "doc",
+   "quote": "Deprecated. Models released after Claude Opus 4.6 do not support setting temperature.",
+   "retrieved": "2026-10-06",
+   "volatile": true
+  }
+ }
+}

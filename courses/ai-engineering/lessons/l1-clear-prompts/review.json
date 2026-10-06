@@ -1,0 +1,125 @@
+{
+ "schema": "nexika.review/1",
+ "fact_checks": [
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "6c7705671acdc18a",
+   "notes": "Fetched all 4 source pages (best practices, PE overview, multilingual, glossary). All 15 quotes are present verbatim and back the sentences they support, with no overreach and nothing outdated. Every factual sentence in ar/fr matches en. All code and prompt blocks are identical across languages; only the API snippet's comments are translated. The script's output matches the clear prompt shown. Quiz answers and explanations are correct in all 3 languages. The solution passes all 9 exercise tests."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "6c7705671acdc18a",
+   "notes": "Checked 16 cited sentences against 15 sources on 4 pages; all quotes are on the pages and the SDK code matches the docs. Fail: 'Your prompt does not have to be valid XML, and there is no fixed list of tag names' [^tag-names]. Neither claim is on the page, which only says 'Use consistent, descriptive tag names'. Fix: cut both claims, keeping 'use consistent, descriptive tag names such as <ticket>', or cite a source that says them."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "0d5b02f8437dc774",
+   "notes": "Checked 16 cited sentences against 15 sources on 4 pages (best practices, PE overview, glossary, multilingual), fetched 2026-10-06. Every quote is on its page (example-tags differs only in markdown backticks), and each supports its sentence as written. SDK snippet (messages.create, first text block) matches the docs. The prompt-injection caution has no citation, but it is advice, not a factual claim."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "0d5b02f8437dc774",
+   "notes": "Fetched all 4 source pages (.md). All 15 quotes are present, including diverse/example-tags (they differ only by markdown bold and backticks), and each cited sentence in en/ar/fr matches its source with no overreach. Code blocks are identical in all three files apart from translated comments. Quiz answers 2,0,3,1 and the explanations/rubric are correct and consistent across languages. I found nothing wrong."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "e939a5623cd46503",
+   "notes": "Checked 15 cited world claims against 15 sources (4 pages fetched as .md: prompting best practices, PE overview, glossary, multilingual). All quotes found verbatim; 'diverse' and 'example-tags' differ only by bold list labels. Each sentence stays within its quote, with no overreach. The SDK call (messages.create with model/max_tokens/messages, filtering for the text block) matches the docs. No uncited world claims found."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "e939a5623cd46503",
+   "notes": "Fetched all 4 source pages (best practices, overview, multilingual, glossary); all 15 quotes are present and support the sentences in en, ar and fr with no overreach. ar/fr state the same facts as en (3–5 examples, latency/cost via another model, randomness, tags). Code blocks are identical across languages apart from translated comments. Quiz answers 2/0/3/1 and explanations are correct in all three languages."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "098be9581c8ae1f6",
+   "notes": "Checked 15 cited claims against their 15 sources.json entries on 4 live pages (best-practices, PE overview, glossary, multilingual), fetched as .md. All 15 quotes are on the pages (2 sit inside markdown bullets) and support the sentences as written, with no overreach. I found no uncited world claims; the rest is advice or definitions. The SDK snippet (messages.create with model/max_tokens/messages, then reading the first text block) matches the docs."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "098be9581c8ae1f6",
+   "notes": "Fetched all 4 source pages: all 15 quotes are present and current. Code blocks match across languages except translated comments. Quiz answers and explanations agree in en/ar/fr. FR has no problems. AR overreaches on one point: it says 'شرح السبب وراء التعليمة يساعد Claude' (it helps), but EN and the source say 'can help'. Fix: change it to 'قد يساعد Claude على فهم أهدافك...'."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "0216ab42ff06ad5f",
+   "notes": "Checked 17 cited factual sentences against 15 sources. I fetched all 4 pages: best practices, PE overview, multilingual, glossary. Every quote is on its page verbatim, and each supports its sentence as written, including the 3-5 examples tip, the diverse/unintended-patterns claim, the what-to-do formatting advice and the temperature/randomness claim. No world claim lacks a citation. The SDK call (messages.create with model, max_tokens, messages, then reading text blocks) matches the docs."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "0216ab42ff06ad5f",
+   "notes": "Fetched all 4 cited pages; all 15 quotes are present (diverse/example-tags differ only by markdown bold/backticks) and support ar/fr sentences as written. Hedges kept (can/may/sometimes → قد/أحيانًا, peut/parfois); 3–5 examples is current. Code identical across en/ar/fr except the translated comments. Extra ar/fr glosses are accurate. Quiz answers (2,0,3,1) and explanations are correct in all 3 languages."
+  }
+ ],
+ "teaching": [
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "6c7705671acdc18a",
+   "notes": "Points 1-9 checked. Tests pass 9/9 on solution, fail on starter. Exercise and quiz match the abilities. Fail on 7 (beginner pass): EN \"latency or cost ... can sometimes be improved\" and FR \"la latence ou le coût\" use a term no earlier lesson defines. Fix: \"latency (how long the reply takes to arrive)\" / \"la latence (le temps que met la réponse à arriver)\". AR \"سرعة الاستجابة\" is fine."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "0d5b02f8437dc774",
+   "notes": "All 9 rubric points checked. The tests pass on the solution (9/9) and fail on the starter. Objectives, concept-first order, the worked example, the exercise and quiz fit, misconceptions, honesty and the three languages are all OK. One beginner-pass failure: quiz q4 option \"The examples will fill the whole context window\" (ar \"نافذة السياق\", fr \"fenêtre de contexte\") uses a term the prerequisite l1-first-api-call never defines. Fix: reword it, e.g. \"make the prompt too long to send\", or add l1-tokens-and-context as a prerequisite."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "0d5b02f8437dc774",
+   "notes": "Re-run after REVIEWING.md point 2 was clarified (prerequisites carry over). All 9 rubric points pass. Objective matches c1.prompting. Prereqs carry over (API, max_tokens, text blocks, temperature). Idea comes before code, Try it runs, 6 misconceptions. Honest about limits and injection. 9/9 tests pass on the solution, all fail on the starter. Quiz covers the 3 abilities. Headings, code, glosses and AR/FR idiom OK. Minor, not failures: EN 'blank part' unglossed (AR/FR gloss it); 'spaces' means all whitespace."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "fail",
+   "hash": "e939a5623cd46503",
+   "notes": "Points 1-6, 8 and 9 hold; 9/9 tests pass and the quiz covers the abilities. Point 7 (beginner pass) fails: 'ticket'/'support ticket' (ar 'تذكرة', fr 'ticket') is never defined, and a beginner reads 'تذكرة' as a travel ticket. Fix: gloss it at first use in all 3 languages, e.g. 'a support ticket (a message a customer sends to ask for help)' / 'تذكرة دعم (رسالة يرسلها العميل يطلب فيها المساعدة)'."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "098be9581c8ae1f6",
+   "notes": "Checked all 9 rubric points. Objectives match c1.prompting; terms are defined. The idea and a vague-to-clear example come before the code. Try it runs offline. The exercise, 9/9 tests passing on the solution, practises tags, order and leaving parts out; the quiz covers all 3 abilities. 6 misconceptions corrected; limits stated. Beginner pass found nothing. Minor wording: 'spaces around it' (and 'مسافات'/'espaces') should say spaces, tabs or line breaks, as the tests strip \\n."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "0216ab42ff06ad5f",
+   "notes": "All 9 checked: objective=c1.prompting; prereqs (what-an-llm-does/tokens/first-api-call) cover API, thinking, randomness; idea before code; Try-it runs, output equals The idea; 9 tests pass on solution, fail on starter; 6 misconceptions; beginner pass clean; ar/fr natural, same headings; honest. Minor: <input> vs advice for descriptive names; next() not taught; ar/fr 'spaces' drops tabs/newlines."
+  }
+ ],
+ "learners": {
+  "attempts": 0,
+  "passes": 0,
+  "hash": ""
+ },
+ "experts": []
+}

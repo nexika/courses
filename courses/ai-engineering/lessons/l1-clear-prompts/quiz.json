@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "choice",
+   "prompt": {
+    "en": "Your prompt is \"Sort this ticket.\" and Claude's answers differ from one call to the next. What is the most useful first fix?",
+    "ar": "الموجّه (prompt) الذي تستخدمه هو \"صنّف هذه التذكرة.\"، وإجابات Claude تختلف من استدعاء إلى آخر. ما أنفع إصلاح تبدأ به؟",
+    "fr": "Votre prompt est « Trie ce ticket. » et les réponses de Claude changent d'un appel à l'autre. Quelle est la première correction la plus utile ?"
+   },
+   "options": [
+    {
+     "en": "Ask Claude to try harder and be more careful",
+     "ar": "اطلب من Claude أن يبذل جهدًا أكبر وأن يدقّق أكثر",
+     "fr": "Demander à Claude de faire plus d'efforts et d'attention"
+    },
+    {
+     "en": "Repeat the same request several times in the prompt",
+     "ar": "كرّر الطلب نفسه عدة مرات داخل الموجّه",
+     "fr": "Répéter plusieurs fois la même demande dans le prompt"
+    },
+    {
+     "en": "Name the allowed categories and the reply format",
+     "ar": "سمِّ الفئات المسموح بها وحدّد شكل الإجابة",
+     "fr": "Nommer les catégories permises et le format de réponse"
+    },
+    {
+     "en": "Raise max_tokens so the answer has more room",
+     "ar": "ارفع max_tokens ليجد الجواب مساحة أكبر",
+     "fr": "Augmenter max_tokens pour laisser plus de place"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "Claude sees only the prompt. \"Sort\" does not say into what, or in what shape to answer, so Claude guesses. Naming the categories and the format removes the guess. Effort, repetition and room do not add the missing information.",
+    "ar": "لا يرى Claude إلا الموجّه. كلمة \"صنّف\" لا تقول إلى أي فئات ولا بأي شكل يجيب، فيضطر إلى التخمين. تسمية الفئات وشكل الإجابة تُغني عن التخمين. أما طلب الجهد أو التكرار أو المساحة فلا يضيف المعلومة الناقصة.",
+    "fr": "Claude ne voit que le prompt. « Trie » ne dit ni dans quelles catégories ni sous quelle forme répondre : Claude devine. Nommer les catégories et le format supprime cette devinette. L'effort, la répétition ou la place ne donnent pas l'information qui manque."
+   }
+  },
+  {
+   "id": "q2",
+   "type": "choice",
+   "prompt": {
+    "en": "Why does Anthropic's guide suggest putting examples in <example> tags?",
+    "ar": "لماذا يقترح دليل Anthropic وضع الأمثلة داخل وسوم <example>؟",
+    "fr": "Pourquoi le guide d'Anthropic conseille-t-il de placer les exemples dans des balises <example> ?"
+   },
+   "options": [
+    {
+     "en": "So Claude can tell examples apart from instructions",
+     "ar": "ليميّز Claude الأمثلة عن التعليمات",
+     "fr": "Pour que Claude distingue les exemples des instructions"
+    },
+    {
+     "en": "Because Claude ignores any example that has no tags",
+     "ar": "لأن Claude يتجاهل كل مثال بلا وسوم",
+     "fr": "Parce que Claude ignore tout exemple sans balises"
+    },
+    {
+     "en": "Because the API refuses prompts with untagged examples",
+     "ar": "لأن الواجهة البرمجية ترفض الأمثلة غير الموسومة",
+     "fr": "Parce que l'API refuse les exemples sans balises"
+    },
+    {
+     "en": "So the examples are not counted as input tokens",
+     "ar": "كي لا تُحتسب الأمثلة ضمن الرموز (tokens) المرسلة",
+     "fr": "Pour que les exemples ne comptent pas en tokens"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "The guide says the tags let Claude distinguish the examples from the instructions. Untagged examples are not ignored or refused, and tagged text still counts as input tokens.",
+    "ar": "يقول الدليل إن الوسوم تتيح لـ Claude تمييز الأمثلة عن التعليمات. الأمثلة غير الموسومة لا تُتجاهل ولا تُرفض، والنص الموسوم يُحتسب أيضًا ضمن الرموز (tokens) المرسلة.",
+    "fr": "Le guide dit que les balises permettent à Claude de distinguer les exemples des instructions. Des exemples sans balises ne sont ni ignorés ni refusés, et le texte balisé compte toujours en tokens d'entrée."
+   }
+  },
+  {
+   "id": "q3",
+   "type": "choice",
+   "prompt": {
+    "en": "You call build_prompt with an empty context. What should the prompt contain for the context?",
+    "ar": "تستدعي build_prompt بسياق فارغ. ماذا يجب أن يحتوي الموجّه في مكان السياق؟",
+    "fr": "Vous appelez build_prompt avec un contexte vide. Que doit contenir le prompt pour le contexte ?"
+   },
+   "options": [
+    {
+     "en": "An empty <context></context> pair, to keep the layout",
+     "ar": "زوج وسوم <context></context> فارغ للحفاظ على الشكل",
+     "fr": "Une paire <context></context> vide, pour garder la forme"
+    },
+    {
+     "en": "The word \"none\" written inside <context> tags",
+     "ar": "كلمة \"لا يوجد\" مكتوبة داخل وسوم <context>",
+     "fr": "Le mot « aucun » écrit dans des balises <context>"
+    },
+    {
+     "en": "A line asking Claude to guess the missing context",
+     "ar": "سطر يطلب من Claude تخمين السياق الناقص",
+     "fr": "Une ligne demandant à Claude de deviner le contexte"
+    },
+    {
+     "en": "Nothing: the context part is left out entirely",
+     "ar": "لا شيء: يُحذف جزء السياق من الموجّه كليًا",
+     "fr": "Rien : la partie contexte est entièrement omise"
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "An empty part tells Claude nothing and adds noise. Leaving it out keeps every tag in the prompt meaningful. Asking Claude to guess invites the very guessing a clear prompt avoids.",
+    "ar": "الجزء الفارغ لا يخبر Claude بشيء ويضيف ضجيجًا. حذفه يُبقي كل وسم في الموجّه ذا معنى. وطلب التخمين من Claude يعيد التخمين الذي يريد الموجّه الواضح تجنّبه.",
+    "fr": "Une partie vide n'apprend rien à Claude et ajoute du bruit. L'omettre garde chaque balise du prompt utile. Demander à Claude de deviner ramène justement la devinette qu'un prompt clair évite."
+   }
+  },
+  {
+   "id": "q4",
+   "type": "choice",
+   "prompt": {
+    "en": "Your three examples are short, polite tickets, and all three are billing questions. What is the risk?",
+    "ar": "أمثلتك الثلاثة تذاكر قصيرة ومهذبة، وكلها أسئلة عن الفوترة. ما الخطر؟",
+    "fr": "Vos trois exemples sont des tickets courts et polis, et tous portent sur la facturation. Quel est le risque ?"
+   },
+   "options": [
+    {
+     "en": "Claude will refuse tickets that are not polite",
+     "ar": "سيرفض Claude التذاكر غير المهذبة",
+     "fr": "Claude refusera les tickets qui ne sont pas polis"
+    },
+    {
+     "en": "Claude may learn a pattern you did not intend",
+     "ar": "قد يتعلّم Claude نمطًا لم تقصده",
+     "fr": "Claude peut apprendre un motif non voulu"
+    },
+    {
+     "en": "Claude will copy the example tickets word for word",
+     "ar": "سينسخ Claude التذاكر النموذجية حرفيًا",
+     "fr": "Claude recopiera mot pour mot les tickets d'exemple"
+    },
+    {
+     "en": "The examples will fill the whole context window",
+     "ar": "ستملأ الأمثلة نافذة السياق كلها",
+     "fr": "Les exemples rempliront toute la fenêtre de contexte"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": "Examples that all share an accident, here the same category (or the same length and tone), can teach Claude that accident, for example to lean towards billing. The guide asks for diverse examples that cover edge cases. Refusing, copying word for word and filling the window are not what goes wrong here.",
+    "ar": "الأمثلة التي تشترك كلها في صدفة واحدة، هنا الفئة نفسها (أو الطول والنبرة نفسهما)، قد تعلّم Claude تلك الصدفة، كأن يميل إلى الفوترة. يطلب الدليل أمثلة متنوعة تغطي الحالات الحدّية. أما الرفض أو النسخ الحرفي أو امتلاء النافذة فليست المشكلة هنا.",
+    "fr": "Des exemples qui partagent tous un hasard, ici la même catégorie (ou la même longueur et le même ton), peuvent apprendre ce hasard à Claude, par exemple pencher vers la facturation. Le guide demande des exemples variés qui couvrent les cas limites. Refuser, recopier ou remplir la fenêtre n'est pas le problème ici."
+   }
+  },
+  {
+   "id": "q5",
+   "type": "open",
+   "prompt": {
+    "en": "Pick a real use for the prompt \"Summarize this.\" and rewrite it as a clear prompt. Then explain, part by part, what each part tells Claude that the original did not.",
+    "ar": "اختر استخدامًا حقيقيًا للموجّه \"لخّص هذا.\" وأعد كتابته موجّهًا واضحًا. ثم اشرح، جزءًا جزءًا، ما الذي يخبر به كل جزءٍ Claude ولم يقله الموجّه الأصلي.",
+    "fr": "Choisissez un usage réel du prompt « Résume ceci. » et réécrivez-le en prompt clair. Expliquez ensuite, partie par partie, ce que chaque partie dit à Claude que l'original ne disait pas."
+   },
+   "rubric": {
+    "en": "A good answer: states the task directly (what to summarize and for whom); gives context Claude lacks (the audience, the purpose, why it matters); specifies the output format (length, form such as bullet points or one paragraph, language); may add an example of a good summary; puts each part and the text to summarize in their own XML tags; leaves out parts it does not need; and says the prompt still has to be tested against expected answers.",
+    "ar": "الإجابة الجيدة: تذكر المهمة مباشرة (ماذا يُلخَّص ولمن)؛ وتعطي السياق الذي ينقص Claude (الجمهور والغرض وسبب الأهمية)؛ وتحدد شكل المخرجات (الطول، والشكل كنقاط أو فقرة واحدة، واللغة)؛ وقد تضيف مثالًا لملخص جيد؛ وتضع كل جزء والنص المراد تلخيصه في وسوم XML خاصة بها؛ وتحذف الأجزاء غير اللازمة؛ وتذكر أن الموجّه ما زال يحتاج إلى اختبار مقابل إجابات متوقعة.",
+    "fr": "Une bonne réponse : énonce la tâche directement (quoi résumer et pour qui) ; donne le contexte qui manque à Claude (le public, le but, pourquoi c'est important) ; précise le format de sortie (longueur, forme comme une liste ou un paragraphe, langue) ; peut ajouter un exemple de bon résumé ; place chaque partie et le texte à résumer dans leurs propres balises XML ; omet les parties inutiles ; et dit que le prompt doit encore être testé face à des réponses attendues."
+   }
+  }
+ ]
+}
