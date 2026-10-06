@@ -239,6 +239,17 @@ Two more rules, because real evals meet them:
   holding the message, and the run goes on with the next case. A real API call can fail; one failure
   must not stop the whole eval.
 
+Python's `try` and `except` let you catch that error. The code inside `try` runs; if it raises, Python
+jumps to `except`, and `exc` is the error. `str(exc)` is its message:
+
+```python
+try:
+    output = model(case["input"])  # the call that may fail
+    error = None
+except Exception as exc:
+    output, error = None, str(exc)  # no answer, keep the message
+```
+
 Run the tests from the starter folder:
 
 ```bash

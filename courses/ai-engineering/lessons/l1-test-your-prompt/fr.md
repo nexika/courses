@@ -258,6 +258,17 @@ Deux règles de plus, parce que les vraies évaluations les rencontrent :
   message, puis l'exécution continue avec le cas suivant. Un vrai appel d'API peut échouer ; un seul échec
   ne doit pas arrêter toute l'évaluation.
 
+En Python, `try` et `except` permettent d'attraper cette erreur. Le code dans `try` s'exécute ; s'il lève
+une erreur, Python saute à `except`, et `exc` est l'erreur. `str(exc)` est son message :
+
+```python
+try:
+    output = model(case["input"])  # l'appel qui peut échouer
+    error = None
+except Exception as exc:
+    output, error = None, str(exc)  # pas de réponse, on garde le message
+```
+
 Lancez les tests depuis le dossier de départ :
 
 ```bash

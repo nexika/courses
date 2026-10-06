@@ -30,7 +30,7 @@ quotes, each followed by a colon and a value. These are the fields you will use 
   a role[^system].
 - `messages`: the conversation so far, oldest first. Each turn has a `role`, `user` or `assistant`, and its
   `content`. In a request, `content` can be a plain string, as in the example below[^content-string]; in a
-  reply it is a list of blocks, as you will see further down. The models are trained on alternating user
+  reply it is a list of blocks[^reply-blocks], as you will see further down. The models are trained on alternating user
   and assistant turns[^alternating], so put your turns in that order: user, assistant, user, and so on.
 
 ```json
@@ -82,13 +82,13 @@ so its token counts are illustrative.
 
 Three parts matter most:
 
-- `content` is a list of blocks, not one string. A `text` block holds words of the answer. Other kinds of
+- `content` is a list of blocks, not one string[^reply-blocks]. A `text` block holds words of the answer. Other kinds of
   blocks exist. For example, when thinking is turned on, Claude reasons in thinking blocks before it
   answers, and they arrive before the text blocks[^thinking-blocks]. So collect the blocks whose type is
   `text` instead of assuming the first block is the answer.
 - `stop_reason` says why Claude stopped writing[^stop-every]. `end_turn` means Claude finished its answer
   naturally[^stop-end]. `max_tokens` means it reached the `max_tokens` limit in your request[^stop-max]: the
-  text is cut off, and the fix is to raise `max_tokens`[^stop-max-do]. A stop reason
+  text is cut off, and one fix is to raise `max_tokens`[^stop-max-do]. A stop reason
   is not an error: it tells you why a successful reply ended[^stop-not-error]. Other values exist; later
   lessons meet them.
 - `usage` counts the input tokens (what you sent)[^usage] and the output tokens (what Claude
@@ -276,3 +276,4 @@ Take the quiz for this lesson. If a question is hard, read the part of "The idea
 [^system-top]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^max-zero]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
 [^stream-end]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>
+[^reply-blocks]: anthropic-sdk-python: types/message.py, <https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/types/message.py>

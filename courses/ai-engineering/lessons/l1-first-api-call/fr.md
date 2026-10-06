@@ -30,7 +30,7 @@ Python : des noms entre guillemets, chacun suivi de deux-points et d'une valeur.
   par exemple un objectif ou un rôle[^system].
 - `messages` : la conversation jusqu'ici, du plus ancien au plus récent. Chaque tour a un `role`, `user`
   ou `assistant`, et un `content`. Dans une requête, `content` peut être une simple chaîne, comme dans
-  l'exemple ci-dessous[^content-string] ; dans une réponse, c'est une liste de blocs, comme vous le verrez
+  l'exemple ci-dessous[^content-string] ; dans une réponse, c'est une liste de blocs[^reply-blocks], comme vous le verrez
   plus loin. Les modèles sont entraînés sur des tours qui alternent entre utilisateur et
   assistant[^alternating] : placez donc vos tours dans cet ordre, utilisateur, assistant, utilisateur, etc.
 
@@ -85,14 +85,14 @@ l'enregistrement d'un vrai appel : ses nombres de tokens sont donnés à titre d
 
 Trois parties comptent le plus :
 
-- `content` est une liste de blocs, pas une seule chaîne. Un bloc `text` contient des mots de la réponse.
+- `content` est une liste de blocs, pas une seule chaîne[^reply-blocks]. Un bloc `text` contient des mots de la réponse.
   Il existe d'autres sortes de blocs. Par exemple, quand la réflexion (*thinking*) est activée, Claude
   réfléchit dans des blocs de réflexion avant de répondre, et ces blocs arrivent avant les blocs de
   texte[^thinking-blocks]. Rassemblez donc les blocs de type `text` au lieu de supposer que le premier
   bloc est la réponse.
 - `stop_reason` indique pourquoi Claude a cessé d'écrire[^stop-every]. `end_turn` signifie que Claude a
   terminé sa réponse naturellement[^stop-end]. `max_tokens` signifie qu'il a atteint la limite
-  `max_tokens` de votre requête[^stop-max] : le texte est coupé, et la solution est d'augmenter
+  `max_tokens` de votre requête[^stop-max] : le texte est coupé, et une solution est d'augmenter
   `max_tokens`[^stop-max-do]. Une raison d'arrêt n'est pas une erreur : elle
   dit pourquoi une réponse réussie s'est terminée[^stop-not-error]. Il existe d'autres valeurs, que
   d'autres leçons présenteront.
@@ -291,3 +291,4 @@ de la requête, sur `stop_reason` ou sur le streaming.
 [^system-top]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^max-zero]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
 [^stream-end]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>
+[^reply-blocks]: anthropic-sdk-python: types/message.py, <https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/types/message.py>

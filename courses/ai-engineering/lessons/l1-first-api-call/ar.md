@@ -30,7 +30,7 @@ Python الوصول إلى Claude API[^sdk].
   يؤديه[^system].
 - `messages`: المحادثة حتى الآن، من الأقدم إلى الأحدث. لكل جولة `role`، أي `user` أو `assistant`،
   ومحتوى `content`. في الطلب، يمكن أن يكون `content` نصًا عاديًا كما في المثال أدناه[^content-string]؛
-  أما في الإجابة فهو قائمة من الكتل، كما سترى لاحقًا. دُرّبت النماذج على جولات تتناوب بين المستخدم
+  أما في الإجابة فهو قائمة من الكتل[^reply-blocks]، كما سترى لاحقًا. دُرّبت النماذج على جولات تتناوب بين المستخدم
   والمساعد[^alternating]، فرتّب جولاتك على هذا النحو: المستخدم، ثم المساعد، ثم المستخدم، وهكذا.
 
 ```json
@@ -81,13 +81,13 @@ Claude 4.7 والنماذج الأحدث، ومنها Claude Opus 5.5، لا ي�
 
 أهم ثلاثة أجزاء:
 
-- `content` قائمة من الكتل (blocks)، وليس نصًا واحدًا. كتلة `text` تحمل كلمات الإجابة. وهناك أنواع
+- `content` قائمة من الكتل (blocks)، وليس نصًا واحدًا[^reply-blocks]. كتلة `text` تحمل كلمات الإجابة. وهناك أنواع
   أخرى من الكتل. فمثلًا، حين يكون التفكير (thinking) مفعّلًا، يفكّر Claude في كتل تفكير قبل أن يجيب،
   وتصل هذه الكتل قبل كتل النص[^thinking-blocks]. لذلك اجمع الكتل التي نوعها `text` بدل أن تفترض أن
   الكتلة الأولى هي الإجابة.
 - `stop_reason` يخبرك لماذا توقف Claude عن الكتابة[^stop-every]. القيمة `end_turn` تعني أن Claude أنهى
   إجابته بشكل طبيعي[^stop-end]. والقيمة `max_tokens` تعني أنه بلغ حد `max_tokens` الذي وضعته في
-  طلبك[^stop-max]: النص مقطوع، والحل أن ترفع `max_tokens`[^stop-max-do]. سبب التوقف
+  طلبك[^stop-max]: النص مقطوع، وأحد الحلول أن ترفع `max_tokens`[^stop-max-do]. سبب التوقف
   ليس خطأً: إنه يخبرك لماذا انتهت إجابة ناجحة[^stop-not-error]. توجد قيم أخرى ستلتقيها في دروس لاحقة.
 - `usage` يعدّ رموز الإدخال (ما أرسلته)[^usage] ورموز الإخراج (ما كتبه Claude)[^usage-output]. وعدد رموز
   الإخراج يشمل كل رموز الإخراج، ومنها رموز التفكير، وهو الرقم الذي تُحتسب عليه الفاتورة للإخراج[^usage-billing]. ولأنك تعيد إرسال التاريخ في كل استدعاء، يكبر عدد رموز
@@ -271,3 +271,4 @@ python3 -m unittest discover -s ../tests
 [^system-top]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^max-zero]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
 [^stream-end]: Streaming Messages, <https://platform.claude.com/docs/en/build-with-claude/streaming>
+[^reply-blocks]: anthropic-sdk-python: types/message.py, <https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/src/anthropic/types/message.py>

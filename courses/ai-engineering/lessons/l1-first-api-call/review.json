@@ -56,6 +56,20 @@
    "result": "fail",
    "hash": "51804e0a137f07d1",
    "notes": "Checked ~40 world sentences against 38 quotes from 10 fetched pages; all quotes found on their pages, the 4 claims scripts give 41/28/16/6, the sample text checks are correct, and the SDK code matches the README and streaming docs. Problems: (1) \"the fix is to raise `max_tokens`\" claims more than the source, which says \"Raise max_tokens or continue the response\". Fix: \"one fix is to raise `max_tokens`\". (2) \"`content` is a list of blocks, not one string\" (and \"in a reply it is a list of blocks\") has no citation. Fix: cite the API reference, \"This is an array of content blocks\"."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "a579e8bee9a35e18",
+   "notes": "Fetched all 11 source pages; all 39 quotes are present and support the sentences in en/ar/fr (prefill 4.6+, sampling 4.7+, 400 errors, Opus 5.5/claude-opus-5-5, max_tokens 0, the stream event order, cumulative usage). The AR and FR text states the same facts as EN, with no overreach. Code and numbers are identical in all three, and match the sample files (41/28, 16 output tokens, 'that a model can', 6 text_deltas). Quiz answers and explanations are right in all 3 languages."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "a579e8bee9a35e18",
+   "notes": "I checked 40 cited sentences in en.md against 39 sources.json entries. I fetched all 11 pages (8 docs, README, usage.py, message.py). Every quote is on its page, with only markdown or table formatting in between, and each one supports its sentence as written. I found no uncited world claim. The SDK code matches the README and the streaming doc. The claims scripts give 41, 28, 16 and 6, which match the text and the samples in exercise/tests."
   }
  ],
  "teaching": [
@@ -86,6 +100,13 @@
    "result": "pass",
    "hash": "51804e0a137f07d1",
    "notes": "All 9 rubric points hold. Objectives match c1.call-api/messages/params/streaming; terms are glossed or come from the prereqs; concept comes before code; the samples run offline; code is identical in EN/AR/FR; headings match; 15/15 tests pass on the solution and fail on the starter. Quiz q1-q4 cover the stated abilities. Minor: q2's explanation and the q5 rubric say 'continue the answer', which the lesson never teaches."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-06",
+   "result": "pass",
+   "hash": "a579e8bee9a35e18",
+   "notes": "Checked all 9 points. 15/15 tests pass on solution. Quiz covers messages, stop_reason, blocks, streaming; open Q covers usage/statelessness. Prereq terms (JSON, dict, SDK, env var, venv, delta) taught or glossed; AR/FR gloss terms per guide. Minor: AR 'الحقل system في أعلى الطلب' could read as position, not outer level; Exercise could say 'from the lesson folder'."
   }
  ],
  "learners": {
