@@ -1,0 +1,76 @@
+{
+ "schema": "nexika.review/1",
+ "fact_checks": [
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "7e6f476e2835f0d9",
+   "notes": "Round 1. Fetched all 5 source pages (20 quotes); every quote is present and supports en/ar/fr (js-additional differs only by a paragraph break). Numbers (2 of 6, priority 5, 1-3, max_tokens 1024), model id claude-opus-5-5 and all 21 footnotes match. All code blocks are byte-identical across the three files. Both claim phrases appear in each language. Quiz answers correct in all 3. Minor: fr q3 option drops \"exactly\"."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "7e6f476e2835f0d9",
+   "notes": "Round 1. Checked 22 cited sentences against 21 sources (5 pages fetched). Every quote is on its page and supports its sentence; claims scripts give 2 and 5; the Try it output matches. Problem: three JSON Schema sentences are uncited (the list of types, enum, minimum/maximum). Fix: cite the structured outputs type list and the JSON Schema enum and numeric reference pages."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "e6b999e4e57db9e0",
+   "notes": "Round 2. Fetched all 7 source pages; every one of the 24 quotes is present and supports en/ar/fr. The code is identical in all three languages. The claim values (2 and 5), the model id claude-opus-5-5 and the citations match. The Arabic and French keep the English hedges (\"usually\", \"slightly\", \"may\") without adding or stronger claims. Quiz translations and answers match the English and the sources."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "e6b999e4e57db9e0",
+   "notes": "Round 2. Checked 25 cited sentences against 23 sources (7 pages fetched). All quotes found and support the text; last round's three flags are fixed; claims scripts print 2 and 5; Try it and the solution tests match. Problem: the new gloss \"an integer is a whole number, a number any number ... array is a Python list, null is None\" is uncited. Fix: cite the JSON Schema numeric and type pages."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "ca932db82b4aa6b7",
+   "notes": "Round 3. Fetched all 8 source pages (28 quotes); every quote is present and supports en/ar/fr. Arabic and French state the same facts, numbers, model ids (claude-opus-5-5, Claude Opus 5.5) and footnotes as English. The four code blocks are identical, both claim phrases appear with their values in every language, and the quiz translations and answers are correct. Style nit: ar \"مدى الرقم\" could read \"مدى العدد\"."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "ca932db82b4aa6b7",
+   "notes": "Round 3. Checked 30 cited sentences against 27 sources (8 pages fetched: structured-outputs, handling-stop-reasons, json-schema.org about, object, enum, numeric and type, Python stdtypes). All quotes are on their pages and support their sentences without overreach. Code samples match the docs and the current model id. Claims scripts give 2 and 5; the Try it output matches the text; solution 19/19; quiz correct."
+  }
+ ],
+ "teaching": [
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "7e6f476e2835f0d9",
+   "notes": "Round 1. Checked 1-9 on en/ar/fr. 19/19 tests pass on the solution and fail on the starter; read_samples.py gives the claimed 2 usable replies; the quiz covers all three abilities. Fail on 7: \"SDK helpers\" and \"raw\" are unexplained; \"served by retrying on another model\" is jargon (calqued in ar and fr); integer/number/array/null are not glossed; \"HTTP\" in quiz q2 is never taught."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "e6b999e4e57db9e0",
+   "notes": "Round 2. Checked 1-9; only 7 fails, on the undefined word \"parse\" (en text, quiz q2/q5, parse_reply, Arabic \"تحليل\"). 19/19 tests pass on the solution and fail on the starter. Try it prints 2 usable of 6, as claimed. Last round's items are fixed. AR and FR read as written in those languages. Minor: gloss boolean, string and \"case\"; \"Most of them\" not in the so-sdk quote."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "ca932db82b4aa6b7",
+   "notes": "Round 3. Checked 1-9 against REVIEWING.md and LESSON_GUIDE.md, all three languages, the prerequisite chain, the quiz and the main source quotes. 19/19 tests pass on the solution and fail on the starter. The no-key example gives the stated output (2 of 6 usable, priority 5). The earlier unexplained terms are fixed. Minor: the starter's lambdas have no usage line; \"sort\" could read as \"put in order\"."
+  }
+ ],
+ "learners": {
+  "attempts": 0,
+  "passes": 0,
+  "hash": ""
+ },
+ "experts": []
+}
