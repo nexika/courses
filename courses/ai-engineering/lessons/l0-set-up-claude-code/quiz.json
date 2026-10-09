@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "choice",
+   "prompt": {
+    "en": "You start Claude Code in Manual mode and ask it to explain tip.py. It answers without asking you anything first. Why?",
+    "ar": "بدأت Claude Code في الوضع اليدوي (Manual) وطلبت منه شرح tip.py، فأجاب دون أن يسألك أي شيء. لماذا؟",
+    "fr": "Vous lancez Claude Code en mode Manual et lui demandez d'expliquer tip.py. Il répond sans rien vous demander. Pourquoi ?"
+   },
+   "options": [
+    {
+     "en": "Logging in approved every action for the session",
+     "ar": "تسجيل الدخول وافق على كل إجراءات الجلسة",
+     "fr": "La connexion a approuvé toutes les actions de la session"
+    },
+    {
+     "en": "Reading files in your project needs no approval",
+     "ar": "قراءة ملفات مشروعك لا تحتاج إلى موافقة",
+     "fr": "Lire les fichiers du projet ne demande pas d'accord"
+    },
+    {
+     "en": "Claude Code never asks about Python files",
+     "ar": "لا يسأل Claude Code أبدًا عن ملفات Python",
+     "fr": "Claude Code ne demande jamais rien pour du Python"
+    },
+    {
+     "en": "The first request of a session is never checked",
+     "ar": "أول طلب في الجلسة لا يُفحص أبدًا",
+     "fr": "La première demande d'une session n'est jamais vérifiée"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": "Reads and searches inside your project folder run without a prompt, even in Manual mode. Edits and most shell commands ask. Logging in, the file type and the order of requests do not change that.",
+    "ar": "القراءة والبحث داخل مجلد مشروعك يجريان دون طلب إذن، حتى في الوضع اليدوي. أما التعديل ومعظم أوامر الطرفية فتسأل أولًا. ولا يغيّر ذلك تسجيلُ الدخول ولا نوع الملف ولا ترتيب الطلبات.",
+    "fr": "La lecture et la recherche dans le dossier du projet se font sans demande, même en mode Manual. Les modifications et la plupart des commandes demandent. La connexion, le type de fichier ou l'ordre des demandes n'y changent rien."
+   }
+  },
+  {
+   "id": "q2",
+   "type": "choice",
+   "prompt": {
+    "en": "In Manual mode, which of these commands runs without a permission prompt?",
+    "ar": "في الوضع اليدوي (Manual)، أيّ هذه الأوامر يعمل دون طلب إذن؟",
+    "fr": "En mode Manual, laquelle de ces commandes s'exécute sans demande de permission ?"
+   },
+   "options": [
+    {
+     "en": "python3 tip.py",
+     "ar": "python3 tip.py",
+     "fr": "python3 tip.py"
+    },
+    {
+     "en": "rm notes.txt",
+     "ar": "rm notes.txt",
+     "fr": "rm notes.txt"
+    },
+    {
+     "en": "wc -l tip.py",
+     "ar": "wc -l tip.py",
+     "fr": "wc -l tip.py"
+    },
+    {
+     "en": "ls > files.txt",
+     "ar": "ls > files.txt",
+     "fr": "ls > files.txt"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "wc is in the built-in read-only set: it counts lines and changes nothing. python3 runs a program and rm deletes a file, so both ask. ls is read-only, but > writes its output to a file, and Claude Code checks that file as if Claude were editing it.",
+    "ar": "الأمر wc من مجموعة أوامر القراءة فقط المدمجة: يعدّ الأسطر ولا يغيّر شيئًا. أما python3 فيشغّل برنامجًا و rm يحذف ملفًا، فكلاهما يسأل. والأمر ls للقراءة فقط، لكن > يكتب مخرجاته في ملف، ويفحص Claude Code هذا الملف كأن Claude يعدّله.",
+    "fr": "wc fait partie des commandes en lecture seule intégrées : il compte des lignes et ne modifie rien. python3 lance un programme et rm supprime un fichier : les deux demandent. ls est en lecture seule, mais > écrit sa sortie dans un fichier, que Claude Code vérifie comme si Claude le modifiait."
+   }
+  },
+  {
+   "id": "q3",
+   "type": "choice",
+   "prompt": {
+    "en": "Claude asks to run python3 tip.py and you choose \"Yes, and don't ask again\". What does that change?",
+    "ar": "طلب Claude تشغيل python3 tip.py فاخترت \"Yes, and don't ask again\". ما الذي يغيّره ذلك؟",
+    "fr": "Claude demande à lancer python3 tip.py et vous choisissez « Yes, and don't ask again ». Qu'est-ce que cela change ?"
+   },
+   "options": [
+    {
+     "en": "Nothing after this session ends: the next one asks again",
+     "ar": "لا شيء بعد هذه الجلسة: الجلسة التالية تسأل من جديد",
+     "fr": "Rien après cette session : la suivante redemande"
+    },
+    {
+     "en": "Every Bash command now runs without asking you",
+     "ar": "كل أوامر Bash تعمل الآن دون أن تسألك",
+     "fr": "Toutes les commandes Bash passent désormais sans demande"
+    },
+    {
+     "en": "Only this one run is approved, and nothing is saved",
+     "ar": "هذا التشغيل وحده مُوافَق عليه، ولا يُحفظ شيء",
+     "fr": "Seule cette exécution est approuvée, rien n'est enregistré"
+    },
+    {
+     "en": "A saved rule lets later sessions here run it unasked",
+     "ar": "تُحفظ قاعدة فتشغّله الجلسات اللاحقة هنا دون سؤال",
+     "fr": "Une règle enregistrée le laisse passer dans les sessions de ce dépôt"
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "For a Bash command, the approval is saved as a rule for the repository, so later sessions there run the same command without asking. It covers that command, not every command. A Yes to an edit is different: it lasts until the session ends.",
+    "ar": "في أوامر Bash تُحفظ الموافقة قاعدةً للمستودع، فتشغّل الجلسات اللاحقة فيه الأمر نفسه دون سؤال. وهي تخصّ هذا الأمر لا كل الأوامر. أما الموافقة على تعديل ملف فتختلف: تدوم حتى نهاية الجلسة.",
+    "fr": "Pour une commande Bash, l'accord est enregistré comme règle du dépôt : les sessions suivantes y lancent la même commande sans demander. Il couvre cette commande, pas toutes. Un accord pour une modification est différent : il dure jusqu'à la fin de la session."
+   }
+  },
+  {
+   "id": "q4",
+   "type": "choice",
+   "prompt": {
+    "en": "You add \"never delete any file\" to your request. What does that sentence do?",
+    "ar": "أضفت إلى طلبك عبارة \"لا تحذف أي ملف أبدًا\". ماذا تفعل هذه العبارة؟",
+    "fr": "Vous ajoutez « ne supprime jamais aucun fichier » à votre demande. Que fait cette phrase ?"
+   },
+   "options": [
+    {
+     "en": "It guides Claude; prompts and rules decide what runs",
+     "ar": "توجّه Claude، أما طلبات الإذن والقواعد فتقرّر ما يعمل",
+     "fr": "Elle guide Claude ; demandes et règles décident de ce qui s'exécute"
+    },
+    {
+     "en": "Claude Code now blocks every delete command on your behalf",
+     "ar": "يمنع Claude Code الآن كل أوامر الحذف نيابةً عنك",
+     "fr": "Claude Code bloque désormais toute commande de suppression"
+    },
+    {
+     "en": "Delete commands stop needing a permission prompt",
+     "ar": "لم تعد أوامر الحذف تحتاج إلى طلب إذن",
+     "fr": "Les suppressions n'ont plus besoin de demande de permission"
+    },
+    {
+     "en": "Nothing at all: Claude ignores rules in a request",
+     "ar": "لا شيء إطلاقًا: يتجاهل Claude القواعد داخل الطلب",
+     "fr": "Rien du tout : Claude ignore les règles d'une demande"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "Permission rules are enforced by Claude Code, not by the model. Your sentence shapes what Claude tries to do, which helps, but it does not block anything. The prompts you answer and the permission rules decide what actually runs.",
+    "ar": "قواعد الأذونات يفرضها Claude Code لا النموذج. عبارتك تؤثّر فيما يحاول Claude فعله، وهذا مفيد، لكنها لا تمنع شيئًا. ما يعمل فعلًا تقرّره طلبات الإذن التي تجيب عنها وقواعد الأذونات.",
+    "fr": "Les règles de permission sont appliquées par Claude Code, pas par le modèle. Votre phrase oriente ce que Claude essaie de faire, ce qui aide, mais ne bloque rien. Ce qui s'exécute vraiment dépend des demandes auxquelles vous répondez et des règles de permission."
+   }
+  },
+  {
+   "id": "q5",
+   "type": "open",
+   "prompt": {
+    "en": "You start a new Claude Code session and it edits a file without asking you. Explain why this can happen, and what you would do to review every action from now on.",
+    "ar": "بدأت جلسة جديدة في Claude Code فعدّل ملفًا دون أن يسألك. اشرح لماذا قد يحدث هذا، وماذا ستفعل لتراجع كل إجراء من الآن فصاعدًا.",
+    "fr": "Vous ouvrez une nouvelle session Claude Code et elle modifie un fichier sans vous demander. Expliquez pourquoi cela peut arriver, et ce que vous feriez pour vérifier chaque action à partir de maintenant."
+   },
+   "rubric": {
+    "en": "A good answer: says that on recent versions a new session starts in auto mode, where a classifier (a second model) reviews actions instead of you, and that it can be wrong; says how to switch to Manual mode (Shift+Tab, or start with claude --permission-mode manual); says that in Manual mode reads and read-only commands still run without asking while edits and other commands ask; says to read each prompt before answering Yes or No; and mentions a way back, such as Esc to stop, Esc twice or asking Claude to undo, and git, noting that rewind does not track files changed by Bash commands.",
+    "ar": "الإجابة الجيدة: تذكر أن الجلسة الجديدة في الإصدارات الحديثة تبدأ في الوضع التلقائي (auto)، حيث يراجع مصنِّف (classifier)، وهو نموذج ثانٍ، الإجراءاتِ بدلًا منك، وأنه قد يخطئ؛ وتذكر كيف تنتقل إلى الوضع اليدوي (Manual): بالضغط على Shift+Tab، أو بالبدء بالأمر claude --permission-mode manual؛ وتذكر أن القراءة وأوامر القراءة فقط تعمل في الوضع اليدوي دون سؤال، بينما يسأل التعديل وبقية الأوامر؛ وتذكر قراءة كل طلب إذن قبل الإجابة بـ Yes أو No؛ وتذكر طريقًا للتراجع، مثل Esc للإيقاف، أو الضغط على Esc مرتين، أو أن تطلب من Claude التراجع، أو git، مع التنبيه إلى أن الترجيع لا يتتبّع الملفات التي غيّرتها أوامر Bash.",
+    "fr": "Une bonne réponse : dit que sur les versions récentes une nouvelle session démarre en mode auto, où un classifieur (un second modèle) examine les actions à votre place, et qu'il peut se tromper ; dit comment passer en mode Manual (Shift+Tab, ou lancer claude --permission-mode manual) ; dit qu'en mode Manual la lecture et les commandes en lecture seule passent sans demande, alors que les modifications et les autres commandes demandent ; dit de lire chaque demande avant de répondre Yes ou No ; et cite un moyen de revenir en arrière, comme Esc pour arrêter, Esc deux fois ou demander à Claude d'annuler, et git, en notant que le retour en arrière ne suit pas les fichiers modifiés par des commandes Bash."
+   }
+  }
+ ]
+}

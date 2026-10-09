@@ -1,0 +1,9 @@
+{
+ "schema": "nexika.exercise/1",
+ "runner": "python-unittest",
+ "goal": {
+  "en": "Write parse_diff(text) and red_flags(text, task_files) in diff_review.py. parse_diff reads the text git diff prints and returns, for each file in order, its status (added, deleted or modified) and the lines added and removed. red_flags lists the changes to read closely: files outside the task, deleted test files, changed assertions in test files, and skipped tests.",
+  "ar": "اكتب الدالتين parse_diff(text) و red_flags(text, task_files) في الملف diff_review.py. تقرأ parse_diff النص الذي يطبعه git diff، وتعيد لكل ملف، بترتيبه، حالته (مُضاف أو محذوف أو معدَّل) والأسطر المضافة والمحذوفة. وتسرد red_flags التغييرات التي تستحق قراءة متأنية: ملفات خارج المهمة، وملفات اختبار محذوفة، وتأكيدات (assertions) تغيّرت في ملفات الاختبار، واختبارات أُوقف تشغيلها.",
+  "fr": "Écrivez parse_diff(text) et red_flags(text, task_files) dans diff_review.py. parse_diff lit le texte qu'affiche git diff et renvoie, pour chaque fichier dans l'ordre, son statut (ajouté, supprimé ou modifié) et les lignes ajoutées et supprimées. red_flags liste les modifications à relire de près : fichiers hors de la tâche, fichiers de test supprimés, assertions modifiées dans les fichiers de test, et tests désactivés."
+ }
+}

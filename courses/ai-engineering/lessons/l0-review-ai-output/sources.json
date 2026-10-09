@@ -1,0 +1,181 @@
+{
+ "schema": "nexika.sources/1",
+ "sources": {
+  "looks-done": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "Claude stops when the work looks done.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "trust-gap": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "Claude produces a plausible-looking implementation that doesn’t handle edge cases.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "verify": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "Always provide verification (tests, scripts, screenshots). If you can’t verify it, don’t ship it.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "evidence": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "Have Claude show evidence rather than asserting success: the test output, the command it ran and what it returned, or a screenshot of the result.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "root-cause": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "address the root cause, don’t suppress the error",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "not-git": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "Checkpoints only track changes made through Claude’s file editing tools. Changes made through Bash commands or external processes are not captured. This isn’t a replacement for git.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "slash-diff": {
+   "url": "https://code.claude.com/docs/en/interactive-mode",
+   "title": "Claude Code docs: Interactive mode",
+   "kind": "doc",
+   "quote": "Run /diff to look over the changes in your working tree without leaving Claude Code.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "accept-edits": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "Use acceptEdits when you want to review changes in your editor or via git diff after the fact rather than approving each edit inline.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "code-review": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "run the bundled /code-review skill, which reviews the current diff for bugs in a fresh subagent and returns findings to the session.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "git-diff": {
+   "url": "https://git-scm.com/docs/git-diff",
+   "title": "Git documentation: git-diff",
+   "kind": "doc",
+   "quote": "Show changes between the working tree and the index or a tree",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "git-header": {
+   "url": "https://git-scm.com/docs/git-diff",
+   "title": "Git documentation: git-diff",
+   "kind": "doc",
+   "quote": "It is preceded by a \"git diff\" header that looks like this: diff --git a/file1 b/file2",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "dev-null": {
+   "url": "https://git-scm.com/docs/git-diff",
+   "title": "Git documentation: git-diff",
+   "kind": "doc",
+   "quote": "Similar to the two-line header for the traditional unified diff format, /dev/null is used to signal created or deleted files.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "plus-minus": {
+   "url": "https://git-scm.com/docs/git-diff",
+   "title": "Git documentation: git-diff",
+   "kind": "doc",
+   "quote": "a single column that has - (minus — appears in A but removed in B), + (plus — missing in A but added to B), or \" \" (space — unchanged) prefix",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hunks": {
+   "url": "https://www.gnu.org/software/diffutils/manual/html_node/Detailed-Unified.html",
+   "title": "GNU diffutils manual: Detailed Description of Unified Format",
+   "kind": "doc",
+   "quote": "Next come one or more hunks of differences; each hunk shows one area where the files differ.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hunk-header": {
+   "url": "https://www.gnu.org/software/diffutils/manual/html_node/Detailed-Unified.html",
+   "title": "GNU diffutils manual: Detailed Description of Unified Format",
+   "kind": "doc",
+   "quote": "Unified format hunks look like this: @@ from-file-line-numbers to-file-line-numbers @@",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "difflib": {
+   "url": "https://docs.python.org/3/library/difflib.html",
+   "title": "Python documentation: difflib",
+   "kind": "doc",
+   "quote": "Unified diffs are a compact way of showing just the lines that have changed plus a few lines of context.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "git-restore": {
+   "url": "https://git-scm.com/docs/git-restore",
+   "title": "Git documentation: git-restore",
+   "kind": "doc",
+   "quote": "Restore specified paths in the working tree with some contents from a restore source.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hunk-one": {
+   "url": "https://www.gnu.org/software/diffutils/manual/html_node/Detailed-Unified.html",
+   "title": "GNU diffutils manual: Detailed Description of Unified Format",
+   "kind": "doc",
+   "quote": "If a hunk contains just one line, only its start line number appears.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "git-add": {
+   "url": "https://git-scm.com/docs/git-add",
+   "title": "Git documentation: git-add",
+   "kind": "doc",
+   "quote": "Add contents of new or changed files to the index. The \"index\" (also known as the \"staging area\") is what you use to prepare the contents of the next commit.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "skip": {
+   "url": "https://docs.python.org/3/library/unittest.html",
+   "title": "Python documentation: unittest",
+   "kind": "doc",
+   "quote": "Unconditionally skip the decorated test.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "git-status": {
+   "url": "https://git-scm.com/docs/git-status",
+   "title": "Git documentation: git-status",
+   "kind": "doc",
+   "quote": "Displays paths that have differences between the index file and the current HEAD commit, paths that have differences between the working tree and the index file, and paths in the working tree that are not tracked by Git",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "restore-index": {
+   "url": "https://git-scm.com/docs/git-restore",
+   "title": "Git documentation: git-restore",
+   "kind": "doc",
+   "quote": "By default, if --staged is given, the contents are restored from HEAD, otherwise from the index.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  }
+ }
+}

@@ -139,7 +139,9 @@
         "fr": "Travailler avec Claude Code"
       },
       "lessons": [
-        "l0-set-up-claude-code"
+        "l0-set-up-claude-code",
+        "l0-review-ai-output",
+        "l0-plan-to-commit"
       ]
     },
     {

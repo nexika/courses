@@ -1,0 +1,9 @@
+{
+ "schema": "nexika.exercise/1",
+ "runner": "python-unittest",
+ "goal": {
+  "en": "Write asks_first(action) and answer(action, task_files, expected_commands) in permission_check.py. asks_first says whether Manual mode would ask before an action: reads and searches never ask, edits always ask, and a Bash command asks unless it is one simple read-only command. answer gives your reply at the prompt: no prompt, yes for an edit to a file of the task or an expected command, and no for anything else.",
+  "ar": "اكتب الدالتين asks_first(action) و answer(action, task_files, expected_commands) في الملف permission_check.py. تقول asks_first هل يسألك الوضع اليدوي (Manual) قبل الإجراء: القراءة والبحث لا يسألان أبدًا، والتعديل يسأل دائمًا، وأمر Bash يسأل إلا إذا كان أمرًا واحدًا بسيطًا للقراءة فقط. وتعطي answer ردّك على طلب الإذن: no prompt حين لا يُطرح سؤال، و yes لتعديل ملف من ملفات المهمة أو لأمر كنت تتوقعه، و no لكل ما عدا ذلك.",
+  "fr": "Écrivez asks_first(action) et answer(action, task_files, expected_commands) dans permission_check.py. asks_first indique si le mode Manual demande avant une action : la lecture et la recherche ne demandent jamais, une modification demande toujours, et une commande Bash demande sauf si c'est une seule commande simple en lecture seule. answer donne votre réponse à la demande : no prompt quand rien n'est demandé, yes pour une modification d'un fichier de la tâche ou une commande attendue, et no pour tout le reste."
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l0-review-ai-output",
+ "title": {
+  "en": "Check what Claude changed",
+  "ar": "راجع ما غيّره Claude",
+  "fr": "Vérifier ce que Claude a modifié"
+ },
+ "module": "m0-claude-code",
+ "level": 0,
+ "minutes": 45,
+ "competencies": [
+  "c0.review-ai-output"
+ ],
+ "prerequisites": [
+  "l0-set-up-claude-code"
+ ]
+}

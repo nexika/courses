@@ -1,0 +1,9 @@
+{
+ "schema": "nexika.exercise/1",
+ "runner": "python-unittest",
+ "goal": {
+  "en": "Take one change from plan to commit with Claude Code: in plan mode, have Claude plan split_bill(total_cents, tip_percent, people) in bill.py, then approve the plan, review each edit, run the tests and read the diff, and commit. split_bill returns each person's share in whole cents, largest first; the shares add up exactly to the bill plus its tip (rounded to the nearest cent, half up), differ by at most one cent, and bad inputs raise ValueError.",
+  "ar": "انقل تغييرًا واحدًا من الخطة إلى الإيداع مع Claude Code: في وضع التخطيط (plan mode) اجعل Claude يخطط للدالة split_bill(total_cents, tip_percent, people) في الملف bill.py، ثم وافق على الخطة، وراجع كل تعديل، وشغّل الاختبارات، واقرأ الفروق، ثم أودِع. تعيد split_bill حصة كل شخص بالسنتات الكاملة، الأكبر أولًا؛ ومجموع الحصص يساوي بالضبط الفاتورة مع البقشيش (مقرَّبًا إلى أقرب سنت، ونصف السنت يُقرَّب إلى الأعلى)، ولا تختلف حصتان بأكثر من سنت واحد، والمدخلات الخاطئة ترفع ValueError.",
+  "fr": "Menez une modification du plan au commit avec Claude Code : en mode plan, faites planifier par Claude split_bill(total_cents, tip_percent, people) dans bill.py, puis approuvez le plan, relisez chaque modification, lancez les tests, lisez le diff et faites le commit. split_bill renvoie la part de chaque personne en centimes entiers, la plus grande d'abord ; les parts font exactement l'addition plus le pourboire (arrondi au centime le plus proche, un demi-centime vers le haut), ne diffèrent pas de plus d'un centime, et les entrées invalides lèvent ValueError."
+ }
+}

@@ -1,0 +1,37 @@
+{
+ "schema": "nexika.claims/1",
+ "claims": [
+  {
+   "id": "old-share",
+   "says": "each person paid 27.5",
+   "says_ar": "يدفع كل شخص 27.5",
+   "says_fr": "chaque personne payait 27.5",
+   "check": "old_share.py",
+   "expect": 27.5
+  },
+  {
+   "id": "new-share",
+   "says": "now each person pays 35.0",
+   "says_ar": "صار كل شخص يدفع 35.0",
+   "says_fr": "chaque personne paie désormais 35.0",
+   "check": "new_share.py",
+   "expect": 35.0
+  },
+  {
+   "id": "new-total",
+   "says": "together they pay 140.0",
+   "says_ar": "يدفعون معًا 140.0",
+   "says_fr": "ensemble elles paient 140.0",
+   "check": "new_total.py",
+   "expect": 140.0
+  },
+  {
+   "id": "bill",
+   "says": "the bill with its tip is 110.0",
+   "says_ar": "الفاتورة مع البقشيش 110.0",
+   "says_fr": "l'addition avec le pourboire fait 110.0",
+   "check": "bill.py",
+   "expect": 110.0
+  }
+ ]
+}
