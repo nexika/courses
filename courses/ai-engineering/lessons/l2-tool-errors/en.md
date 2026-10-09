@@ -31,7 +31,7 @@ in an error[^hc-is-error]. Here is a failed lookup:
     {
       "type": "tool_result",
       "tool_use_id": "toolu_sample_02",
-      "content": "No order A-999. Ask the user to check the number: it looks like A-1042.",
+      "content": "No order A-999. Ask the user to check the number: order numbers are A- followed by four digits.",
       "is_error": true
     }
   ]
@@ -47,8 +47,8 @@ calls Python prints when an error is not caught), server addresses or passwords.
 Failures come in two kinds:
 
 - **The tool ran and failed:** the order does not exist, or the service timed out. Report what happened.
-- **Claude's call was wrong:** a required field is missing, a field has the wrong type, or the tool name
-  does not exist. Check the input against the tool's `input_schema` before you run anything, and report
+- **Claude's call was wrong:** a required field is missing, a field has the wrong type, a field is not
+  allowed, or the tool name does not exist. Check the input against the tool's `input_schema` before you run anything, and report
   the problems. Claude will then try the tool again with the missing information filled in[^hc-invalid]:
   if a call is invalid or misses parameters, Claude retries 2 to 3 times with corrections before it
   apologizes to the user[^hc-retries]. During development, a wrong call usually means the tool's
@@ -77,7 +77,7 @@ ORDERS = {"A-1042": "shipped"}
 
 def lookup_order(order_id):
     if order_id not in ORDERS:
-        raise LookupError(f"No order {order_id}. Ask the user to check the number: it looks like A-1042.")
+        raise LookupError(f"No order {order_id}. Ask the user to check the number: order numbers are A- followed by four digits.")
     return {"order_id": order_id, "status": ORDERS[order_id]}
 
 
@@ -116,8 +116,9 @@ tool, which gives Claude a more precise message.
 - **Generic messages.** `"failed"` gives Claude nothing to act on. Say what went wrong and what to try
   next[^hc-instructive].
 - **Sending the raw exception.** A stack trace can hold file paths, addresses or secrets, and Claude may
-  repeat the error to the user[^hc-exec-claude]. Name the kind of failure; keep the details in your logs.
-- **Running the tool on input you did not check.** Check required fields, unknown fields and types first.
+  repeat the error to the user[^hc-exec-claude]. Name the kind of failure; keep the details in your logs
+  (the records your program writes for you, such as a file of messages).
+- **Running the tool on input you did not check.** Check required fields, fields that are not allowed, and types first.
   A wrong call is reported so Claude can correct it[^hc-invalid].
 - **Skipping the calls after the first failure.** Each `tool_use` block needs its own
   `tool_result`[^hc-missing]. Answer all of them.
@@ -129,8 +130,9 @@ tool, which gives Claude a more precise message.
 Open `exercise/starter/errors.py`. It gives you `JSON_TYPES` and `ToolError`, an exception your tools raise
 when they fail in a way they can explain. Write three functions:
 
-- `check_input(tool, args)` returns the problems with Claude's input: missing required fields, fields
-  the schema does not list, and values of the wrong type.
+- `check_input(tool, args)` returns the problems with Claude's input: missing required fields, values of
+  the wrong type, and, when the schema sets `additionalProperties` to `false`, fields it does not list.
+  As the lesson on JSON output showed, a schema without that setting allows extra fields.
 - `run_one(call, tools, functions)` runs one call and always returns a `tool_result` block. Report an
   unknown tool by listing the real ones; report bad input without running the tool; pass a `ToolError`'s
   message to Claude; and for any other exception, name the tool and the kind of exception, but not its

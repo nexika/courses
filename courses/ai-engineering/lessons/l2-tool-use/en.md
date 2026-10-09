@@ -38,9 +38,9 @@ A tool definition goes in the `tools` list of the request[^dt-tools]. It has thr
 ```
 
 The description matters more than anything else: Anthropic's guide calls it by far the most important
-factor in how well a tool works, and asks for at least three or four sentences[^dt-desc].
+factor in how well a tool works[^dt-desc], and asks for at least three or four sentences[^dt-sentences].
 
-Here is one round of the **tool exchange**, for the question `Where is order A-1042?`:
+Here is one **round** of the tool exchange, for the question `Where is order A-1042?`:
 
 1) You send the question and the `tools` list.
 2) Claude replies with the stop reason `tool_use` and a `tool_use` block. The block holds an `id`, the tool's
@@ -60,8 +60,9 @@ text[^hc-order].
 
 **The tool loop** repeats this. While the stop reason is `tool_use`, run the tools and continue the
 conversation. Any other stop reason ends the loop: Claude has answered, or stopped for a reason your code
-must handle[^hw-loop]. Each round is another request, and every request sends the whole history again,
-so put a limit on the number of rounds.
+must handle[^hw-loop]. A round is one reply that asks for tools, plus the results your code sends back.
+Each round costs another request, and every request sends the whole history again[^stateless], so put a
+limit on the number of rounds.
 
 Tools cost tokens. The tool definitions count as input tokens[^ov-price], and the API adds a system prompt
 that enables tool use[^ov-enables]: 286 tokens on Claude Opus 5.5[^ov-prompt].
@@ -150,6 +151,8 @@ for round_number in range(5):  # a limit, so the loop cannot run forever
             output = lookup_order(**block.input)
             results.append({"type": "tool_result", "tool_use_id": block.id, "content": json.dumps(output)})
     messages.append({"role": "user", "content": results})
+if response.stop_reason == "tool_use":
+    print("Stopped: Claude still wanted tools after 5 rounds.")
 print("stop_reason:", response.stop_reason)
 print("".join(block.text for block in response.content if block.type == "text"))
 ```
@@ -166,16 +169,18 @@ you know what it does.
 - **Forgetting the `assistant` turn.** The next request must hold Claude's reply, with its `tool_use`
   blocks, before your results. The API is stateless: it does not remember the call[^stateless].
 - **Text before the results.** In the results turn, `tool_result` blocks come first. Text before them
-  makes the request fail[^hc-order].
+  makes the request fail with an error[^hc-400].
 - **Answering only the first call.** A reply can hold several `tool_use` blocks[^hc-block]. Send a result
   for each, matched by `tool_use_id`.
-- **Trusting the input blindly.** When the user leaves out a required value, Claude may ask for it, or may
-  guess one, such as a city you never named[^ov-guess]. Check the input before you act on it.
+- **Trusting the input blindly.** When the user leaves out a required value, Claude Opus is much more
+  likely to ask for it[^ov-ask], but Claude may also guess one, such as an order number the user never
+  gave[^ov-guess]. Check the input before you act on it.
 - **Trusting what a tool returns.** Web pages, emails and other outside content can hide instructions
-  aimed at Claude. Treat tool results as untrusted, and keep such content inside `tool_result`
-  blocks[^hc-untrusted].
-- **Forcing a tool with `tool_choice`.** On Claude Opus 5.5, forcing a tool with `tool_choice` set to
-  `any` or `tool` returns an error[^dt-forced]. Leave it on `auto`, the default[^ov-auto], and write a
+  aimed at Claude[^hc-untrusted2]. Treat tool results as untrusted, and keep such content inside `tool_result` blocks,
+  not in your system prompt or your own text[^hc-untrusted].
+- **Forcing a tool with `tool_choice`.** `tool_choice` is an optional request field that can force Claude
+  to use a tool[^dt-choice]: `auto` lets Claude choose, `any` makes it call some tool, and `tool` makes it
+  call one named tool. On Claude Opus 5.5, `any` and `tool` return an error[^dt-forced]. Leave it on `auto`, the default[^ov-auto], and write a
   better description or prompt.
 
 ## Your exercise
@@ -192,7 +197,8 @@ plays Claude's part, as in the last lesson.
   `tool_result` block per call. `functions` maps a tool's name to the Python function that runs it.
 - `run_tool_loop(ask, question, tools, functions, max_rounds)` runs the loop: `ask(messages, tools)` stands
   in for the API call. It returns the answer's text and the whole conversation, and raises `RuntimeError`
-  if Claude still calls a tool after `max_rounds` rounds.
+  if Claude still calls a tool after `max_rounds` rounds. So with `max_rounds=3`, it sends at most four
+  requests: three whose replies call tools, and a fourth whose reply must be the answer.
 
 In this lesson every tool succeeds. The next lesson handles tools that fail.
 
@@ -210,6 +216,11 @@ The tests fail until your functions work. A solution is in `exercise/solution/`:
 Take the quiz for this lesson. If a question is hard, read the five steps of the tool exchange in "The
 idea" again.
 
+[^dt-sentences]: Define tools, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools>
+[^ov-ask]: Tool use with Claude, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview>
+[^hc-400]: Handle tool calls, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls>
+[^dt-choice]: Define tools, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools>
+[^hc-untrusted2]: Handle tool calls, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls>
 [^ov-what]: Tool use with Claude, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview>
 [^hw-contract]: How tool use works, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works>
 [^hw-sees]: How tool use works, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works>

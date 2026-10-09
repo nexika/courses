@@ -32,7 +32,7 @@ s'est terminée par une erreur[^hc-is-error]. Voici une recherche qui a échoué
     {
       "type": "tool_result",
       "tool_use_id": "toolu_sample_02",
-      "content": "No order A-999. Ask the user to check the number: it looks like A-1042.",
+      "content": "No order A-999. Ask the user to check the number: order numbers are A- followed by four digits.",
       "is_error": true
     }
   ]
@@ -50,8 +50,8 @@ Les échecs sont de deux sortes :
 
 - **L'outil a tourné et a échoué :** la commande n'existe pas, ou le service a mis trop de temps.
   Signalez ce qui s'est passé.
-- **L'appel de Claude était faux :** un champ obligatoire manque, un champ a le mauvais type, ou le nom de
-  l'outil n'existe pas. Vérifiez l'entrée avec l'`input_schema` de l'outil avant d'exécuter quoi que ce
+- **L'appel de Claude était faux :** un champ obligatoire manque, un champ a le mauvais type, un champ n'est
+  pas permis, ou le nom de l'outil n'existe pas. Vérifiez l'entrée avec l'`input_schema` de l'outil avant d'exécuter quoi que ce
   soit, et signalez les problèmes. Claude réessaiera alors l'outil en complétant l'information
   manquante[^hc-invalid] : si une demande d'outil est invalide ou incomplète, Claude réessaie de 2 à 3 fois
   avec des corrections avant de s'excuser auprès de l'utilisateur[^hc-retries]. Pendant le développement,
@@ -82,7 +82,7 @@ ORDERS = {"A-1042": "shipped"}
 
 def lookup_order(order_id):
     if order_id not in ORDERS:
-        raise LookupError(f"No order {order_id}. Ask the user to check the number: it looks like A-1042.")
+        raise LookupError(f"No order {order_id}. Ask the user to check the number: order numbers are A- followed by four digits.")
     return {"order_id": order_id, "status": ORDERS[order_id]}
 
 
@@ -122,9 +122,10 @@ Claude un message plus précis.
   essayer ensuite[^hc-instructive].
 - **Envoyer l'exception brute.** Une trace d'exécution peut contenir des chemins de fichiers, des adresses
   ou des secrets, et Claude peut répéter l'erreur à l'utilisateur[^hc-exec-claude]. Nommez le type
-  d'échec ; gardez les détails dans vos journaux.
+  d'échec ; gardez les détails dans vos journaux
+  (*logs* : ce que votre programme note pour vous, par exemple dans un fichier).
 - **Exécuter l'outil sur une entrée non vérifiée.** Vérifiez d'abord les champs obligatoires, les champs
-  inconnus et les types. Un appel faux est signalé pour que Claude le corrige[^hc-invalid].
+  non permis et les types. Un appel faux est signalé pour que Claude le corrige[^hc-invalid].
 - **Sauter les appels après le premier échec.** Chaque bloc `tool_use` a besoin de son propre
   `tool_result`[^hc-missing]. Répondez à tous.
 
@@ -136,7 +137,9 @@ Ouvrez `exercise/starter/errors.py`. Il vous fournit `JSON_TYPES` et `ToolError`
 outils lèvent quand ils échouent d'une façon qu'ils savent expliquer. Écrivez trois fonctions :
 
 - `check_input(tool, args)` renvoie les problèmes de l'entrée envoyée par Claude : champs obligatoires
-  manquants, champs que le schéma ne liste pas, et valeurs du mauvais type.
+  manquants, valeurs du mauvais type, et, quand le schéma met `additionalProperties` à `false`, champs
+  qu'il ne liste pas. Comme l'a montré la leçon sur le JSON, un schéma sans ce réglage accepte les champs
+  en trop.
 - `run_one(call, tools, functions)` exécute un appel et renvoie toujours un bloc `tool_result`. Signalez
   un outil inconnu en listant les vrais ; signalez une entrée fausse sans exécuter l'outil ; transmettez
   à Claude le message d'une `ToolError` ; et pour toute autre exception, nommez l'outil et le type

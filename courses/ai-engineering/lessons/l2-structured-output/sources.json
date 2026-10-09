@@ -168,6 +168,30 @@
    "quote": "Structured outputs don't guarantee the capitalization of string enum and const values",
    "retrieved": "2026-10-09",
    "volatile": false
+  },
+  "so-types": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "All basic types: object, array, string, integer, number, boolean, null",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "js-enum": {
+   "url": "https://json-schema.org/understanding-json-schema/reference/enum",
+   "title": "Enumerated values (Understanding JSON Schema)",
+   "kind": "spec",
+   "quote": "The enum keyword is used to restrict a value to a fixed set of values.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "js-range": {
+   "url": "https://json-schema.org/understanding-json-schema/reference/numeric",
+   "title": "Numeric types (Understanding JSON Schema)",
+   "kind": "spec",
+   "quote": "Ranges of numbers are specified using a combination of the minimum and maximum keywords",
+   "retrieved": "2026-10-09",
+   "volatile": false
   }
  }
 }

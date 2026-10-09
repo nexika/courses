@@ -58,9 +58,9 @@
      "fr": "Renvoyer la même requête jusqu'à un JSON valide"
     },
     {
-     "en": "Treat it as a failed HTTP request and stop the app",
-     "ar": "يعامله كطلب HTTP فاشل ويوقف التطبيق",
-     "fr": "La traiter comme un échec HTTP et arrêter l'appli"
+     "en": "Treat it as a failed API call and stop the app",
+     "ar": "يعامله كاستدعاء فاشل للواجهة ويوقف التطبيق",
+     "fr": "La traiter comme un appel d'API raté et arrêter"
     },
     {
      "en": "Not use it, and report it or try another model",
@@ -70,9 +70,9 @@
    ],
    "answer": 3,
    "explain": {
-    "en": "A refusal is a successful reply, not an HTTP error, but its output may not match your schema. Sending the same request again is not the documented fix: a refused request can usually be served by another Claude model.",
-    "ar": "الرفض إجابة ناجحة وليس خطأ HTTP، لكن مخرجاته قد لا تطابق مخططك. وإعادة الطلب نفسه ليست الحل الموثّق: فالطلب المرفوض يمكن عادةً أن يخدمه نموذج Claude آخر.",
-    "fr": "Un refus est une réponse réussie, pas une erreur HTTP, mais sa sortie peut ne pas respecter votre schéma. Renvoyer la même requête n'est pas la solution documentée : une requête refusée peut généralement être servie par un autre modèle Claude."
+    "en": "A refusal is a successful reply, not an error, but its output may not match your schema. Sending the same request again is not the documented fix: a request refused by Claude Opus 5.5 can usually be answered by another Claude model.",
+    "ar": "الرفض إجابة ناجحة وليس خطأً، لكن مخرجاته قد لا تطابق مخططك. وإعادة الطلب نفسه ليست الحل الموثّق: فالطلب الذي يرفضه Claude Opus 5.5 يُجاب عنه عادةً إذا أُرسل إلى نموذج Claude آخر.",
+    "fr": "Un refus est une réponse réussie, pas une erreur, mais sa sortie peut ne pas respecter votre schéma. Renvoyer la même requête n'est pas la solution documentée : une requête refusée par Claude Opus 5.5 obtient généralement une réponse d'un autre modèle Claude."
    }
   },
   {
@@ -87,12 +87,12 @@
     {
      "en": "Accept it ignoring case; store \"billing\"",
      "ar": "تقبله دون اعتبار لحالة الأحرف، وتخزّن \"billing\"",
-     "fr": "L'accepter sans tenir compte de la casse, et stocker \"billing\""
+     "fr": "L'accepter (casse ignorée) et stocker \"billing\""
     },
     {
      "en": "Reject it: enum values always match exactly",
      "ar": "ترفضه: قيم enum تطابق المخطط حرفيًا دائمًا",
-     "fr": "Le rejeter : les valeurs d'enum correspondent toujours"
+     "fr": "Le rejeter : l'enum correspond toujours à l'identique"
     },
     {
      "en": "Ask again with a higher max_tokens value",
@@ -134,7 +134,7 @@
     {
      "en": "One with \"priority\" listed but not required",
      "ar": "مخطط يذكر \"priority\" دون أن يجعله إلزاميًا",
-     "fr": "Un schéma où \"priority\" n'est pas required"
+     "fr": "Un schéma où \"priority\" est listé, pas required"
     },
     {
      "en": "One that lists both fields in required",

@@ -31,8 +31,9 @@ data, not a program[^js-data]. Here is the schema for a support ticket:
 
 Read it from the top. The value is an object (a JSON object, like a Python dict). `properties` lists its
 fields and the schema of each one. `type` names the kind of value: `string`, `integer`, `number`,
-`boolean`, `array`, `object` or `null`. `enum` lists the only values allowed. `minimum` and `maximum` limit a
-number. Two rules surprise people. In JSON Schema, a field listed in `properties` is not required unless
+`boolean`, `array`, `object` or `null`[^so-types]. An `integer` is a whole number, a `number` is any number,
+even one with a decimal part, an `array` is a list (a Python list), and `null` is Python's `None`. `enum` restricts the value
+to a fixed set of values[^js-enum]. `minimum` and `maximum` set the range of a number[^js-range]. Two rules surprise people. In JSON Schema, a field listed in `properties` is not required unless
 you name it in `required`[^js-required]. And extra fields are allowed unless you set
 `additionalProperties` to `false`[^js-additional].
 
@@ -45,15 +46,17 @@ The feature does not accept every schema. Each object must set `additionalProper
 `false`[^so-supported]. Number limits such as `minimum` and `maximum` are not supported, and a request
 that uses a feature the API does not support fails with an error[^so-unsupported]. So you keep two
 versions: the schema you send, without `minimum` and `maximum`, and the full schema, which your own code
-checks. Most SDK helpers do the same thing: they send Claude a simpler schema, and a helper that
-checks replies still checks every rule of your full schema[^so-sdk].
+checks. The official SDKs also offer helper functions that do this for you. Most of them send Claude a
+simpler schema, and a helper that checks replies still checks every rule of your full schema[^so-sdk].
+This lesson does it by hand, so you see each step.
 
 Then why check at all? Because "follows the schema" has exceptions:
 
 - **A refusal.** Claude can decline a request. The reply then has the stop reason `refusal`, and its
   output may not match your schema[^so-refusal]. A refusal is a normal, successful reply, not an
   error[^stop-refusal]. Sending the same request again is not the documented fix: a request refused by
-  Claude Opus 5.5 can usually be served by retrying on another Claude model[^refusal-fallback].
+  Claude Opus 5.5 can usually be answered if you send it to another Claude model, by changing
+  `model`[^refusal-fallback].
 - **A cut-off reply.** If the reply reaches `max_tokens`, the JSON may be incomplete. The documented fix is
   to try again with a higher `max_tokens`[^so-max].
 - **Capital letters in `enum` values.** Claude may return `"Bug"` when your schema says `"bug"`: the
@@ -62,8 +65,8 @@ Then why check at all? Because "follows the schema" has exceptions:
 - **Rules the API does not check,** such as `minimum` and `maximum` above, and rules a schema cannot say at
   all, such as "the date must be in the future". Only your code checks those.
 
-A reply that breaks one of your own rules can be asked for again. Each new request costs tokens, so set a
-limit, then stop and report the problem. Structured outputs also cost a little: Claude receives an extra
+A reply that breaks one of your own rules can be asked for again, but the same request may break the
+rule again. Each new request costs tokens, so set a limit, then stop and report the problem. Structured outputs also cost a little: Claude receives an extra
 system prompt that explains the format, so your input token count is slightly higher[^so-cost].
 
 ## Try it
@@ -102,7 +105,7 @@ text = "".join(block.text for block in response.content if block.type == "text")
 print(json.loads(text) if response.stop_reason == "end_turn" else text)
 ```
 
-This follows the raw JSON Schema example in Anthropic's structured outputs guide[^so-raw]. Your reply will
+This follows the plain JSON Schema example (without a helper) in Anthropic's structured outputs guide[^so-raw]. Your reply will
 differ from the samples below.
 
 ### Without a key: read six sample replies
@@ -145,7 +148,7 @@ for path in sorted(folder.glob("sample_*.json")):
 Only 2 of the 6 sample replies are usable. `sample_enum_case.json` passes because the category check
 ignores case. `sample_out_of_range.json` is valid JSON with every field, but it sets the priority to 5:
 no schema feature sent to the API stopped that, so only your check catches it. Two replies stopped early,
-one with `max_tokens` and one with `refusal`, and one is not JSON at all.
+one with `max_tokens` and one with `refusal`, and one has a sentence before its JSON, so it does not parse.
 
 ## Common mistakes
 
@@ -219,6 +222,9 @@ refusal, cut-off reply, enum case, and rules the API does not check.
 [^so-enum]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^so-enum-case]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^so-cost]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
+[^so-types]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
+[^js-enum]: Enumerated values (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/enum>
+[^js-range]: Numeric types (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/numeric>
 [^so-raw]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^py-bool]: Built-in Types (Python documentation), <https://docs.python.org/3/library/stdtypes.html>
 [^so-reasoning]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>

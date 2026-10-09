@@ -133,7 +133,7 @@
    "url": "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
    "title": "Using the Messages API",
    "kind": "doc",
-   "quote": "The Messages API is stateless",
+   "quote": "The Messages API is stateless, which means that you always send the full conversational history to the API.",
    "retrieved": "2026-10-09",
    "volatile": false
   },
@@ -149,7 +149,7 @@
    "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
    "title": "Handle tool calls",
    "kind": "doc",
-   "quote": "Treat that content as untrusted: an attacker who can influence it may embed instructions that try to redirect Claude (indirect prompt injection). Keep untrusted content inside tool_result blocks",
+   "quote": "Keep untrusted content inside tool_result blocks rather than system prompts or plain user text blocks",
    "retrieved": "2026-10-09",
    "volatile": false
   },
@@ -174,6 +174,46 @@
    "title": "Tool use with Claude",
    "kind": "doc",
    "quote": "When you use tools, the API also automatically includes a special system prompt for the model that enables tool use.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "dt-sentences": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+   "title": "Define tools",
+   "kind": "doc",
+   "quote": "Aim for at least 3–4 sentences for each tool description, more if the tool is complex.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "ov-ask": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
+   "title": "Tool use with Claude",
+   "kind": "doc",
+   "quote": "If the user's prompt doesn't include enough information to fill all the required parameters for a tool, Claude Opus is much more likely to recognize that a parameter is missing and ask for it.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-400": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "For example, this will cause a 400 error:",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "dt-choice": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+   "title": "Define tools",
+   "kind": "doc",
+   "quote": "In some cases, you may want Claude to use a specific tool to answer the user's question, even if Claude would otherwise answer directly without calling a tool. You can do this by specifying the tool in the tool_choice field of the request.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-untrusted2": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "Treat that content as untrusted: an attacker who can influence it may embed instructions that try to redirect Claude (indirect prompt injection).",
    "retrieved": "2026-10-09",
    "volatile": false
   }

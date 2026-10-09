@@ -8,11 +8,13 @@ HERE = Path(__file__).resolve().parent
 LOOKUP = {"name": "lookup_order", "description": "Look up an order by its number.",
           "input_schema": {"type": "object",
                            "properties": {"order_id": {"type": "string"}, "detail": {"type": "boolean"}},
-                           "required": ["order_id"]}}
+                           "required": ["order_id"], "additionalProperties": False}}
 STOCK = {"name": "count_stock", "description": "Count the items left in stock.",
-         "input_schema": {"type": "object", "properties": {"sku": {"type": "string"}}, "required": ["sku"]}}
+         "input_schema": {"type": "object", "properties": {"sku": {"type": "string"}}, "required": ["sku"],
+                          "additionalProperties": False}}
 TOOLS = [LOOKUP, STOCK]
 SECRET = "password=hunter2 at db.internal:5432"
+NOT_FOUND = "No order {}. Ask the user to check the number: order numbers are A- followed by four digits."
 
 
 def lookup_order(order_id, detail=False):
@@ -20,7 +22,7 @@ def lookup_order(order_id, detail=False):
         return {"order_id": order_id, "status": "shipped"}
     if order_id == "C-1":
         raise ConnectionError(SECRET)
-    raise ToolError(f"No order {order_id}. Ask the user to check the number: it looks like A-1042.")
+    raise ToolError(NOT_FOUND.format(order_id))
 
 
 FUNCTIONS = {"lookup_order": lookup_order, "count_stock": lambda sku: "12"}
@@ -44,6 +46,12 @@ class CheckInput(unittest.TestCase):
         problems = check_input(LOOKUP, {"order_id": "A-1042", "order": "B-7"})
         self.assertEqual(len(problems), 1)
         self.assertIn("order", problems[0])
+
+    def test_extra_fields_are_allowed_unless_the_schema_forbids_them(self):
+        open_schema = {"name": "note", "description": "Save a note.",
+                       "input_schema": {"type": "object", "properties": {"text": {"type": "string"}},
+                                        "required": ["text"]}}
+        self.assertEqual(check_input(open_schema, {"text": "hi", "tag": "x"}), [])
 
     def test_a_wrong_type(self):
         self.assertIn("order_id", check_input(LOOKUP, {"order_id": 1042})[0])
@@ -69,6 +77,12 @@ class RunOne(unittest.TestCase):
         self.assertIn("lookup_order", block["content"])
         self.assertIn("count_stock", block["content"])
 
+    def test_a_defined_tool_without_a_function_is_unknown(self):
+        block = run_one(call("count_stock", {"sku": "X1"}), TOOLS, {"lookup_order": lookup_order})
+        self.assertIs(block["is_error"], True)
+        self.assertNotIn("count_stock,", block["content"])
+        self.assertIn("lookup_order", block["content"])
+
     def test_bad_input_is_reported_and_the_tool_is_not_run(self):
         ran = []
         functions = {"lookup_order": lambda **kw: ran.append(kw) or "ran", "count_stock": FUNCTIONS["count_stock"]}
@@ -80,7 +94,7 @@ class RunOne(unittest.TestCase):
     def test_a_tool_error_passes_its_message_to_claude(self):
         block = run_one(call("lookup_order", {"order_id": "A-999"}), TOOLS, FUNCTIONS)
         self.assertIs(block["is_error"], True)
-        self.assertEqual(block["content"], "No order A-999. Ask the user to check the number: it looks like A-1042.")
+        self.assertEqual(block["content"], NOT_FOUND.format("A-999"))
 
     def test_an_unexpected_failure_is_reported_without_its_details(self):
         block = run_one(call("lookup_order", {"order_id": "C-1"}), TOOLS, FUNCTIONS)

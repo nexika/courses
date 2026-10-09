@@ -30,8 +30,9 @@
 
 اقرأه من الأعلى. القيمة كائن (object)، أي كائن JSON يشبه قاموس Python ‏(dict). يسرد `properties`
 حقوله ومخطط كل حقل. ويسمّي `type` نوع القيمة: `string` أو `integer` أو `number` أو `boolean` أو
-`array` أو `object` أو `null`. ويسرد `enum` القيم الوحيدة المسموح بها. ويحدّ `minimum` و`maximum`
-الرقم من الأسفل والأعلى. وقاعدتان تفاجئان كثيرين. في JSON Schema، الحقل المذكور في `properties` ليس
+`array` أو `object` أو `null`[^so-types]. فالنوع `integer` عدد صحيح، و`number` أي عدد، حتى ذو الكسر العشري،
+و`array` مصفوفة أي قائمة (list في Python)، و`null` هي `None` في Python. ويقصر `enum` القيمة على مجموعة
+ثابتة من القيم[^js-enum]. ويحدّد `minimum` و`maximum` مدى الرقم[^js-range]. وقاعدتان تفاجئان كثيرين. في JSON Schema، الحقل المذكور في `properties` ليس
 إلزاميًا ما لم تذكره في `required`[^js-required]. والحقول الإضافية مسموح بها ما لم تضبط
 `additionalProperties` على `false`[^js-additional].
 
@@ -43,15 +44,16 @@ Claude نص JSON صالحًا يطابق مخططك، في كتلة النص م�
 لا تقبل هذه الميزة كل مخطط. يجب أن يضبط كل كائن `additionalProperties` على `false`[^so-supported].
 وقيود الأرقام مثل `minimum` و`maximum` غير مدعومة، والطلب الذي يستخدم ميزة لا تدعمها الواجهة يفشل
 بخطأ[^so-unsupported]. لذلك تحتفظ بنسختين: المخطط الذي ترسله، بلا `minimum` ولا `maximum`، والمخطط
-الكامل الذي يفحص به كودك. ومعظم أدوات SDK المساعدة تفعل الشيء نفسه: ترسل إلى Claude مخططًا أبسط، والأداة
-التي تفحص الإجابات تظل تفحص كل قاعدة في مخططك الكامل[^so-sdk].
+الكامل الذي يفحص به كودك. وتوفّر حزم SDK الرسمية أيضًا دوالّ مساعدة (helpers) تفعل ذلك عنك. معظمها
+يرسل إلى Claude مخططًا أبسط، والدالة المساعدة التي تفحص الإجابات تظل تفحص كل قاعدة في مخططك
+الكامل[^so-sdk]. أما في هذا الدرس فتفعل ذلك بيدك، لترى كل خطوة.
 
 فلماذا الفحص إذن؟ لأن عبارة «يتبع المخطط» لها استثناءات:
 
 - **الرفض.** قد يرفض Claude طلبًا. عندها يكون سبب التوقف `refusal`، وقد لا تطابق مخرجات الإجابة
   مخططك[^so-refusal]. والرفض إجابة عادية ناجحة، وليس خطأً[^stop-refusal]. وإعادة الطلب نفسه ليست
-  الحل الموثّق: فالطلب الذي يرفضه Claude Opus 5.5 يمكن عادةً أن يُخدَم بإعادة المحاولة على نموذج Claude
-  آخر[^refusal-fallback].
+  الحل الموثّق: فالطلب الذي يرفضه Claude Opus 5.5 يُجاب عنه عادةً إذا أرسلته إلى نموذج Claude آخر،
+  بتغيير `model`[^refusal-fallback].
 - **الإجابة المقطوعة.** إذا بلغت الإجابة `max_tokens`، فقد يكون JSON ناقصًا. والحل الموثّق أن تعيد
   المحاولة بقيمة `max_tokens` أعلى[^so-max].
 - **حالة الأحرف في قيم `enum`.** قد يعيد Claude ‏`"Bug"` ومخططك يقول `"bug"`: فحالة الأحرف (الكبيرة
@@ -60,7 +62,7 @@ Claude نص JSON صالحًا يطابق مخططك، في كتلة النص م�
 - **قواعد لا تفحصها الواجهة،** مثل `minimum` و`maximum` أعلاه، وقواعد لا يستطيع المخطط أن يعبّر عنها
   أصلًا، مثل «يجب أن يكون التاريخ في المستقبل». هذه لا يفحصها إلا كودك.
 
-الإجابة التي تخالف إحدى قواعدك يمكن أن تطلبها من جديد. لكن كل طلب جديد يكلّف رموزًا (tokens)، فضع حدًا،
+الإجابة التي تخالف إحدى قواعدك يمكن أن تطلبها من جديد، لكن الطلب نفسه قد يخالف القاعدة مرة أخرى. وكل طلب جديد يكلّف رموزًا (tokens)، فضع حدًا،
 ثم توقف وأبلغ عن المشكلة. وللمخرجات المنظمة كلفة صغيرة أيضًا: يتلقى Claude موجّه نظام (system prompt)
 إضافيًا يشرح الصيغة، فيزيد عدد رموز الإدخال قليلًا[^so-cost].
 
@@ -100,7 +102,7 @@ text = "".join(block.text for block in response.content if block.type == "text")
 print(json.loads(text) if response.stop_reason == "end_turn" else text)
 ```
 
-يتبع هذا الكود مثال «JSON Schema خام» في دليل المخرجات المنظمة من Anthropic[^so-raw]. ستختلف إجابتك عن
+يتبع هذا الكود مثال JSON Schema العادي (دون دالة مساعدة) في دليل المخرجات المنظمة من Anthropic[^so-raw]. ستختلف إجابتك عن
 العيّنات أدناه.
 
 ### دون مفتاح: اقرأ ست إجابات نموذجية
@@ -143,7 +145,7 @@ for path in sorted(folder.glob("sample_*.json")):
 لا يصلح للاستخدام إلا 2 من الإجابات الست. تنجح `sample_enum_case.json` لأن فحص الفئة يتجاهل حالة
 الأحرف. أما `sample_out_of_range.json` فنص JSON صالح فيه كل الحقول، لكنه يضبط الأولوية على 5: لم
 يمنع ذلك أيُّ شيء أُرسل في المخطط إلى الواجهة، فلا يكشفه إلا فحصك. وتوقفت إجابتان مبكرًا، واحدة بسبب
-`max_tokens` وأخرى بسبب `refusal`، وواحدة ليست JSON أصلًا.
+`max_tokens` وأخرى بسبب `refusal`، وواحدة تسبق JSON فيها جملة، فلا يمكن تحليلها.
 
 ## أخطاء شائعة
 
@@ -214,6 +216,9 @@ python3 -m unittest discover -s ../tests
 [^so-enum]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^so-enum-case]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^so-cost]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
+[^so-types]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
+[^js-enum]: Enumerated values (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/enum>
+[^js-range]: Numeric types (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/numeric>
 [^so-raw]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^py-bool]: Built-in Types (Python documentation), <https://docs.python.org/3/library/stdtypes.html>
 [^so-reasoning]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>

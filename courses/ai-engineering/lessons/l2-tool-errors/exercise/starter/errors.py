@@ -23,8 +23,9 @@ def check_input(tool, args):
     """Return a list of problems with the input Claude sent for a tool; an empty list means it is fine.
 
     tool is a tool definition (with "input_schema"); args is the tool_use block's input.
-    Report each required field that is missing, each field that is not in "properties",
-    and each field whose value does not match its "type" (use JSON_TYPES). Name the field in each problem.
+    Report each required field that is missing, each field whose value does not match its "type"
+    (use JSON_TYPES), and, only when the schema sets "additionalProperties" to False, each field that is
+    not in "properties". Name the field in each problem.
     """
     raise NotImplementedError
 
@@ -34,7 +35,8 @@ def run_one(call, tools, functions):
 
     call is {"id": ..., "name": ..., "input": ...}; tools is the list of tool definitions;
     functions maps a tool name to its Python function.
-    - unknown tool name: an error result that lists the available tool names
+    - unknown tool name (not in tools, or with no function): an error result that lists the available
+      tool names (those with both a definition and a function)
     - check_input finds problems: an error result that names them and asks Claude to call again
     - the function raises ToolError: an error result whose content is the error's message
     - the function raises any other exception: an error result that names the tool and the kind of

@@ -21,7 +21,8 @@ def check_input(tool, args):
     problems = [f"missing required field '{name}'" for name in schema.get("required", []) if name not in args]
     for name, value in args.items():
         if name not in props:
-            problems.append(f"unknown field '{name}'")
+            if schema.get("additionalProperties") is False:
+                problems.append(f"field '{name}' is not allowed")
             continue
         kind = props[name].get("type")
         if kind in JSON_TYPES and not JSON_TYPES[kind](value):
@@ -36,8 +37,9 @@ def run_one(call, tools, functions):
 
     by_name = {tool["name"]: tool for tool in tools}
     name = call["name"]
-    if name not in by_name or name not in functions:
-        return error(f"Unknown tool '{name}'. Available tools: {', '.join(sorted(by_name))}.")
+    available = sorted(n for n in by_name if n in functions)
+    if name not in available:
+        return error(f"Unknown tool '{name}'. Available tools: {', '.join(available)}.")
     problems = check_input(by_name[name], call["input"])
     if problems:
         return error(f"Invalid input for {name}: {'; '.join(problems)}. Call it again with a corrected input.")

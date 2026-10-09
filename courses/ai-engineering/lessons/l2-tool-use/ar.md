@@ -37,10 +37,10 @@
 }
 ```
 
-الوصف أهم من أي شيء آخر: يعدّه دليل Anthropic أهم عامل على الإطلاق في جودة عمل الأداة، ويطلب ثلاث جمل
-أو أربعًا على الأقل[^dt-desc].
+الوصف أهم من أي شيء آخر: يعدّه دليل Anthropic أهم عامل على الإطلاق في جودة عمل الأداة، [^dt-desc]، ويطلب ثلاث جمل
+أو أربعًا على الأقل[^dt-sentences].
 
-هذه جولة واحدة من **تبادل الأدوات**، للسؤال `Where is order A-1042?`:
+هذه **دورة** واحدة من تبادل الأدوات، للسؤال `Where is order A-1042?`:
 
 1) ترسل السؤال والقائمة `tools`.
 2) يجيب Claude بسبب التوقف `tool_use` وكتلة `tool_use`. في الكتلة معرّف `id`، واسم الأداة `name`،
@@ -58,15 +58,15 @@
 جولة `user` هذه، تأتي كتل `tool_result` أولًا، قبل أي نص[^hc-order].
 
 **حلقة الأدوات** تكرّر ذلك. ما دام سبب التوقف `tool_use`، شغّل الأدوات وتابع المحادثة. وأي سبب توقف آخر
-ينهي الحلقة: فإما أن Claude أجاب، وإما أنه توقف لسبب يجب أن يعالجه كودك[^hw-loop]. كل جولة طلب جديد،
-وكل طلب يرسل التاريخ كله من جديد، فضع حدًا لعدد الجولات.
+ينهي الحلقة: فإما أن Claude أجاب، وإما أنه توقف لسبب يجب أن يعالجه كودك[^hw-loop]. والدورة إجابة واحدة تطلب أدوات، مع النتائج التي يعيدها كودك. وكل دورة تكلّف طلبًا جديدًا،
+وكل طلب يرسل التاريخ كله من جديد[^stateless]، فضع حدًا لعدد الدورات.
 
 للأدوات كلفة بالرموز (tokens). تُحسب تعريفات الأدوات رموزًا للإدخال[^ov-price]، وتضيف الواجهة موجّه نظام
 (system prompt) يفعّل استخدام الأدوات[^ov-enables]: 286 رمزًا على Claude Opus 5.5[^ov-prompt].
 
 ## جرّبها
 
-### دون مفتاح: جولة واحدة بيدك
+### دون مفتاح: دورة واحدة بيدك
 
 في المجلد `exercise/tests/` إجابتان نموذجيتان، على شكل الإجابات الحقيقية لكنهما ليستا تسجيلًا لاستدعاءات
 حقيقية: استدعاء Claude للأداة `lookup_order`، ثم إجابته الأخيرة. هنا تقومان مقام Claude. احفظ هذا
@@ -148,6 +148,8 @@ for round_number in range(5):  # a limit, so the loop cannot run forever
             output = lookup_order(**block.input)
             results.append({"type": "tool_result", "tool_use_id": block.id, "content": json.dumps(output)})
     messages.append({"role": "user", "content": results})
+if response.stop_reason == "tool_use":
+    print("Stopped: Claude still wanted tools after 5 rounds.")
 print("stop_reason:", response.stop_reason)
 print("".join(block.text for block in response.content if block.type == "text"))
 ```
@@ -163,15 +165,17 @@ print("".join(block.text for block in response.content if block.type == "text"))
   الأداة، ومتى تُستخدم، وما الذي لا تعيده.
 - **نسيان جولة `assistant`.** يجب أن يحمل الطلب التالي إجابة Claude، بكتل `tool_use` فيها، قبل نتائجك.
   فالواجهة عديمة الحالة (stateless): لا تتذكر الاستدعاء[^stateless].
-- **نص قبل النتائج.** في جولة النتائج، تأتي كتل `tool_result` أولًا. والنص قبلها يُفشل الطلب[^hc-order].
+- **نص قبل النتائج.** في جولة النتائج، تأتي كتل `tool_result` أولًا. والنص قبلها يجعل الطلب يفشل بخطأ[^hc-400].
 - **الإجابة عن الاستدعاء الأول وحده.** قد تحمل الإجابة عدة كتل `tool_use`[^hc-block]. أرسل نتيجة لكل
   واحدة، مربوطة بقيمة `tool_use_id`.
-- **الثقة العمياء بالمُدخلات.** حين يُغفل المستخدم قيمة إلزامية، قد يطلبها Claude، وقد يخمّن قيمة، مثل
-  مدينة لم تذكرها قط[^ov-guess]. افحص المُدخلات قبل أن تعمل بها.
+- **الثقة العمياء بالمُدخلات.** حين يُغفل المستخدم قيمة إلزامية، يرجَّح كثيرًا أن يطلبها Claude
+  Opus[^ov-ask]، لكن Claude قد يخمّن قيمة أيضًا، مثل رقم طلبية لم يذكره المستخدم قط[^ov-guess]. افحص المُدخلات قبل أن تعمل بها.
 - **الثقة بما تعيده الأداة.** صفحات الويب والرسائل وغيرها من المحتوى الخارجي قد تخفي تعليمات موجّهة إلى
-  Claude. عامل نتائج الأدوات على أنها غير موثوقة، وأبقِ هذا المحتوى داخل كتل `tool_result`[^hc-untrusted].
-- **فرض أداة عبر `tool_choice`.** على Claude Opus 5.5، يعيد فرض أداة بضبط `tool_choice` على `any` أو
-  `tool` خطأً[^dt-forced]. اتركه على `auto`، القيمة الافتراضية[^ov-auto]، واكتب وصفًا أو موجّهًا
+  Claude[^hc-untrusted2]. عامل نتائج الأدوات على أنها غير موثوقة، وأبقِ هذا المحتوى داخل كتل `tool_result`، لا في
+  موجّه النظام ولا في نصك أنت[^hc-untrusted].
+- **فرض أداة عبر `tool_choice`.** الحقل `tool_choice` حقل اختياري في الطلب يمكنه أن يُلزم Claude
+  باستخدام أداة[^dt-choice]: `auto` يترك الخيار لـ Claude، و`any` يُلزمه باستدعاء أداة ما، و`tool` يُلزمه
+  بأداة محددة بالاسم. وعلى Claude Opus 5.5، إذا ضبطته على `any` أو `tool` أعاد الطلب خطأً[^dt-forced]. اتركه على `auto`، القيمة الافتراضية[^ov-auto]، واكتب وصفًا أو موجّهًا
   (prompt) أفضل.
 
 ## تمرينك
@@ -188,7 +192,8 @@ print("".join(block.text for block in response.content if block.type == "text"))
   استدعاء. و`functions` قاموس يربط اسم كل أداة بدالة Python التي تشغّلها.
 - `run_tool_loop(ask, question, tools, functions, max_rounds)` تشغّل الحلقة: `ask(messages, tools)` بديل
   لاستدعاء الواجهة. تعيد نص الإجابة والمحادثة كلها، وترفع `RuntimeError` إذا ظل Claude يستدعي أداة بعد
-  `max_rounds` جولة.
+  `max_rounds` دورة. فمع `max_rounds=3`، ترسل أربعة طلبات على الأكثر: ثلاثة تطلب إجاباتها أدوات، ورابعًا
+  يجب أن تكون إجابته هي الجواب.
 
 في هذا الدرس تنجح كل أداة. أما الأدوات التي تفشل فهي موضوع الدرس التالي.
 
@@ -205,6 +210,11 @@ python3 -m unittest discover -s ../tests
 
 أجب عن اختبار هذا الدرس. إن صعب عليك سؤال، فأعد قراءة الخطوات الخمس لتبادل الأدوات في «الفكرة».
 
+[^dt-sentences]: Define tools, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools>
+[^ov-ask]: Tool use with Claude, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview>
+[^hc-400]: Handle tool calls, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls>
+[^dt-choice]: Define tools, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools>
+[^hc-untrusted2]: Handle tool calls, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls>
 [^ov-what]: Tool use with Claude, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview>
 [^hw-contract]: How tool use works, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works>
 [^hw-sees]: How tool use works, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works>

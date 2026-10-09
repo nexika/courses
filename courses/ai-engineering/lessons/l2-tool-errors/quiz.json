@@ -28,7 +28,7 @@
     {
      "en": "A new user message asking Claude to wait",
      "ar": "رسالة مستخدم جديدة تطلب من Claude الانتظار",
-     "fr": "Un nouveau message demandant à Claude d'attendre"
+     "fr": "Un message utilisateur demandant d'attendre"
     }
    ],
    "answer": 0,
@@ -97,7 +97,7 @@
     {
      "en": "Send an error result naming order_id",
      "ar": "ترسل نتيجة خطأ تذكر order_id",
-     "fr": "Envoyer une erreur qui nomme order_id"
+     "fr": "Un résultat d'erreur qui nomme order_id"
     },
     {
      "en": "Rename the field yourself and say nothing",

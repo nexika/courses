@@ -40,9 +40,9 @@ parties[^dt-fields] :
 ```
 
 La description compte plus que tout : le guide d'Anthropic en fait de loin le facteur le plus important
-de la performance d'un outil, et demande au moins trois ou quatre phrases[^dt-desc].
+de la performance d'un outil[^dt-desc], et demande au moins trois ou quatre phrases[^dt-sentences].
 
-Voici un tour de l'**échange d'outil**, pour la question `Where is order A-1042?` :
+Voici un **cycle** de l'échange d'outil, pour la question `Where is order A-1042?` :
 
 1) Vous envoyez la question et la liste `tools`.
 2) Claude répond avec la raison d'arrêt `tool_use` et un bloc `tool_use`. Le bloc contient un `id`, le
@@ -62,8 +62,9 @@ blocs `tool_result` viennent en premier, avant tout texte[^hc-order].
 
 **La boucle d'outils** répète cet échange. Tant que la raison d'arrêt est `tool_use`, exécutez les outils
 et poursuivez la conversation. Toute autre raison d'arrêt termine la boucle : Claude a répondu, ou s'est
-arrêté pour une raison que votre code doit traiter[^hw-loop]. Chaque tour est une nouvelle requête, et
-chaque requête renvoie tout l'historique : limitez donc le nombre de tours.
+arrêté pour une raison que votre code doit traiter[^hw-loop]. Un cycle, c'est une réponse qui demande des
+outils, plus les résultats que votre code renvoie. Chaque cycle coûte une nouvelle requête, et chaque
+requête renvoie tout l'historique[^stateless] : limitez donc le nombre de cycles.
 
 Les outils coûtent des tokens. Les définitions d'outils comptent comme tokens d'entrée[^ov-price], et
 l'API ajoute un prompt système qui active l'utilisation d'outils[^ov-enables] : 286 tokens sur Claude
@@ -71,7 +72,7 @@ Opus 5.5[^ov-prompt].
 
 ## Essayez
 
-### Sans clé : un tour, à la main
+### Sans clé : un cycle, à la main
 
 Le dossier `exercise/tests/` contient deux réponses d'exemple, qui ont la forme de vraies réponses sans
 être des enregistrements de vrais appels : l'appel de Claude à `lookup_order`, puis sa réponse finale.
@@ -154,6 +155,8 @@ for round_number in range(5):  # a limit, so the loop cannot run forever
             output = lookup_order(**block.input)
             results.append({"type": "tool_result", "tool_use_id": block.id, "content": json.dumps(output)})
     messages.append({"role": "user", "content": results})
+if response.stop_reason == "tool_use":
+    print("Stopped: Claude still wanted tools after 5 rounds.")
 print("stop_reason:", response.stop_reason)
 print("".join(block.text for block in response.content if block.type == "text"))
 ```
@@ -170,17 +173,21 @@ la boucle à la main, pour savoir ce qu'elle fait.
 - **Oublier le tour `assistant`.** La requête suivante doit contenir la réponse de Claude, avec ses blocs
   `tool_use`, avant vos résultats. L'API est sans état : elle ne se souvient pas de l'appel[^stateless].
 - **Du texte avant les résultats.** Dans le tour des résultats, les blocs `tool_result` viennent en
-  premier. Du texte avant eux fait échouer la requête[^hc-order].
+  premier. Du texte avant eux fait échouer la requête avec une erreur[^hc-400].
 - **Ne répondre qu'au premier appel.** Une réponse peut contenir plusieurs blocs `tool_use`[^hc-block].
   Envoyez un résultat pour chacun, relié par son `tool_use_id`.
-- **Faire aveuglément confiance à l'entrée.** Quand l'utilisateur omet une valeur obligatoire, Claude peut
-  la demander, ou en deviner une, comme une ville que vous n'avez jamais nommée[^ov-guess]. Vérifiez
+- **Faire aveuglément confiance à l'entrée.** Quand l'utilisateur omet une valeur obligatoire, Claude Opus a
+  bien plus de chances de la demander[^ov-ask], mais Claude peut aussi en deviner une, comme un numéro de
+  commande que l'utilisateur n'a jamais donné[^ov-guess]. Vérifiez
   l'entrée avant d'agir.
 - **Faire confiance à ce que renvoie un outil.** Les pages web, les e-mails et tout contenu extérieur
-  peuvent cacher des instructions destinées à Claude. Traitez les résultats d'outils comme non fiables, et
-  gardez ce contenu dans des blocs `tool_result`[^hc-untrusted].
-- **Forcer un outil avec `tool_choice`.** Sur Claude Opus 5.5, forcer un outil avec `tool_choice` à `any`
-  ou `tool` renvoie une erreur[^dt-forced]. Laissez `auto`, la valeur par défaut[^ov-auto], et écrivez
+  peuvent cacher des instructions destinées à Claude[^hc-untrusted2]. Traitez les résultats d'outils comme non fiables, et
+  gardez ce contenu dans des blocs `tool_result`, pas dans votre prompt système ni dans votre propre
+  texte[^hc-untrusted].
+- **Forcer un outil avec `tool_choice`.** `tool_choice` est un champ facultatif de la requête qui peut
+  obliger Claude à utiliser un outil[^dt-choice] : `auto` laisse Claude choisir, `any` l'oblige à appeler
+  un outil, et `tool` l'oblige à appeler un outil précis. Sur Claude Opus 5.5, `any` et `tool` renvoient
+  une erreur[^dt-forced]. Laissez `auto`, la valeur par défaut[^ov-auto], et écrivez
   une meilleure description ou un meilleur prompt.
 
 ## Votre exercice
@@ -199,7 +206,9 @@ tests, un substitut (*stand-in*) joue le rôle de Claude, comme dans la leçon p
   `tool_result` par appel. `functions` associe le nom de chaque outil à la fonction Python qui l'exécute.
 - `run_tool_loop(ask, question, tools, functions, max_rounds)` fait tourner la boucle :
   `ask(messages, tools)` remplace l'appel à l'API. Elle renvoie le texte de la réponse et toute la
-  conversation, et lève `RuntimeError` si Claude appelle encore un outil après `max_rounds` tours.
+  conversation, et lève `RuntimeError` si Claude appelle encore un outil après `max_rounds` cycles. Avec `max_rounds=3`,
+  elle envoie donc au plus quatre requêtes : trois dont les réponses appellent des outils, et une quatrième
+  dont la réponse doit être la réponse finale.
 
 Dans cette leçon, chaque outil réussit. La leçon suivante traite des outils qui échouent.
 
@@ -218,6 +227,11 @@ Les tests échouent tant que vos fonctions ne marchent pas. Une solution se trou
 Répondez au quiz de cette leçon. Si une question vous résiste, relisez les cinq étapes de l'échange
 d'outil dans « L'idée ».
 
+[^dt-sentences]: Define tools, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools>
+[^ov-ask]: Tool use with Claude, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview>
+[^hc-400]: Handle tool calls, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls>
+[^dt-choice]: Define tools, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools>
+[^hc-untrusted2]: Handle tool calls, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls>
 [^ov-what]: Tool use with Claude, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview>
 [^hw-contract]: How tool use works, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works>
 [^hw-sees]: How tool use works, <https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works>
