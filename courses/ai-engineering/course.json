@@ -157,6 +157,24 @@
         "l1-clear-prompts",
         "l1-test-your-prompt"
       ]
+    },
+    {
+      "id": "m2-tools",
+      "level": 2,
+      "title": {
+        "en": "Tools and structured output",
+        "ar": "الأدوات والمخرجات المنظمة",
+        "fr": "Outils et sorties structurées"
+      },
+      "lessons": [
+        "l2-structured-output",
+        "l2-tool-use",
+        "l2-tool-errors",
+        "l2-what-is-mcp",
+        "l2-build-an-mcp-server",
+        "l2-connect-an-mcp-server",
+        "l2-images-and-pdfs"
+      ]
     }
   ],
   "verify": {

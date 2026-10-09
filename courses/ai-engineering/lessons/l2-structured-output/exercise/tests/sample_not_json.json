@@ -1,0 +1,18 @@
+{
+  "id": "msg_sample_06",
+  "type": "message",
+  "role": "assistant",
+  "model": "claude-opus-5-5",
+  "content": [
+    {
+      "type": "text",
+      "text": "Here is the ticket:\n{\"category\": \"question\", \"priority\": 1, \"summary\": \"Can I change my username?\"}"
+    }
+  ],
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "usage": {
+    "input_tokens": 98,
+    "output_tokens": 34
+  }
+}

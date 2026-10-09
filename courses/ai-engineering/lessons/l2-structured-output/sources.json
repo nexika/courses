@@ -1,0 +1,173 @@
+{
+ "schema": "nexika.sources/1",
+ "sources": {
+  "so-without": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "Without structured outputs, Claude can generate malformed JSON responses or invalid tool inputs that break your applications.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "js-data": {
+   "url": "https://json-schema.org/understanding-json-schema/about",
+   "title": "What is a schema? (Understanding JSON Schema)",
+   "kind": "spec",
+   "quote": "You may have noticed that the JSON Schema itself is written in JSON. It is data itself, not a computer program.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "js-required": {
+   "url": "https://json-schema.org/understanding-json-schema/reference/object",
+   "title": "object (Understanding JSON Schema)",
+   "kind": "spec",
+   "quote": "By default, the properties defined by the properties keyword are not required.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "js-additional": {
+   "url": "https://json-schema.org/understanding-json-schema/reference/object",
+   "title": "object (Understanding JSON Schema)",
+   "kind": "spec",
+   "quote": "By default any additional properties are allowed. The value of the additionalProperties keyword is a schema that will be used to validate any properties in the instance that are not matched by properties or patternProperties. Setting the additionalProperties schema to false means no additional properties will be allowed.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "so-intro": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "Structured outputs constrain Claude's responses to follow a specific schema, ensuring valid, parseable output for downstream processing.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "so-send": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "The request carries the schema in output_config.format with type: \"json_schema\".",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "so-read": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "Claude returns valid JSON that matches your schema in the response's text content block.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "so-grammar": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "Structured outputs work by compiling your JSON schemas into a grammar that constrains Claude's output.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "so-supported": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "required and additionalProperties (must be set to false for objects)",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "so-unsupported": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "Numerical constraints (such as minimum, maximum, multipleOf) String constraints (minLength, maxLength) Array constraints beyond minItems of 0 or 1 additionalProperties set to anything other than false If you use an unsupported feature, you'll receive a 400 error with details.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "so-sdk": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "Claude receives a simplified schema, but a helper that validates responses still enforces every constraint in your code.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "so-refusal": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "The output may not match your schema because the refusal message takes precedence over schema constraints",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "stop-refusal": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+   "title": "Stop reasons and fallback",
+   "kind": "doc",
+   "quote": "Claude declined to generate a response. Safety classifiers return this stop reason as a normal HTTP 200 response, not an error.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "refusal-fallback": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+   "title": "Stop reasons and fallback",
+   "kind": "doc",
+   "quote": "A refused request on Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, or Claude Haiku 5.5 can usually be served by retrying on another Claude model.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "so-max": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "The output may be incomplete and not match your schema Retry with a higher max_tokens value to get the complete structured output",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "so-enum": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "Compare enum values case-insensitively, and avoid enum values that differ only in capitalization.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "so-cost": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "When using structured outputs, Claude automatically receives an additional system prompt explaining the expected output format. This means: Your input token count is slightly higher",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "so-raw": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "To use a JSON schema from a file, an OpenAPI spec, or code that builds it at runtime, pass it in output_config.format.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "py-bool": {
+   "url": "https://docs.python.org/3/library/stdtypes.html",
+   "title": "Built-in Types (Python documentation)",
+   "kind": "doc",
+   "quote": "In addition, Booleans are a subtype of integers.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "so-reasoning": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "A property that asks for the model's thinking or step-by-step reasoning may lead to a reasoning_extraction refusal. Ask for a short explanation instead.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "so-enum-case": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "Structured outputs don't guarantee the capitalization of string enum and const values",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  }
+ }
+}

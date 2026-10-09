@@ -1,0 +1,9 @@
+{
+ "schema": "nexika.exercise/1",
+ "runner": "python-unittest",
+ "goal": {
+  "en": "In structured.py, write validate() to check a value against a JSON Schema (type, enum ignoring case, minimum, maximum, properties, required, additionalProperties false, items) and list every problem, parse_reply() to turn a Claude reply into a checked value or raise ReplyError with the reason (refusal, cut_off, not_json, invalid), and ask_until_valid() to ask again a limited number of times, with more max_tokens after a cut-off reply and never after a refusal. Everything runs offline on sample replies and a stand-in for the API.",
+  "ar": "في الملف structured.py، اكتب validate() لتفحص قيمةً مقابل مخطط JSON Schema (النوع type، والقيم المسموحة enum دون اعتبار لحالة الأحرف، و minimum و maximum، والحقول properties، والحقول الإلزامية required، ومنع الحقول الإضافية additionalProperties false، وعناصر المصفوفة items) وتسرد كل مشكلة، و parse_reply() لتحوّل إجابة Claude إلى قيمة مُتحقَّق منها أو ترفع ReplyError مع السبب (refusal أو cut_off أو not_json أو invalid)، و ask_until_valid() لتعيد السؤال عددًا محدودًا من المرات، بقيمة max_tokens أكبر بعد الإجابة المقطوعة، ودون إعادة أبدًا بعد الرفض. كل شيء يعمل دون اتصال على إجابات نموذجية وبديل (stand-in) للواجهة البرمجية.",
+  "fr": "Dans structured.py, écrivez validate() pour vérifier une valeur par rapport à un JSON Schema (type, enum sans tenir compte de la casse, minimum, maximum, properties, required, additionalProperties à false, items) en listant chaque problème, parse_reply() pour transformer une réponse de Claude en valeur vérifiée ou lever ReplyError avec la raison (refusal, cut_off, not_json, invalid), et ask_until_valid() pour redemander un nombre limité de fois, avec plus de max_tokens après une réponse coupée et jamais après un refus. Tout fonctionne hors ligne, sur des réponses d'exemple et un substitut de l'API."
+ }
+}

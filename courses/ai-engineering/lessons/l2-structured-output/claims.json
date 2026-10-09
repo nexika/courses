@@ -1,0 +1,21 @@
+{
+ "schema": "nexika.claims/1",
+ "claims": [
+  {
+   "id": "usable-samples",
+   "says": "Only 2 of the 6 sample replies are usable",
+   "says_ar": "لا يصلح للاستخدام إلا 2 من الإجابات الست",
+   "says_fr": "Seules 2 des 6 réponses d'exemple sont utilisables",
+   "check": "usable_samples.py",
+   "expect": 2
+  },
+  {
+   "id": "out-of-range-priority",
+   "says": "sets the priority to 5",
+   "says_ar": "يضبط الأولوية على 5",
+   "says_fr": "met la priorité à 5",
+   "check": "out_of_range_priority.py",
+   "expect": 5
+  }
+ ]
+}
