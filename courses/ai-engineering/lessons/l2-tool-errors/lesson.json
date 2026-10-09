@@ -1,0 +1,18 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l2-tool-errors",
+ "title": {
+  "en": "When a tool fails",
+  "ar": "حين تفشل الأداة",
+  "fr": "Quand un outil échoue"
+ },
+ "module": "m2-tools",
+ "level": 2,
+ "minutes": 40,
+ "competencies": [
+  "c2.tool-errors"
+ ],
+ "prerequisites": [
+  "l2-tool-use"
+ ]
+}

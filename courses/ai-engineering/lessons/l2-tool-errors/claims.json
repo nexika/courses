@@ -1,0 +1,13 @@
+{
+ "schema": "nexika.claims/1",
+ "claims": [
+  {
+   "id": "error-results",
+   "says": "3 of the 4 results carry",
+   "says_ar": "وتحمل 3 من النتائج الأربع",
+   "says_fr": "3 des 4 résultats portent",
+   "check": "error_results.py",
+   "expect": 3
+  }
+ ]
+}
