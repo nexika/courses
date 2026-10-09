@@ -1,0 +1,181 @@
+{
+ "schema": "nexika.sources/1",
+ "sources": {
+  "ov-what": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
+   "title": "Tool use with Claude",
+   "kind": "doc",
+   "quote": "Tool use (also called function calling) lets Claude call functions that you define or that Anthropic provides. Claude determines when to call a tool based on the user's request and the tool's description.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hw-contract": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works",
+   "title": "How tool use works",
+   "kind": "doc",
+   "quote": "The model never executes anything on its own. It emits a structured request, your code (or Anthropic's servers) runs the operation, and the result flows back into the conversation.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hw-sees": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works",
+   "title": "How tool use works",
+   "kind": "doc",
+   "quote": "Claude never sees your implementation; it only sees the schema you provided and the result you returned.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "dt-tools": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+   "title": "Define tools",
+   "kind": "doc",
+   "quote": "Client tools are specified in the tools top-level parameter of the API request.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "dt-fields": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+   "title": "Define tools",
+   "kind": "doc",
+   "quote": "name The name of the tool. Must match the regex ^[a-zA-Z0-9_-]{1,128}$. description A detailed plaintext description of what the tool does, when it should be used, and how it behaves. input_schema A JSON Schema object defining the expected parameters for the tool.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "dt-desc": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+   "title": "Define tools",
+   "kind": "doc",
+   "quote": "Provide extremely detailed descriptions. This is by far the most important factor in tool performance.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-block": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "The response will have a stop_reason of tool_use and one or more tool_use content blocks that include: id: A unique identifier for this particular tool use block. This will be used to match up the tool results later. name: The name of the tool being used. input: An object containing the input being passed to the tool, conforming to the tool's input_schema.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "dt-comment": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+   "title": "Define tools",
+   "kind": "doc",
+   "quote": "When using tools, Claude often comments on what it's doing or responds naturally to the user before calling tools.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-result": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "Continue the conversation by sending a new message with the role of user, and a content block containing the tool_result type and the following information: tool_use_id: The id of the tool use request this is a result for.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-continue": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "After receiving the tool result, Claude will use that information to continue generating a response to the original user prompt.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-roles": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "Unlike APIs that separate tool use or use special roles like tool or function, the Claude API integrates tools directly into the user and assistant message structure.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-order": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "Tool result blocks must immediately follow their corresponding tool use blocks in the message history. You cannot include any messages between the assistant's tool use message and the user's tool result message. In the user message containing tool results, the tool_result blocks must come FIRST in the content array. Any text must come AFTER all tool results.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hw-loop": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works",
+   "title": "How tool use works",
+   "kind": "doc",
+   "quote": "In practice this reads as: while stop_reason == \"tool_use\", execute the tools and continue the conversation. The loop exits on any other stop reason",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "ov-price": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
+   "title": "Tool use with Claude",
+   "kind": "doc",
+   "quote": "The total number of input tokens sent to the model (including in the tools parameter)",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "ov-prompt": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
+   "title": "Tool use with Claude",
+   "kind": "doc",
+   "quote": "Claude Opus 5.5 For long-running agentic coding and knowledge work auto, none 286 tokens",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "hc-runner": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "The manual tool handling described on this page is automatically managed by Tool Runner.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "stateless": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+   "title": "Using the Messages API",
+   "kind": "doc",
+   "quote": "The Messages API is stateless",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "ov-guess": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
+   "title": "Tool use with Claude",
+   "kind": "doc",
+   "quote": "Claude (particularly Claude Sonnet) might guess values you didn't supply",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-untrusted": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "Treat that content as untrusted: an attacker who can influence it may embed instructions that try to redirect Claude (indirect prompt injection). Keep untrusted content inside tool_result blocks",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "dt-forced": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+   "title": "Define tools",
+   "kind": "doc",
+   "quote": "Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, and Claude Mythos 5.1 any and tool return a 400 error",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "ov-auto": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
+   "title": "Tool use with Claude",
+   "kind": "doc",
+   "quote": "With the default tool_choice of {\"type\": \"auto\"}, Claude determines on each turn whether to call a tool or respond directly.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "ov-enables": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
+   "title": "Tool use with Claude",
+   "kind": "doc",
+   "quote": "When you use tools, the API also automatically includes a special system prompt for the model that enables tool use.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  }
+ }
+}

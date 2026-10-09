@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "choice",
+   "prompt": {
+    "en": "Claude's reply has stop_reason \"tool_use\" and a tool_use block for lookup_order. Who runs lookup_order?",
+    "ar": "في إجابة Claude سبب التوقف \"tool_use\" وكتلة tool_use للأداة lookup_order. من يشغّل lookup_order؟",
+    "fr": "La réponse de Claude a stop_reason \"tool_use\" et un bloc tool_use pour lookup_order. Qui exécute lookup_order ?"
+   },
+   "options": [
+    {
+     "en": "Claude runs it on Anthropic's servers",
+     "ar": "يشغّلها Claude على خوادم Anthropic",
+     "fr": "Claude, sur les serveurs d'Anthropic"
+    },
+    {
+     "en": "The SDK runs it before the reply arrives",
+     "ar": "تشغّلها حزمة SDK قبل وصول الإجابة",
+     "fr": "Le SDK, avant que la réponse n'arrive"
+    },
+    {
+     "en": "Your code runs it and sends the result",
+     "ar": "يشغّلها كودك ويرسل النتيجة",
+     "fr": "Votre code, qui renvoie le résultat"
+    },
+    {
+     "en": "Nobody: the block already has the result",
+     "ar": "لا أحد: فالكتلة تحمل النتيجة أصلًا",
+     "fr": "Personne : le bloc contient déjà le résultat"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "The model never executes anything itself. It writes a structured request; your code runs your tool and sends the result back in a tool_result block.",
+    "ar": "النموذج لا ينفّذ شيئًا بنفسه أبدًا. إنه يكتب طلبًا منظّمًا، ويشغّل كودك أداتك ويعيد النتيجة في كتلة tool_result.",
+    "fr": "Le modèle n'exécute jamais rien lui-même. Il écrit une demande structurée ; votre code exécute l'outil et renvoie le résultat dans un bloc tool_result."
+   }
+  },
+  {
+   "id": "q2",
+   "type": "choice",
+   "prompt": {
+    "en": "How does Claude know which tool_result answers which call?",
+    "ar": "كيف يعرف Claude أي نتيجة tool_result تجيب عن أي استدعاء؟",
+    "fr": "Comment Claude sait-il quel tool_result répond à quel appel ?"
+   },
+   "options": [
+    {
+     "en": "Its tool_use_id is the id of the tool_use block",
+     "ar": "قيمة tool_use_id فيها هي id كتلة tool_use",
+     "fr": "Son tool_use_id est l'id du bloc tool_use"
+    },
+    {
+     "en": "Results must use the same name as the tool",
+     "ar": "يجب أن تحمل النتيجة اسم الأداة نفسه",
+     "fr": "Le résultat doit porter le nom de l'outil"
+    },
+    {
+     "en": "Each result goes in its own new user message",
+     "ar": "توضع كل نتيجة في رسالة مستخدم جديدة خاصة بها",
+     "fr": "Chaque résultat va dans son propre message"
+    },
+    {
+     "en": "It goes in a turn with the special role tool",
+     "ar": "توضع في جولة لها الدور الخاص tool",
+     "fr": "Il va dans un tour avec le rôle spécial tool"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "Each tool_use block has an id; the tool_result block that answers it carries that id as tool_use_id. The Claude API has no tool role: results go in a user turn, right after Claude's call.",
+    "ar": "لكل كتلة tool_use معرّف id، وكتلة tool_result التي تجيب عنها تحمل هذا المعرّف في tool_use_id. ولا يوجد في Claude API دور tool: النتائج توضع في جولة للمستخدم، مباشرة بعد استدعاء Claude.",
+    "fr": "Chaque bloc tool_use a un id ; le bloc tool_result qui lui répond porte cet id dans tool_use_id. L'API Claude n'a pas de rôle tool : les résultats vont dans un tour utilisateur, juste après l'appel de Claude."
+   }
+  },
+  {
+   "id": "q3",
+   "type": "choice",
+   "prompt": {
+    "en": "Your loop sends the results, and the next reply has stop_reason \"end_turn\". What does your loop do?",
+    "ar": "يرسل كودك النتائج، وفي الإجابة التالية سبب التوقف \"end_turn\". ماذا تفعل الحلقة؟",
+    "fr": "Votre boucle envoie les résultats, et la réponse suivante a stop_reason \"end_turn\". Que fait la boucle ?"
+   },
+   "options": [
+    {
+     "en": "Runs the same tools again to be sure",
+     "ar": "تشغّل الأدوات نفسها مرة أخرى للتأكد",
+     "fr": "Elle relance les mêmes outils par sécurité"
+    },
+    {
+     "en": "Sends the results again in a new turn",
+     "ar": "ترسل النتائج مرة أخرى في جولة جديدة",
+     "fr": "Elle renvoie les résultats dans un tour"
+    },
+    {
+     "en": "Waits for a tool_use block to arrive",
+     "ar": "تنتظر وصول كتلة tool_use",
+     "fr": "Elle attend qu'un bloc tool_use arrive"
+    },
+    {
+     "en": "Stops and uses the text as the answer",
+     "ar": "تتوقف وتعدّ النص هو الإجابة",
+     "fr": "Elle s'arrête et prend le texte comme réponse"
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "The loop continues only while the stop reason is tool_use. Any other stop reason ends it; end_turn means Claude has written its answer.",
+    "ar": "تستمر الحلقة ما دام سبب التوقف tool_use فقط. وأي سبب آخر ينهيها؛ و end_turn يعني أن Claude كتب إجابته.",
+    "fr": "La boucle ne continue que tant que la raison d'arrêt est tool_use. Toute autre raison l'arrête ; end_turn signifie que Claude a écrit sa réponse."
+   }
+  },
+  {
+   "id": "q4",
+   "type": "choice",
+   "prompt": {
+    "en": "Claude often picks the wrong tool or fills its input badly. What should you improve first?",
+    "ar": "كثيرًا ما يختار Claude الأداة الخطأ أو يملأ مدخلاتها بشكل سيئ. ما الذي تحسّنه أولًا؟",
+    "fr": "Claude choisit souvent le mauvais outil ou remplit mal son entrée. Que faut-il améliorer d'abord ?"
+   },
+   "options": [
+    {
+     "en": "Make the tool names shorter",
+     "ar": "تقصير أسماء الأدوات",
+     "fr": "Raccourcir les noms des outils"
+    },
+    {
+     "en": "Write fuller tool descriptions",
+     "ar": "كتابة أوصاف أوفى للأدوات",
+     "fr": "Écrire des descriptions plus complètes"
+    },
+    {
+     "en": "Force a tool with tool_choice",
+     "ar": "فرض أداة عبر tool_choice",
+     "fr": "Forcer un outil avec tool_choice"
+    },
+    {
+     "en": "Raise max_tokens for the reply",
+     "ar": "رفع max_tokens للإجابة",
+     "fr": "Augmenter max_tokens de la réponse"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": "Anthropic's guide calls detailed descriptions by far the most important factor in tool performance: what the tool does, when to use it, what each input means. Forcing a tool with tool_choice returns an error on Claude Opus 5.5.",
+    "ar": "يعدّ دليل Anthropic الأوصاف المفصّلة أهم عامل على الإطلاق في أداء الأدوات: ما تفعله الأداة، ومتى تُستخدم، وما معنى كل مُدخل. وفرض أداة عبر tool_choice يعيد خطأ على Claude Opus 5.5.",
+    "fr": "Le guide d'Anthropic fait des descriptions détaillées de loin le facteur le plus important de la performance des outils : ce que fait l'outil, quand l'utiliser, ce que signifie chaque entrée. Forcer un outil avec tool_choice renvoie une erreur sur Claude Opus 5.5."
+   }
+  },
+  {
+   "id": "q5",
+   "type": "open",
+   "prompt": {
+    "en": "Explain, step by step, what goes over the wire when a user asks \"Where is order A-1042?\" and Claude answers with the help of your lookup_order tool. Name the messages, their roles and the blocks in them.",
+    "ar": "اشرح خطوة بخطوة ما يُرسَل ويُستقبَل حين يسأل مستخدم \"Where is order A-1042?\" ويجيب Claude بمساعدة أداتك lookup_order. سمِّ الرسائل وأدوارها والكتل التي فيها.",
+    "fr": "Expliquez pas à pas ce qui circule quand un utilisateur demande \"Where is order A-1042?\" et que Claude répond à l'aide de votre outil lookup_order. Nommez les messages, leurs rôles et les blocs qu'ils contiennent."
+   },
+   "rubric": {
+    "en": "Request 1: the user's question and the tools list. Reply 1: stop_reason tool_use, a tool_use block with id, name lookup_order and input order_id, often after a short text block. Your code runs the tool. Request 2: the whole history again: the question, Claude's reply as an assistant turn, and a user turn whose first block is a tool_result with tool_use_id equal to the call's id and the result as content. Reply 2: stop_reason end_turn and the answer as text. Claude never runs the tool itself.",
+    "ar": "الطلب 1: سؤال المستخدم وقائمة tools. الإجابة 1: سبب التوقف tool_use، وكتلة tool_use فيها id والاسم lookup_order والمُدخل order_id، وغالبًا تسبقها كتلة نص قصيرة. يشغّل كودك الأداة. الطلب 2: التاريخ كله من جديد: السؤال، وإجابة Claude جولةً للمساعد، وجولة للمستخدم أول كتلة فيها tool_result قيمة tool_use_id فيها تساوي id الاستدعاء والنتيجة في content. الإجابة 2: سبب التوقف end_turn والإجابة نصًا. ولا يشغّل Claude الأداة بنفسه أبدًا.",
+    "fr": "Requête 1 : la question de l'utilisateur et la liste tools. Réponse 1 : stop_reason tool_use, un bloc tool_use avec id, le nom lookup_order et l'entrée order_id, souvent après un court bloc de texte. Votre code exécute l'outil. Requête 2 : tout l'historique à nouveau : la question, la réponse de Claude en tour assistant, et un tour utilisateur dont le premier bloc est un tool_result dont le tool_use_id est l'id de l'appel, avec le résultat en content. Réponse 2 : stop_reason end_turn et la réponse en texte. Claude n'exécute jamais l'outil lui-même."
+   }
+  }
+ ]
+}
