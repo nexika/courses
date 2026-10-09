@@ -1,0 +1,18 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l2-tool-use",
+ "title": {
+  "en": "Give Claude a tool",
+  "ar": "أعطِ Claude أداة",
+  "fr": "Donner un outil à Claude"
+ },
+ "module": "m2-tools",
+ "level": 2,
+ "minutes": 45,
+ "competencies": [
+  "c2.tool-use"
+ ],
+ "prerequisites": [
+  "l2-structured-output"
+ ]
+}

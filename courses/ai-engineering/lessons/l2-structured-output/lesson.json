@@ -1,0 +1,18 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l2-structured-output",
+ "title": {
+  "en": "Get JSON you can trust",
+  "ar": "احصل على JSON تثق به",
+  "fr": "Obtenir un JSON fiable"
+ },
+ "module": "m2-tools",
+ "level": 2,
+ "minutes": 45,
+ "competencies": [
+  "c2.structured"
+ ],
+ "prerequisites": [
+  "l1-first-api-call"
+ ]
+}

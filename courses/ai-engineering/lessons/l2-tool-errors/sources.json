@@ -1,0 +1,93 @@
+{
+ "schema": "nexika.sources/1",
+ "sources": {
+  "hc-missing": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "If you receive an error like \"tool_use ids were found without tool_result blocks immediately after\", check that your tool results are formatted correctly.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-exec": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "If the tool itself throws an error during execution (for example, a network error when fetching weather data), you can return the error message in the content along with \"is_error\": true",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-exec-claude": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "Claude will then incorporate this error into its response to the user.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-is-error": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "is_error (optional): Set to true if the tool execution resulted in an error.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-instructive": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "Write instructive error messages. Instead of generic errors like \"failed\", include what went wrong and what Claude should try next (for example, \"Rate limit exceeded. Retry after 60 seconds.\"). This gives Claude the context it needs to recover or adapt without guessing.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-invalid": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "you can also continue the conversation forward with a tool_result that indicates the error, and Claude will try to use the tool again with the missing information filled in",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-retries": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "If a tool request is invalid or missing parameters, Claude will retry 2-3 times with corrections before apologizing to the user.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-desc": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "Your best bet during development is to try the request again with more-detailed description values in your tool definitions.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-strict": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "To eliminate invalid tool calls entirely, use strict tool use with strict: true on your tool definitions. This guarantees that tool inputs will always match your schema exactly",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hc-follow": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "Tool result blocks must immediately follow their corresponding tool use blocks in the message history.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "hw-sees": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works",
+   "title": "How tool use works",
+   "kind": "doc",
+   "quote": "Claude never sees your implementation; it only sees the schema you provided and the result you returned.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  }
+ }
+}

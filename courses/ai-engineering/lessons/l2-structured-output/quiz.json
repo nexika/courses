@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "choice",
+   "prompt": {
+    "en": "You send a schema with \"minimum\": 1 inside output_config.format. What happens?",
+    "ar": "ترسل مخططًا فيه \"minimum\": 1 داخل output_config.format. ماذا يحدث؟",
+    "fr": "Vous envoyez un schéma contenant \"minimum\": 1 dans output_config.format. Que se passe-t-il ?"
+   },
+   "options": [
+    {
+     "en": "Claude always respects it, so you need no check",
+     "ar": "يلتزم به Claude دائمًا، فلا حاجة إلى أي فحص",
+     "fr": "Claude le respecte toujours : aucune vérification utile"
+    },
+    {
+     "en": "The request fails: the API does not support it",
+     "ar": "يفشل الطلب: الواجهة لا تدعم هذا القيد",
+     "fr": "La requête échoue : l'API refuse ce mot-clé"
+    },
+    {
+     "en": "The API turns it into a required field instead",
+     "ar": "تحوّله الواجهة إلى حقل إلزامي بدلًا من ذلك",
+     "fr": "L'API en fait plutôt un champ obligatoire"
+    },
+    {
+     "en": "Claude reads it as the number of replies to send",
+     "ar": "يفهمه Claude على أنه عدد الإجابات المطلوبة",
+     "fr": "Claude y lit le nombre de réponses à envoyer"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": "Number limits such as minimum and maximum are not supported by structured outputs, and an unsupported feature returns an error. Send a schema without them, and check them in your own code.",
+    "ar": "قيود الأرقام مثل minimum و maximum لا تدعمها المخرجات المنظمة، وأي ميزة غير مدعومة تعيد خطأً. أرسل مخططًا خاليًا منها، وافحصها في كودك أنت.",
+    "fr": "Les contraintes numériques comme minimum et maximum ne sont pas prises en charge par les sorties structurées, et une fonctionnalité non prise en charge renvoie une erreur. Envoyez un schéma sans elles, et vérifiez-les dans votre propre code."
+   }
+  },
+  {
+   "id": "q2",
+   "type": "choice",
+   "prompt": {
+    "en": "With structured outputs on, a reply comes back with stop_reason \"refusal\". What should your code do?",
+    "ar": "مع تفعيل المخرجات المنظمة، تعود إجابة قيمة stop_reason فيها \"refusal\". ماذا يفعل كودك؟",
+    "fr": "Avec les sorties structurées, une réponse revient avec stop_reason \"refusal\". Que doit faire votre code ?"
+   },
+   "options": [
+    {
+     "en": "Parse the text anyway: the schema fixes its shape",
+     "ar": "يحلّل النص على أي حال: فالمخطط يضمن شكله",
+     "fr": "Lire le texte quand même : le schéma fixe sa forme"
+    },
+    {
+     "en": "Send the same request again until the JSON is valid",
+     "ar": "يرسل الطلب نفسه مرة بعد مرة حتى يصح JSON",
+     "fr": "Renvoyer la même requête jusqu'à un JSON valide"
+    },
+    {
+     "en": "Treat it as a failed API call and stop the app",
+     "ar": "يعامله كاستدعاء فاشل للواجهة ويوقف التطبيق",
+     "fr": "La traiter comme un appel d'API raté et arrêter"
+    },
+    {
+     "en": "Not use it, and report it or try another model",
+     "ar": "لا يستخدمه، بل يبلّغ عنه أو يجرّب نموذجًا آخر",
+     "fr": "Ne pas l'utiliser : la signaler ou changer de modèle"
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "A refusal is a successful reply, not an error, but its output may not match your schema. Sending the same request again is not the documented fix: a request refused by Claude Opus 5.5 can usually be answered by another Claude model.",
+    "ar": "الرفض إجابة ناجحة وليس خطأً، لكن مخرجاته قد لا تطابق مخططك. وإعادة الطلب نفسه ليست الحل الموثّق: فالطلب الذي يرفضه Claude Opus 5.5 يُجاب عنه عادةً إذا أُرسل إلى نموذج Claude آخر.",
+    "fr": "Un refus est une réponse réussie, pas une erreur, mais sa sortie peut ne pas respecter votre schéma. Renvoyer la même requête n'est pas la solution documentée : une requête refusée par Claude Opus 5.5 obtient généralement une réponse d'un autre modèle Claude."
+   }
+  },
+  {
+   "id": "q3",
+   "type": "choice",
+   "prompt": {
+    "en": "Your schema allows \"bug\", \"billing\" or \"question\". The reply says \"Billing\". What do you do?",
+    "ar": "يسمح مخططك بالقيم \"bug\" أو \"billing\" أو \"question\". والإجابة تقول \"Billing\". ماذا تفعل؟",
+    "fr": "Votre schéma autorise \"bug\", \"billing\" ou \"question\". La réponse dit \"Billing\". Que faites-vous ?"
+   },
+   "options": [
+    {
+     "en": "Accept it ignoring case; store \"billing\"",
+     "ar": "تقبله دون اعتبار لحالة الأحرف، وتخزّن \"billing\"",
+     "fr": "L'accepter (casse ignorée) et stocker \"billing\""
+    },
+    {
+     "en": "Reject it: enum values always match exactly",
+     "ar": "ترفضه: قيم enum تطابق المخطط حرفيًا دائمًا",
+     "fr": "Le rejeter : l'enum correspond toujours à l'identique"
+    },
+    {
+     "en": "Ask again with a higher max_tokens value",
+     "ar": "تعيد السؤال بقيمة max_tokens أعلى",
+     "fr": "Redemander avec une valeur de max_tokens plus haute"
+    },
+    {
+     "en": "Add \"Billing\" to the enum and send it again",
+     "ar": "تضيف \"Billing\" إلى enum وترسل الطلب من جديد",
+     "fr": "Ajouter \"Billing\" à l'enum et renvoyer la requête"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "Structured outputs do not guarantee the capital letters of enum values. The docs say to compare them without regard to case; then use your schema's spelling so the rest of your code sees one value.",
+    "ar": "المخرجات المنظمة لا تضمن حالة الأحرف في قيم enum. وتقول الوثائق قارِنها دون اعتبار لحالة الأحرف؛ ثم استخدم تهجئة مخططك كي يرى باقي كودك قيمة واحدة.",
+    "fr": "Les sorties structurées ne garantissent pas la casse des valeurs d'enum. La documentation conseille de les comparer sans tenir compte de la casse ; reprenez ensuite l'orthographe de votre schéma pour que le reste du code voie une seule valeur."
+   }
+  },
+  {
+   "id": "q4",
+   "type": "choice",
+   "prompt": {
+    "en": "Which schema lets {\"category\": \"bug\"} pass although it has no \"priority\" field?",
+    "ar": "أي مخطط يقبل {\"category\": \"bug\"} مع أنه بلا حقل \"priority\"؟",
+    "fr": "Quel schéma accepte {\"category\": \"bug\"} alors qu'il n'a pas de champ \"priority\" ?"
+   },
+   "options": [
+    {
+     "en": "One that sets additionalProperties to false",
+     "ar": "مخطط يضبط additionalProperties على false",
+     "fr": "Un schéma avec additionalProperties à false"
+    },
+    {
+     "en": "One that gives \"priority\" the type integer",
+     "ar": "مخطط يعطي \"priority\" النوع integer",
+     "fr": "Un schéma qui donne à \"priority\" le type integer"
+    },
+    {
+     "en": "One with \"priority\" listed but not required",
+     "ar": "مخطط يذكر \"priority\" دون أن يجعله إلزاميًا",
+     "fr": "Un schéma où \"priority\" est listé, pas required"
+    },
+    {
+     "en": "One that lists both fields in required",
+     "ar": "مخطط يسرد الحقلين كليهما في required",
+     "fr": "Un schéma qui liste les deux champs dans required"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "In JSON Schema, a field in properties is optional unless required names it. additionalProperties: false only refuses fields that properties does not list.",
+    "ar": "في JSON Schema، الحقل المذكور في properties اختياري ما لم يُذكر في required. أما additionalProperties: false فيرفض فقط الحقول التي لا تذكرها properties.",
+    "fr": "En JSON Schema, un champ de properties est facultatif tant que required ne le nomme pas. additionalProperties: false refuse seulement les champs que properties ne liste pas."
+   }
+  },
+  {
+   "id": "q5",
+   "type": "open",
+   "prompt": {
+    "en": "Your app sorts support messages with structured outputs, then saves each ticket. List what your code checks before it saves a ticket, and say why each check is needed even though Claude follows the schema.",
+    "ar": "يصنّف تطبيقك رسائل الدعم باستخدام المخرجات المنظمة، ثم يحفظ كل تذكرة. اذكر ما يفحصه كودك قبل حفظ التذكرة، وبيّن لماذا يلزم كل فحص مع أن Claude يتبع المخطط.",
+    "fr": "Votre application trie les messages du support avec les sorties structurées, puis enregistre chaque ticket. Listez ce que votre code vérifie avant d'enregistrer un ticket, et expliquez pourquoi chaque vérification reste utile alors que Claude suit le schéma."
+   },
+   "rubric": {
+    "en": "Checks stop_reason: a refusal or a reply cut off at max_tokens may not match the schema. Parses the text as JSON and handles the error. Validates against the full schema, including rules the API does not take, such as minimum and maximum, and its own rules. Compares enum values ignoring case. Limits retries, raises max_tokens after a cut-off reply, and does not resend a refused request unchanged.",
+    "ar": "يفحص stop_reason: فالرفض أو الإجابة المقطوعة عند max_tokens قد لا يطابقان المخطط. يحلّل النص على أنه JSON ويتعامل مع الخطأ. يتحقق من القيمة مقابل المخطط الكامل، بما فيه القواعد التي لا تقبلها الواجهة مثل minimum و maximum، وقواعده الخاصة. يقارن قيم enum دون اعتبار لحالة الأحرف. يحدّ عدد المحاولات، ويرفع max_tokens بعد الإجابة المقطوعة، ولا يعيد إرسال طلب مرفوض كما هو.",
+    "fr": "Vérifie stop_reason : un refus ou une réponse coupée à max_tokens peut ne pas respecter le schéma. Lit le texte comme du JSON et gère l'erreur. Valide avec le schéma complet, y compris les règles que l'API n'accepte pas, comme minimum et maximum, et ses propres règles. Compare les valeurs d'enum sans tenir compte de la casse. Limite les nouvelles tentatives, augmente max_tokens après une réponse coupée, et ne renvoie pas telle quelle une requête refusée."
+   }
+  }
+ ]
+}

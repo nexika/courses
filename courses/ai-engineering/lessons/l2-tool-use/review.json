@@ -1,0 +1,76 @@
+{
+ "schema": "nexika.review/1",
+ "fact_checks": [
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "3b66529d90a04cf4",
+   "notes": "Round 1. Checked 24 cited sentences against 22 sources (5 pages fetched). Every quote is on its page; claims script gives 3; Try it output matches. Problems: (1) \"every request sends the whole history again\" is uncited: cite stateless with the full quote. (2) \"at least three or four sentences\" goes beyond the dt-desc quote: quote \"Aim for at least 3-4 sentences\". (3) \"Claude may ask for it\" goes beyond ov-guess: quote the Opus \"ask for it\" sentence."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "3b66529d90a04cf4",
+   "notes": "Round 1. Fetched all 5 source pages; all 22 quotes are present and support en/ar/fr (ov-prompt matches word for word in the rendered table). Numbers (128 characters, 286 tokens on Claude Opus 5.5, 3 messages), the model id claude-opus-5-5, the citations and the code match in all three. The claim phrase with 3 is in each language. Quiz answers and explanations correct in all 3. Minor: the \"3-4 sentences\" text is on the page but not in the dt-desc quote."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "81d7b095163750df",
+   "notes": "Round 2. Fetched all 5 source pages (as markdown and rendered HTML); all 27 quotes are present. Code byte-identical, claim phrase in each language, quiz matches. Problem: ar \"يرجَّح كثيرًا أن يطلبها Claude Opus\" says \"very likely\", stronger than the source's \"much more likely\" (fr is right). Fix the Arabic. Typo: stray comma before [^dt-desc] in ar."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "81d7b095163750df",
+   "notes": "Round 2. Checked 25 cited sentences against 27 sources (6 pages fetched, each in .md and HTML). All quotes were found on their pages, and none overreach. Ran the claims script (3), the offline Try it code and the solution tests (15 OK). The three issues from the last round are fixed. No uncited world claims remain. Optional: say Opus is more likely to ask \"than Claude Sonnet\"."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "cbc82f4b0bf770f8",
+   "notes": "Round 3. Checked 22 cited sentences against 27 sources (5 pages fetched, each as .md and HTML). Every quote was found, the two volatile table rows only in the rendered HTML. Model id confirmed on the models overview page. Ran the claims script (3), the offline round and the exercise tests; quiz answers verified. Non-blocking: the live loop runs the tools once more on a 6th tool_use reply before stopping."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "cbc82f4b0bf770f8",
+   "notes": "Round 3. Fetched all 5 source pages; every one of the 27 quotes is present and supports en/ar/fr (4 match only in the rendered HTML). The Arabic no longer overstates how likely Opus is to ask. Numbers (128, 286 tokens, 3 messages), Claude Opus 5.5 and the four code blocks match in all three. The claim phrase is in each language. Quiz answers and the exercise goal match in all three."
+  }
+ ],
+ "teaching": [
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "3b66529d90a04cf4",
+   "notes": "Round 1. Checked 1-9; 15/15 tests pass on the solution and fail on the starter; one_round.py prints what the text says. Fail on 7: \"round\" is undefined and clashes with \"turn\" (جولة / tour), so range(max_rounds) fails the limit test; tool_choice is used unglossed; the \"city\" example belongs to another tool. Same fixes in en, ar and fr."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "81d7b095163750df",
+   "notes": "Round 2. Checked 1-9 with the full prerequisite chain read. 15/15 tests pass on the solution and fail on the starter. The offline Try it runs as the lesson says. Last round's three problems are fixed in the lesson pages. Fail on 7: exercise.json's Arabic and French goals still use the \"turn\" word (جولة / tour) for round. Minor: say where a round starts and ends next to the steps; the two loops count requests differently."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "cbc82f4b0bf770f8",
+   "notes": "Round 3. Checked 1-9, including the fixed round/turn terms, the tool_choice gloss and the removed \"city\" example, against the full prerequisite chain. 15/15 tests pass on the solution and fail on the starter. The tests check behaviour. The offline example prints 3 messages, matching the claim. The quiz covers all three abilities. Minor: the live loop can run the tools once more on a 6th tool_use reply; \"Claude Sonnet\" is not introduced."
+  }
+ ],
+ "learners": {
+  "attempts": 0,
+  "passes": 0,
+  "hash": ""
+ },
+ "experts": []
+}

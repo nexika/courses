@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "choice",
+   "prompt": {
+    "en": "The shipping service is down while lookup_order runs. What should your code send back?",
+    "ar": "خدمة الشحن معطّلة أثناء تشغيل lookup_order. ماذا يعيد كودك؟",
+    "fr": "Le service de livraison est en panne pendant lookup_order. Que doit renvoyer votre code ?"
+   },
+   "options": [
+    {
+     "en": "A tool_result that says so, with \"is_error\": true",
+     "ar": "كتلة tool_result تقول ذلك، مع \"is_error\": true",
+     "fr": "Un tool_result qui le dit, avec \"is_error\": true"
+    },
+    {
+     "en": "A tool_result with a likely status, \"shipped\"",
+     "ar": "كتلة tool_result بحالة مرجّحة، \"shipped\"",
+     "fr": "Un tool_result avec un statut probable, \"shipped\""
+    },
+    {
+     "en": "Nothing: skip this call and send the others",
+     "ar": "لا شيء: تتخطى هذا الاستدعاء وترسل البقية",
+     "fr": "Rien : ignorer cet appel et envoyer les autres"
+    },
+    {
+     "en": "A new user message asking Claude to wait",
+     "ar": "رسالة مستخدم جديدة تطلب من Claude الانتظار",
+     "fr": "Un message utilisateur demandant d'attendre"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "Report the failure in the tool_result with is_error set to true. Claude then works the error into its answer. A made-up status looks like real data, and a call left without a result breaks the next request.",
+    "ar": "أبلغ عن الفشل في كتلة tool_result مع ضبط is_error على true، فيدمج Claude الخطأ في إجابته. أما الحالة المختلَقة فتبدو بيانات حقيقية، والاستدعاء الذي يبقى بلا نتيجة يُفشل الطلب التالي.",
+    "fr": "Signalez l'échec dans le tool_result avec is_error à true. Claude intègre alors l'erreur dans sa réponse. Un statut inventé ressemble à une vraie donnée, et un appel laissé sans résultat fait échouer la requête suivante."
+   }
+  },
+  {
+   "id": "q2",
+   "type": "choice",
+   "prompt": {
+    "en": "Which error message helps Claude most when an order number is not found?",
+    "ar": "أي رسالة خطأ تساعد Claude أكثر حين لا يُعثر على رقم طلبية؟",
+    "fr": "Quel message d'erreur aide le plus Claude quand un numéro de commande est introuvable ?"
+   },
+   "options": [
+    {
+     "en": "\"failed\"",
+     "ar": "\"failed\"",
+     "fr": "\"failed\""
+    },
+    {
+     "en": "\"Error 404\"",
+     "ar": "\"Error 404\"",
+     "fr": "\"Error 404\""
+    },
+    {
+     "en": "\"KeyError: 'A-999' (full traceback follows)\"",
+     "ar": "\"KeyError: 'A-999' (full traceback follows)\"",
+     "fr": "\"KeyError: 'A-999' (full traceback follows)\""
+    },
+    {
+     "en": "\"No order A-999; ask the user to check it\"",
+     "ar": "\"No order A-999; ask the user to check it\"",
+     "fr": "\"No order A-999; ask the user to check it\""
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "An instructive message says what went wrong and what Claude should try next, so it can recover without guessing. A traceback gives no next step and may expose details the user should not see.",
+    "ar": "الرسالة المفيدة تقول ما الخطأ وما الذي يجرّبه Claude بعد ذلك، فيتعافى دون تخمين. أما تتبّع الاستدعاءات (traceback) فلا يعطي خطوة تالية، وقد يكشف تفاصيل لا ينبغي أن يراها المستخدم.",
+    "fr": "Un message instructif dit ce qui n'a pas marché et ce que Claude doit essayer ensuite, pour qu'il se rattrape sans deviner. Une trace d'exécution (traceback) ne donne aucune étape suivante et peut exposer des détails que l'utilisateur ne doit pas voir."
+   }
+  },
+  {
+   "id": "q3",
+   "type": "choice",
+   "prompt": {
+    "en": "Claude calls lookup_order with {\"order\": \"B-7\"}, but the schema requires order_id. What do you do?",
+    "ar": "يستدعي Claude الأداة lookup_order بالمُدخل {\"order\": \"B-7\"}، والمخطط يتطلب order_id. ماذا تفعل؟",
+    "fr": "Claude appelle lookup_order avec {\"order\": \"B-7\"}, mais le schéma exige order_id. Que faites-vous ?"
+   },
+   "options": [
+    {
+     "en": "Run it anyway and hope the function copes",
+     "ar": "تشغّلها على أي حال وتأمل أن تتدبّر الدالة الأمر",
+     "fr": "L'exécuter quand même en espérant que ça passe"
+    },
+    {
+     "en": "Stop the conversation and show an error page",
+     "ar": "توقف المحادثة وتعرض صفحة خطأ",
+     "fr": "Arrêter la conversation et afficher une erreur"
+    },
+    {
+     "en": "Send an error result naming order_id",
+     "ar": "ترسل نتيجة خطأ تذكر order_id",
+     "fr": "Un résultat d'erreur qui nomme order_id"
+    },
+    {
+     "en": "Rename the field yourself and say nothing",
+     "ar": "تعيد تسمية الحقل بنفسك ولا تقول شيئًا",
+     "fr": "Renommer le champ vous-même sans rien dire"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "Check the input before running the tool. Report what is wrong in a tool_result with is_error: Claude will try the tool again with the missing information filled in.",
+    "ar": "افحص المُدخلات قبل تشغيل الأداة. وأبلغ عن الخطأ في كتلة tool_result مع is_error: فسيعيد Claude محاولة استخدام الأداة بعد أن يملأ المعلومة الناقصة.",
+    "fr": "Vérifiez l'entrée avant d'exécuter l'outil. Signalez le problème dans un tool_result avec is_error : Claude réessaiera l'outil en complétant l'information manquante."
+   }
+  },
+  {
+   "id": "q4",
+   "type": "choice",
+   "prompt": {
+    "en": "A reply has three tool_use blocks. The first tool raises an exception. What happens to the other two?",
+    "ar": "في الإجابة ثلاث كتل tool_use. ترفع الأداة الأولى استثناءً. ماذا يحدث للأخريين؟",
+    "fr": "Une réponse contient trois blocs tool_use. Le premier outil lève une exception. Que deviennent les deux autres ?"
+   },
+   "options": [
+    {
+     "en": "Skip them: one failure cancels the round",
+     "ar": "تتخطاهما: فشل واحد يلغي الجولة",
+     "fr": "On les ignore : un échec annule le tour"
+    },
+    {
+     "en": "Run them; each of the three gets a result",
+     "ar": "تشغّلهما؛ ولكلٍّ من الثلاث نتيجتها",
+     "fr": "On les exécute ; les trois ont un résultat"
+    },
+    {
+     "en": "Send them in the next round, after Claude",
+     "ar": "ترسلهما في الجولة التالية، بعد Claude",
+     "fr": "On les envoie au tour suivant, après Claude"
+    },
+    {
+     "en": "Merge them into one result for the first",
+     "ar": "تدمجهما في نتيجة واحدة للأولى",
+     "fr": "On les fusionne en un résultat pour le premier"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": "Every tool_use block needs its own tool_result right after Claude's turn, matched by tool_use_id. Catch the first failure, report it, and run the other two.",
+    "ar": "كل كتلة tool_use تحتاج نتيجتها tool_result الخاصة بها مباشرة بعد جولة Claude، مربوطة بـ tool_use_id. التقط الفشل الأول وأبلغ عنه، وشغّل الأداتين الأخريين.",
+    "fr": "Chaque bloc tool_use a besoin de son propre tool_result juste après le tour de Claude, relié par tool_use_id. Attrapez le premier échec, signalez-le, et exécutez les deux autres."
+   }
+  },
+  {
+   "id": "q5",
+   "type": "open",
+   "prompt": {
+    "en": "Your tool reads a database. Sometimes the database is unreachable, and sometimes Claude sends an order number in the wrong format. Explain how your code handles each case, what it sends to Claude, and what it must not send.",
+    "ar": "تقرأ أداتك من قاعدة بيانات. أحيانًا لا يمكن الوصول إلى القاعدة، وأحيانًا يرسل Claude رقم طلبية بصيغة خاطئة. اشرح كيف يعالج كودك كل حالة، وما يرسله إلى Claude، وما يجب ألا يرسله.",
+    "fr": "Votre outil lit une base de données. Parfois la base est injoignable, parfois Claude envoie un numéro de commande au mauvais format. Expliquez comment votre code traite chaque cas, ce qu'il envoie à Claude, et ce qu'il ne doit pas envoyer."
+   },
+   "rubric": {
+    "en": "Neither case crashes the loop; each call gets a tool_result with is_error true. Unreachable database: say the service is unavailable and that Claude should not guess, so Claude can tell the user. Wrong format: check the input before running the tool and say what is wrong and what the right format looks like, so Claude can call again with a correction. Messages are instructive, not generic. It must not send a made-up result, a stack trace, server addresses or secrets, since Claude may repeat the error to the user. Retries are limited.",
+    "ar": "لا تُسقط أي حالة الحلقة؛ ويحصل كل استدعاء على tool_result مع is_error مضبوطة على true. القاعدة غير متاحة: تقول إن الخدمة غير متاحة وإن على Claude ألا يخمّن، ليخبر المستخدم. الصيغة الخاطئة: تفحص المُدخلات قبل تشغيل الأداة وتقول ما الخطأ وكيف تبدو الصيغة الصحيحة، ليعيد Claude الاستدعاء مصحَّحًا. الرسائل مفيدة لا عامة. ويجب ألا ترسل نتيجة مختلَقة، ولا تتبّع استدعاءات (stack trace)، ولا عناوين خوادم، ولا أسرارًا، لأن Claude قد يكرر الخطأ للمستخدم. وعدد المحاولات محدود.",
+    "fr": "Aucun des deux cas ne fait planter la boucle ; chaque appel reçoit un tool_result avec is_error à true. Base injoignable : dire que le service est indisponible et que Claude ne doit pas deviner, pour qu'il prévienne l'utilisateur. Mauvais format : vérifier l'entrée avant d'exécuter l'outil, dire ce qui ne va pas et à quoi ressemble le bon format, pour que Claude rappelle l'outil corrigé. Les messages sont instructifs, pas génériques. Il ne doit pas envoyer de résultat inventé, de trace d'exécution, d'adresse de serveur ni de secret, car Claude peut répéter l'erreur à l'utilisateur. Les nouvelles tentatives sont limitées."
+   }
+  }
+ ]
+}

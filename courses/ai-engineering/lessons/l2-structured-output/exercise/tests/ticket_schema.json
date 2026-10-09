@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "enum": [
+        "bug",
+        "billing",
+        "question"
+      ]
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "summary": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "category",
+    "priority",
+    "summary"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,55 @@
+{
+ "schema": "nexika.review/1",
+ "fact_checks": [
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "d4ff9548e12d3aed",
+   "notes": "Round 1. Checked 16 cited sentences against 11 sources (2 pages fetched: handle-tool-calls, how-tool-use-works). Every quote is on its page (hc-strict differs only by a markdown link) and supports its sentence without overreach. Claims script gives 3, matching \"3 of the 4 results carry\". The Try it code prints 4 in-order results, 3 with is_error. Starter tests 12 errors, solution 12 OK. JSON sample matches the docs' shape; quiz answers correct."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "d4ff9548e12d3aed",
+   "notes": "Round 1. Fetched both source pages (handle-tool-calls, how-tool-use-works); all 11 quotes are present and support en/ar/fr. Numbers (2 to 3 retries, 3 of 4 results; claim script prints 3) and the 3 code blocks match in all three. Claim phrases appear in each language. Quiz answers and explanations correct in all 3. Minor: ar 'مفيدة' for 'instructive'; fr q1/q3 options slightly looser than en."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "211eaa6d4860d8d4",
+   "notes": "Round 2. Checked 14 cited sentences against 11 sources (2 pages fetched: handle-tool-calls, how-tool-use-works). All quotes appear on their pages after markdown is stripped. The claims script gives 3, and the Try it output matches the text. Solution 14/14, starter fails all 14. Quiz correct. Minor: \"usually\" is not in the hc-desc quote; a few true but uncited Python and JSON Schema facts."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "211eaa6d4860d8d4",
+   "notes": "Round 2. Fetched both source pages (handle-tool-calls, how-tool-use-works). All 11 quotes are on their pages and support en/ar/fr. The three code blocks are byte-identical in all languages. The claim phrase appears in each language and the script prints 3. Quiz answers and explanations match in all 3. Minor wording: ar \"الطلب\" for \"tool request\" is ambiguous; fr q3 option is not a verb phrase."
+  }
+ ],
+ "teaching": [
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "d4ff9548e12d3aed",
+   "notes": "Round 1. Checked 1-9; 12/12 tests pass on the solution and fail on the starter; Try it gives 3 of 4 errors. Fail on 7: check_input flags fields the schema does not list, but l2-structured-output taught that extra fields are allowed unless additionalProperties is false, and the test schemas do not set it. Minor: \"it looks like A-1042\" may read as a guess at the right order; \"logs\" not glossed."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "211eaa6d4860d8d4",
+   "notes": "Round 2. Checked 1-9 against REVIEWING.md and LESSON_GUIDE.md, with the prerequisite chain read. 14/14 tests pass on the solution and fail on the starter. The Try it code runs offline and matches the claim (3 of 4). Code blocks identical in all three languages. The additionalProperties problem from the last round is fixed. Minor: exercise.json goal still says \"unknown fields\"; fr q3 right option is a noun phrase."
+  }
+ ],
+ "learners": {
+  "attempts": 0,
+  "passes": 0,
+  "hash": ""
+ },
+ "experts": []
+}

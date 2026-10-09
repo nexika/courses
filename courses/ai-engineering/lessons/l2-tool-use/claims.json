@@ -1,0 +1,13 @@
+{
+ "schema": "nexika.claims/1",
+ "claims": [
+  {
+   "id": "second-request-messages",
+   "says": "The second request sends 3 messages",
+   "says_ar": "يرسل الطلب الثاني 3 رسائل",
+   "says_fr": "La deuxième requête envoie 3 messages",
+   "check": "second_request_messages.py",
+   "expect": 3
+  }
+ ]
+}

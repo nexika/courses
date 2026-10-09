@@ -1,0 +1,50 @@
+{
+  "id": "msg_sample_01",
+  "type": "message",
+  "role": "assistant",
+  "model": "claude-opus-5-5",
+  "content": [
+    {
+      "type": "text",
+      "text": "I'll check those orders."
+    },
+    {
+      "type": "tool_use",
+      "id": "toolu_sample_01",
+      "name": "lookup_order",
+      "input": {
+        "order_id": "A-1042"
+      }
+    },
+    {
+      "type": "tool_use",
+      "id": "toolu_sample_02",
+      "name": "lookup_order",
+      "input": {
+        "order_id": "A-999"
+      }
+    },
+    {
+      "type": "tool_use",
+      "id": "toolu_sample_03",
+      "name": "lookup_order",
+      "input": {
+        "order": "B-7"
+      }
+    },
+    {
+      "type": "tool_use",
+      "id": "toolu_sample_04",
+      "name": "track_parcel",
+      "input": {
+        "order_id": "A-1042"
+      }
+    }
+  ],
+  "stop_reason": "tool_use",
+  "stop_sequence": null,
+  "usage": {
+    "input_tokens": 731,
+    "output_tokens": 161
+  }
+}

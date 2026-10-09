@@ -1,0 +1,9 @@
+{
+ "schema": "nexika.exercise/1",
+ "runner": "python-unittest",
+ "goal": {
+  "en": "In errors.py, write check_input() to find what is wrong with Claude's input for a tool (missing required fields, unknown fields, wrong types), run_one() to run one call and always return a tool_result, with is_error true and a message written for Claude when the tool is unknown, the input is wrong or the tool fails, without leaking an exception's details, and tool_results() to answer every call of a reply in order without ever raising. Everything runs offline.",
+  "ar": "في الملف errors.py، اكتب check_input() لتجد ما الخطأ في مُدخلات Claude لأداة ما (حقول إلزامية ناقصة، أو حقول غير معروفة، أو أنواع خاطئة)، و run_one() لتشغّل استدعاءً واحدًا وتعيد دائمًا كتلة tool_result، مع is_error مضبوطة على true ورسالة مكتوبة لـ Claude حين تكون الأداة غير معروفة أو المُدخلات خاطئة أو تفشل الأداة، دون تسريب تفاصيل الاستثناء، و tool_results() لتجيب عن كل استدعاءات الإجابة بالترتيب دون أن ترفع أي استثناء. كل شيء يعمل دون اتصال.",
+  "fr": "Dans errors.py, écrivez check_input() pour trouver ce qui ne va pas dans l'entrée envoyée par Claude à un outil (champs obligatoires manquants, champs inconnus, mauvais types), run_one() pour exécuter un appel et toujours renvoyer un tool_result, avec is_error à true et un message écrit pour Claude quand l'outil est inconnu, que l'entrée est fausse ou que l'outil échoue, sans divulguer les détails d'une exception, et tool_results() pour répondre dans l'ordre à chaque appel d'une réponse sans jamais lever d'exception. Tout fonctionne hors ligne."
+ }
+}
