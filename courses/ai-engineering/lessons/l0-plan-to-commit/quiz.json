@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "choice",
+   "prompt": {
+    "en": "What does Claude do in plan mode?",
+    "ar": "ماذا يفعل Claude في وضع التخطيط (plan mode)؟",
+    "fr": "Que fait Claude en mode plan ?"
+   },
+   "options": [
+    {
+     "en": "It edits files, but asks you before each edit",
+     "ar": "يعدّل الملفات، لكنه يسألك قبل كل تعديل",
+     "fr": "Il modifie les fichiers, mais demande avant chaque modification"
+    },
+    {
+     "en": "It skips reading the code and writes a plan from memory",
+     "ar": "يتخطّى القراءة ويكتب خطة من ذاكرته",
+     "fr": "Il ne lit rien et écrit un plan de mémoire"
+    },
+    {
+     "en": "It runs every test before making any change",
+     "ar": "يشغّل كل الاختبارات قبل أي تغيير",
+     "fr": "Il lance tous les tests avant tout changement"
+    },
+    {
+     "en": "It explores and proposes, without editing source",
+     "ar": "يستكشف ويقترح، دون أن يعدّل الكود",
+     "fr": "Il explore et propose, sans modifier le code source"
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "In plan mode Claude reads files, runs shell commands to explore and writes a plan, but does not edit your source. Edits start only after you approve the plan.",
+    "ar": "في وضع التخطيط يقرأ Claude الملفات، ويشغّل أوامر الطرفية ليستكشف، ويكتب خطة، لكنه لا يعدّل الكود المصدري. ولا تبدأ التعديلات إلا بعد أن توافق على الخطة.",
+    "fr": "En mode plan, Claude lit les fichiers, lance des commandes shell pour explorer et écrit un plan, mais ne modifie pas votre code source. Les modifications ne commencent qu'après votre accord sur le plan."
+   }
+  },
+  {
+   "id": "q2",
+   "type": "choice",
+   "prompt": {
+    "en": "You want to fix a spelling mistake in one message string. Should you use plan mode first?",
+    "ar": "تريد إصلاح خطأ إملائي في نص رسالة واحدة. هل تبدأ بوضع التخطيط؟",
+    "fr": "Vous voulez corriger une faute d'orthographe dans le texte d'un message. Faut-il passer d'abord par le mode plan ?"
+   },
+   "options": [
+    {
+     "en": "Yes: every change needs a full plan first",
+     "ar": "نعم: كل تغيير يحتاج أولًا إلى خطة كاملة",
+     "fr": "Oui : toute modification demande d'abord un plan complet"
+    },
+    {
+     "en": "No: a one-sentence change can skip the plan",
+     "ar": "لا: تغيير تصفه بجملة واحدة لا يحتاج إلى خطة",
+     "fr": "Non : un changement qui tient en une phrase s'en passe"
+    },
+    {
+     "en": "Yes: plan mode is the only mode that is safe",
+     "ar": "نعم: وضع التخطيط هو الوضع الآمن الوحيد",
+     "fr": "Oui : le mode plan est le seul mode sans risque"
+    },
+    {
+     "en": "No: plan mode only works for new projects",
+     "ar": "لا: وضع التخطيط لا يصلح إلا للمشاريع الجديدة",
+     "fr": "Non : le mode plan ne sert qu'aux nouveaux projets"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": "Planning adds overhead. The guide says that if you could describe the diff in one sentence, you can skip the plan. Plan mode helps most when the approach is unclear, the change touches several files, or you do not know the code.",
+    "ar": "التخطيط له كلفة. يقول الدليل إنك إن استطعت وصف الفروق بجملة واحدة، فبإمكانك تخطّي الخطة. ويفيد وضع التخطيط أكثر حين تكون الطريقة غير واضحة، أو يمسّ التغيير عدة ملفات، أو لا تعرف الكود.",
+    "fr": "Planifier a un coût. Le guide dit que si vous pouvez décrire le diff en une phrase, vous pouvez sauter le plan. Le mode plan aide surtout quand l'approche n'est pas claire, que la modification touche plusieurs fichiers, ou que vous ne connaissez pas le code."
+   }
+  },
+  {
+   "id": "q3",
+   "type": "choice",
+   "prompt": {
+    "en": "You told Claude not to change the tests, but its plan edits test_bill.py. What do you answer?",
+    "ar": "قلت لـ Claude ألّا يغيّر الاختبارات، لكن خطته تعدّل test_bill.py. بماذا تجيب؟",
+    "fr": "Vous avez dit à Claude de ne pas modifier les tests, mais son plan modifie test_bill.py. Que répondez-vous ?"
+   },
+   "options": [
+    {
+     "en": "No, keep planning, and say the tests stay as they are",
+     "ar": "No, keep planning، وتقول إن الاختبارات تبقى كما هي",
+     "fr": "No, keep planning, en disant que les tests ne changent pas"
+    },
+    {
+     "en": "Yes, and use auto mode, then undo the test change later",
+     "ar": "Yes, and use auto mode، ثم تتراجع عن تغيير الاختبار لاحقًا",
+     "fr": "Yes, and use auto mode, puis annuler le changement du test"
+    },
+    {
+     "en": "Yes, manually approve edits, and hope it turns out fine",
+     "ar": "Yes, manually approve edits، وتأمل أن ينتهي الأمر بخير",
+     "fr": "Yes, manually approve edits, en espérant que tout ira bien"
+    },
+    {
+     "en": "Press Esc twice and rewind the whole session right away",
+     "ar": "تضغط Esc مرتين وترجع الجلسة كلها فورًا",
+     "fr": "Appuyer deux fois sur Esc et revenir au début de la session"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "The plan is wrong before any code is written: that is the cheapest moment to correct it. No, keep planning keeps Claude in plan mode so you can say what to change. Approving a plan you already know is wrong means more to review and undo later.",
+    "ar": "الخطة خاطئة قبل أن يُكتب أي كود: وهذه أرخص لحظة لتصحيحها. يُبقي الخيار No, keep planning الجلسة في وضع التخطيط لتقول ما يجب تغييره. أما الموافقة على خطة تعرف أنها خاطئة فتعني مراجعة أكثر وتراجعًا لاحقًا.",
+    "fr": "Le plan est faux avant qu'une ligne de code soit écrite : c'est le moment le moins coûteux pour le corriger. No, keep planning garde Claude en mode plan pour que vous disiez quoi changer. Approuver un plan que vous savez faux, c'est plus de revue et d'annulations ensuite."
+   }
+  },
+  {
+   "id": "q4",
+   "type": "choice",
+   "prompt": {
+    "en": "Why write a failing test before Claude implements the change?",
+    "ar": "لماذا تكتب اختبارًا فاشلًا قبل أن ينفّذ Claude التغيير؟",
+    "fr": "Pourquoi écrire un test qui échoue avant que Claude implémente la modification ?"
+   },
+   "options": [
+    {
+     "en": "Tests run faster when written before the code",
+     "ar": "تعمل الاختبارات أسرع حين تُكتب قبل الكود",
+     "fr": "Les tests tournent plus vite s'ils sont écrits avant le code"
+    },
+    {
+     "en": "Claude Code refuses to edit files with no test",
+     "ar": "يرفض Claude Code تعديل ملفات بلا اختبار",
+     "fr": "Claude Code refuse de modifier un fichier sans test"
+    },
+    {
+     "en": "It says what done means, so both of you can check",
+     "ar": "يحدّد معنى الانتهاء، فتتحقّقان منه أنت و Claude",
+     "fr": "Il définit ce que « fini » veut dire, pour que vous vérifiiez"
+    },
+    {
+     "en": "A failing test makes Claude work much more carefully",
+     "ar": "الاختبار الفاشل يجعل Claude يعمل بعناية أكبر",
+     "fr": "Un test qui échoue rend Claude plus attentif"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "A test written first states what you want, and it fails until the code does it. Claude can run it and iterate until it passes, and you can run it too. Speed, refusals and care have nothing to do with it.",
+    "ar": "الاختبار الذي يُكتب أولًا ينصّ على ما تريده، ويفشل حتى يفعله الكود. يستطيع Claude تشغيله والمحاولة من جديد حتى ينجح، وتستطيع أنت تشغيله أيضًا. ولا علاقة لذلك بالسرعة ولا بالرفض ولا بالعناية.",
+    "fr": "Un test écrit d'abord dit ce que vous voulez, et il échoue tant que le code ne le fait pas. Claude peut le lancer et recommencer jusqu'à ce qu'il passe, et vous pouvez le lancer aussi. La vitesse, un refus ou l'attention n'y sont pour rien."
+   }
+  },
+  {
+   "id": "q5",
+   "type": "open",
+   "prompt": {
+    "en": "You want a new function, format_cents(cents), that turns 1234 into \"12.34\". Describe, step by step, how you take this change from plan to commit with Claude Code, and what you check at each step.",
+    "ar": "تريد دالة جديدة format_cents(cents) تحوّل 1234 إلى \"12.34\". صِف خطوة خطوة كيف تنقل هذا التغيير من الخطة إلى الإيداع مع Claude Code، وما الذي تتحقّق منه في كل خطوة.",
+    "fr": "Vous voulez une nouvelle fonction format_cents(cents) qui transforme 1234 en « 12.34 ». Décrivez étape par étape comment vous menez cette modification du plan au commit avec Claude Code, et ce que vous vérifiez à chaque étape."
+   },
+   "rubric": {
+    "en": "A good answer: writes (or has Claude write) a test first that fails, with a few cases such as 1234, 5 and 0, and commits or keeps it as the check; may say that such a small change could skip the plan, or uses plan mode (Shift+Tab, /plan or --permission-mode plan) to have Claude read the code and propose a plan; reviews the plan (which file, which cases, no test changes) and answers No, keep planning if it is wrong; approves with Yes, manually approve edits and reads each edit; has Claude run the tests and show the output, or runs them itself; reads git diff for files outside the task and changed tests; and commits one change with a message that says what changed, checking the message in the permission prompt.",
+    "ar": "الإجابة الجيدة: تكتب أولًا (أو تجعل Claude يكتب) اختبارًا يفشل، فيه بضع حالات مثل 1234 و 5 و 0، وتودِعه أو تحتفظ به وسيلةً للتحقق؛ وقد تذكر أن تغييرًا بهذا الصغر يمكن أن يتخطّى الخطة، أو تستخدم وضع التخطيط (Shift+Tab أو /plan أو --permission-mode plan) ليقرأ Claude الكود ويقترح خطة؛ وتراجع الخطة (أي ملف، وأي حالات، ودون تغيير الاختبارات) وتجيب بـ No, keep planning إن كانت خاطئة؛ وتوافق بـ Yes, manually approve edits وتقرأ كل تعديل؛ وتجعل Claude يشغّل الاختبارات ويعرض المخرجات، أو تشغّلها بنفسها؛ وتقرأ git diff بحثًا عن ملفات خارج المهمة واختبارات تغيّرت؛ وتودِع تغييرًا واحدًا برسالة تقول ما الذي تغيّر، بعد أن تتحقّق من الرسالة في طلب الإذن.",
+    "fr": "Une bonne réponse : écrit d'abord (ou fait écrire par Claude) un test qui échoue, avec quelques cas comme 1234, 5 et 0, et le garde comme vérification ; peut dire qu'une modification aussi petite pourrait se passer du plan, ou utilise le mode plan (Shift+Tab, /plan ou --permission-mode plan) pour que Claude lise le code et propose un plan ; relit le plan (quel fichier, quels cas, aucun test modifié) et répond No, keep planning s'il est faux ; approuve avec Yes, manually approve edits et lit chaque modification ; fait lancer les tests par Claude avec leur sortie, ou les lance elle-même ; lit git diff pour repérer les fichiers hors de la tâche et les tests modifiés ; et fait un commit d'une seule modification avec un message qui dit ce qui a changé, en vérifiant ce message dans la demande de permission."
+   }
+  }
+ ]
+}

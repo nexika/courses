@@ -1,0 +1,165 @@
+{
+ "schema": "nexika.sources/1",
+ "sources": {
+  "separate": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "Separate research and planning from implementation to avoid solving the wrong problem.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "wrong-problem": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "Letting Claude jump straight to coding can produce code that solves the wrong problem.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "phases": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "The recommended workflow has four phases:",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "plan-mode": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "Plan mode tells Claude to research and propose changes without making them. Claude reads files, runs shell commands to explore, and writes a plan, but does not edit your source.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "enter-plan": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "Enter plan mode by pressing Shift+Tab or prefixing a single prompt with /plan.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "start-plan": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "Enter plan mode by pressing Shift+Tab until the status bar shows ⏸ plan mode on, or start the session with claude --permission-mode plan. Claude reads files and answers questions without making changes.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "approve-manual": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "Yes, manually approve edits: approve and review each edit individually.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "keep-planning": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "No, keep planning: stay in plan mode and tell Claude what to change.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "ctrl-g": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "Press Ctrl+G to open the proposed plan in your default text editor and edit it directly before Claude proceeds.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "approve-exits": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "Approving a plan exits plan mode and switches the session to the permission mode each approve option describes, so Claude starts editing.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "overhead": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "Plan mode is useful, but also adds overhead.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "one-sentence": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "If you could describe the diff in one sentence, skip the plan.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "planning-useful": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "Planning is most useful when you’re uncertain about the approach, when the change modifies multiple files, or when you’re unfamiliar with the code being modified.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "check": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "Give Claude a check it can run: tests, a build, a screenshot to compare.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "failing-test": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "write a failing test that reproduces the issue, then fix it",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "commit-step": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "Ask Claude to commit with a descriptive message and create a PR.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "course-correct": {
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
+   "kind": "doc",
+   "quote": "Correct Claude as soon as you notice it going off track.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "git-commit": {
+   "url": "https://git-scm.com/docs/git-commit",
+   "title": "Git documentation: git-commit",
+   "kind": "doc",
+   "quote": "Create a new commit containing the current contents of the index and the given log message describing the changes.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "approve-auto": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "Yes, and use auto mode: approve and start in auto mode. If auto mode isn’t available to your session, for example because your organization turned it off, this option reads Yes, auto-accept edits.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "auto-edits": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "Read-only actions and file edits in your working directory are auto-approved",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  }
+ }
+}

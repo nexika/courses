@@ -1,0 +1,261 @@
+{
+ "schema": "nexika.sources/1",
+ "sources": {
+  "what": {
+   "url": "https://code.claude.com/docs/en/overview",
+   "title": "Claude Code docs: Overview",
+   "kind": "doc",
+   "quote": "Claude Code is an AI-powered coding assistant that helps you build features, fix bugs, and automate development tasks.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "loop": {
+   "url": "https://code.claude.com/docs/en/how-claude-code-works",
+   "title": "Claude Code docs: How Claude Code works",
+   "kind": "doc",
+   "quote": "When you give Claude a task, it works through three phases: gather context, take action, and verify results.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "tools": {
+   "url": "https://code.claude.com/docs/en/how-claude-code-works",
+   "title": "Claude Code docs: How Claude Code works",
+   "kind": "doc",
+   "quote": "Without tools, Claude can only respond with text. With tools, Claude can act: read your code, edit files, run commands, search the web, and interact with external services.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "account": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "A Claude subscription (Pro, Max, Team, or Enterprise), Claude Console account, or access through a supported cloud provider",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "install": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "curl -fsSL https://claude.ai/install.sh | bash",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "install-windows": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "version": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "When the installer finishes, open a new terminal window and run claude --version. A working installation prints a version number.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "start": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "Open your terminal in any project directory and start Claude Code:",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "login": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "Claude Code prompts you to log in on first use.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "reads": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "Claude Code reads your project files as needed. You don’t have to manually add context.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "manual": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "In Manual mode, Claude Code stops and asks you before most actions that edit files, run shell commands, or reach the network.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "read-only": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Claude Code docs: Configure permissions",
+   "kind": "doc",
+   "quote": "Claude Code recognizes a built-in set of Bash commands as read-only and runs them without a permission prompt in every mode",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "read-only-list": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Claude Code docs: Configure permissions",
+   "kind": "doc",
+   "quote": "The set includes ls, cat, echo, pwd, head, tail, grep, find, wc, which, diff, stat, du, cd, and read-only forms of git.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "prompt": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Claude Code docs: Configure permissions",
+   "kind": "doc",
+   "quote": "A permission prompt shows what Claude is about to do, followed by your options.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "edit-approval": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Claude Code docs: Configure permissions",
+   "kind": "doc",
+   "quote": "A file-modification approval isn’t saved to the file: as the table shows, it lasts until the session ends.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "bash-approval": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Claude Code docs: Configure permissions",
+   "kind": "doc",
+   "quote": "When you choose “Yes, and don’t ask again” and the approval saves permanently, such as for a Bash command or a WebFetch domain, Claude Code saves the rule to .claude/settings.local.json at the root of the git repository, resolved through worktrees to the main checkout. The rule applies to future sessions anywhere in that repository",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "deny": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Claude Code docs: Configure permissions",
+   "kind": "doc",
+   "quote": "If you select No without a comment on a prompt from the main conversation, Claude Code stops the turn.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "deny-comment": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Claude Code docs: Configure permissions",
+   "kind": "doc",
+   "quote": "Claude Code sends your comment to Claude as the reason for the denial, and Claude continues working.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "auto-default": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "With Claude Code v2.1.283 or later, auto mode is the built-in starting permission mode for interactive terminal and VS Code sessions.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "classifier": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "In auto mode, a second model, the classifier, reviews actions instead of you",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "manual-flag": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "The CLI accepts manual as an alias wherever you type the value, for example claude --permission-mode manual",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "shift-tab": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "Press Shift+Tab at any time to switch the permission mode of the session you’re in.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "enforced": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Claude Code docs: Configure permissions",
+   "kind": "doc",
+   "quote": "Permission rules are enforced by Claude Code, not by the model.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "esc": {
+   "url": "https://code.claude.com/docs/en/how-claude-code-works",
+   "title": "Claude Code docs: How Claude Code works",
+   "kind": "doc",
+   "quote": "Press Esc to stop Claude immediately.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "rewind": {
+   "url": "https://code.claude.com/docs/en/how-claude-code-works",
+   "title": "Claude Code docs: How Claude Code works",
+   "kind": "doc",
+   "quote": "Before Claude edits a file, it snapshots the current contents. If something goes wrong, press Esc twice to rewind to a previous state, or ask Claude to undo.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "bash-untracked": {
+   "url": "https://code.claude.com/docs/en/checkpointing",
+   "title": "Claude Code docs: Checkpointing",
+   "kind": "doc",
+   "quote": "Checkpointing does not track files modified by Bash commands.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "reads-free": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Claude Code docs: Configure permissions",
+   "kind": "doc",
+   "quote": "Read-only File reads, Grep No, within the working directory and additional directories",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "harness": {
+   "url": "https://code.claude.com/docs/en/how-claude-code-works",
+   "title": "Claude Code docs: How Claude Code works",
+   "kind": "doc",
+   "quote": "Claude Code is the layer around the model that provides the tools and manages the context the model sees.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "first-change": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "If it asks before making the change, select Yes to approve.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "comment": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Claude Code docs: Configure permissions",
+   "kind": "doc",
+   "quote": "On most permission prompts, including Bash, PowerShell, file, and MCP tool prompts, move to Yes or No and press Tab to open a comment field on that option.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "exit": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "/exit or Ctrl+D twice Exit Claude Code",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "console": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "Claude Console (API access with pre-paid credits)",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  }
+ }
+}

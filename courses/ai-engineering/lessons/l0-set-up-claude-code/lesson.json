@@ -1,0 +1,16 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l0-set-up-claude-code",
+ "title": {
+  "en": "Set up Claude Code and approve its actions",
+  "ar": "ثبّت Claude Code ووافق على أفعاله",
+  "fr": "Installer Claude Code et approuver ses actions"
+ },
+ "module": "m0-claude-code",
+ "level": 0,
+ "minutes": 45,
+ "competencies": [
+  "c0.claude-code"
+ ],
+ "prerequisites": []
+}
