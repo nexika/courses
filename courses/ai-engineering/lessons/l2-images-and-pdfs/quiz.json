@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "choice",
+   "prompt": {
+    "en": "A file is called scan.png, but its first bytes are FF D8 FF. Which media type do you send?",
+    "ar": "اسم الملف scan.png، لكن بايتاته الأولى FF D8 FF. أي نوع وسائط ترسل؟",
+    "fr": "Un fichier s'appelle scan.png, mais ses premiers octets sont FF D8 FF. Quel type de média envoyez-vous ?"
+   },
+   "options": [
+    {
+     "en": "image/png, as its name says",
+     "ar": "image/png، كما يقول اسمه",
+     "fr": "image/png, comme le dit son nom"
+    },
+    {
+     "en": "image/jpeg, from the bytes",
+     "ar": "image/jpeg، من البايتات",
+     "fr": "image/jpeg, selon les octets"
+    },
+    {
+     "en": "application/pdf, to be safe",
+     "ar": "application/pdf، احتياطًا",
+     "fr": "application/pdf, par prudence"
+    },
+    {
+     "en": "None: Claude finds the type",
+     "ar": "لا شيء: Claude يعرف النوع",
+     "fr": "Aucun : Claude trouve le type"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": "A file's name can be wrong; its first bytes say what it is. FF D8 FF starts a JPEG file, so the media type is image/jpeg. The media type is a field you fill in yourself in the image block.",
+    "ar": "قد يكون اسم الملف خاطئًا، أما بايتاته الأولى فتقول ما هو. FF D8 FF بداية ملف JPEG، فنوع الوسائط image/jpeg. ونوع الوسائط حقل تملؤه أنت في كتلة الصورة.",
+    "fr": "Le nom d'un fichier peut être faux ; ses premiers octets disent ce qu'il est. FF D8 FF commence un fichier JPEG : le type de média est image/jpeg. C'est un champ que vous remplissez vous-même dans le bloc d'image."
+   }
+  },
+  {
+   "id": "q2",
+   "type": "choice",
+   "prompt": {
+    "en": "About how many visual tokens does a 1000 × 1000 image cost on Claude Opus 5.5?",
+    "ar": "كم رمزًا مرئيًا تكلّف تقريبًا صورة بحجم 1000 × 1000 على Claude Opus 5.5؟",
+    "fr": "Environ combien de tokens visuels coûte une image de 1000 × 1000 sur Claude Opus 5.5 ?"
+   },
+   "options": [
+    {
+     "en": "1,000,000: one per pixel",
+     "ar": "1,000,000: واحد لكل بكسل",
+     "fr": "1 000 000 : un par pixel"
+    },
+    {
+     "en": "36: one per row of patches",
+     "ar": "36: واحد لكل صف من الرقع",
+     "fr": "36 : un par rangée de carrés"
+    },
+    {
+     "en": "4784: every image costs the most",
+     "ar": "4784: كل صورة تكلّف الحد الأقصى",
+     "fr": "4784 : toute image coûte le maximum"
+    },
+    {
+     "en": "1296: 36 × 36 patches of 28 px",
+     "ar": "1296: ‏36 × 36 رقعة من 28 بكسل",
+     "fr": "1296 : 36 × 36 carrés de 28 px"
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "Claude sees 28 × 28 pixel patches: 1000 / 28 rounded up is 36 each way, so 36 × 36 = 1296 visual tokens. 4784 is only the most an image can cost on this model; bigger images are made smaller.",
+    "ar": "يرى Claude رقعًا من 28 × 28 بكسل: 1000 / 28 مقرّبًا إلى الأعلى يساوي 36 في كل اتجاه، أي 36 × 36 = 1296 رمزًا مرئيًا. أما 4784 فهو أقصى ما تكلّفه صورة على هذا النموذج، والصور الأكبر تُصغَّر.",
+    "fr": "Claude voit des carrés de 28 × 28 pixels : 1000 / 28 arrondi au-dessus donne 36 dans chaque sens, donc 36 × 36 = 1296 tokens visuels. 4784 n'est que le maximum pour une image sur ce modèle ; les images plus grandes sont réduites."
+   }
+  },
+  {
+   "id": "q3",
+   "type": "choice",
+   "prompt": {
+    "en": "Claude extracts an invoice. The lines add up to 1404.50, but the total it read is 1454.50. What do you do?",
+    "ar": "يستخرج Claude فاتورة. مجموع البنود 1404.50، لكن الإجمالي الذي قرأه 1454.50. ماذا تفعل؟",
+    "fr": "Claude extrait une facture. Les lignes totalisent 1404,50, mais le total lu est 1454,50. Que faites-vous ?"
+   },
+   "options": [
+    {
+     "en": "Send it to a person to check by hand",
+     "ar": "ترسلها إلى شخص ليفحصها بيده",
+     "fr": "L'envoyer à une personne pour vérifier"
+    },
+    {
+     "en": "Keep the total: totals are read better",
+     "ar": "تحتفظ بالإجمالي: فالإجماليات تُقرأ أفضل",
+     "fr": "Garder le total : il est mieux lu"
+    },
+    {
+     "en": "Change the total to the lines' sum",
+     "ar": "تغيّر الإجمالي إلى مجموع البنود",
+     "fr": "Remplacer le total par la somme"
+    },
+    {
+     "en": "Ask Claude again until they agree",
+     "ar": "تسأل Claude مرة بعد مرة حتى يتفقا",
+     "fr": "Redemander à Claude jusqu'à l'accord"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "The sum check shows that something was misread, but not which number. Changing the total could hide the real error. Do not guess: send the document to a person, or check the values against another source.",
+    "ar": "يكشف فحص المجموع أن شيئًا قُرئ خطأً، لكنه لا يقول أي رقم. وتغيير الإجمالي قد يخفي الخطأ الحقيقي. لا تخمّن: أرسل المستند إلى شخص، أو افحص القيم مقابل مصدر آخر.",
+    "fr": "Le contrôle de somme montre qu'une valeur a été mal lue, pas laquelle. Changer le total pourrait cacher la vraie erreur. Ne devinez pas : envoyez le document à une personne, ou comparez les valeurs à une autre source."
+   }
+  },
+  {
+   "id": "q4",
+   "type": "choice",
+   "prompt": {
+    "en": "You send a PDF of 10 pages. What does Claude receive for each page?",
+    "ar": "ترسل ملف PDF من 10 صفحات. ماذا يتلقّى Claude عن كل صفحة؟",
+    "fr": "Vous envoyez un PDF de 10 pages. Que reçoit Claude pour chaque page ?"
+   },
+   "options": [
+    {
+     "en": "Only the text that the page holds",
+     "ar": "النص الذي في الصفحة فقط",
+     "fr": "Seulement le texte de la page"
+    },
+    {
+     "en": "Only a picture of the page",
+     "ar": "صورة للصفحة فقط",
+     "fr": "Seulement une image de la page"
+    },
+    {
+     "en": "The page's text and an image of it",
+     "ar": "نص الصفحة وصورة لها",
+     "fr": "Le texte de la page et son image"
+    },
+    {
+     "en": "The PDF file's metadata and fonts",
+     "ar": "البيانات الوصفية للملف وخطوطه",
+     "fr": "Les métadonnées et polices du PDF"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "Each page is turned into an image, and its text is extracted and given alongside it, so Claude can read charts as well as text. That is also why each page costs both text tokens and image tokens.",
+    "ar": "تُحوَّل كل صفحة إلى صورة، ويُستخرج نصها ويُعطى معها، فيستطيع Claude قراءة الرسوم البيانية والنص معًا. ولهذا أيضًا تكلّف كل صفحة رموزًا للنص ورموزًا للصورة.",
+    "fr": "Chaque page est transformée en image, et son texte est extrait et fourni avec, ce qui permet à Claude de lire graphiques et texte. C'est aussi pourquoi chaque page coûte des tokens de texte et des tokens d'image."
+   }
+  },
+  {
+   "id": "q5",
+   "type": "open",
+   "prompt": {
+    "en": "Your app reads photos of receipts with Claude and adds the totals to a customer's expense report. Describe how you send each photo and how you decide whether a result can go into the report without a person looking at it.",
+    "ar": "يقرأ تطبيقك صور الإيصالات بواسطة Claude ويضيف إجمالياتها إلى تقرير مصاريف العميل. صف كيف ترسل كل صورة، وكيف تقرّر هل يمكن أن تدخل النتيجة التقرير دون أن ينظر فيها شخص.",
+    "fr": "Votre application lit des photos de tickets avec Claude et ajoute les totaux à la note de frais d'un client. Décrivez comment vous envoyez chaque photo, et comment vous décidez si un résultat peut entrer dans la note sans qu'une personne le regarde."
+   },
+   "rubric": {
+    "en": "Sending: an image block with the media type read from the file's first bytes, base64 data (or a URL or file_id), the image before the question; a supported format (JPEG, PNG, GIF, WebP) within the size limits; resized to what the task needs, since cost grows with the number of 28 × 28 patches. Checking: ask for JSON and validate its shape; check that the lines add up to the total; compare values with another source when there is one; a failed check, a blurry, rotated or very small photo, or an unusual amount goes to a person instead of being guessed or corrected automatically. A good answer notes that Claude can misread and that a clean-looking result can still be wrong.",
+    "ar": "الإرسال: كتلة صورة بنوع وسائط مقروء من البايتات الأولى للملف، وبيانات base64 (أو رابط أو file_id)، والصورة قبل السؤال؛ وصيغة مقبولة (JPEG أو PNG أو GIF أو WebP) ضمن حدود الحجم؛ وتصغير الصورة إلى ما تحتاجه المهمة، لأن الكلفة تزيد بعدد الرقع 28 × 28. الفحص: اطلب JSON وتحقق من شكله؛ وتحقق من أن البنود تساوي الإجمالي؛ وقارن القيم بمصدر آخر إن وُجد؛ وأي فحص يفشل، أو صورة منخفضة الجودة أو مائلة أو صغيرة جدًا، أو مبلغ غير معتاد، يذهب إلى شخص بدل أن يُخمَّن أو يُصحَّح آليًا. والإجابة الجيدة تذكر أن Claude قد يخطئ في القراءة، وأن النتيجة النظيفة المظهر قد تكون خاطئة.",
+    "fr": "Envoi : un bloc d'image avec le type de média lu dans les premiers octets du fichier, les données en base64 (ou une URL ou un file_id), l'image avant la question ; un format accepté (JPEG, PNG, GIF, WebP) dans les limites de taille ; une image réduite à ce que la tâche demande, car le coût croît avec le nombre de carrés de 28 × 28. Vérification : demander du JSON et valider sa forme ; vérifier que les lignes font le total ; comparer les valeurs à une autre source s'il y en a une ; un contrôle qui échoue, une photo de mauvaise qualité, tournée ou très petite, ou un montant inhabituel part chez une personne au lieu d'être deviné ou corrigé automatiquement. Une bonne réponse note que Claude peut mal lire et qu'un résultat propre peut quand même être faux."
+   }
+  }
+ ]
+}

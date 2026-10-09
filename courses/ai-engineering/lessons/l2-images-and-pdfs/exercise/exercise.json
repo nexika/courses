@@ -1,0 +1,9 @@
+{
+ "schema": "nexika.exercise/1",
+ "runner": "python-unittest",
+ "goal": {
+  "en": "In media.py, write media_type() to tell PNG, JPEG, GIF, WebP and PDF files apart by their first bytes; content_block() to build the base64 image or document block, refusing an image over the 10 MB limit; png_size() to read a PNG's width and height; visual_tokens() to count 28 × 28 patches and refuse an image the API would make smaller; and check_invoice() to find missing fields, lines that do not add up to the total, and values that are not in the source text. Everything runs offline.",
+  "ar": "في الملف media.py، اكتب media_type() لتميّز ملفات PNG و JPEG و GIF و WebP و PDF من بايتاتها الأولى؛ و content_block() لتبني كتلة الصورة أو المستند بترميز base64، رافضةً الصورة التي تتجاوز حد 10 MB؛ و png_size() لتقرأ عرض صورة PNG وارتفاعها؛ و visual_tokens() لتعدّ الرقع 28 × 28 وترفض الصورة التي ستصغّرها الواجهة؛ و check_invoice() لتجد الحقول الناقصة، والبنود التي لا يساوي مجموعها الإجمالي، والقيم غير الموجودة في نص المصدر. كل شيء يعمل دون اتصال.",
+  "fr": "Dans media.py, écrivez media_type() pour distinguer les fichiers PNG, JPEG, GIF, WebP et PDF par leurs premiers octets ; content_block() pour construire le bloc d'image ou de document en base64, en refusant une image au-delà de la limite de 10 Mo ; png_size() pour lire la largeur et la hauteur d'un PNG ; visual_tokens() pour compter les carrés de 28 × 28 et refuser une image que l'API réduirait ; et check_invoice() pour trouver les champs manquants, les lignes dont la somme ne fait pas le total, et les valeurs absentes du texte source. Tout fonctionne hors ligne."
+ }
+}
