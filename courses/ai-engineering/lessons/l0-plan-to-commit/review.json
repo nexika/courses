@@ -1,0 +1,11 @@
+{
+ "schema": "nexika.review/1",
+ "fact_checks": [],
+ "teaching": [],
+ "learners": {
+  "attempts": 0,
+  "passes": 0,
+  "hash": ""
+ },
+ "experts": []
+}

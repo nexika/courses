@@ -1,0 +1,18 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l0-plan-to-commit",
+ "title": {
+  "en": "From plan to commit",
+  "ar": "من الخطة إلى الإيداع",
+  "fr": "Du plan au commit"
+ },
+ "module": "m0-claude-code",
+ "level": 0,
+ "minutes": 50,
+ "competencies": [
+  "c0.claude-code-workflow"
+ ],
+ "prerequisites": [
+  "l0-review-ai-output"
+ ]
+}

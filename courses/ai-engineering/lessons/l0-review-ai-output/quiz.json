@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "choice",
+   "prompt": {
+    "en": "In a diff, a line inside a hunk starts with a minus sign (-). What does that mean?",
+    "ar": "في الفروق (diff)، يبدأ سطر داخل مقطع التغيير (hunk) بعلامة ناقص (-). ماذا يعني ذلك؟",
+    "fr": "Dans un diff, une ligne d'un bloc de modifications (hunk) commence par un signe moins (-). Qu'est-ce que cela veut dire ?"
+   },
+   "options": [
+    {
+     "en": "The line contains an error to fix",
+     "ar": "في السطر خطأ يجب إصلاحه",
+     "fr": "La ligne contient une erreur à corriger"
+    },
+    {
+     "en": "The line is a comment Claude added",
+     "ar": "السطر تعليق أضافه Claude",
+     "fr": "La ligne est un commentaire ajouté par Claude"
+    },
+    {
+     "en": "The line is gone from the new version",
+     "ar": "السطر لم يعد في النسخة الجديدة",
+     "fr": "La ligne n'existe plus dans la nouvelle version"
+    },
+    {
+     "en": "The line is the same in both versions",
+     "ar": "السطر نفسه في النسختين",
+     "fr": "La ligne est identique dans les deux versions"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "In a unified diff, - marks a line of the old version that was removed, + a line that was added, and a space a line that did not change. A removed line can be a removed check, so it matters as much as an added one.",
+    "ar": "في صيغة الفروق الموحّدة تعني - سطرًا من النسخة القديمة حُذف، و + سطرًا أُضيف، والمسافة سطرًا لم يتغيّر. وقد يكون السطر المحذوف تحققًا حُذف، فأهميته كأهمية السطر المضاف.",
+    "fr": "Dans un diff unifié, - marque une ligne de l'ancienne version qui a été supprimée, + une ligne ajoutée, et une espace une ligne inchangée. Une ligne supprimée peut être une vérification supprimée : elle compte autant qu'une ligne ajoutée."
+   }
+  },
+  {
+   "id": "q2",
+   "type": "choice",
+   "prompt": {
+    "en": "You asked Claude to fix the wording of the login message. The diff changes login.py, test_login.py and settings.py, and every test passes. What do you do first?",
+    "ar": "طلبت من Claude إصلاح صياغة رسالة تسجيل الدخول. تغيّر الفروق الملفات login.py و test_login.py و settings.py، وكل الاختبارات تنجح. ماذا تفعل أولًا؟",
+    "fr": "Vous avez demandé à Claude de corriger le texte du message de connexion. Le diff modifie login.py, test_login.py et settings.py, et tous les tests passent. Que faites-vous d'abord ?"
+   },
+   "options": [
+    {
+     "en": "Read why settings.py changed before accepting",
+     "ar": "تعرف سبب تغيّر settings.py قبل أن تقبل",
+     "fr": "Comprendre pourquoi settings.py a changé avant d'accepter"
+    },
+    {
+     "en": "Accept it, since all of the tests already pass",
+     "ar": "تقبله، فكل الاختبارات تنجح أصلًا",
+     "fr": "Accepter, puisque tous les tests passent déjà"
+    },
+    {
+     "en": "Run the same tests again to be extra sure",
+     "ar": "تشغّل الاختبارات نفسها مرة أخرى للتأكد",
+     "fr": "Relancer les mêmes tests pour être bien sûr"
+    },
+    {
+     "en": "Rewind the whole session just to be safe",
+     "ar": "ترجع الجلسة كلها احتياطًا",
+     "fr": "Revenir en arrière sur toute la session, par prudence"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "settings.py has nothing to do with the wording of a message: it is outside the task. Passing tests do not explain why it changed. Read that part of the diff and ask Claude why, then keep or refuse it. Running the same tests again tells you nothing new, and rewinding throws away the part you wanted.",
+    "ar": "لا علاقة للملف settings.py بصياغة رسالة: إنه خارج المهمة. ونجاح الاختبارات لا يفسّر سبب تغيّره. اقرأ هذا الجزء من الفروق واسأل Claude عن السبب، ثم أبقِه أو ارفضه. أما إعادة الاختبارات نفسها فلا تخبرك بجديد، والترجيع يرمي الجزء الذي أردته.",
+    "fr": "settings.py n'a rien à voir avec le texte d'un message : il est hors de la tâche. Des tests qui passent n'expliquent pas pourquoi il a changé. Lisez cette partie du diff et demandez pourquoi à Claude, puis gardez-la ou refusez-la. Relancer les mêmes tests n'apprend rien de nouveau, et revenir en arrière jette aussi la partie voulue."
+   }
+  },
+  {
+   "id": "q3",
+   "type": "choice",
+   "prompt": {
+    "en": "A test file in the diff has \"- self.assertEqual(total(3), 9)\" and \"+ self.assertEqual(total(3), 12)\". All tests pass. What does that tell you?",
+    "ar": "في ملف اختبار ضمن الفروق السطران \"- self.assertEqual(total(3), 9)\" و \"+ self.assertEqual(total(3), 12)\". وكل الاختبارات تنجح. ماذا يخبرك ذلك؟",
+    "fr": "Un fichier de test du diff contient « - self.assertEqual(total(3), 9) » et « + self.assertEqual(total(3), 12) ». Tous les tests passent. Qu'est-ce que cela vous apprend ?"
+   },
+   "options": [
+    {
+     "en": "Nothing: test files never affect the code",
+     "ar": "لا شيء: ملفات الاختبار لا تؤثّر في الكود",
+     "fr": "Rien : les fichiers de test n'influent pas sur le code"
+    },
+    {
+     "en": "The code must be right, since the test passes",
+     "ar": "الكود صحيح لا محالة، فالاختبار ينجح",
+     "fr": "Le code est forcément juste, puisque le test passe"
+    },
+    {
+     "en": "Claude fixed a typo in the test, so it is safe to accept",
+     "ar": "أصلح Claude خطأً مطبعيًا، فالقبول آمن",
+     "fr": "Claude a corrigé une faute de frappe : on peut accepter"
+    },
+    {
+     "en": "The expected result changed: check which is right",
+     "ar": "تغيّرت النتيجة المتوقعة: تحقّق أيهما الصحيح",
+     "fr": "Le résultat attendu a changé : vérifier lequel est juste"
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "An assertion states what the code must do. Here the expected result changed, and the test passes because it now matches the new code. Work out the right value yourself, and ask Claude why it changed the test.",
+    "ar": "التأكيد (assertion) ينصّ على ما يجب أن يفعله الكود. هنا تغيّرت النتيجة المتوقعة، والاختبار ينجح لأنه صار يطابق الكود الجديد. احسب القيمة الصحيحة بنفسك، واسأل Claude لماذا غيّر الاختبار.",
+    "fr": "Une assertion dit ce que le code doit faire. Ici le résultat attendu a changé, et le test passe parce qu'il correspond maintenant au nouveau code. Calculez vous-même la bonne valeur, et demandez à Claude pourquoi il a modifié le test."
+   }
+  },
+  {
+   "id": "q4",
+   "type": "choice",
+   "prompt": {
+    "en": "At the end of a task, Claude writes \"All tests pass.\" What is the best next step?",
+    "ar": "في نهاية مهمة كتب Claude: \"كل الاختبارات تنجح\". ما أفضل خطوة تالية؟",
+    "fr": "À la fin d'une tâche, Claude écrit « Tous les tests passent. » Quelle est la meilleure étape suivante ?"
+   },
+   "options": [
+    {
+     "en": "Accept, since Claude already ran them",
+     "ar": "تقبل، فقد شغّلها Claude من قبل",
+     "fr": "Accepter, puisque Claude les a déjà lancés"
+    },
+    {
+     "en": "See the test output, or run them yourself",
+     "ar": "ترى مخرجات الاختبارات أو تشغّلها بنفسك",
+     "fr": "Voir la sortie des tests, ou les lancer vous-même"
+    },
+    {
+     "en": "Ask Claude to repeat it, more carefully this time",
+     "ar": "تطلب من Claude أن يعيدها بعناية أكبر",
+     "fr": "Demander à Claude de le redire plus prudemment"
+    },
+    {
+     "en": "Commit now and look at the tests later",
+     "ar": "تودِع الآن وتنظر في الاختبارات لاحقًا",
+     "fr": "Faire le commit et regarder les tests plus tard"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": "A sentence is not a test run. The guide asks Claude to show evidence, such as the test output and the command it ran. Running the tests yourself is the surest check. Repeating the sentence adds no evidence, and committing first skips the check.",
+    "ar": "الجملة ليست تشغيلًا للاختبارات. يطلب الدليل من Claude أن يقدّم برهانًا، مثل مخرجات الاختبارات والأمر الذي شغّله. وتشغيل الاختبارات بنفسك أضمن تحقق. أما تكرار الجملة فلا يضيف برهانًا، والإيداع أولًا يتخطّى التحقق.",
+    "fr": "Une phrase n'est pas une exécution des tests. Le guide demande à Claude de montrer des preuves, comme la sortie des tests et la commande lancée. Lancer les tests vous-même reste la vérification la plus sûre. Répéter la phrase n'ajoute aucune preuve, et faire le commit d'abord saute la vérification."
+   }
+  },
+  {
+   "id": "q5",
+   "type": "open",
+   "prompt": {
+    "en": "You asked Claude to make the function average(numbers) return 0 for an empty list. The diff changes average.py, adds @unittest.skip above test_average_of_three in test_average.py, and edits README.md. Write the review you would give before accepting: what you check, what you ask Claude, and what you accept or refuse.",
+    "ar": "طلبت من Claude أن تعيد الدالة average(numbers) القيمة 0 لقائمة فارغة. تغيّر الفروق الملف average.py، وتضيف @unittest.skip فوق test_average_of_three في test_average.py، وتعدّل README.md. اكتب المراجعة التي ستقدّمها قبل القبول: ما الذي تتحقّق منه، وما الذي تسأل عنه Claude، وما الذي تقبله أو ترفضه.",
+    "fr": "Vous avez demandé à Claude que la fonction average(numbers) renvoie 0 pour une liste vide. Le diff modifie average.py, ajoute @unittest.skip au-dessus de test_average_of_three dans test_average.py, et modifie README.md. Écrivez la revue que vous feriez avant d'accepter : ce que vous vérifiez, ce que vous demandez à Claude, et ce que vous acceptez ou refusez."
+   },
+   "rubric": {
+    "en": "A good answer: reads the change to average.py line by line and checks that an empty list returns 0 and that other lists still give the right average; notices that skipping test_average_of_three hides a test that may now fail, asks why, and refuses the skip unless there is a good reason; asks why README.md changed, since it is outside the task, and accepts it only if it is needed; runs the tests itself, or asks for their output; may suggest a new test for the empty list; and says that if the change is wrong it asks Claude to fix it or throws it away with git restore.",
+    "ar": "الإجابة الجيدة: تقرأ التغيير في average.py سطرًا سطرًا وتتحقّق من أن القائمة الفارغة تعيد 0 وأن القوائم الأخرى ما زالت تعطي المتوسط الصحيح؛ وتنتبه إلى أن إيقاف test_average_of_three يخفي اختبارًا قد يفشل الآن، فتسأل عن السبب، وترفض الإيقاف ما لم يكن له سبب وجيه؛ وتسأل لماذا تغيّر README.md وهو خارج المهمة، ولا تقبله إلا إن كان لازمًا؛ وتشغّل الاختبارات بنفسها أو تطلب مخرجاتها؛ وقد تقترح اختبارًا جديدًا للقائمة الفارغة؛ وتذكر أنه إن كان التغيير خاطئًا فستطلب من Claude إصلاحه أو ترميه بالأمر git restore.",
+    "fr": "Une bonne réponse : lit la modification de average.py ligne par ligne et vérifie qu'une liste vide renvoie 0 et que les autres listes donnent toujours la bonne moyenne ; remarque que désactiver test_average_of_three cache un test qui échoue peut-être maintenant, demande pourquoi, et refuse la désactivation sauf bonne raison ; demande pourquoi README.md a changé, puisqu'il est hors de la tâche, et ne l'accepte que s'il le faut ; lance les tests elle-même, ou demande leur sortie ; peut proposer un nouveau test pour la liste vide ; et dit que si la modification est fausse, elle demande à Claude de la corriger ou la jette avec git restore."
+   }
+  }
+ ]
+}
