@@ -61,8 +61,9 @@ people; the new code divides only the total and then adds the whole tip to each 
 for that. It is the kind of change you find only by reading.
 
 **The tests.** A test is a small piece of code that runs your code on a known input and checks the
-result. With Python's `unittest`, a test case is a class based on `unittest.TestCase`, and each test
-is a method whose name starts with `test`[^unittest-case]. `python3 -m unittest` looks for them in
+result. With Python's `unittest`, you group tests in a class: a named group of functions, written
+`class TipTest(unittest.TestCase):`. Each test is a function inside it that takes `self` and whose
+name starts with `test`[^unittest-case]. `python3 -m unittest` looks for them in
 files whose names match `test*.py`[^unittest-pattern] and runs them.
 
 Tests are your check, but a change can touch the tests too. Here is the start of the diff's second file:

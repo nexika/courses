@@ -63,8 +63,9 @@ entier à chaque part. Personne ne l'a demandé. C'est le genre de changement qu
 lisant.
 
 **Les tests.** Un test est un petit morceau de code qui lance votre code sur une entrée connue et
-vérifie le résultat. Avec `unittest`, en Python, un cas de test est une classe fondée sur
-`unittest.TestCase`, et chaque test est une méthode dont le nom commence par `test`[^unittest-case].
+vérifie le résultat. Avec `unittest`, en Python, on regroupe les tests dans une classe : un groupe de fonctions qui porte un nom, écrit
+`class TipTest(unittest.TestCase):`. Chaque test est une fonction de ce groupe qui prend `self` et
+dont le nom commence par `test`[^unittest-case].
 `python3 -m unittest` les cherche dans les fichiers dont le nom correspond à `test*.py`[^unittest-pattern]
 et les lance.
 

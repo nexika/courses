@@ -215,6 +215,9 @@ Write two functions.
   `$(` or line break) whose program is in `READ_ONLY_COMMANDS`;
 - any other tool asks: when you are not sure, ask.
 
+In a shell command, `>` sends a command's output into a file, and `<` feeds a file into a command;
+both are called redirections.
+
 This is a simplified model that asks whenever it is not sure. The real Claude Code looks closer:
 for example, it checks the file a redirection (`>` or `<`) points to as if Claude wrote or
 read that file directly[^redirect], and it treats read-only forms of `git` as read-only[^read-only-list]. The exercise leaves those cases out.

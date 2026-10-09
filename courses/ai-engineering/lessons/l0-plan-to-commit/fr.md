@@ -156,7 +156,8 @@ commit this change with a descriptive message
 
 C'est-à-dire : « fais le commit de cette modification avec un message descriptif ». La demande de
 permission montre la commande `git commit` et son message. Approuvez-la si le message dit ce qui a
-changé. Lancez ensuite `git log --oneline` pour voir vos deux *commits* : le test, puis la correction.
+changé. Lancez ensuite `git log --oneline` : il affiche le *commit* le plus récent en premier, donc la
+correction en haut et le test juste en dessous.
 
 ## Erreurs fréquentes
 
@@ -201,7 +202,8 @@ Menez cette modification du plan au *commit* avec Claude Code :
 - Copiez `exercise/starter/bill.py` et `exercise/tests/test_bill.py` dans un nouveau dossier, lancez-y
   `git init`, et faites le *commit* des deux fichiers.
 - Lancez `python3 -m unittest` et voyez les tests échouer.
-- En mode plan, demandez à Claude de lire les deux fichiers et de planifier une implémentation de
+- Lancez Claude Code dans ce dossier en mode plan (`claude --permission-mode plan`), et demandez à
+  Claude de lire les deux fichiers et de planifier une implémentation de
   `split_bill` qui fasse passer les tests sans les modifier. Relisez le plan. Demandez-lui de
   continuer à planifier si quelque chose n'est pas clair.
 - Approuvez avec **Yes, manually approve edits**. Relisez chaque modification.
@@ -228,8 +230,8 @@ python3 -m unittest discover -s ../tests
 
 Dans les deux cas, ils échouent tant que `split_bill` n'est pas juste. Une solution se trouve dans `exercise/solution/` ;
 ne la regardez qu'après votre propre *commit*. Les tests vérifient le code, pas le chemin suivi : le
-plan, la relecture et le *commit*, c'est à vous de les pratiquer. Votre `git log` doit se terminer par
-un seul *commit* qui ne modifie que `bill.py`.
+plan, la relecture et le *commit*, c'est à vous de les pratiquer. Le *commit* le plus récent, en haut de `git log`, ne doit modifier que `bill.py` (`git show --stat`
+liste les fichiers qu'il a modifiés).
 
 ## Vérifiez vos acquis
 

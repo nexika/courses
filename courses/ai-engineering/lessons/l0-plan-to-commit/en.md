@@ -143,7 +143,8 @@ commit this change with a descriptive message
 ```
 
 The permission prompt shows the `git commit` command and its message. Approve it if the message says
-what changed. Run `git log --oneline` to see your two commits: the test, then the fix.
+what changed. Run `git log --oneline`: it lists the newest commit first, so the fix is at the top and the test
+just below it.
 
 ## Common mistakes
 
@@ -186,7 +187,8 @@ Take this change from plan to commit with Claude Code:
 - Copy `exercise/starter/bill.py` and `exercise/tests/test_bill.py` into a new folder, run
   `git init` there, and commit both files.
 - Run `python3 -m unittest` and see the tests fail.
-- In plan mode, ask Claude to read both files and plan an implementation of `split_bill` that makes
+- Start Claude Code in that folder in plan mode (`claude --permission-mode plan`), and ask Claude to
+  read both files and plan an implementation of `split_bill` that makes
   the tests pass without changing them. Review the plan. Ask it to keep planning if anything is
   unclear.
 - Approve with **Yes, manually approve edits**. Review each edit.
@@ -211,7 +213,8 @@ python3 -m unittest discover -s ../tests
 
 Both fail until `split_bill` is right. A solution is in `exercise/solution/`; look at it only after
 your own commit. The tests check the code, not the way you got there: the plan, the review and the
-commit are yours to practise. Your `git log` should end with one commit that changes only `bill.py`.
+commit are yours to practise. The newest commit, at the top of `git log`, should change only `bill.py` (`git show --stat` lists
+the files it changed).
 
 ## Check yourself
 

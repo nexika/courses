@@ -1,7 +1,9 @@
 """Split a bill, tip included, between people, in whole cents.
 
 Take this change from plan to commit with Claude Code (see "Your exercise" in the lesson).
-Run the tests from this folder with:
+Run the tests in your own folder (next to test_bill.py) with:
+    python3 -m unittest
+or, from exercise/starter in the course, with:
     python3 -m unittest discover -s ../tests
 """
 

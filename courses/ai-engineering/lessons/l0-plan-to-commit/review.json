@@ -28,6 +28,20 @@
    "result": "pass",
    "hash": "8c9ac16b0adc5d0c",
    "notes": "Checked ar/fr against en and all 19 sources (best-practices, permission-modes, git-commit). Plan-mode approve options, the 'Yes, auto-accept edits' fallback and 'most file edits' in auto mode are supported, with 'most' kept as معظم / la plupart. The failing-test output is correct. Quiz answers agree in en/ar/fr; exercise goals match the docstring, tests and solution. Minor: ar/fr drop en's gloss of overhead; ar adds 'فقط'."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "a4d19f90546286e7",
+   "notes": "22 citations to 20 sources; all quotes found on 3 pages fetched (best-practices, permission-modes, git-commit). Try it test_tip.py prints F., fails at line 11 with 'ValueError not raised', as shown. Starter fails (9 errors), solution passes, and the copy-to-a-new-folder run works. Minor: 'the test, then the fix' has git log's order backwards (newest first); 'rounding surprises of decimal numbers' uncited."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "a4d19f90546286e7",
+   "notes": "Checked all 20 quotes on best-practices, permission-modes and git-commit (four phases, plan mode, Shift+Tab, --permission-mode plan, /plan, approve options incl. 'Yes, auto-accept edits', Ctrl+G, overhead, one-sentence rule, auto-mode edits). ar and fr keep every fact, condition and marker in order; the 8 code blocks are identical. Quiz consistent; exercise goal matches test_bill.py and the solution. Minor: ar/fr drop en's '(the message you type)' gloss."
   }
  ],
  "teaching": [
@@ -44,6 +58,13 @@
    "result": "fail",
    "hash": "8c9ac16b0adc5d0c",
    "notes": "Points 1-3, 5, 6, 9 hold; tests error on the starter (9) and pass on the solution (9). Fail on 4: Try it reuses tip-calc, but lesson 1 left Claude's split edit uncommitted, so the later diff also shows it and 'only tip.py should have changed, and only to refuse a negative percent' is false; fix: run git status first and commit or restore. Fail on 7/8 (en only): 'prompt' is used for the learner's own message, though the course used it only for permission prompts. Minor: status bar, working directory, overhead gloss in ar/fr."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "a4d19f90546286e7",
+   "notes": "Points 1-6, 8 and 9 hold; tests: starter 9 errors, solution 9 OK; the Try it output (F., line 11) is right. Fail on 7 (en, ar, fr): git log lists the newest commit first, but the text says 'your two commits: the test, then the fix' and 'your git log should end with one commit that changes only bill.py', so a beginner looks at the wrong line. Fix: the fix is at the top; the newest commit, at the top, should change only bill.py. Minor: say to start Claude Code in the new folder; starter docstring's test command."
   }
  ],
  "learners": {

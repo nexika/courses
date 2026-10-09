@@ -236,6 +236,9 @@ demande à faire y est décrite par un dictionnaire, par exemple `{"tool": "Edit
   accent grave, `$(` ni retour à la ligne) dont le programme est dans `READ_ONLY_COMMANDS` ;
 - tout autre outil demande : dans le doute, on demande.
 
+Dans une commande shell, `>` envoie la sortie d'une commande dans un fichier, et `<` donne un fichier
+à lire à une commande ; on appelle cela des redirections.
+
 C'est un modèle simplifié, qui demande dès qu'il a un doute. Le vrai Claude Code regarde de plus près :
 par exemple, il vérifie le fichier visé par une redirection (`>` ou `<`) comme si Claude l'écrivait ou le
 lisait directement[^redirect], et il traite les formes de `git` en lecture seule comme

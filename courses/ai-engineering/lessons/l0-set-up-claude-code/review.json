@@ -28,6 +28,20 @@
    "result": "pass",
    "hash": "4ccc4f809ff3ef78",
    "notes": "Checked ar/fr against en and all 32 sources (quickstart, permissions, permission-modes, how-claude-code-works, checkpointing, overview). Hedges kept (most, may, on recent versions), as are v2.1.283, the read-only command list and the session-only edit approval versus the saved Bash rule. Quiz q2's redirect point matches the Redirections section. Answers, explanations and exercise goals agree in en/ar/fr and with the tests. Nothing of substance to fix."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "98c0516037e6df93",
+   "notes": "37 citations to 33 sources; all quotes found on the 6 pages fetched (overview, how-claude-code-works, quickstart, permission-modes, permissions, checkpointing). tip.py prints 7.5 as stated; the starter fails (13 errors) and the solution passes. Each quote supports its sentence. Minor: the read-only commands line drops the exception for paths outside the working directories; the saved Bash rule drops the outside-git/Windows case; 'git diff shows every line Claude changed' has no citation (true here)."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "98c0516037e6df93",
+   "notes": "Checked all 33 quotes on the 6 cited pages. ar and fr keep every fact, hedge ('most actions', 'can be wrong', 'depends on the action') and citation marker in the same order; the 12 code blocks are identical. Quiz answers and explanations agree in all three languages, and the exercise goal matches the tests and solution (13 OK). Minor: ar's 'ثم ... ثم' for the three phases, which the docs say blend together."
   }
  ],
  "teaching": [
@@ -44,6 +58,13 @@
    "result": "fail",
    "hash": "4ccc4f809ff3ef78",
    "notes": "Points 1-6, 8 and 9 hold; tests error on the starter (13) and pass on the solution (13). Fail on 7 (beginner pass): 'API access' and 'supported cloud provider' are undefined in en, ar and fr. Fix: gloss both. Minor: tests never defined; Claude may ask for confirmation in chat before the delete prompt; ar/fr 'starter folder' should name exercise/starter."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "98c0516037e6df93",
+   "notes": "Points 1-6, 8 and 9 hold; tests: starter 13 errors, solution 13 OK; Try it and exercise steps can be followed in order. Fail on 7 (en, ar, fr): 'redirection' is never defined, yet the exercise text, quiz q2 (ls > files.txt) and the next lesson (git diff > change.diff) rely on it, and c0.terminal does not cover it. Fix: define > and < as redirections where the joiner characters are listed. Minor: tests are only defined in lesson 2; VS Code unglossed."
   }
  ],
  "learners": {
