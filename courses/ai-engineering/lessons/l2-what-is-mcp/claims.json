@@ -1,0 +1,13 @@
+{
+ "schema": "nexika.claims/1",
+ "claims": [
+  {
+   "id": "claude-tool-name",
+   "says": "Claude sees one tool, `shop__lookup_order`",
+   "says_ar": "يرى Claude أداة واحدة، `shop__lookup_order`",
+   "says_fr": "Claude voit un seul outil, `shop__lookup_order`",
+   "check": "claude_tool_name.py",
+   "expect": "shop__lookup_order"
+  }
+ ]
+}

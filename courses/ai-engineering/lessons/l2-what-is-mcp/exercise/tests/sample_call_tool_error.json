@@ -1,0 +1,11 @@
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "resultType": "complete",
+    "content": [
+      {"type": "text", "text": "No order A-999. Ask the user to check the number: order numbers are A- followed by four digits."}
+    ],
+    "isError": true
+  }
+}
