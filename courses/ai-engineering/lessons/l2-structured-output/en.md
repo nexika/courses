@@ -31,10 +31,12 @@ data, not a program[^js-data]. Here is the schema for a support ticket:
 
 Read it from the top. The value is an object (a JSON object, like a Python dict). `properties` lists its
 fields and the schema of each one. `type` names the kind of value: `string`, `integer`, `number`,
-`boolean`, `array`, `object` or `null`[^so-types]. An `integer` is a whole number, a `number` is any number,
-even one with a decimal part, an `array` is a list (a Python list), and `null` is Python's `None`. `enum` restricts the value
-to a fixed set of values[^js-enum]. `minimum` and `maximum` set the range of a number[^js-range]. Two rules surprise people. In JSON Schema, a field listed in `properties` is not required unless
-you name it in `required`[^js-required]. And extra fields are allowed unless you set
+`boolean`, `array`, `object` or `null`[^so-types]. An `integer` is a whole
+number[^js-integer], and a `number` is any number, even one with a decimal part[^js-number]. In Python, an
+`object` is a dict, an `array` a list, a `boolean` (`true` or `false`) a `bool`, and `null` is
+`None`[^js-python]. `enum` restricts the value to a fixed set of values[^js-enum]. `minimum` and `maximum`
+set the range of a number[^js-range]. Two rules surprise people. In JSON Schema, a field listed in
+`properties` is not required unless you name it in `required`[^js-required]. And extra fields are allowed unless you set
 `additionalProperties` to `false`[^js-additional].
 
 **Structured outputs** is the Claude API feature that makes Claude follow a schema[^so-intro]. You put
@@ -42,12 +44,12 @@ the schema in the request, in `output_config.format`, with `type` set to `json_s
 then writes valid JSON that matches your schema, in the reply's text block[^so-read]. It works by
 turning your schema into a grammar, a set of rules that limits what Claude can write next[^so-grammar].
 
-The feature does not accept every schema. Each object must set `additionalProperties` to
+The feature does not accept every schema. Each object in the schema must set `additionalProperties` to
 `false`[^so-supported]. Number limits such as `minimum` and `maximum` are not supported, and a request
 that uses a feature the API does not support fails with an error[^so-unsupported]. So you keep two
 versions: the schema you send, without `minimum` and `maximum`, and the full schema, which your own code
-checks. The official SDKs also offer helper functions that do this for you. Most of them send Claude a
-simpler schema, and a helper that checks replies still checks every rule of your full schema[^so-sdk].
+checks. The official SDKs also offer helper functions that do this for you. Most of them change a schema that uses
+features the API does not support[^so-sdk-most]: they send Claude a simpler schema, and a helper that checks replies still checks every rule of your full schema[^so-sdk].
 This lesson does it by hand, so you see each step.
 
 Then why check at all? Because "follows the schema" has exceptions:
@@ -61,7 +63,7 @@ Then why check at all? Because "follows the schema" has exceptions:
   to try again with a higher `max_tokens`[^so-max].
 - **Capital letters in `enum` values.** Claude may return `"Bug"` when your schema says `"bug"`: the
   capital letters of enum values are not guaranteed[^so-enum-case]. The docs say to compare enum values
-  without regard to case[^so-enum].
+  without regard to case (capital or small letters)[^so-enum].
 - **Rules the API does not check,** such as `minimum` and `maximum` above, and rules a schema cannot say at
   all, such as "the date must be in the future". Only your code checks those.
 
@@ -148,7 +150,8 @@ for path in sorted(folder.glob("sample_*.json")):
 Only 2 of the 6 sample replies are usable. `sample_enum_case.json` passes because the category check
 ignores case. `sample_out_of_range.json` is valid JSON with every field, but it sets the priority to 5:
 no schema feature sent to the API stopped that, so only your check catches it. Two replies stopped early,
-one with `max_tokens` and one with `refusal`, and one has a sentence before its JSON, so it does not parse.
+one with `max_tokens` and one with `refusal`, and one has a sentence before its JSON, so `json.loads` cannot *parse* it: it cannot turn
+the text into Python values.
 
 ## Common mistakes
 
@@ -225,6 +228,10 @@ refusal, cut-off reply, enum case, and rules the API does not check.
 [^so-types]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^js-enum]: Enumerated values (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/enum>
 [^js-range]: Numeric types (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/numeric>
+[^js-integer]: Numeric types (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/numeric>
+[^js-number]: Numeric types (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/numeric>
+[^js-python]: Type-specific keywords (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/type>
+[^so-sdk-most]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^so-raw]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^py-bool]: Built-in Types (Python documentation), <https://docs.python.org/3/library/stdtypes.html>
 [^so-reasoning]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>

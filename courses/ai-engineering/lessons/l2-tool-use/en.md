@@ -40,7 +40,7 @@ A tool definition goes in the `tools` list of the request[^dt-tools]. It has thr
 The description matters more than anything else: Anthropic's guide calls it by far the most important
 factor in how well a tool works[^dt-desc], and asks for at least three or four sentences[^dt-sentences].
 
-Here is one **round** of the tool exchange, for the question `Where is order A-1042?`:
+Here is the **tool exchange**, for the question `Where is order A-1042?`:
 
 1) You send the question and the `tools` list.
 2) Claude replies with the stop reason `tool_use` and a `tool_use` block. The block holds an `id`, the tool's
@@ -52,6 +52,8 @@ Here is one **round** of the tool exchange, for the question `Where is order A-1
    `content` is the result[^hc-result].
 5) Claude reads the result and writes its answer[^hc-continue].
 
+Steps two to four are one **round**: a reply that asks for tools, plus the results your code sends back.
+
 A reply can hold one or more `tool_use` blocks[^hc-block]: answer every one. The Claude API has no
 special `tool` role: tool calls travel in `assistant` turns and results in `user` turns[^hc-roles]. Two
 rules about order matter. The tool results must come right after the turn that asked for them, with no
@@ -60,8 +62,7 @@ text[^hc-order].
 
 **The tool loop** repeats this. While the stop reason is `tool_use`, run the tools and continue the
 conversation. Any other stop reason ends the loop: Claude has answered, or stopped for a reason your code
-must handle[^hw-loop]. A round is one reply that asks for tools, plus the results your code sends back.
-Each round costs another request, and every request sends the whole history again[^stateless], so put a
+must handle[^hw-loop]. Each round costs another request, and every request sends the whole history again[^stateless], so put a
 limit on the number of rounds.
 
 Tools cost tokens. The tool definitions count as input tokens[^ov-price], and the API adds a system prompt
@@ -140,7 +141,7 @@ def lookup_order(order_id):
 
 
 messages = [{"role": "user", "content": "Where is order A-1042?"}]
-for round_number in range(5):  # a limit, so the loop cannot run forever
+for request_number in range(6):  # at most 5 rounds, then the answer: the loop cannot run forever
     response = client.messages.create(model="claude-opus-5-5", max_tokens=1024, tools=tools, messages=messages)
     if response.stop_reason != "tool_use":
         break
@@ -173,7 +174,7 @@ you know what it does.
 - **Answering only the first call.** A reply can hold several `tool_use` blocks[^hc-block]. Send a result
   for each, matched by `tool_use_id`.
 - **Trusting the input blindly.** When the user leaves out a required value, Claude Opus is much more
-  likely to ask for it[^ov-ask], but Claude may also guess one, such as an order number the user never
+  likely than Claude Sonnet to ask for it[^ov-ask], but Claude may also guess one, such as an order number the user never
   gave[^ov-guess]. Check the input before you act on it.
 - **Trusting what a tool returns.** Web pages, emails and other outside content can hide instructions
   aimed at Claude[^hc-untrusted2]. Treat tool results as untrusted, and keep such content inside `tool_result` blocks,

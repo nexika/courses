@@ -42,7 +42,7 @@ parties[^dt-fields] :
 La description compte plus que tout : le guide d'Anthropic en fait de loin le facteur le plus important
 de la performance d'un outil[^dt-desc], et demande au moins trois ou quatre phrases[^dt-sentences].
 
-Voici un **cycle** de l'échange d'outil, pour la question `Where is order A-1042?` :
+Voici l'**échange d'outil**, pour la question `Where is order A-1042?` :
 
 1) Vous envoyez la question et la liste `tools`.
 2) Claude répond avec la raison d'arrêt `tool_use` et un bloc `tool_use`. Le bloc contient un `id`, le
@@ -54,6 +54,9 @@ Voici un **cycle** de l'échange d'outil, pour la question `Where is order A-104
    auquel il répond, et son `content` est le résultat[^hc-result].
 5) Claude lit le résultat et écrit sa réponse[^hc-continue].
 
+Les étapes deux à quatre forment un **cycle** : une réponse qui demande des outils, plus les résultats que votre
+code renvoie.
+
 Une réponse peut contenir un ou plusieurs blocs `tool_use`[^hc-block] : répondez à chacun. L'API Claude
 n'a pas de rôle spécial `tool` : les appels d'outils voyagent dans des tours `assistant`, les résultats
 dans des tours `user`[^hc-roles]. Deux règles d'ordre comptent. Les résultats doivent suivre
@@ -62,8 +65,7 @@ blocs `tool_result` viennent en premier, avant tout texte[^hc-order].
 
 **La boucle d'outils** répète cet échange. Tant que la raison d'arrêt est `tool_use`, exécutez les outils
 et poursuivez la conversation. Toute autre raison d'arrêt termine la boucle : Claude a répondu, ou s'est
-arrêté pour une raison que votre code doit traiter[^hw-loop]. Un cycle, c'est une réponse qui demande des
-outils, plus les résultats que votre code renvoie. Chaque cycle coûte une nouvelle requête, et chaque
+arrêté pour une raison que votre code doit traiter[^hw-loop]. Chaque cycle coûte une nouvelle requête, et chaque
 requête renvoie tout l'historique[^stateless] : limitez donc le nombre de cycles.
 
 Les outils coûtent des tokens. Les définitions d'outils comptent comme tokens d'entrée[^ov-price], et
@@ -144,7 +146,7 @@ def lookup_order(order_id):
 
 
 messages = [{"role": "user", "content": "Where is order A-1042?"}]
-for round_number in range(5):  # a limit, so the loop cannot run forever
+for request_number in range(6):  # at most 5 rounds, then the answer: the loop cannot run forever
     response = client.messages.create(model="claude-opus-5-5", max_tokens=1024, tools=tools, messages=messages)
     if response.stop_reason != "tool_use":
         break
@@ -177,7 +179,7 @@ la boucle à la main, pour savoir ce qu'elle fait.
 - **Ne répondre qu'au premier appel.** Une réponse peut contenir plusieurs blocs `tool_use`[^hc-block].
   Envoyez un résultat pour chacun, relié par son `tool_use_id`.
 - **Faire aveuglément confiance à l'entrée.** Quand l'utilisateur omet une valeur obligatoire, Claude Opus a
-  bien plus de chances de la demander[^ov-ask], mais Claude peut aussi en deviner une, comme un numéro de
+  bien plus de chances que Claude Sonnet de la demander[^ov-ask], mais Claude peut aussi en deviner une, comme un numéro de
   commande que l'utilisateur n'a jamais donné[^ov-guess]. Vérifiez
   l'entrée avant d'agir.
 - **Faire confiance à ce que renvoie un outil.** Les pages web, les e-mails et tout contenu extérieur

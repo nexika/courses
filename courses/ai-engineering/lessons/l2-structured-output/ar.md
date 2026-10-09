@@ -30,8 +30,10 @@
 
 اقرأه من الأعلى. القيمة كائن (object)، أي كائن JSON يشبه قاموس Python ‏(dict). يسرد `properties`
 حقوله ومخطط كل حقل. ويسمّي `type` نوع القيمة: `string` أو `integer` أو `number` أو `boolean` أو
-`array` أو `object` أو `null`[^so-types]. فالنوع `integer` عدد صحيح، و`number` أي عدد، حتى ذو الكسر العشري،
-و`array` مصفوفة أي قائمة (list في Python)، و`null` هي `None` في Python. ويقصر `enum` القيمة على مجموعة
+`array` أو `object` أو `null`[^so-types]. فالنوع `integer` عدد
+صحيح[^js-integer]، و`number` أي عدد، ولو كان فيه كسر عشري[^js-number]. وفي Python، يقابل `object` القاموس
+`dict`، ويقابل `array` (المصفوفة) القائمة `list`، ويقابل `boolean` (أي `true` أو `false`) النوع `bool`،
+ويقابل `null` القيمة `None`[^js-python]. ويقصر `enum` القيمة على مجموعة
 ثابتة من القيم[^js-enum]. ويحدّد `minimum` و`maximum` مدى الرقم[^js-range]. وقاعدتان تفاجئان كثيرين. في JSON Schema، الحقل المذكور في `properties` ليس
 إلزاميًا ما لم تذكره في `required`[^js-required]. والحقول الإضافية مسموح بها ما لم تضبط
 `additionalProperties` على `false`[^js-additional].
@@ -41,11 +43,11 @@
 Claude نص JSON صالحًا يطابق مخططك، في كتلة النص من الإجابة[^so-read]. وهي تعمل بتحويل مخططك إلى
 قواعد نحوية (grammar)، أي مجموعة قواعد تحدّ ما يستطيع Claude أن يكتبه بعد ذلك[^so-grammar].
 
-لا تقبل هذه الميزة كل مخطط. يجب أن يضبط كل كائن `additionalProperties` على `false`[^so-supported].
+لا تقبل هذه الميزة كل مخطط. يجب أن يضبط كل كائن في المخطط `additionalProperties` على `false`[^so-supported].
 وقيود الأرقام مثل `minimum` و`maximum` غير مدعومة، والطلب الذي يستخدم ميزة لا تدعمها الواجهة يفشل
 بخطأ[^so-unsupported]. لذلك تحتفظ بنسختين: المخطط الذي ترسله، بلا `minimum` ولا `maximum`، والمخطط
 الكامل الذي يفحص به كودك. وتوفّر حزم SDK الرسمية أيضًا دوالّ مساعدة (helpers) تفعل ذلك عنك. معظمها
-يرسل إلى Claude مخططًا أبسط، والدالة المساعدة التي تفحص الإجابات تظل تفحص كل قاعدة في مخططك
+يحوّل المخطط الذي يستخدم ميزات لا تدعمها الواجهة[^so-sdk-most]: فيرسل إلى Claude مخططًا أبسط، والدالة المساعدة التي تفحص الإجابات تظل تفحص كل قاعدة في مخططك
 الكامل[^so-sdk]. أما في هذا الدرس فتفعل ذلك بيدك، لترى كل خطوة.
 
 فلماذا الفحص إذن؟ لأن عبارة «يتبع المخطط» لها استثناءات:
@@ -145,7 +147,8 @@ for path in sorted(folder.glob("sample_*.json")):
 لا يصلح للاستخدام إلا 2 من الإجابات الست. تنجح `sample_enum_case.json` لأن فحص الفئة يتجاهل حالة
 الأحرف. أما `sample_out_of_range.json` فنص JSON صالح فيه كل الحقول، لكنه يضبط الأولوية على 5: لم
 يمنع ذلك أيُّ شيء أُرسل في المخطط إلى الواجهة، فلا يكشفه إلا فحصك. وتوقفت إجابتان مبكرًا، واحدة بسبب
-`max_tokens` وأخرى بسبب `refusal`، وواحدة تسبق JSON فيها جملة، فلا يمكن تحليلها.
+`max_tokens` وأخرى بسبب `refusal`، وواحدة تسبق JSON فيها جملة، فلا تستطيع `json.loads` تحليلها (parse)، أي تحويل النص إلى
+قيم Python.
 
 ## أخطاء شائعة
 
@@ -219,6 +222,10 @@ python3 -m unittest discover -s ../tests
 [^so-types]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^js-enum]: Enumerated values (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/enum>
 [^js-range]: Numeric types (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/numeric>
+[^js-integer]: Numeric types (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/numeric>
+[^js-number]: Numeric types (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/numeric>
+[^js-python]: Type-specific keywords (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/type>
+[^so-sdk-most]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^so-raw]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^py-bool]: Built-in Types (Python documentation), <https://docs.python.org/3/library/stdtypes.html>
 [^so-reasoning]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>

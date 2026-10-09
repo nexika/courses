@@ -189,7 +189,7 @@
    "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
    "title": "Tool use with Claude",
    "kind": "doc",
-   "quote": "If the user's prompt doesn't include enough information to fill all the required parameters for a tool, Claude Opus is much more likely to recognize that a parameter is missing and ask for it.",
+   "quote": "If the user's prompt doesn't include enough information to fill all the required parameters for a tool, Claude Opus is much more likely to recognize that a parameter is missing and ask for it. Claude Sonnet might ask, especially when prompted to think before outputting a tool request. But it might also infer a reasonable value.",
    "retrieved": "2026-10-09",
    "volatile": false
   },

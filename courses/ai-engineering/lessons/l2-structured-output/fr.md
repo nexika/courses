@@ -31,9 +31,10 @@ des données, pas un programme[^js-data]. Voici le schéma d'un ticket de suppor
 
 Lisez-le de haut en bas. La valeur est un objet (un objet JSON, comme un dict Python). `properties` liste
 ses champs et le schéma de chacun. `type` nomme le genre de valeur : `string`, `integer`, `number`,
-`boolean`, `array`, `object` ou `null`[^so-types]. Un `integer` est un nombre entier, un `number` n'importe
-quel nombre, même avec une partie décimale, un `array` une liste (une list Python), et `null` correspond à `None` en Python.
-`enum` limite la valeur à un ensemble fixe de valeurs[^js-enum]. `minimum` et `maximum` fixent la plage
+`boolean`, `array`, `object` ou `null`[^so-types]. Un `integer` est un nombre
+entier[^js-integer], et un `number` n'importe quel nombre, même avec une partie décimale[^js-number]. En
+Python, un `object` devient un dict, un `array` une list, un `boolean` (`true` ou `false`) un `bool`, et
+`null` correspond à `None`[^js-python]. `enum` limite la valeur à un ensemble fixe de valeurs[^js-enum]. `minimum` et `maximum` fixent la plage
 d'un nombre[^js-range]. Deux règles surprennent. En JSON Schema, un champ listé dans `properties` n'est pas
 obligatoire tant que vous ne le nommez pas dans `required`[^js-required]. Et les champs en trop sont
 acceptés tant que vous ne mettez pas `additionalProperties` à `false`[^js-additional].
@@ -44,12 +45,13 @@ avec `type` à `json_schema`[^so-send]. Claude écrit alors un JSON valide confo
 bloc de texte de la réponse[^so-read]. Le mécanisme transforme votre schéma en grammaire, un ensemble de
 règles qui limite ce que Claude peut écrire ensuite[^so-grammar].
 
-La fonctionnalité n'accepte pas n'importe quel schéma. Chaque objet doit mettre `additionalProperties` à
+La fonctionnalité n'accepte pas n'importe quel schéma. Chaque objet du schéma doit mettre `additionalProperties` à
 `false`[^so-supported]. Les contraintes numériques comme `minimum` et `maximum` ne sont pas prises en
 charge, et une requête qui utilise une fonctionnalité non prise en charge échoue avec une
 erreur[^so-unsupported]. Vous gardez donc deux versions : le schéma envoyé, sans `minimum` ni `maximum`,
 et le schéma complet, que votre code vérifie. Les SDK officiels proposent aussi des fonctions d'aide
-(*helpers*) qui le font pour vous. La plupart envoient à Claude un schéma simplifié, et un *helper* qui
+(*helpers*) qui le font pour vous. La plupart transforment un schéma qui utilise des fonctionnalités non prises en charge par
+l'API[^so-sdk-most] : ils envoient à Claude un schéma simplifié, et un *helper* qui
 vérifie les réponses applique quand même toutes les règles de votre schéma complet[^so-sdk]. Cette leçon
 le fait à la main, pour que vous voyiez chaque étape.
 
@@ -155,7 +157,8 @@ Seules 2 des 6 réponses d'exemple sont utilisables. `sample_enum_case.json` pas
 vérification de la catégorie ignore la casse. `sample_out_of_range.json` est un JSON valide avec tous les
 champs, mais il met la priorité à 5 : rien dans le schéma envoyé à l'API ne l'a empêché, seule votre
 vérification le détecte. Deux réponses se sont arrêtées trop tôt, l'une avec `max_tokens` et l'autre avec
-`refusal`, et une a une phrase avant son JSON, qui ne peut donc pas être lu.
+`refusal`, et une a une phrase avant son JSON, que `json.loads` ne peut donc pas *parser*, c'est-à-dire
+transformer en valeurs Python.
 
 ## Erreurs fréquentes
 
@@ -236,6 +239,10 @@ Répondez au quiz de cette leçon. Si une question vous résiste, relisez la lis
 [^so-types]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^js-enum]: Enumerated values (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/enum>
 [^js-range]: Numeric types (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/numeric>
+[^js-integer]: Numeric types (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/numeric>
+[^js-number]: Numeric types (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/numeric>
+[^js-python]: Type-specific keywords (Understanding JSON Schema), <https://json-schema.org/understanding-json-schema/reference/type>
+[^so-sdk-most]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^so-raw]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
 [^py-bool]: Built-in Types (Python documentation), <https://docs.python.org/3/library/stdtypes.html>
 [^so-reasoning]: Structured outputs, <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>

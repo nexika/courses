@@ -192,6 +192,38 @@
    "quote": "Ranges of numbers are specified using a combination of the minimum and maximum keywords",
    "retrieved": "2026-10-09",
    "volatile": false
+  },
+  "js-integer": {
+   "url": "https://json-schema.org/understanding-json-schema/reference/numeric",
+   "title": "Numeric types (Understanding JSON Schema)",
+   "kind": "spec",
+   "quote": "The integer type is used for integral numbers.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "js-number": {
+   "url": "https://json-schema.org/understanding-json-schema/reference/numeric",
+   "title": "Numeric types (Understanding JSON Schema)",
+   "kind": "spec",
+   "quote": "The number type is used for any numeric type, either integers or floating point numbers.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "js-python": {
+   "url": "https://json-schema.org/understanding-json-schema/reference/type",
+   "title": "Type-specific keywords (Understanding JSON Schema)",
+   "kind": "spec",
+   "quote": "object dict array list boolean bool null None",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "so-sdk-most": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+   "title": "Structured outputs",
+   "kind": "doc",
+   "quote": "Most SDK helpers transform schemas that use unsupported features.",
+   "retrieved": "2026-10-09",
+   "volatile": false
   }
  }
 }
