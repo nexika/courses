@@ -1,0 +1,29 @@
+{
+ "schema": "nexika.claims/1",
+ "claims": [
+  {
+   "id": "hd-tokens",
+   "says": "a 1920 × 1080 image costs 2691 visual tokens",
+   "says_ar": "تكلّف صورة بحجم 1920 × 1080 عددًا من الرموز المرئية قدره 2691",
+   "says_fr": "une image de 1920 × 1080 coûte 2691 tokens visuels",
+   "check": "hd_tokens.py",
+   "expect": 2691
+  },
+  {
+   "id": "misread-sum",
+   "says": "the lines add up to 1404.5",
+   "says_ar": "مجموع البنود 1404.5",
+   "says_fr": "les lignes totalisent 1404,5",
+   "check": "misread_sum.py",
+   "expect": 1404.5
+  },
+  {
+   "id": "float-sum",
+   "says": "`0.1 + 0.2` gives `0.30000000000000004`",
+   "says_ar": "`0.1 + 0.2` تعطي `0.30000000000000004`",
+   "says_fr": "`0.1 + 0.2` donne `0.30000000000000004`",
+   "check": "float_sum.py",
+   "expect": 0.30000000000000004
+  }
+ ]
+}

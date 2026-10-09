@@ -1,0 +1,6 @@
+Invoice INV-2026-0417
+Billed to: Lina Haddad
+Website design ........ 1,250.00
+Hosting, 12 months ...... 180.00
+Domain name .............. 24.50
+Total due ............. 1,454.50

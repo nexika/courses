@@ -1,0 +1,229 @@
+{
+ "schema": "nexika.sources/1",
+ "sources": {
+  "v-what": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "Claude's vision capabilities allow it to understand and analyze images",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "p-what": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+   "title": "PDF support",
+   "kind": "doc",
+   "quote": "You can ask Claude about any text, pictures, charts, and tables in PDFs you provide. Some sample use cases: Analyzing financial reports and understanding charts/tables Extracting key information from legal documents Assisting with document translation Converting document information into structured formats",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "v-sources": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "provide images to Claude as image content blocks using one of three source types: A base64-encoded image embedded in the request body A URL reference to an image hosted online A file_id returned by the Files API (upload once, reference many times)",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "v-formats": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "Claude supports JPEG, PNG, GIF, and WebP images (image/jpeg, image/png, image/gif, image/webp). Animations are unsupported, and only the first frame is used.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "v-order": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "Claude works best when images come before text. Images placed after text or interpolated with text still perform well, but if your use case allows it, prefer an image-then-text structure.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "png-sig": {
+   "url": "https://www.w3.org/TR/png-3/",
+   "title": "Portable Network Graphics (PNG) Specification (Third Edition)",
+   "kind": "spec",
+   "quote": "The first eight bytes of a PNG datastream always contain the following hexadecimal values: 89 50 4E 47 0D 0A 1A 0A",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "p-ways": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+   "title": "PDF support",
+   "kind": "doc",
+   "quote": "You can provide PDFs to Claude in three ways: As a URL reference to a PDF hosted online As a base64-encoded PDF in document content blocks By a file_id from the Files API",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "p-how": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+   "title": "PDF support",
+   "kind": "doc",
+   "quote": "The system converts each page of the document into an image. The text from each page is extracted and provided alongside each page's image. 2 Claude analyzes both the text and images to better understand the document. Documents are provided as a combination of text and images for analysis. This allows users to ask for insights on visual elements of a PDF, such as charts, diagrams, and other non-textual content.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "v-cost": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "Each patch is a 28×28-pixel block of the image, referred to as a visual token. An image, therefore, costs ⌈width / 28⌉ × ⌈height / 28⌉ visual tokens.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "v-tiers": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "Resolution tier Models Max long edge Max visual tokens High-resolution Claude 4.7 and later models 2576 px 4784 Standard All other models 1568 px 1568",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "p-cost": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+   "title": "PDF support",
+   "kind": "doc",
+   "quote": "Text token costs: Each page typically uses 1,500–3,000 tokens per page depending on content density. Standard API pricing applies with no additional PDF fees. Image token costs: Because each page is converted into an image, the same image-based cost calculations are applied.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "p-dense": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+   "title": "PDF support",
+   "kind": "doc",
+   "quote": "Dense PDFs (many small-font pages, complex tables, or heavy graphics) can fill the context window before reaching the page limit.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "v-dims": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "The maximum dimensions per image are 8000x8000 px.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "v-size": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "10 MB (base64-encoded) when using the Claude API directly. 5 MB (base64-encoded) on Amazon Bedrock and Google Cloud.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "v-count": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "100 per request on the API, for models with a 200k-token context window. 600 per request on the API, for all other models.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "p-limits": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+   "title": "PDF support",
+   "kind": "doc",
+   "quote": "Maximum request size 32 MB (varies by platform) Maximum pages per request 600 (100 when the request's context window is under 1M tokens) Format Standard PDF (no passwords/encryption)",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "v-limits": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "People identification: Claude cannot be used to name people in images and refuses to do so. Accuracy: Claude might hallucinate or make mistakes when interpreting low-quality, rotated, or very small images under 200 pixels. Spatial reasoning: Claude's coordinate and localization outputs are approximate. Follow the guidance in Coordinates and bounding boxes and verify outputs before relying on them. Counting: Claude can give approximate counts of objects in an image but might not always be precisely accurate, especially with large numbers of small objects. AI-generated images: Claude cannot determine whether an image is AI-generated and might be incorrect if asked.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "v-meta": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "No, Claude does not parse or receive any metadata from images passed to it.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "p-vision": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+   "title": "PDF support",
+   "kind": "doc",
+   "quote": "Because PDF support relies on Claude's vision capabilities, it is subject to the same limitations and considerations as other vision tasks.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "v-verify": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "Always carefully review and verify Claude's image interpretations, especially for high-stakes use cases. Do not use Claude for tasks requiring perfect precision or sensitive image analysis without human oversight.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "p-binary": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+   "title": "PDF support",
+   "kind": "doc",
+   "quote": "Binary formats such as .xlsx or .docx are not supported in document blocks and must be converted to text or PDF first.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "v-table": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "1000x1000 px (1 megapixel) Not resized 1296 Not resized 1296",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "png-ihdr": {
+   "url": "https://www.w3.org/TR/png-3/",
+   "title": "Portable Network Graphics (PNG) Specification (Third Edition)",
+   "kind": "spec",
+   "quote": "The IHDR chunk shall be the first chunk in the PNG datastream. It contains: Width 4 bytes Height 4 bytes",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "v-downscale": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "Each model has a maximum native image resolution, expressed as a long-edge limit and a visual-token limit. Images larger than either limit are downscaled before processing",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "v-table-hd": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "1920x1080 px (2.07 megapixels) 1456x819 px 1560 Not resized 2691",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "v-many": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "To stay under the limit on all platforms, either resize each image so that neither dimension exceeds 2000 px, or keep the request to 20 or fewer image and document blocks.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "v-example": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+   "title": "Vision",
+   "kind": "doc",
+   "quote": "image1_data = \"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC\"",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "p-type": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+   "title": "PDF support",
+   "kind": "doc",
+   "quote": "\"source\": { \"type\": \"base64\", \"media_type\": \"application/pdf\", \"data\": pdf_data, }",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  }
+ }
+}

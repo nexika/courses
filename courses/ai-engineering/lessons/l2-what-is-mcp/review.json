@@ -1,0 +1,118 @@
+{
+ "schema": "nexika.review/1",
+ "fact_checks": [
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "4dd75f7a26c1957c",
+   "notes": "Round 1. Fetched all 9 source pages; all 36 quotes are on them. Every ar/fr factual sentence matches en.md and its quote. The 4 code and JSON blocks are byte-identical; the claim phrases are in each text and the script prints shop__lookup_order. Quiz answers right in every language. Minor: ar q4 drops POST; fr \"un maître différent\" reads oddly; ar \"يتكلم MCP\" copies the English idiom."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "4dd75f7a26c1957c",
+   "notes": "Round 1. Checked 44 cited sentences against 36 sources (10 pages fetched); all quotes are on their pages. The claim script prints shop__lookup_order and the Try it output matches. Starter 16 errors, solution 16 OK; quiz correct. Fail: \"Many run on your own computer, started by the host\" goes beyond its quote, which says only that servers run locally or remotely. Minor: \"(data and actions)\" beyond its quote; \"these errors\" ambiguous; the id quote does not say a request carries an id."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "27e2b9138e1889f0",
+   "notes": "Round 2. Fetched 10 pages; all 39 quotes are on them. ar and fr match en.md in meaning, including the new glosses, the error sentence (SHOULD for tool errors, MAY for protocol errors) and the consent note. Code and JSON blocks byte-identical; claim script prints shop__lookup_order. Quiz answers right in all three. Minor: fr \"doit voir\" for \"should\"; fr q2 \"modèles\" next to \"le modèle\"; fr \"aussi\" for \"instead\"."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "27e2b9138e1889f0",
+   "notes": "Round 2. Checked 49 citations against 37 sources (10 pages fetched, plus the schema page); all quotes are on their pages and the round 1 sentence is fixed. Claim and Try it output match; starter 16 errors, solution 16 OK; quiz correct. Fail: the new sentence that \"resultType\": \"complete\" marks a finished result has no citation. Minor: the notification aside and the Messages API comparison are uncited; hc-follow is about order, not that every call gets a result; Try it uses -32602 for an unknown method."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "b2bd6f0731937515",
+   "notes": "Round 3. Fetched all 12 source pages; all 42 quotes are on them. ar and fr state the same facts as en.md, nothing overstated, including the new glosses and citations. Code blocks identical; claim script prints shop__lookup_order; Try it runs as described; tests fail on the starter and pass on the solution; quiz answers right in all three. Minor: ar q2 drops \"should\"; قاموس has no (dict) gloss; fr \"seule\" reads oddly; the _meta quote covers only the Tools page."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "b2bd6f0731937515",
+   "notes": "Round 3. Checked 49 cited sentences against 43 sources (12 pages fetched); all quotes are on their pages. The resultType, notification, Messages API and tool_result sentences are now cited and supported. The claim script prints shop__lookup_order; the Try it output matches (A-999 gives isError and is_error; -32601 for an unknown method). Starter 16 errors, solution 16 OK; quiz correct. Minor: one uncited bridging sentence; the gloss of arbitrary code execution goes slightly past the quote."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "d6ba90dab26badca",
+   "notes": "Round 4. All 43 quotes are on their 12 fetched pages. Code blocks byte-identical; footnotes match in all three languages; the claim phrase is in each and the script prints shop__lookup_order. Try it output matches; tests pass on the solution and fail on the starter. The changed sentences match the English and sources. Quiz answers right in every language. Minor: two Arabic sentences in a row start with أما; رمز used for an error code next to the الرموز (tokens) gloss."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "d6ba90dab26badca",
+   "notes": "Round 4. Checked about 48 cited sentences against 43 sources (12 pages fetched); all quotes are on their pages. Claim and Try it output match; starter 16 errors, solution 16 OK; quiz correct. Fail: \"as do the examples of the MCP specification\" overreaches: the quote covers only the Tools page, and the schema page shows a request example with _meta. Minor: two short sentences in Common mistakes repeat cited facts without their own citation."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "b99557de33f72dd8",
+   "notes": "Round 5. Checked about 47 cited sentences against 43 sources (12 pages fetched); all quotes are on their pages and the _meta sentence now matches its Tools-page quote. Claim script prints shop__lookup_order; Try it output matches, including A-999 and the new comments. Starter 16 errors, solution 16 OK; quiz correct. Minor: the _meta paraphrase is a little broad; q4 says remote servers use HTTP where the source says typically."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "b99557de33f72dd8",
+   "notes": "Round 5. All 43 quotes are on their 12 pages. ar and fr match en.md in meaning, including the narrowed _meta sentence, the ValueError wording and the new code comments. Code blocks byte-identical; claim phrases present and the script passes under python3 -I; the solution passes its 16 tests. Quiz answers right in all three. Minor: مواصفات may read more naturally than مواصفة."
+  }
+ ],
+ "teaching": [
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "4dd75f7a26c1957c",
+   "notes": "Round 1. Checked 1-9; 16 tests fail on the starter and pass on the solution; Try it runs offline as described; code identical in en/ar/fr. Fail on 7: protocol, open-source, HTTP, session, arbitrary code execution, resultType and stdin/stdout (quiz q4) not taught; the stateless sentence is unclear; \"pass these errors on\" reads as both kinds. Fail on 8: Arabic renders \"arbitrary\" as \"random\". Minor: the demo skips user consent unremarked; -32602 unexplained."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "27e2b9138e1889f0",
+   "notes": "Round 2. Checked 1-9; 16 tests fail on the starter and pass on the solution; Try it runs as described; code identical. Round 1 problems fixed. Fail on 7: \"the specification\" never defined; the stateless sentence can read \"requests such as Messages API requests\"; \"isError, which comes back below\" misreadable; fr q2 calls prompts \"des modèles\"; ar glosses the routes dict as خريطة (map). Minor: -32602 for an unknown method; resultType uncited; a few Arabic calques."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "b2bd6f0731937515",
+   "notes": "Round 3. Checked 1-9; 16 tests fail on the starter and pass on the solution; Try it runs as described; code identical. Round 2 problems fixed. Fail on 7: \"or Claude's next request fails\" (all three languages) reads as Claude's own next tool call, not the next request you send to Claude. Minor: \"methods\" used before JSON-RPC defines it; fr \"renvoie\" used for both returns and maps; requests leave out _meta without saying a real one would fail."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "d6ba90dab26badca",
+   "notes": "Round 4. Checked 1-9; 16 tests fail on the starter and pass on the solution; Try it runs and A-999 gives is_error; code identical in en/ar/fr. The round 3 fix is in all three languages and the point 7 list is empty. No point fails. Minor: two Arabic sentences in a row start with أما; Try it uses global and removeprefix without a comment; \"refuses a response\" could say it raises ValueError."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "b99557de33f72dd8",
+   "notes": "Round 5. Checked 1-9, all pass. 16 tests fail on the starter and pass on the solution; Try it runs and the A-999 run gives is_error; code identical in en/ar/fr. The new _meta sentence matches its quote, the comments on global and removeprefix close the old gaps, and the exercise text names ValueError. The point 7 list is empty. Minor: the starter comment above NOT_ALLOWED reads as the allowed characters; re.sub is new; \"anyone may use them\" skips licence terms."
+  }
+ ],
+ "learners": {
+  "attempts": 0,
+  "passes": 0,
+  "hash": ""
+ },
+ "experts": []
+}

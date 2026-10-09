@@ -1,0 +1,9 @@
+{
+  "invoice_number": "INV-2026-0417",
+  "total": 1454.5,
+  "lines": [
+    {"item": "Website design", "amount": 1250.0},
+    {"item": "Hosting, 12 months", "amount": 180.0},
+    {"item": "Domain name", "amount": 24.5}
+  ]
+}
