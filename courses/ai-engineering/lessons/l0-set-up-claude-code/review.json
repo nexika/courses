@@ -42,6 +42,20 @@
    "result": "pass",
    "hash": "98c0516037e6df93",
    "notes": "Checked all 33 quotes on the 6 cited pages. ar and fr keep every fact, hedge ('most actions', 'can be wrong', 'depends on the action') and citation marker in the same order; the 12 code blocks are identical. Quiz answers and explanations agree in all three languages, and the exercise goal matches the tests and solution (13 OK). Minor: ar's 'ثم ... ثم' for the three phases, which the docs say blend together."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "990747942579c741",
+   "notes": "33 cited sentences, 33 sources, 6 pages fetched (overview, how-claude-code-works, quickstart, permission-modes, permissions, checkpointing). Every quote is on its page and supports its sentence. tip.py prints 7.5 as stated; the solution passes 13/13 and the starter fails all 13. Minor: the read-only Bash sentence drops the page's exceptions (blockReadsOutsideWorkingDirectories, auto-mode classifier, ask/deny rules); 'git diff shows every line Claude changed' is uncited, true for tracked files and taught next lesson."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "990747942579c741",
+   "notes": "Every ar/fr factual sentence matches en with the same hedges ('most actions', 'v2.1.283 or later', 'for how long depends on the action', the rewind limit for Bash) and the same markers. All 33 quotes are on their pages; code blocks identical. Quiz answers, explanations and exercise goals agree in all three languages and with the tests (13 pass). Minor: fr q3 right option drops 'later'; the deny sentence leaves out the source's 'on a prompt from the main conversation'."
   }
  ],
  "teaching": [
@@ -65,6 +79,13 @@
    "result": "fail",
    "hash": "98c0516037e6df93",
    "notes": "Points 1-6, 8 and 9 hold; tests: starter 13 errors, solution 13 OK; Try it and exercise steps can be followed in order. Fail on 7 (en, ar, fr): 'redirection' is never defined, yet the exercise text, quiz q2 (ls > files.txt) and the next lesson (git diff > change.diff) rely on it, and c0.terminal does not cover it. Fix: define > and < as redirections where the joiner characters are listed. Minor: tests are only defined in lesson 2; VS Code unglossed."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "990747942579c741",
+   "notes": "Rubric 1-9 checked. Tests: starter 13 errors, solution 13 OK; tip.py prints 7.5. Objective matches c0.claude-code. New terms (model, tool, shell command, Bash, permission prompt, classifier, turn, redirection, rewind) are defined before use. Mistakes cover 'Yes, and don't ask again', auto mode, request words vs rules, rewind limits. Paid accounts and the simplified model are stated. ar and fr read natively; glosses consistent. Minor: say 'from this lesson's folder' before cd exercise/starter; gloss VS Code."
   }
  ],
  "learners": {

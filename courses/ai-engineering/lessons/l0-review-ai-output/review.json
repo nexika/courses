@@ -42,6 +42,20 @@
    "result": "pass",
    "hash": "fc9feb465ff0cfef",
    "notes": "Checked all 24 quotes on the 10 cited pages. ar and fr keep every fact, hedge and marker in order (git diff vs index, untracked files, /dev/null, hunk header, single-line hunk, OK with skipped, checkpoints not git, /code-review). The 7 code blocks are identical. says_ar and says_fr appear verbatim with 27.5, 35.0, 140.0 and 110.0, and the check scripts print them. Quiz and exercise goal consistent with the tests and solution."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "a815798ac6737f47",
+   "notes": "24 cited sentences and sources; pages fetched: best-practices, interactive-mode, permission-modes, git-diff, git-status, git-add, git-restore, GNU unified format, difflib, unittest. All quotes are on their pages. Claim scripts print 27.5, 35.0, 140.0, 110.0, matching text and arithmetic. see_the_diff.py prints the two hunks shown; test_run.py gives F.s / FAILED (failures=1, skipped=1), then .s / OK (skipped=1). Starter fails, solution passes (13). Minor: the docs call /code-review a skill, the lesson a command."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "a815798ac6737f47",
+   "notes": "ar/fr state the same facts as en: diff headers, hunks, the one-line hunk rule, git diff vs index, git status for untracked files, /diff, acceptEdits, checkpoints not a replacement for git, /code-review. Same markers; all 24 quotes on their pages; code blocks identical. Each says_ar/says_fr string appears with the same value (27.5, 35.0, 140.0, 110.0), computed from versions.py. Quiz and exercise goals agree in all three languages and with the tests."
   }
  ],
  "teaching": [
@@ -65,6 +79,13 @@
    "result": "fail",
    "hash": "fc9feb465ff0cfef",
    "notes": "Points 1-6, 8 and 9 hold; tests: starter 13 errors, solution 13 OK; both Try it scripts print what the text shows. Fail on 7 (en, ar, fr): 'a test case is a class based on unittest.TestCase, and each test is a method' relies on classes, methods and inheritance, which c0.python does not cover. Fix: describe the class as a named group of functions written class Name(unittest.TestCase):, each test a function taking self whose name starts with test. Minor: mark.skip unexplained."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "a815798ac6737f47",
+   "notes": "Rubric 1-9 checked. Tests: starter 13 errors, solution 13 OK; see_the_diff.py and test_run.py print what the lesson shows. Diff format, working tree, index, hunk, assertion, unittest class, skip, acceptEdits, checkpoint and subagent are defined. The 27.5/35.0/140/110 example shows a test changed to match wrong code. Limits of tests, flags and /code-review are stated. ar and fr natural; glosses match lessons 1 and 3. Minor: explain hunk counts with context lines; '\\ No newline' line; how to pass change.diff to red_flags."
   }
  ],
  "learners": {

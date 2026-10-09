@@ -42,6 +42,20 @@
    "result": "pass",
    "hash": "a4d19f90546286e7",
    "notes": "Checked all 20 quotes on best-practices, permission-modes and git-commit (four phases, plan mode, Shift+Tab, --permission-mode plan, /plan, approve options incl. 'Yes, auto-accept edits', Ctrl+G, overhead, one-sentence rule, auto-mode edits). ar and fr keep every fact, condition and marker in order; the 8 code blocks are identical. Quiz consistent; exercise goal matches test_bill.py and the solution. Minor: ar/fr drop en's '(the message you type)' gloss."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "a618bdfe96052e51",
+   "notes": "20 cited sentences and sources, 3 pages fetched (best-practices, permission-modes, git-commit). Every quote is on its page; plan-approval options, Ctrl+G, /plan, Shift+Tab and the 'plan mode on' label match the docs. test_tip.py against lesson 1's tip.py prints the stated F. failure at line 11. Solution passes, starter fails 9/9. Minor: the phases quote does not name the phases (the step titles do); git log order, git show --stat and float rounding are true but uncited."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "a618bdfe96052e51",
+   "notes": "ar/fr match en on plan mode, the three ways to enter it, the approve options including the auto-accept fallback, 'most file edits' approved in auto mode, Ctrl+G, overhead, the one-sentence rule and when planning helps. Same markers; all 21 quotes on their pages; code blocks identical. Quiz answers agree; goals match the tests (nearest cent with half up, largest share first, ValueError). Minor: ar drops '(the message you type)'; fr q4 option drops 'both of you'."
   }
  ],
  "teaching": [
@@ -65,6 +79,13 @@
    "result": "fail",
    "hash": "a4d19f90546286e7",
    "notes": "Points 1-6, 8 and 9 hold; tests: starter 9 errors, solution 9 OK; the Try it output (F., line 11) is right. Fail on 7 (en, ar, fr): git log lists the newest commit first, but the text says 'your two commits: the test, then the fix' and 'your git log should end with one commit that changes only bill.py', so a beginner looks at the wrong line. Fix: the fix is at the top; the newest commit, at the top, should change only bill.py. Minor: say to start Claude Code in the new folder; starter docstring's test command."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "a618bdfe96052e51",
+   "notes": "Rubric 1-9 checked. Tests: starter 9 errors, solution 9 OK; test_tip.py fails as shown. Objective matches c0.claude-code-workflow. Plan mode, its two answers, the failing test and the commit are taught on the tip example before the exercise. Mistakes and the cost of planning are stated, and the exercise says its tests check the code, not the workflow. ar and fr natural; glosses consistent. Minor: say to return to the lesson folder before cd exercise/starter; 'over the stub' wording; quiz 'iterate'."
   }
  ],
  "learners": {
