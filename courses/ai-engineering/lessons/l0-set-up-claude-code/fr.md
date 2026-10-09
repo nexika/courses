@@ -13,6 +13,10 @@ corriger des bugs et automatiser des tâches de développement[^what]. Vous lui 
 terminal. Le cours s'en sert dans chaque module : cette première leçon porte donc sur la façon de
 travailler avec lui sans risque.
 
+Deux noms comptent ici. Claude est le modèle d'IA : le programme qui lit votre demande et choisit
+quoi faire. Claude Code est le programme qui l'entoure sur votre ordinateur : il donne ses outils à
+Claude et gère ce que Claude voit[^harness].
+
 Cette leçon suppose acquis ce qu'enseigne le cours externe du Niveau 0 : ouvrir un terminal, passer
 d'un dossier à l'autre, lancer un fichier Python, et utiliser git pour faire un *commit* et lire un
 *diff* (les lignes qui ont changé entre deux versions d'un fichier).
@@ -42,8 +46,9 @@ accèdent au réseau[^manual]. Une commande shell est une commande tapée dans l
 `python3 tip.py`.
 
 Quand il demande, vous voyez une demande de permission. Elle montre ce que Claude s'apprête à faire,
-suivi de vos options[^prompt]. On y trouve en général **Yes** (oui), **No** (non) et
-**Yes, and don't ask again** (oui, et ne plus demander), qui approuve aussi les actions suivantes du
+suivi de vos options[^prompt]. Vous choisissez **Yes** (oui) pour approuver[^first-change] ou **No** (non) pour refuser[^deny].
+Beaucoup de demandes proposent aussi **Yes, and don't ask again** (oui, et ne plus demander), qui
+approuve aussi les actions suivantes du
 même genre ; combien de temps, cela dépend de l'action[^bash-approval]. Lisez la demande avant de
 répondre : c'est le moment où vous décidez.
 
@@ -68,7 +73,7 @@ en cours[^shift-tab].
 ## Essayez
 
 Il vous faut un compte Claude pour utiliser Claude Code : un abonnement Claude (Pro, Max, Team ou
-Enterprise), un compte Claude Console, ou un accès via un fournisseur cloud pris en charge[^account].
+Enterprise), un compte Claude Console (accès à l'API avec des crédits prépayés)[^console], ou un accès via un fournisseur cloud pris en charge[^account].
 Ces services sont payants : regardez le prix avant de vous inscrire.
 
 ### Installation
@@ -81,7 +86,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 Dans l'invite de commandes de Windows (CMD), c'est[^install-windows] :
 
-```bash
+```bat
 curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 ```
 
@@ -158,8 +163,8 @@ add a function split(total, percent, people) to tip.py that returns what each pe
 ```
 
 C'est-à-dire : « ajoute à tip.py une fonction split qui renvoie ce que paie chaque personne,
-pourboire compris ». Une demande de permission apparaît pour la modification. Elle montre les lignes
-que Claude veut ajouter (`+`) et supprimer (`-`). Lisez-les. Si la modification fait ce que vous avez
+pourboire compris ». Une demande de permission apparaît pour la modification. Elle montre ce que Claude s'apprête à
+faire[^prompt]. Lisez-la. Si la modification fait ce que vous avez
 demandé et ne touche que `tip.py`, choisissez **Yes**. Si elle fait autre chose, choisissez **No**.
 
 **Demandez-lui de lancer le fichier.** Tapez :
@@ -173,11 +178,11 @@ commande s'exécute. Approuvez-la : vous savez ce que fait `tip.py`.
 
 **Refusez une fois, exprès.** Demandez quelque chose que vous ne voulez pas, comme `delete tip.py`
 (supprime tip.py), et choisissez **No**. Si vous choisissez **No** sans commentaire, Claude Code
-arrête le tour en cours[^deny]. Recommencez et, avant de répondre, placez-vous sur **No** et appuyez
-sur `Tab` pour écrire une raison. Claude Code transmet votre commentaire à Claude comme raison du
+arrête de traiter votre demande[^deny]. Recommencez et, avant de répondre, placez-vous sur **No** et appuyez sur `Tab` pour ouvrir un champ de commentaire[^comment], puis
+écrivez une raison. Claude Code transmet votre commentaire à Claude comme raison du
 refus, et Claude continue son travail[^deny-comment].
 
-Pour sortir, tapez `/exit`. Puis lancez `git diff` dans le terminal : il montre chaque ligne que
+Pour sortir, tapez `/exit`[^exit]. Puis lancez `git diff` dans le terminal : il montre chaque ligne que
 Claude a changée depuis votre *commit*. La leçon suivante explique comment le lire.
 
 ## Erreurs fréquentes
@@ -283,3 +288,8 @@ que les erreurs fréquentes sur **Yes, and don't ask again**.
 [^rewind]: Documentation de Claude Code, How Claude Code works.
 [^bash-untracked]: Documentation de Claude Code, Checkpointing.
 [^reads-free]: Documentation de Claude Code, Configure permissions.
+[^harness]: Documentation de Claude Code, How Claude Code works.
+[^first-change]: Documentation de Claude Code, Quickstart.
+[^comment]: Documentation de Claude Code, Configure permissions.
+[^exit]: Documentation de Claude Code, Quickstart.
+[^console]: Documentation de Claude Code, Quickstart.

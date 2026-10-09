@@ -16,17 +16,16 @@ Claude s'arrête quand le travail a l'air terminé[^looks-done]. Avoir l'air ter
 n'est pas pareil. Le guide d'Anthropic décrit un échec fréquent : Claude produit une implémentation qui
 paraît plausible mais ne gère pas les cas limites[^trust-gap]. Un cas limite est une entrée
 inhabituelle, comme une addition partagée entre zéro personne. Le remède du guide est net : fournissez
-toujours un moyen de vérifier (tests, scripts, captures d'écran) ; si vous ne pouvez pas vérifier, ne
-livrez pas[^verify].
+toujours un moyen de vérifier (tests, scripts, captures d'écran) ; si vous ne pouvez pas vérifier, ne le présentez pas comme terminé[^verify].
 
 Avant d'accepter une modification, vous faites donc deux choses : lire le *diff*, et lancer les tests.
 
 **Le diff.** Un *diff* montre ce qui a changé entre deux versions d'un fichier. `git diff` montre les
 changements entre l'arbre de travail et l'index[^git-diff]. L'arbre de travail (*working tree*), ce
 sont vos fichiers tels qu'ils sont maintenant ; l'index, aussi appelé zone de préparation (*staging
-area*), est l'endroit où `git add` place le contenu de votre prochain *commit*[^git-add]. Si vous
-n'avez pas lancé `git add` depuis votre dernier *commit*, `git diff` montre tout ce qui a changé depuis
-ce *commit*. Dans Claude Code, la commande `/diff` permet de parcourir les changements de l'arbre de
+area*), est l'endroit où `git add` place le contenu de votre prochain *commit*[^git-add]. Si vous n'avez pas lancé `git add` depuis votre dernier *commit*, `git diff` montre chaque
+changement des fichiers que git suit déjà. Un nouveau fichier créé par Claude n'y figure pas :
+`git status` liste les chemins que Git ne suit pas[^git-status], lancez-le aussi. Dans Claude Code, la commande `/diff` permet de parcourir les changements de l'arbre de
 travail sans quitter la session[^slash-diff].
 
 Voici une partie d'un *diff*. La tâche donnée à Claude était « fais passer
@@ -64,7 +63,7 @@ entier à chaque part. Personne ne l'a demandé. C'est le genre de changement qu
 lisant.
 
 **Les tests.** Les tests sont votre vérification, mais une modification peut aussi toucher les tests.
-Voici la suite du même *diff* :
+Voici le début du second fichier du même *diff* :
 
 ```diff
 --- a/test_tip.py
@@ -90,8 +89,7 @@ l'addition avec le pourboire fait 110.0. Une assertion (une ligne qui vérifie u
 - **Les tests désactivés.** `@unittest.skip` au-dessus d'un test le fait sauter : il ne s'exécute
   plus[^skip].
 - **Les erreurs cachées au lieu d'être corrigées.** Le guide demande à Claude de traiter la cause
-  profonde, pas d'étouffer l'erreur[^root-cause]. Un nouveau `try` et `except` qui avale une erreur
-  mérite une question.
+  profonde, pas d'étouffer l'erreur[^root-cause]. Un nouveau `try` et `except` qui avale une erreur (l'attrape et continue comme si de rien n'était) mérite une question.
 
 Lancez ensuite les tests vous-même et lisez leur sortie. Si vous demandez à Claude si les tests
 passent, faites-lui montrer des preuves plutôt qu'affirmer la réussite : la sortie des tests, la
@@ -99,10 +97,12 @@ commande lancée et ce qu'elle a renvoyé[^evidence].
 
 **Si la modification est fausse.** Dites à Claude ce qui ne va pas, ou jetez la modification.
 `git restore` restaure des fichiers de l'arbre de travail à partir d'une source[^git-restore] :
-`git restore tip.py` remet la version de `tip.py` que git connaît (celle de l'index, qui est votre
-dernier *commit* si vous n'avez pas lancé `git add` depuis).
+`git restore tip.py` remet la version de `tip.py` que git connaît (celle de l'index[^restore-index], qui est votre dernier *commit* si vous n'avez pas lancé
+`git add` depuis).
 
 ## Essayez
+
+### Voir le diff
 
 Ce script construit le *diff* ci-dessus avec le module `difflib` de Python : vous voyez le format sans
 session ni dépôt. Les *diffs* unifiés sont une façon compacte de ne montrer que les lignes modifiées,
@@ -170,6 +170,66 @@ l'assertion. Modifiez maintenant `after` vous-même : remettez l'ancienne ligne 
 et l'ancienne valeur dans `test_tip.py`. Relancez le script. Il ne reste que les lignes dont la tâche
 avait besoin.
 
+### Lire le résultat des tests
+
+Vous lancez les tests vous-même : il faut donc savoir lire leur résultat. Enregistrez ceci sous le nom
+`test_run.py` dans un dossier vide, et lancez-y `python3 -m unittest` :
+
+```python
+import unittest
+
+
+class ReadTheRun(unittest.TestCase):
+    def test_passes(self):
+        self.assertEqual(1 + 1, 2)
+
+    @unittest.skip("not ready")
+    def test_skipped(self):
+        self.assertEqual(1 + 1, 3)
+
+    def test_fails(self):
+        self.assertEqual(2 + 2, 5)
+
+
+if __name__ == "__main__":
+    unittest.main()
+```
+
+Il affiche à peu près ceci (le chemin et la durée seront différents chez vous) :
+
+```text
+F.s
+======================================================================
+FAIL: test_fails (test_run.ReadTheRun.test_fails)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File ".../test_run.py", line 13, in test_fails
+    self.assertEqual(2 + 2, 5)
+AssertionError: 4 != 5
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+FAILED (failures=1, skipped=1)
+```
+
+Lisez depuis le haut. La première ligne a un caractère par test : `.` pour un test réussi, `F` pour un
+test en échec, et `s` pour un test sauté. Chaque échec montre ensuite le nom du test, la ligne qui a
+échoué, et pourquoi : ici `4 != 5`. La dernière ligne résume l'exécution.
+
+Supprimez maintenant `test_fails` et relancez :
+
+```text
+.s
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK (skipped=1)
+```
+
+Le résultat est `OK`, mais un test ne s'est pas exécuté du tout. `OK` veut dire qu'aucun test exécuté
+n'a échoué ; cela ne veut pas dire que tous les tests ont tourné. Lisez la dernière ligne jusqu'au bout.
+
 Dans votre propre projet, après une session, lancez `git diff` (ou `/diff` dans Claude Code), puis
 `python3 -m unittest`, et lisez les deux avant de faire le *commit*.
 
@@ -189,18 +249,16 @@ une vérification supprimée change le comportement.
 question, pas un bonus. Demandez pourquoi il a changé, ou refusez-le.
 
 **« Accepter les modifications automatiquement, c'est sauter la revue. »** La documentation conseille
-le mode `acceptEdits` quand vous voulez relire les changements dans votre éditeur ou avec `git diff`
+le mode `acceptEdits`, qui approuve les modifications de fichiers sans demander, quand vous voulez relire les changements dans votre éditeur ou avec `git diff`
 après coup, plutôt que d'approuver chaque modification sur le moment[^accept-edits]. La revue se
 déplace ; elle ne disparaît pas.
 
-**« Je pourrai toujours revenir en arrière. »** Les points de restauration (*checkpoints*) ne suivent
+**« Je pourrai toujours revenir en arrière. »** Les points de restauration (*checkpoints*), ces copies que Claude garde avant chaque modification et auxquelles `Esc` deux fois vous ramène, ne suivent
 que les changements faits avec les outils d'édition de fichiers de Claude ; les changements faits par
 des commandes shell ne sont pas capturés, et ils ne remplacent pas git[^not-git]. Faites un *commit*
 avant la session : vous pourrez toujours revenir à ce point.
 
-**« Un outil de revue remplace ma revue. »** Claude Code a une commande `/code-review` qui vérifie le
-*diff* en cours pour y trouver des bugs de correction[^code-review]. Elle est utile, et c'est aussi un
-modèle : elle peut rater des choses. Elle ne sait pas ce que vous vouliez demander. Vous, si.
+**« Un outil de revue remplace ma revue. »** Claude Code a une commande `/code-review` qui relit le *diff* en cours pour y chercher des erreurs, dans un sous-agent (*subagent*) neuf, c'est-à-dire une seconde instance de Claude qui travaille seule[^code-review]. Elle est utile, et elle repose elle aussi sur un modèle : elle peut rater des choses. Elle ne sait pas ce que vous vouliez demander. Vous, si.
 
 ## Votre exercice
 
@@ -269,7 +327,9 @@ Répondez aux questions de `quiz.json`. Si elles vous semblent difficiles, relis
 [^difflib]: Documentation de Python, difflib.
 [^accept-edits]: Documentation de Claude Code, Choose a permission mode.
 [^not-git]: Documentation de Claude Code, Best practices for Claude Code.
-[^code-review]: Documentation de Claude Code, Commands.
+[^code-review]: Documentation de Claude Code, Best practices for Claude Code.
 [^git-add]: Documentation de Git, git-add.
 [^skip]: Documentation de Python, unittest.
 [^hunk-one]: Manuel de GNU diffutils, Detailed Description of Unified Format.
+[^git-status]: Documentation de Git, git-status.
+[^restore-index]: Documentation de Git, git-restore.

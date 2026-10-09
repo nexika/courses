@@ -1,7 +1,30 @@
 {
  "schema": "nexika.review/1",
- "fact_checks": [],
- "teaching": [],
+ "fact_checks": [
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "69fb9099851808cd",
+   "notes": "Checked 19 cited sentences against 19 sources, all found (best-practices, permission-modes, git-commit). The four phase names match the guide's step titles; test_tip.py fails exactly as shown. Fail: 'The other approve option starts auto mode' drops the page's hedge: when auto mode is not available the option reads 'Yes, auto-accept edits'. Fix: name the option and give the fallback, citing the same page."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "69fb9099851808cd",
+   "notes": "Fetched best-practices, permission-modes and git-commit; all 18 quotes match and ar/fr keep the en facts otherwise. Fail in en, ar and fr: 'where a classifier reviews the edits instead of you' is wrong: permission-modes says read-only actions and file edits in the working directory are auto-approved in auto mode, so nothing reviews those edits. Fix: say edits in the working directory are approved without asking, and cite that quote."
+  }
+ ],
+ "teaching": [
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "69fb9099851808cd",
+   "notes": "Points 1-4, 6 and 9 hold; tests error on the starter (9) and pass on the solution (9). Fail on 5: the exercise has the learner implement bill.py in a new folder but run the tests from exercise/starter, where bill.py is still the stub, so they can never pass. Fail on 7/8: en 'adds overhead' unexplained; 'a build' (ar بناء, fr compilation) unexplained for Python learners. Fix: run the tests in the learner's own folder; gloss overhead; drop 'a build'."
+  }
+ ],
  "learners": {
   "attempts": 0,
   "passes": 0,

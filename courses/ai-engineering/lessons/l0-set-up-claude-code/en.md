@@ -12,6 +12,10 @@ Claude Code is an AI-powered coding assistant that helps you build features, fix
 development tasks[^what]. You talk to it in your terminal. This course uses it in every module, so
 this first lesson is about working with it safely.
 
+Two names matter here. Claude is the AI model: the program that reads your request and chooses
+what to do. Claude Code is the program on your computer around it: it gives Claude its tools and
+manages what Claude sees[^harness].
+
 This lesson assumes what the Level 0 outside course teaches: you can open a terminal, move between
 folders, run a Python file, and use git to commit and read a diff (the lines that changed between
 two versions of a file).
@@ -38,7 +42,7 @@ reach the network[^manual]. A shell command is a command typed in the terminal, 
 `python3 tip.py`.
 
 When it asks, you see a permission prompt. A permission prompt shows what Claude is about to do,
-followed by your options[^prompt]. The options usually include **Yes**, **No**, and
+followed by your options[^prompt]. You select **Yes** to approve[^first-change] or **No** to refuse[^deny]. Many prompts also offer
 **Yes, and don't ask again**, which also approves later actions of the same kind; for how long
 depends on the action[^bash-approval]. Read the prompt before you answer. It is the moment you decide.
 
@@ -60,7 +64,7 @@ press `Shift+Tab` at any time to switch the permission mode of the session you a
 ## Try it
 
 You need a Claude account to use Claude Code: a Claude subscription (Pro, Max, Team, or Enterprise),
-a Claude Console account, or access through a supported cloud provider[^account]. These are paid
+a Claude Console account (API access with pre-paid credits)[^console], or access through a supported cloud provider[^account]. These are paid
 services; check the price before you sign up.
 
 ### Install
@@ -73,7 +77,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 In the Windows command prompt (CMD), it is[^install-windows]:
 
-```bash
+```bat
 curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 ```
 
@@ -145,8 +149,7 @@ Check its answer against the code: does it say that `round(..., 2)` keeps two de
 add a function split(total, percent, people) to tip.py that returns what each person pays, tip included
 ```
 
-A permission prompt appears for the edit. It shows the lines Claude wants to add (`+`) and remove
-(`-`). Read them. If the change does what you asked and touches only `tip.py`, choose **Yes**. If it
+A permission prompt appears for the edit. It shows what Claude is about to do[^prompt]. Read it. If the change does what you asked and touches only `tip.py`, choose **Yes**. If it
 does something else, choose **No**.
 
 **Ask it to run the file.** Type:
@@ -159,11 +162,13 @@ run tip.py
 know what `tip.py` does.
 
 **Refuse once, on purpose.** Ask for something you do not want, such as `delete tip.py`, and choose
-**No**. If you select **No** without a comment, Claude Code stops the turn[^deny]. Try it again and,
-before you answer, move to **No** and press `Tab` to type a reason. Claude Code sends your comment
+**No**. If you select **No** without a comment, Claude Code stops the turn: it stops working on your
+request[^deny]. Try it again and,
+before you answer, move to **No** and press `Tab` to open a comment field[^comment], and type a
+reason. Claude Code sends your comment
 to Claude as the reason for the denial, and Claude continues working[^deny-comment].
 
-To leave, type `/exit`. Then run `git diff` in the terminal: it shows every line Claude changed
+To leave, type `/exit`[^exit]. Then run `git diff` in the terminal: it shows every line Claude changed
 since your commit. The next lesson is about reading it.
 
 ## Common mistakes
@@ -264,3 +269,8 @@ mistakes about **Yes, and don't ask again**.
 [^rewind]: Claude Code docs, How Claude Code works.
 [^bash-untracked]: Claude Code docs, Checkpointing.
 [^reads-free]: Claude Code docs, Configure permissions.
+[^harness]: Claude Code docs, How Claude Code works.
+[^first-change]: Claude Code docs, Quickstart.
+[^comment]: Claude Code docs, Configure permissions.
+[^exit]: Claude Code docs, Quickstart.
+[^console]: Claude Code docs, Quickstart.

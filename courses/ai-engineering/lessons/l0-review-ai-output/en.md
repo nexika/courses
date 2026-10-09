@@ -16,15 +16,16 @@ Claude stops when the work looks done[^looks-done]. Looking done and being right
 Anthropic's guide names a common failure: Claude produces a plausible-looking implementation that
 doesn't handle edge cases[^trust-gap]. An edge case is an unusual input, such as zero people sharing
 a bill. The guide's fix is direct: always provide verification (tests, scripts, screenshots); if you
-cannot verify it, do not ship it[^verify].
+cannot verify it, do not hand it over as finished[^verify].
 
 So before you accept a change, you do two things: you read the diff, and you run the tests.
 
 **A diff.** A diff shows what changed between two versions of a file. `git diff` shows changes
 between the working tree and the index[^git-diff]. The working tree is your files as they are now;
 the index, also called the staging area, is where `git add` puts the contents of your next
-commit[^git-add]. If you have not run `git add` since your last
-commit, `git diff` shows everything changed since that commit. Inside Claude Code, the command
+commit[^git-add]. If you have not run `git add` since your last commit, `git diff` shows every change to the files
+git already tracks. A new file Claude created is not in it: `git status` lists the paths that are not
+tracked by Git[^git-status], so run it too. Inside Claude Code, the command
 `/diff` lets you look over the changes in your working tree without leaving the session[^slash-diff].
 
 Here is part of a diff. The task given to Claude was "make `test_split_needs_people` pass": the test
@@ -59,8 +60,7 @@ But the last line changed too: the old code divided the whole bill, tip included
 people; the new code divides only the total and then adds the whole tip to each share. Nobody asked
 for that. It is the kind of change you find only by reading.
 
-**The tests.** Tests are your check, but a change can touch the tests too. Here is the rest of the
-same diff:
+**The tests.** Tests are your check, but a change can touch the tests too. Here is the start of the diff's second file:
 
 ```diff
 --- a/test_tip.py
@@ -84,7 +84,7 @@ Ask why it changed.
 - **Changed or deleted tests.** A `-` line in a test file can remove a check. Read it.
 - **Skipped tests.** `@unittest.skip` above a test skips it: the test no longer runs[^skip].
 - **Errors hidden instead of fixed.** The guide asks Claude to address the root cause, not suppress
-  the error[^root-cause]. A new `try` and `except` that swallows an error is worth a question.
+  the error[^root-cause]. A new `try` and `except` that swallows an error (catches it and carries on as if nothing happened) is worth a question.
 
 Then run the tests yourself, and read their output. If you ask Claude whether the tests pass, have
 it show evidence rather than assert success: the test output, the command it ran and what it
@@ -92,10 +92,12 @@ returned[^evidence].
 
 **If the change is wrong.** Tell Claude what is wrong, or throw the change away. `git restore`
 restores files in the working tree from a restore source[^git-restore]: `git restore tip.py` puts
-back the version git has for `tip.py` (the one in the index, which is your last commit if you have
-not run `git add` since).
+back the version git has for `tip.py` (the one in the index[^restore-index], which is your last commit if you have not run `git add`
+since).
 
 ## Try it
+
+### See the diff
 
 This script builds the diff above with Python's `difflib`, so you can see the format without a
 session or a repository. Unified diffs are a compact way of showing just the lines that have changed
@@ -160,6 +162,66 @@ It prints the two parts of the diff from "The idea", with a few unchanged lines 
 Now change `after` yourself: put back the old `return` line in `tip.py`, and the old value in
 `test_tip.py`. Run the script again. Only the lines the task needed are left.
 
+### Read a test run
+
+You run the tests yourself, so you need to read their result. Save this as `test_run.py` in an empty
+folder, and run `python3 -m unittest` there:
+
+```python
+import unittest
+
+
+class ReadTheRun(unittest.TestCase):
+    def test_passes(self):
+        self.assertEqual(1 + 1, 2)
+
+    @unittest.skip("not ready")
+    def test_skipped(self):
+        self.assertEqual(1 + 1, 3)
+
+    def test_fails(self):
+        self.assertEqual(2 + 2, 5)
+
+
+if __name__ == "__main__":
+    unittest.main()
+```
+
+It prints something like this (your path and timing will differ):
+
+```text
+F.s
+======================================================================
+FAIL: test_fails (test_run.ReadTheRun.test_fails)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File ".../test_run.py", line 13, in test_fails
+    self.assertEqual(2 + 2, 5)
+AssertionError: 4 != 5
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+FAILED (failures=1, skipped=1)
+```
+
+Read it from the top. The first line has one character per test: `.` for a test that passed, `F` for
+one that failed, and `s` for one that was skipped. Then each failure shows the test's name, the line
+that failed, and why: here `4 != 5`. The last line sums up the run.
+
+Now delete `test_fails` and run again:
+
+```text
+.s
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK (skipped=1)
+```
+
+The run is `OK`, but one test did not run at all. `OK` means that no test that ran failed; it does
+not mean that every test ran. Read the last line to the end.
+
 In your own project, after a session, run `git diff` (or `/diff` inside Claude Code), then
 `python3 -m unittest`, and read both before you commit.
 
@@ -177,17 +239,15 @@ check is a change in behaviour.
 **"More changes means more work done."** A file outside the task is a question, not a bonus. Ask why
 it changed, or refuse it.
 
-**"Accepting edits automatically means I skip the review."** The docs suggest `acceptEdits` mode for
+**"Accepting edits automatically means I skip the review."** The docs suggest `acceptEdits` mode, a mode that approves file edits without asking, for
 when you want to review changes in your editor or with `git diff` after the fact, rather than
 approving each edit as it happens[^accept-edits]. The review moves; it does not go away.
 
-**"I can always rewind."** Checkpoints track only the changes made through Claude's file editing
+**"I can always rewind."** Checkpoints (the copies Claude saves before each edit, which `Esc` twice rewinds to) track only the changes made through Claude's file editing
 tools; changes made by shell commands are not captured, and checkpoints are not a replacement for
 git[^not-git]. Commit before a session, and you can always get back to that point.
 
-**"A review tool replaces my review."** Claude Code has a `/code-review` command that checks the
-current diff for correctness bugs[^code-review]. It is useful, and it is also a model: it can miss
-things. It does not know what you meant to ask for. You do.
+**"A review tool replaces my review."** Claude Code has a `/code-review` command that reviews the current diff for bugs in a fresh subagent, a second Claude that works on its own[^code-review]. It is useful, and it also relies on a model: it can miss things. It does not know what you meant to ask for. You do.
 
 ## Your exercise
 
@@ -253,7 +313,9 @@ by line.
 [^difflib]: Python documentation, difflib.
 [^accept-edits]: Claude Code docs, Choose a permission mode.
 [^not-git]: Claude Code docs, Best practices for Claude Code.
-[^code-review]: Claude Code docs, Commands.
+[^code-review]: Claude Code docs, Best practices for Claude Code.
 [^git-add]: Git documentation, git-add.
 [^skip]: Python documentation, unittest.
 [^hunk-one]: GNU diffutils manual, Detailed Description of Unified Format.
+[^git-status]: Git documentation, git-status.
+[^restore-index]: Git documentation, git-restore.

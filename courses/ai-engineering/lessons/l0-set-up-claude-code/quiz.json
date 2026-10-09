@@ -102,7 +102,7 @@
     {
      "en": "A saved rule lets later sessions here run it unasked",
      "ar": "تُحفظ قاعدة فتشغّله الجلسات اللاحقة هنا دون سؤال",
-     "fr": "Une règle enregistrée le laisse passer dans les sessions suivantes"
+     "fr": "Une règle enregistrée le laisse passer dans les sessions de ce dépôt"
     }
    ],
    "answer": 3,

@@ -149,7 +149,15 @@
    "url": "https://code.claude.com/docs/en/permission-modes",
    "title": "Claude Code docs: Choose a permission mode",
    "kind": "doc",
-   "quote": "Yes, and use auto mode: approve and start in auto mode.",
+   "quote": "Yes, and use auto mode: approve and start in auto mode. If auto mode isn’t available to your session, for example because your organization turned it off, this option reads Yes, auto-accept edits.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "auto-edits": {
+   "url": "https://code.claude.com/docs/en/permission-modes",
+   "title": "Claude Code docs: Choose a permission mode",
+   "kind": "doc",
+   "quote": "Read-only actions and file edits in your working directory are auto-approved",
    "retrieved": "2026-10-09",
    "volatile": true
   }

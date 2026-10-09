@@ -1,7 +1,30 @@
 {
  "schema": "nexika.review/1",
- "fact_checks": [],
- "teaching": [],
+ "fact_checks": [
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "9554885e063934e7",
+   "notes": "Checked 20 cited sentences against 20 sources, all found (best-practices, interactive-mode, commands, permission-modes, git-diff, git-add, git-restore, GNU unified format, difflib, unittest). Claim scripts print 27.5, 35.0, 140.0, 110.0; see_the_diff.py prints both hunks as shown. Fail: 'git diff shows everything changed since that commit' overreaches, since untracked new files do not appear; and 'the one in the index' for git restore is uncited. Fix: say new files appear only in git status until added, and cite git-restore's 'otherwise from the index'."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "9554885e063934e7",
+   "notes": "Fetched all 10 cited pages; all 20 quotes are on their pages and support ar/fr. Each says_ar/says_fr phrase appears in its text with the same value, and the claim scripts compute them from versions.py. ar/fr keep the en facts, hedges and markers. Diff blocks and hunk headers match difflib output. Quiz and exercise goals agree with the tests in all three languages. No factual problems found."
+  }
+ ],
+ "teaching": [
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "9554885e063934e7",
+   "notes": "Points 1, 3-6 and 9 hold; tests error on the starter (13) and pass on the solution (13). Fail on 2, 7, 8: acceptEdits was never taught; 'checkpoints' is new and not linked to lesson 1; running tests is in the competency but no unittest output is shown or explained; en 'do not ship it' is jargon; fr 'bugs de correction' is a calque; '/code-review is also a model' is inaccurate (it relies on a model). Minor: second diff excerpt not labelled as partial; 'swallows an error' unglossed."
+  }
+ ],
  "learners": {
   "attempts": 0,
   "passes": 0,

@@ -36,8 +36,7 @@ aussi appuyer sur `Ctrl+G` pour ouvrir le plan dans votre éditeur de texte et l
 avant que Claude continue[^ctrl-g].
 
 **Une vérification que Claude peut lancer.** Avant que Claude implémente quoi que ce soit, donnez-lui
-un moyen de savoir quand il a fini : des tests, une compilation, une capture d'écran à
-comparer[^check]. L'exemple du guide le dit sans détour : écrire un test qui échoue et reproduit le
+un moyen de savoir quand il a fini : par exemple des tests[^check]. L'exemple du guide le dit sans détour : écrire un test qui échoue et reproduit le
 problème, puis corriger[^failing-test]. Un test qui échoue décrit ce que vous voulez, et échoue
 aujourd'hui parce que le code ne le fait pas encore.
 
@@ -167,9 +166,9 @@ Claude dès que vous voyez qu'il s'écarte de la route[^course-correct].
 tient en une phrase, sautez cette étape[^one-sentence].
 
 **« Approuver le plan, c'est approuver chaque modification. »** Pas avec
-**Yes, manually approve edits** : vous relisez encore chaque modification[^approve-manual]. L'autre
-option d'approbation lance le mode auto[^approve-auto], où un classifieur examine les modifications à
-votre place ; ne la choisissez que si vous relirez le *diff* ensuite.
+**Yes, manually approve edits** : vous relisez encore chaque modification[^approve-manual]. L'autre option d'approbation, **Yes, and use auto mode**, lance le mode auto ; quand ce mode n'est
+pas disponible, elle s'appelle **Yes, auto-accept edits**[^approve-auto]. En mode auto, la plupart des modifications de fichiers dans votre dossier de travail sont approuvées sans demande[^auto-edits]. Ne la
+choisissez que si vous relirez le *diff* ensuite.
 
 **« Claude a écrit des tests, donc la modification est testée. »** Des tests écrits après le code
 peuvent tester ce que fait le code plutôt que ce que vous vouliez. Écrivez ou lisez la vérification
@@ -211,14 +210,21 @@ Menez cette modification du plan au *commit* avec Claude Code :
 
 ### Lancer les tests
 
-Pour vérifier votre résultat avec les tests du cours, lancez-les depuis le dossier de départ :
+Votre dossier contient `test_bill.py` : lancez-y les tests, après chaque étape :
+
+```bash
+python3 -m unittest
+```
+
+Quand ils passent, vérifiez aussi votre `bill.py` avec la copie des tests du cours : copiez-le dans
+`exercise/starter/`, à la place de l'ébauche, et lancez :
 
 ```bash
 cd exercise/starter
 python3 -m unittest discover -s ../tests
 ```
 
-Ils échouent tant que `split_bill` n'est pas juste. Une solution se trouve dans `exercise/solution/` ;
+Dans les deux cas, ils échouent tant que `split_bill` n'est pas juste. Une solution se trouve dans `exercise/solution/` ;
 ne la regardez qu'après votre propre *commit*. Les tests vérifient le code, pas le chemin suivi : le
 plan, la relecture et le *commit*, c'est à vous de les pratiquer. Votre `git log` doit se terminer par
 un seul *commit* qui ne modifie que `bill.py`.
@@ -247,3 +253,4 @@ Répondez aux questions de `quiz.json`. Si elles vous semblent difficiles, relis
 [^planning-useful]: Documentation de Claude Code, Best practices for Claude Code.
 [^course-correct]: Documentation de Claude Code, Best practices for Claude Code.
 [^approve-auto]: Documentation de Claude Code, Choose a permission mode.
+[^auto-edits]: Documentation de Claude Code, Choose a permission mode.

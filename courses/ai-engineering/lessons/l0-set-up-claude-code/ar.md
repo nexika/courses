@@ -9,8 +9,10 @@
 ## الفكرة
 
 Claude Code مساعد برمجة يعمل بالذكاء الاصطناعي، يساعدك على بناء الميزات وإصلاح الأخطاء وأتمتة مهام
-التطوير[^what]. تتحدث إليه من الطرفية (terminal). ستستخدمه هذه الدورة في كل وحدة، لذلك يدور هذا الدرس
-الأول حول العمل معه بأمان.
+التطوير[^what]. تتحدث إليه من الطرفية (terminal). ستستخدمه هذه الدورة في كل وحدة، لذلك يدور هذا الدرس الأول حول العمل معه بأمان.
+
+اسمان يهمّاننا هنا. Claude هو نموذج الذكاء الاصطناعي: البرنامج الذي يقرأ طلبك ويختار ما يفعله. أما
+Claude Code فهو البرنامج الذي يحيط به على حاسوبك: يعطي Claude أدواته ويدير ما يراه Claude[^harness].
 
 يفترض هذا الدرس أنك تعلّمت ما تعلّمه الدورة الخارجية في المستوى 0: أن تفتح الطرفية، وتتنقّل بين المجلدات،
 وتشغّل ملف Python، وتستخدم git لإنشاء إيداع (commit) وقراءة الفروق (diff)، أي الأسطر التي تغيّرت بين
@@ -38,8 +40,8 @@ add a function that splits the bill between people
 مثل `python3 tip.py`.
 
 حين يسألك، يظهر لك طلب إذن (permission prompt). يعرض طلب الإذن ما يوشك Claude أن يفعله، ثم
-خياراتك[^prompt]. وتشمل الخيارات عادةً **Yes** (نعم) و **No** (لا) و **Yes, and don't ask again**
-(نعم، ولا تسألني مجددًا)، وهذا الأخير يوافق أيضًا على ما يأتي بعده من إجراءات من النوع نفسه، وتختلف
+خياراتك[^prompt]. تختار **Yes** (نعم) لتوافق[^first-change] أو **No** (لا) لترفض[^deny]. وكثير من الطلبات يعرض أيضًا
+**Yes, and don't ask again** (نعم، ولا تسألني مجددًا)، وهذا الخيار يوافق أيضًا على ما يأتي بعده من إجراءات من النوع نفسه، وتختلف
 مدّته باختلاف الإجراء[^bash-approval]. اقرأ الطلب قبل أن تجيب: هذه هي لحظة القرار.
 
 ولا يسأل كل أمر. يتعرّف Claude Code على مجموعة مدمجة من أوامر Bash على أنها للقراءة فقط، ويشغّلها
@@ -60,7 +62,7 @@ add a function that splits the bill between people
 ## جرّبها
 
 تحتاج إلى حساب لدى Claude لتستخدم Claude Code: اشتراك Claude (Pro أو Max أو Team أو Enterprise)، أو
-حساب Claude Console، أو وصول عبر مزوّد سحابي مدعوم[^account]. هذه خدمات مدفوعة، فاطّلع على السعر قبل
+حساب Claude Console (وصول إلى الواجهة البرمجية API برصيد مدفوع مسبقًا)[^console]، أو وصول عبر مزوّد سحابي مدعوم[^account]. هذه خدمات مدفوعة، فاطّلع على السعر قبل
 أن تشترك.
 
 ### التثبيت
@@ -73,7 +75,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 وفي موجّه أوامر Windows (CMD) هو[^install-windows]:
 
-```bash
+```bat
 curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 ```
 
@@ -145,8 +147,7 @@ explain what tip.py does, line by line
 add a function split(total, percent, people) to tip.py that returns what each person pays, tip included
 ```
 
-أي: «أضف إلى tip.py دالة split تعيد ما يدفعه كل شخص، شاملًا البقشيش». يظهر طلب إذن للتعديل، يعرض
-الأسطر التي يريد Claude إضافتها (`+`) وحذفها (`-`). اقرأها. إن كان التعديل يفعل ما طلبته ولا يمسّ إلا
+أي: «أضف إلى tip.py دالة split تعيد ما يدفعه كل شخص، شاملًا البقشيش». يظهر طلب إذن للتعديل، يعرض ما يوشك Claude أن يفعله[^prompt]. اقرأه. إن كان التعديل يفعل ما طلبته ولا يمسّ إلا
 `tip.py`، فاختر **Yes**. وإن فعل شيئًا آخر، فاختر **No**.
 
 **اطلب منه أن يشغّل الملف.** اكتب:
@@ -159,11 +160,11 @@ run tip.py
 يفعله `tip.py`.
 
 **ارفض مرة عن قصد.** اطلب شيئًا لا تريده، مثل `delete tip.py` (احذف tip.py)، واختر **No**. إن اخترت
-**No** دون تعليق، يوقف Claude Code دوره الحالي[^deny]. أعد المحاولة، وقبل أن تجيب انتقل إلى **No**
-واضغط `Tab` لتكتب السبب. يرسل Claude Code تعليقك إلى Claude على أنه سبب الرفض، ويواصل Claude
+**No** دون تعليق، يتوقف Claude Code عن العمل على طلبك[^deny]. أعد المحاولة، وقبل أن تجيب انتقل إلى **No**
+واضغط `Tab` ليُفتح حقل للتعليق[^comment]، واكتب السبب. يرسل Claude Code تعليقك إلى Claude على أنه سبب الرفض، ويواصل Claude
 العمل[^deny-comment].
 
-للخروج اكتب `/exit`. ثم شغّل `git diff` في الطرفية: يعرض كل سطر غيّره Claude منذ إيداعك. والدرس
+للخروج اكتب `/exit`[^exit]. ثم شغّل `git diff` في الطرفية: يعرض كل سطر غيّره Claude منذ إيداعك. والدرس
 التالي عن قراءته.
 
 ## أخطاء شائعة
@@ -260,3 +261,8 @@ python3 -m unittest discover -s ../tests
 [^rewind]: وثائق Claude Code، كيف يعمل Claude Code (How Claude Code works).
 [^bash-untracked]: وثائق Claude Code، نقاط الاستعادة (Checkpointing).
 [^reads-free]: وثائق Claude Code، إعداد الأذونات (Configure permissions).
+[^harness]: وثائق Claude Code، كيف يعمل Claude Code (How Claude Code works).
+[^first-change]: وثائق Claude Code، البدء السريع (Quickstart).
+[^comment]: وثائق Claude Code، إعداد الأذونات (Configure permissions).
+[^exit]: وثائق Claude Code، البدء السريع (Quickstart).
+[^console]: وثائق Claude Code، البدء السريع (Quickstart).

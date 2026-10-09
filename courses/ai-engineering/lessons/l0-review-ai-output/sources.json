@@ -66,10 +66,10 @@
    "volatile": true
   },
   "code-review": {
-   "url": "https://code.claude.com/docs/en/commands",
-   "title": "Claude Code docs: Commands",
+   "url": "https://code.claude.com/docs/en/best-practices",
+   "title": "Claude Code docs: Best practices for Claude Code",
    "kind": "doc",
-   "quote": "/code-review checks the current diff for correctness bugs",
+   "quote": "run the bundled /code-review skill, which reviews the current diff for bugs in a fresh subagent and returns findings to the session.",
    "retrieved": "2026-10-09",
    "volatile": true
   },
@@ -158,6 +158,22 @@
    "title": "Python documentation: unittest",
    "kind": "doc",
    "quote": "Unconditionally skip the decorated test.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "git-status": {
+   "url": "https://git-scm.com/docs/git-status",
+   "title": "Git documentation: git-status",
+   "kind": "doc",
+   "quote": "Displays paths that have differences between the index file and the current HEAD commit, paths that have differences between the working tree and the index file, and paths in the working tree that are not tracked by Git",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "restore-index": {
+   "url": "https://git-scm.com/docs/git-restore",
+   "title": "Git documentation: git-restore",
+   "kind": "doc",
+   "quote": "By default, if --staged is given, the contents are restored from HEAD, otherwise from the index.",
    "retrieved": "2026-10-09",
    "volatile": false
   }

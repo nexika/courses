@@ -216,6 +216,46 @@
    "quote": "Read-only File reads, Grep No, within the working directory and additional directories",
    "retrieved": "2026-10-09",
    "volatile": true
+  },
+  "harness": {
+   "url": "https://code.claude.com/docs/en/how-claude-code-works",
+   "title": "Claude Code docs: How Claude Code works",
+   "kind": "doc",
+   "quote": "Claude Code is the layer around the model that provides the tools and manages the context the model sees.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "first-change": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "If it asks before making the change, select Yes to approve.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "comment": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Claude Code docs: Configure permissions",
+   "kind": "doc",
+   "quote": "On most permission prompts, including Bash, PowerShell, file, and MCP tool prompts, move to Yes or No and press Tab to open a comment field on that option.",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "exit": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "/exit or Ctrl+D twice Exit Claude Code",
+   "retrieved": "2026-10-09",
+   "volatile": true
+  },
+  "console": {
+   "url": "https://code.claude.com/docs/en/quickstart",
+   "title": "Claude Code docs: Quickstart",
+   "kind": "doc",
+   "quote": "Claude Console (API access with pre-paid credits)",
+   "retrieved": "2026-10-09",
+   "volatile": true
   }
  }
 }
