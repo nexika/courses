@@ -57,7 +57,7 @@ Voici la boucle entière sur un exemple. Vous voulez que `tip` refuse un pourcen
 - **Faire le commit** : demandez à Claude de faire le *commit* avec un message descriptif[^commit-step],
   lisez la commande `git commit` dans la demande de permission, puis approuvez-la.
 
-**Quand ne pas planifier.** Le mode plan est utile, mais il a un coût[^overhead]. Si vous pouvez
+**Quand ne pas planifier.** Le mode plan est utile, mais il a un coût[^overhead] : il demande du temps et de l'attention en plus. Si vous pouvez
 décrire le *diff* en une phrase, sautez le plan[^one-sentence]. La modification ci-dessus est aussi
 petite que cela : on la planifie ici pour s'exercer aux étapes. Planifier sert surtout quand vous
 n'êtes pas sûr de l'approche, quand la modification touche plusieurs fichiers, ou quand vous
@@ -65,7 +65,9 @@ connaissez mal le code[^planning-useful].
 
 ## Essayez
 
-Reprenez le projet `tip-calc` de la première leçon. Lancez Claude Code en mode Manual, comme avant.
+Reprenez le projet `tip-calc` de la première leçon. Lancez d'abord `git status` : si `tip.py` a
+encore des changements de la première leçon, faites-en le *commit*, ou jetez-les avec
+`git restore tip.py`. Lancez ensuite Claude Code en mode Manual, comme avant.
 
 ### Écrire d'abord la vérification
 
@@ -166,8 +168,8 @@ Claude dès que vous voyez qu'il s'écarte de la route[^course-correct].
 tient en une phrase, sautez cette étape[^one-sentence].
 
 **« Approuver le plan, c'est approuver chaque modification. »** Pas avec
-**Yes, manually approve edits** : vous relisez encore chaque modification[^approve-manual]. L'autre option d'approbation, **Yes, and use auto mode**, lance le mode auto ; quand ce mode n'est
-pas disponible, elle s'appelle **Yes, auto-accept edits**[^approve-auto]. En mode auto, la plupart des modifications de fichiers dans votre dossier de travail sont approuvées sans demande[^auto-edits]. Ne la
+**Yes, manually approve edits** : vous relisez encore chaque modification[^approve-manual]. L'option d'approbation **Yes, and use auto mode** lance le mode auto ; quand ce mode n'est
+pas disponible, elle s'appelle **Yes, auto-accept edits**[^approve-auto]. En mode auto, la plupart des modifications de fichiers dans le dossier de votre projet sont approuvées sans demande[^auto-edits]. Ne la
 choisissez que si vous relirez le *diff* ensuite.
 
 **« Claude a écrit des tests, donc la modification est testée. »** Des tests écrits après le code
@@ -231,8 +233,7 @@ un seul *commit* qui ne modifie que `bill.py`.
 
 ## Vérifiez vos acquis
 
-Répondez aux questions de `quiz.json`. Si elles vous semblent difficiles, relisez les cinq étapes de
-« L'idée ».
+Répondez aux questions de `quiz.json`. Si elles vous semblent difficiles, relisez les cinq étapes de l'exemple dans « L'idée ».
 
 [^wrong-problem]: Documentation de Claude Code, Best practices for Claude Code.
 [^separate]: Documentation de Claude Code, Best practices for Claude Code.

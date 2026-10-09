@@ -14,6 +14,20 @@
    "result": "pass",
    "hash": "45fb7152c6d3a852",
    "notes": "Fetched all 6 cited pages; all 27 quotes are present and support the ar/fr sentences. ar/fr keep the en facts, hedges, citation markers and code blocks; quiz answers, explanations and exercise goals match the tests. The q2 point about ls > file matches the Redirections section. Minor: fr q3 option drops 'here' (the repository scope); ar 'يوقف Claude Code دوره الحالي' reads literally."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "4ccc4f809ff3ef78",
+   "notes": "Fetched 6 pages (overview, how-claude-code-works, quickstart, permission-modes, permissions, checkpointing); all 32 quotes found and each supports its sentence. tip.py prints 7.5; tests pass on the solution and fail on the starter. One uncited factual claim: 'The real Claude Code looks closer: for example, it checks where a redirection (> or <) points'. True, but needs a footnote: cite the permissions page's Redirections text."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "4ccc4f809ff3ef78",
+   "notes": "Checked ar/fr against en and all 32 sources (quickstart, permissions, permission-modes, how-claude-code-works, checkpointing, overview). Hedges kept (most, may, on recent versions), as are v2.1.283, the read-only command list and the session-only edit approval versus the saved Bash rule. Quiz q2's redirect point matches the Redirections section. Answers, explanations and exercise goals agree in en/ar/fr and with the tests. Nothing of substance to fix."
   }
  ],
  "teaching": [
@@ -23,6 +37,13 @@
    "result": "fail",
    "hash": "45fb7152c6d3a852",
    "notes": "Points 1-6 and 9 hold; tests error on the starter (13) and pass on the solution (13). Fail on 7 and 8: 'model' is never defined although the lesson relies on Claude vs Claude Code ('not by the model', 'a second model'); fix with one sentence in The idea. 'Stops the turn' is unexplained jargon, ar 'يوقف دوره الحالي' reads as 'its current role', fr 'arrête le tour en cours' is a calque; fix: 'stops working on your request'. Minor: CMD block tagged bash; Console account unexplained."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "4ccc4f809ff3ef78",
+   "notes": "Points 1-6, 8 and 9 hold; tests error on the starter (13) and pass on the solution (13). Fail on 7 (beginner pass): 'API access' and 'supported cloud provider' are undefined in en, ar and fr. Fix: gloss both. Minor: tests never defined; Claude may ask for confirmation in chat before the delete prompt; ar/fr 'starter folder' should name exercise/starter."
   }
  ],
  "learners": {

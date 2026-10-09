@@ -14,6 +14,20 @@
    "result": "fail",
    "hash": "69fb9099851808cd",
    "notes": "Fetched best-practices, permission-modes and git-commit; all 18 quotes match and ar/fr keep the en facts otherwise. Fail in en, ar and fr: 'where a classifier reviews the edits instead of you' is wrong: permission-modes says read-only actions and file edits in the working directory are auto-approved in auto mode, so nothing reviews those edits. Fix: say edits in the working directory are approved without asking, and cite that quote."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "8c9ac16b0adc5d0c",
+   "notes": "Fetched best-practices, permission-modes and git-commit; all 20 quotes found and each supports its sentence, with hedges kept ('most file edits', the 'Yes, auto-accept edits' fallback). The four phases match the guide's step titles. test_tip.py fails exactly as shown (F., line 11, ValueError not raised). Solution passes, starter fails (9 errors). Minor: 'the other approve option' ignores the optional clear-context and bypass variants."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "8c9ac16b0adc5d0c",
+   "notes": "Checked ar/fr against en and all 19 sources (best-practices, permission-modes, git-commit). Plan-mode approve options, the 'Yes, auto-accept edits' fallback and 'most file edits' in auto mode are supported, with 'most' kept as معظم / la plupart. The failing-test output is correct. Quiz answers agree in en/ar/fr; exercise goals match the docstring, tests and solution. Minor: ar/fr drop en's gloss of overhead; ar adds 'فقط'."
   }
  ],
  "teaching": [
@@ -23,6 +37,13 @@
    "result": "fail",
    "hash": "69fb9099851808cd",
    "notes": "Points 1-4, 6 and 9 hold; tests error on the starter (9) and pass on the solution (9). Fail on 5: the exercise has the learner implement bill.py in a new folder but run the tests from exercise/starter, where bill.py is still the stub, so they can never pass. Fail on 7/8: en 'adds overhead' unexplained; 'a build' (ar بناء, fr compilation) unexplained for Python learners. Fix: run the tests in the learner's own folder; gloss overhead; drop 'a build'."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "8c9ac16b0adc5d0c",
+   "notes": "Points 1-3, 5, 6, 9 hold; tests error on the starter (9) and pass on the solution (9). Fail on 4: Try it reuses tip-calc, but lesson 1 left Claude's split edit uncommitted, so the later diff also shows it and 'only tip.py should have changed, and only to refuse a negative percent' is false; fix: run git status first and commit or restore. Fail on 7/8 (en only): 'prompt' is used for the learner's own message, though the course used it only for permission prompts. Minor: status bar, working directory, overhead gloss in ar/fr."
   }
  ],
  "learners": {

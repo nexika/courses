@@ -256,6 +256,14 @@
    "quote": "Claude Console (API access with pre-paid credits)",
    "retrieved": "2026-10-09",
    "volatile": true
+  },
+  "redirect": {
+   "url": "https://code.claude.com/docs/en/permissions",
+   "title": "Claude Code docs: Configure permissions",
+   "kind": "doc",
+   "quote": "When a command redirects output or input, Claude Code checks the redirect target against your file rules as if Claude wrote or read that file directly",
+   "retrieved": "2026-10-09",
+   "volatile": true
   }
  }
 }

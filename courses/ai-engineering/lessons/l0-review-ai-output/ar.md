@@ -16,7 +16,7 @@
 آخر. يسمّي دليل Anthropic خطأً شائعًا: أن يقدّم Claude تنفيذًا يبدو مقنعًا لكنه لا يعالج الحالات
 الحدّية[^trust-gap]. والحالة الحدّية (edge case) مُدخلٌ غير معتاد، مثل فاتورة يتقاسمها صفر من
 الأشخاص. وعلاج الدليل صريح: وفّر دائمًا وسيلة للتحقق (اختبارات، سكربتات، لقطات شاشة)؛ وما لا تستطيع
-التحقق منه فلا تُطلقه[^verify].
+التحقق منه فلا تقدّمه على أنه منتهٍ[^verify].
 
 لذلك تفعل شيئين قبل أن تقبل أي تغيير: تقرأ الفروق، وتشغّل الاختبارات.
 
@@ -59,7 +59,12 @@ Git[^git-status]، فشغّله هو أيضًا. وداخل Claude Code يتيح
 فيقسم المبلغ وحده ثم يضيف البقشيش كاملًا إلى حصة كل شخص. لم يطلب أحد ذلك. ومثل هذا التغيير لا تجده إلا
 بالقراءة.
 
-**الاختبارات.** الاختبارات وسيلتك للتحقق، لكن التغيير قد يطال الاختبارات نفسها. وهذا أول الملف الثاني في الفروق نفسها:
+**الاختبارات.** الاختبار قطعة صغيرة من الكود تشغّل كودك على مُدخل معروف وتتحقّق من النتيجة. في المكتبة
+`unittest` في Python تكون حالة الاختبار صنفًا (class) مبنيًا على `unittest.TestCase`، وكل اختبار دالةٌ
+فيه يبدأ اسمها بـ `test`[^unittest-case]. ويبحث `python3 -m unittest` عنها في الملفات التي تطابق
+أسماؤها `test*.py`[^unittest-pattern] ويشغّلها.
+
+الاختبارات وسيلتك للتحقق، لكن التغيير قد يطال الاختبارات نفسها. وهذا أول الملف الثاني في الفروق نفسها:
 
 ```diff
 --- a/test_tip.py
@@ -95,7 +100,7 @@ git (نسخة الفهرس[^restore-index]، وهي آخر إيداع لك إن 
 
 ### اعرض الفروق
 
-يبني هذا السكربت الفروق السابقة بالوحدة `difflib` في Python، فترى الصيغة دون جلسة ولا مستودع. والفروق
+يبني هذا السكربت الفروق السابقة بالمكتبة `difflib` في Python، فترى الصيغة دون جلسة ولا مستودع. والفروق
 الموحّدة طريقة مختصرة لعرض الأسطر التي تغيّرت فقط ومعها بضعة أسطر من السياق[^difflib]، ويستخدم
 `git diff` العلامات نفسها: `+` و `-` والمسافة.
 
@@ -219,7 +224,7 @@ OK (skipped=1)
 النتيجة `OK`، لكن اختبارًا لم يعمل أصلًا. تعني `OK` أن أي اختبار جرى تشغيله لم يفشل؛ ولا تعني أن كل
 الاختبارات جرى تشغيلها. اقرأ السطر الأخير حتى نهايته.
 
-وفي مشروعك أنت، بعد الجلسة، شغّل `git diff` (أو `/diff` داخل Claude Code)، ثم `python3 -m unittest`،
+وفي مشروعك أنت، حين تصبح فيه اختبارات، بعد الجلسة، شغّل `git diff` (أو `/diff` داخل Claude Code)، ثم `python3 -m unittest`،
 واقرأ الاثنين قبل أن تودِع.
 
 ## أخطاء شائعة
@@ -304,12 +309,14 @@ python3 -m unittest discover -s ../tests
 [^root-cause]: وثائق Claude Code، أفضل الممارسات (Best practices for Claude Code).
 [^evidence]: وثائق Claude Code، أفضل الممارسات (Best practices for Claude Code).
 [^git-restore]: وثائق Git، الأمر git-restore.
-[^difflib]: وثائق Python، الوحدة difflib.
+[^difflib]: وثائق Python، المكتبة difflib.
 [^accept-edits]: وثائق Claude Code، اختيار وضع الأذونات (Choose a permission mode).
 [^not-git]: وثائق Claude Code، أفضل الممارسات (Best practices for Claude Code).
 [^code-review]: وثائق Claude Code، أفضل الممارسات (Best practices for Claude Code).
 [^git-add]: وثائق Git، الأمر git-add.
-[^skip]: وثائق Python، الوحدة unittest.
+[^skip]: وثائق Python، المكتبة unittest.
 [^hunk-one]: دليل GNU diffutils، الوصف المفصّل للصيغة الموحّدة (Detailed Description of Unified Format).
 [^git-status]: وثائق Git، الأمر git-status.
 [^restore-index]: وثائق Git، الأمر git-restore.
+[^unittest-case]: وثائق Python، المكتبة unittest.
+[^unittest-pattern]: وثائق Python، المكتبة unittest.

@@ -19,8 +19,7 @@ The workflow it recommends has four phases[^phases]: **explore**, **plan**, **im
 **Plan mode.** Plan mode tells Claude to research and propose changes without making them. Claude
 reads files, runs shell commands to explore, and writes a plan, but does not edit your
 source[^plan-mode]. Enter it by pressing `Shift+Tab` (until the status bar shows `⏸ plan mode on`), by
-starting the session with `claude --permission-mode plan`[^start-plan], or by putting `/plan` in
-front of one prompt[^enter-plan].
+starting the session with `claude --permission-mode plan`[^start-plan], or by putting `/plan` in front of one request (the message you type)[^enter-plan].
 
 When the plan is ready, Claude shows it and asks how to proceed. Two of the answers matter here:
 
@@ -31,7 +30,7 @@ Approving a plan exits plan mode, and Claude starts editing[^approve-exits]. You
 `Ctrl+G` to open the plan in your text editor and change it yourself before Claude goes on[^ctrl-g].
 
 **A check Claude can run.** Before Claude implements anything, give it a way to know when it is
-done, such as tests[^check]. The guide's example prompt says it directly:
+done, such as tests[^check]. The guide's example request says it directly:
 write a failing test that reproduces the issue, then fix it[^failing-test]. A failing test is a test
 that describes what you want and fails today, because the code does not do it yet.
 
@@ -58,7 +57,9 @@ the change modifies multiple files, or when you are unfamiliar with the code[^pl
 
 ## Try it
 
-Use the `tip-calc` project from the first lesson. Start Claude Code in Manual mode, as before.
+Use the `tip-calc` project from the first lesson. First run `git status`: if `tip.py` still has
+changes from the first lesson, commit them, or throw them away with `git restore tip.py`. Then start
+Claude Code in Manual mode, as before.
 
 ### Write the check first
 
@@ -154,8 +155,8 @@ notice it going off track[^course-correct].
 sentence, skip it[^one-sentence].
 
 **"Approving the plan means approving every edit."** Not with **Yes, manually approve edits**: you
-still review each edit[^approve-manual]. The other approve option, **Yes, and use auto mode**, starts auto mode; where auto mode is not
-available, it reads **Yes, auto-accept edits**[^approve-auto]. In auto mode, most file edits in your working directory are approved without asking[^auto-edits]. Choose it only when you will review the
+still review each edit[^approve-manual]. The approve option **Yes, and use auto mode** starts auto mode; where auto mode is not
+available, it reads **Yes, auto-accept edits**[^approve-auto]. In auto mode, most file edits in your project folder are approved without asking[^auto-edits]. Choose it only when you will review the
 diff afterwards.
 
 **"Claude wrote tests, so the change is tested."** Tests written after the code can test what the
@@ -214,7 +215,7 @@ commit are yours to practise. Your `git log` should end with one commit that cha
 
 ## Check yourself
 
-Answer the questions in `quiz.json`. If they are hard, read the five steps in "The idea" again.
+Answer the questions in `quiz.json`. If they are hard, read the five steps of the example in "The idea" again.
 
 [^wrong-problem]: Claude Code docs, Best practices for Claude Code.
 [^separate]: Claude Code docs, Best practices for Claude Code.

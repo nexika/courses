@@ -73,7 +73,9 @@ en cours[^shift-tab].
 ## Essayez
 
 Il vous faut un compte Claude pour utiliser Claude Code : un abonnement Claude (Pro, Max, Team ou
-Enterprise), un compte Claude Console (accès à l'API avec des crédits prépayés)[^console], ou un accès via un fournisseur cloud pris en charge[^account].
+Enterprise), un compte Claude Console (accès à l'API avec des crédits prépayés ; l'API est le moyen par lequel vos propres programmes
+appellent Claude)[^console], ou un accès via un fournisseur cloud pris en charge (une entreprise qui
+fait tourner Claude sur ses propres serveurs)[^account].
 Ces services sont payants : regardez le prix avant de vous inscrire.
 
 ### Installation
@@ -177,7 +179,8 @@ run tip.py
 commande s'exécute. Approuvez-la : vous savez ce que fait `tip.py`.
 
 **Refusez une fois, exprès.** Demandez quelque chose que vous ne voulez pas, comme `delete tip.py`
-(supprime tip.py), et choisissez **No**. Si vous choisissez **No** sans commentaire, Claude Code
+(supprime tip.py). Si Claude vous demande d'abord dans la conversation si vous êtes sûr, répondez
+oui, pour que la demande de permission apparaisse. Choisissez alors **No**. Si vous choisissez **No** sans commentaire, Claude Code
 arrête de traiter votre demande[^deny]. Recommencez et, avant de répondre, placez-vous sur **No** et appuyez sur `Tab` pour ouvrir un champ de commentaire[^comment], puis
 écrivez une raison. Claude Code transmet votre commentaire à Claude comme raison du
 refus, et Claude continue son travail[^deny-comment].
@@ -234,8 +237,9 @@ demande à faire y est décrite par un dictionnaire, par exemple `{"tool": "Edit
 - tout autre outil demande : dans le doute, on demande.
 
 C'est un modèle simplifié, qui demande dès qu'il a un doute. Le vrai Claude Code regarde de plus près :
-par exemple, il vérifie où pointe une redirection (`>` ou `<`), et il traite les formes de `git` en
-lecture seule comme telles. L'exercice laisse ces cas de côté.
+par exemple, il vérifie le fichier visé par une redirection (`>` ou `<`) comme si Claude l'écrivait ou le
+lisait directement[^redirect], et il traite les formes de `git` en lecture seule comme
+telles[^read-only-list]. L'exercice laisse ces cas de côté.
 
 `answer(action, task_files, expected_commands)` renvoie votre réponse :
 
@@ -245,7 +249,7 @@ lecture seule comme telles. L'exercice laisse ces cas de côté.
   sinon `"no"` ;
 - pour tout autre outil : `"no"`.
 
-Lancez les tests depuis le dossier de départ :
+Lancez les tests depuis le dossier de départ (`exercise/starter/`) :
 
 ```bash
 cd exercise/starter
@@ -293,3 +297,4 @@ que les erreurs fréquentes sur **Yes, and don't ask again**.
 [^comment]: Documentation de Claude Code, Configure permissions.
 [^exit]: Documentation de Claude Code, Quickstart.
 [^console]: Documentation de Claude Code, Quickstart.
+[^redirect]: Documentation de Claude Code, Configure permissions.

@@ -60,7 +60,12 @@ But the last line changed too: the old code divided the whole bill, tip included
 people; the new code divides only the total and then adds the whole tip to each share. Nobody asked
 for that. It is the kind of change you find only by reading.
 
-**The tests.** Tests are your check, but a change can touch the tests too. Here is the start of the diff's second file:
+**The tests.** A test is a small piece of code that runs your code on a known input and checks the
+result. With Python's `unittest`, a test case is a class based on `unittest.TestCase`, and each test
+is a method whose name starts with `test`[^unittest-case]. `python3 -m unittest` looks for them in
+files whose names match `test*.py`[^unittest-pattern] and runs them.
+
+Tests are your check, but a change can touch the tests too. Here is the start of the diff's second file:
 
 ```diff
 --- a/test_tip.py
@@ -222,7 +227,7 @@ OK (skipped=1)
 The run is `OK`, but one test did not run at all. `OK` means that no test that ran failed; it does
 not mean that every test ran. Read the last line to the end.
 
-In your own project, after a session, run `git diff` (or `/diff` inside Claude Code), then
+In your own project, once it has tests, after a session, run `git diff` (or `/diff` inside Claude Code), then
 `python3 -m unittest`, and read both before you commit.
 
 ## Common mistakes
@@ -319,3 +324,5 @@ by line.
 [^hunk-one]: GNU diffutils manual, Detailed Description of Unified Format.
 [^git-status]: Git documentation, git-status.
 [^restore-index]: Git documentation, git-restore.
+[^unittest-case]: Python documentation, unittest.
+[^unittest-pattern]: Python documentation, unittest.

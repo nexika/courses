@@ -64,7 +64,8 @@ press `Shift+Tab` at any time to switch the permission mode of the session you a
 ## Try it
 
 You need a Claude account to use Claude Code: a Claude subscription (Pro, Max, Team, or Enterprise),
-a Claude Console account (API access with pre-paid credits)[^console], or access through a supported cloud provider[^account]. These are paid
+a Claude Console account (API access with pre-paid credits; the API is the way your own programs call Claude)[^console], or
+access through a supported cloud provider (a company that runs Claude on its own servers)[^account]. These are paid
 services; check the price before you sign up.
 
 ### Install
@@ -161,8 +162,8 @@ run tip.py
 `python3` is not in the read-only set, so a prompt asks before the command runs. Approve it: you
 know what `tip.py` does.
 
-**Refuse once, on purpose.** Ask for something you do not want, such as `delete tip.py`, and choose
-**No**. If you select **No** without a comment, Claude Code stops the turn: it stops working on your
+**Refuse once, on purpose.** Ask for something you do not want, such as `delete tip.py`. If Claude first asks you in the
+conversation whether you are sure, say yes, so that the permission prompt appears. Then choose **No**. If you select **No** without a comment, Claude Code stops the turn: it stops working on your
 request[^deny]. Try it again and,
 before you answer, move to **No** and press `Tab` to open a comment field[^comment], and type a
 reason. Claude Code sends your comment
@@ -215,8 +216,8 @@ Write two functions.
 - any other tool asks: when you are not sure, ask.
 
 This is a simplified model that asks whenever it is not sure. The real Claude Code looks closer:
-for example, it checks where a redirection (`>` or `<`) points, and it treats read-only forms of
-`git` as read-only. The exercise leaves those cases out.
+for example, it checks the file a redirection (`>` or `<`) points to as if Claude wrote or
+read that file directly[^redirect], and it treats read-only forms of `git` as read-only[^read-only-list]. The exercise leaves those cases out.
 
 `answer(action, task_files, expected_commands)` returns what you would answer:
 
@@ -226,7 +227,7 @@ for example, it checks where a redirection (`>` or `<`) points, and it treats re
   `expected_commands`, otherwise `"no"`;
 - for any other tool: `"no"`.
 
-Run the tests from the starter folder:
+Run the tests from the starter folder (`exercise/starter/`):
 
 ```bash
 cd exercise/starter
@@ -274,3 +275,4 @@ mistakes about **Yes, and don't ask again**.
 [^comment]: Claude Code docs, Configure permissions.
 [^exit]: Claude Code docs, Quickstart.
 [^console]: Claude Code docs, Quickstart.
+[^redirect]: Claude Code docs, Configure permissions.

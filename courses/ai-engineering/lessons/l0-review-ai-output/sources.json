@@ -176,6 +176,22 @@
    "quote": "By default, if --staged is given, the contents are restored from HEAD, otherwise from the index.",
    "retrieved": "2026-10-09",
    "volatile": false
+  },
+  "unittest-case": {
+   "url": "https://docs.python.org/3/library/unittest.html",
+   "title": "Python documentation: unittest",
+   "kind": "doc",
+   "quote": "A test case is created by subclassing unittest.TestCase. The three individual tests are defined with methods whose names start with the letters test.",
+   "retrieved": "2026-10-09",
+   "volatile": false
+  },
+  "unittest-pattern": {
+   "url": "https://docs.python.org/3/library/unittest.html",
+   "title": "Python documentation: unittest",
+   "kind": "doc",
+   "quote": "Pattern to match test files (test*.py default)",
+   "retrieved": "2026-10-09",
+   "volatile": false
   }
  }
 }

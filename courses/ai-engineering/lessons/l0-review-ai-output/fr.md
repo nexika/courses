@@ -62,7 +62,13 @@ compris, par le nombre de personnes ; le nouveau divise seulement le montant, pu
 entier à chaque part. Personne ne l'a demandé. C'est le genre de changement qu'on ne trouve qu'en
 lisant.
 
-**Les tests.** Les tests sont votre vérification, mais une modification peut aussi toucher les tests.
+**Les tests.** Un test est un petit morceau de code qui lance votre code sur une entrée connue et
+vérifie le résultat. Avec `unittest`, en Python, un cas de test est une classe fondée sur
+`unittest.TestCase`, et chaque test est une méthode dont le nom commence par `test`[^unittest-case].
+`python3 -m unittest` les cherche dans les fichiers dont le nom correspond à `test*.py`[^unittest-pattern]
+et les lance.
+
+Les tests sont votre vérification, mais une modification peut aussi toucher les tests.
 Voici le début du second fichier du même *diff* :
 
 ```diff
@@ -230,7 +236,7 @@ OK (skipped=1)
 Le résultat est `OK`, mais un test ne s'est pas exécuté du tout. `OK` veut dire qu'aucun test exécuté
 n'a échoué ; cela ne veut pas dire que tous les tests ont tourné. Lisez la dernière ligne jusqu'au bout.
 
-Dans votre propre projet, après une session, lancez `git diff` (ou `/diff` dans Claude Code), puis
+Dans votre propre projet, une fois qu'il a des tests, après une session, lancez `git diff` (ou `/diff` dans Claude Code), puis
 `python3 -m unittest`, et lisez les deux avant de faire le *commit*.
 
 ## Erreurs fréquentes
@@ -333,3 +339,5 @@ Répondez aux questions de `quiz.json`. Si elles vous semblent difficiles, relis
 [^hunk-one]: Manuel de GNU diffutils, Detailed Description of Unified Format.
 [^git-status]: Documentation de Git, git-status.
 [^restore-index]: Documentation de Git, git-restore.
+[^unittest-case]: Documentation de Python, unittest.
+[^unittest-pattern]: Documentation de Python, unittest.
