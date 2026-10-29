@@ -1,0 +1,167 @@
+{
+ "schema": "nexika.quiz/1",
+ "questions": [
+  {
+   "id": "q1",
+   "type": "choice",
+   "prompt": {
+    "en": "Claude Code is connected to two MCP servers: one for docs and one for tickets. How many MCP clients does it hold?",
+    "ar": "Claude Code متصل بخادمَي MCP: واحد للتوثيق وآخر للتذاكر. كم عميل MCP لديه؟",
+    "fr": "Claude Code est connecté à deux serveurs MCP : un pour la documentation, un pour les tickets. Combien de clients MCP contient-il ?"
+   },
+   "options": [
+    {
+     "en": "One, shared by both servers",
+     "ar": "واحد، يتشاركه الخادمان",
+     "fr": "Un seul, partagé par les deux serveurs"
+    },
+    {
+     "en": "None: the servers talk to Claude",
+     "ar": "لا شيء: الخادمان يكلّمان Claude",
+     "fr": "Aucun : les serveurs parlent à Claude"
+    },
+    {
+     "en": "Two: one for each server",
+     "ar": "اثنان: واحد لكل خادم",
+     "fr": "Deux : un par serveur"
+    },
+    {
+     "en": "Three: one more for the model",
+     "ar": "ثلاثة: واحد إضافي للنموذج",
+     "fr": "Trois : un de plus pour le modèle"
+    }
+   ],
+   "answer": 2,
+   "explain": {
+    "en": "The host creates one client for each server, and each client keeps its own connection. The model is not a participant: the servers never talk to Claude.",
+    "ar": "ينشئ المضيف عميلًا واحدًا لكل خادم، ويحتفظ كل عميل باتصاله الخاص. والنموذج ليس طرفًا في MCP: الخادمان لا يكلّمان Claude أبدًا.",
+    "fr": "L'hôte crée un client par serveur, et chaque client garde sa propre connexion. Le modèle n'est pas un participant : les serveurs ne parlent jamais à Claude."
+   }
+  },
+  {
+   "id": "q2",
+   "type": "choice",
+   "prompt": {
+    "en": "A server offers the schema of a database, so that the application can add it to the context. What kind of thing is it?",
+    "ar": "يقدّم خادم مخطط قاعدة بيانات، لكي يضيفه التطبيق إلى السياق. من أي نوع هو؟",
+    "fr": "Un serveur propose le schéma d'une base de données, pour que l'application l'ajoute au contexte. De quel type s'agit-il ?"
+   },
+   "options": [
+    {
+     "en": "A tool, since the model reads it",
+     "ar": "أداة، لأن النموذج يقرؤه",
+     "fr": "Un outil, puisque le modèle le lit"
+    },
+    {
+     "en": "A resource, chosen by the application",
+     "ar": "مورد، يختاره التطبيق",
+     "fr": "Une ressource, choisie par l'application"
+    },
+    {
+     "en": "A prompt, since it guides the model's work",
+     "ar": "قالب موجّه، لأنه يوجّه عمل النموذج",
+     "fr": "Un prompt, puisqu'il guide le travail du modèle"
+    },
+    {
+     "en": "A transport, since it carries data",
+     "ar": "ناقل، لأنه يحمل البيانات",
+     "fr": "Un transport, puisqu'il porte des données"
+    }
+   ],
+   "answer": 1,
+   "explain": {
+    "en": "Resources are data for context, such as file contents or database schemas, and the application decides how to use them. Tools are functions the model calls; prompts are ready-made instructions the user picks.",
+    "ar": "الموارد بيانات للسياق، مثل محتوى ملف أو مخطط قاعدة بيانات، والتطبيق هو الذي يقرّر كيف يستخدمها. أما الأدوات فدوال يستدعيها النموذج، وقوالب الموجّهات يختارها المستخدم.",
+    "fr": "Les ressources sont des données de contexte, comme le contenu d'un fichier ou le schéma d'une base, et c'est l'application qui décide comment les utiliser. Les outils sont des fonctions que le modèle appelle ; les prompts sont des instructions toutes prêtes que l'utilisateur choisit."
+   }
+  },
+  {
+   "id": "q3",
+   "type": "choice",
+   "prompt": {
+    "en": "A server answers a tools/call with a result whose isError is true and whose text says \"Invalid date: must be in the future\". What should the host do?",
+    "ar": "يجيب خادم عن tools/call بنتيجة فيها isError مضبوطة على true ونصّها \"Invalid date: must be in the future\". ماذا يفعل المضيف؟",
+    "fr": "Un serveur répond à un tools/call par un résultat dont isError vaut true et dont le texte dit \"Invalid date: must be in the future\". Que doit faire l'hôte ?"
+   },
+   "options": [
+    {
+     "en": "Pass it to Claude as a tool_result with is_error",
+     "ar": "يمرّره إلى Claude في tool_result مع is_error",
+     "fr": "Le passer à Claude en tool_result avec is_error"
+    },
+    {
+     "en": "Drop it and retry the same call itself",
+     "ar": "يتجاهله ويعيد الاستدعاء نفسه بنفسه",
+     "fr": "L'ignorer et refaire lui-même le même appel"
+    },
+    {
+     "en": "Turn it into a JSON-RPC error for Claude",
+     "ar": "يحوّله إلى خطأ JSON-RPC يرسله إلى Claude",
+     "fr": "Le changer en erreur JSON-RPC pour Claude"
+    },
+    {
+     "en": "Tell Claude only that the tool failed",
+     "ar": "يخبر Claude فقط بأن الأداة فشلت",
+     "fr": "Dire seulement à Claude que l'outil a échoué"
+    }
+   ],
+   "answer": 0,
+   "explain": {
+    "en": "This is a tool execution error: its message is feedback the model can use to correct the date and call again. The specification asks clients to pass such errors to the model. Claude never sees JSON-RPC messages, and a generic message gives it nothing to act on.",
+    "ar": "هذا خطأ في تنفيذ الأداة: رسالته معلومات يستطيع النموذج أن يصحّح بها التاريخ ويعيد الاستدعاء. وتطلب المواصفة من العملاء تمرير مثل هذه الأخطاء إلى النموذج. ولا يرى Claude رسائل JSON-RPC أبدًا، والرسالة العامة لا تعطيه ما يعمل به.",
+    "fr": "C'est une erreur d'exécution d'outil : son message est un retour que le modèle peut utiliser pour corriger la date et rappeler l'outil. La spécification demande aux clients de transmettre ces erreurs au modèle. Claude ne voit jamais de message JSON-RPC, et un message générique ne lui donne rien pour agir."
+   }
+  },
+  {
+   "id": "q4",
+   "type": "choice",
+   "prompt": {
+    "en": "Which sentence describes the stdio transport?",
+    "ar": "أي جملة تصف الناقل stdio؟",
+    "fr": "Quelle phrase décrit le transport stdio ?"
+   },
+   "options": [
+    {
+     "en": "The server runs elsewhere and receives HTTP POST requests",
+     "ar": "يعمل الخادم في مكان آخر ويستقبل طلبات HTTP POST",
+     "fr": "Le serveur tourne ailleurs et reçoit des POST HTTP"
+    },
+    {
+     "en": "Claude starts the server inside the model",
+     "ar": "يشغّل Claude الخادم داخل النموذج",
+     "fr": "Claude lance le serveur à l'intérieur du modèle"
+    },
+    {
+     "en": "The server opens a connection to the host",
+     "ar": "يفتح الخادم اتصالًا بالمضيف",
+     "fr": "Le serveur ouvre une connexion vers l'hôte"
+    },
+    {
+     "en": "The client starts it and talks via stdin/stdout",
+     "ar": "يشغّله العميل ويتحاوران عبر stdin/stdout",
+     "fr": "Le client le lance et lui parle par stdin/stdout"
+    }
+   ],
+   "answer": 3,
+   "explain": {
+    "en": "With stdio, the client starts the server as a program on the same computer, and they exchange one JSON-RPC message per line over its standard input and output. HTTP POST requests are the Streamable HTTP transport, used by remote servers.",
+    "ar": "مع stdio، يشغّل العميل الخادم برنامجًا على الحاسوب نفسه، ويتبادلان رسائل JSON-RPC، رسالة في كل سطر، عبر مدخله ومخرجه القياسيين. أما طلبات HTTP POST فهي الناقل Streamable HTTP الذي تستخدمه الخوادم البعيدة.",
+    "fr": "Avec stdio, le client lance le serveur comme un programme sur le même ordinateur, et ils échangent un message JSON-RPC par ligne sur son entrée et sa sortie standard. Les POST HTTP, c'est le transport Streamable HTTP, celui des serveurs distants."
+   }
+  },
+  {
+   "id": "q5",
+   "type": "open",
+   "prompt": {
+    "en": "A shop's MCP server is connected to Claude Code. A user asks \"Where is order A-1042?\". Explain, step by step, who does what until Claude answers: the host, the client, the server and the model.",
+    "ar": "خادم MCP لمتجر متصل بـ Claude Code. يسأل مستخدم: \"Where is order A-1042?\". اشرح خطوة بخطوة من يفعل ماذا حتى يجيب Claude: المضيف والعميل والخادم والنموذج.",
+    "fr": "Le serveur MCP d'une boutique est connecté à Claude Code. Un utilisateur demande \"Where is order A-1042?\". Expliquez étape par étape qui fait quoi jusqu'à la réponse de Claude : l'hôte, le client, le serveur et le modèle."
+   },
+   "rubric": {
+    "en": "Claude Code is the host and holds one client for the shop server. The client asks the server for its tools with tools/list (a JSON-RPC request with an id; the response repeats the id). The host turns them into tool definitions (inputSchema becomes input_schema, names made unique) and sends them to the model with the question. The model replies with a tool_use block; it never talks to the server. With the user's consent, the host sends tools/call with the name and arguments through the client; the server runs the lookup and returns content, with isError if it failed. The host turns that into a tool_result (with is_error if needed) and Claude writes the answer. A good answer also notes that the server's tool descriptions and results are not automatically trustworthy.",
+    "ar": "Claude Code هو المضيف، وفيه عميل واحد لخادم المتجر. يسأل العميل الخادم عن أدواته بـ tools/list (طلب JSON-RPC له معرّف id، ويكرّر الجواب المعرّف نفسه). يحوّلها المضيف إلى تعريفات أدوات (يصير inputSchema هو input_schema، وتصير الأسماء فريدة) ويرسلها إلى النموذج مع السؤال. يجيب النموذج بكتلة tool_use، ولا يكلّم الخادم أبدًا. وبموافقة المستخدم، يرسل المضيف عبر العميل tools/call بالاسم والمعاملات arguments؛ فيشغّل الخادم البحث ويعيد content، مع isError إن فشل. يحوّل المضيف ذلك إلى tool_result (مع is_error عند الحاجة)، ويكتب Claude الإجابة. والإجابة الجيدة تذكر أيضًا أن أوصاف أدوات الخادم ونتائجها ليست موثوقة تلقائيًا.",
+    "fr": "Claude Code est l'hôte, avec un client pour le serveur de la boutique. Le client demande ses outils au serveur avec tools/list (une requête JSON-RPC avec un id ; la réponse reprend cet id). L'hôte les transforme en définitions d'outils (inputSchema devient input_schema, noms rendus uniques) et les envoie au modèle avec la question. Le modèle répond par un bloc tool_use ; il ne parle jamais au serveur. Avec l'accord de l'utilisateur, l'hôte envoie par le client un tools/call avec le nom et les arguments ; le serveur fait la recherche et renvoie content, avec isError en cas d'échec. L'hôte en fait un tool_result (avec is_error si besoin) et Claude écrit la réponse. Une bonne réponse note aussi que les descriptions d'outils et les résultats du serveur ne sont pas fiables d'office."
+   }
+  }
+ ]
+}

@@ -1,0 +1,18 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l2-connect-an-mcp-server",
+ "title": {
+  "en": "Connect an MCP server",
+  "ar": "اربط خادم MCP",
+  "fr": "Connecter un serveur MCP"
+ },
+ "module": "m2-tools",
+ "level": 2,
+ "minutes": 40,
+ "competencies": [
+  "c2.mcp-use"
+ ],
+ "prerequisites": [
+  "l2-what-is-mcp"
+ ]
+}

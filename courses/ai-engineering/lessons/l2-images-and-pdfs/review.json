@@ -1,0 +1,97 @@
+{
+ "schema": "nexika.review/1",
+ "fact_checks": [
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "a11728306d1d9768",
+   "notes": "Round 1. All 23 quotes are on the Vision, PDF support and PNG pages. ar and fr match en.md fact by fact, with no limit or number added, dropped or overstated. The 4 code blocks are byte-identical; both claim scripts print 2691 and 1404.5 and the phrases are present. Quiz answers right in all three; glossary and the referenced lesson title right. Minor: ar مائلة for rotated; the ar claim phrase is heavy; fr \"première image\" and MB for Mo."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "a11728306d1d9768",
+   "notes": "Round 1. Checked 31 cited sentences against 23 sources (4 pages fetched); all quotes are on their pages. Claims 2691 and 1404.5 OK; Try it OK; starter 18 errors, solution 18 OK; starter constants agree with the sources; quiz correct. Fail: \"images that are too big are made smaller\" cites a quote that only gives the limits, not the downscaling; \"Claude Opus 5.5 is one of them\" is uncited. Minor: 10 MB read as MiB in code; the 2000 px limit above 20 images left out; \"common use\" overreaches."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "7b0c3abce102acd0",
+   "notes": "Round 2. Checked 35 cited sentences against 27 sources (3 pages fetched); all quotes are on their pages and both round 1 problems are fixed. The 3 claim scripts match; Try it matches; starter 19 errors, solution 19 OK; constants agree with the sources; quiz correct. Minor: base64 also uses + / =; the downscaling sentence leaves out documented exceptions; the over-20 rule counts document blocks on some platforms."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "7b0c3abce102acd0",
+   "notes": "Round 2. All quotes are on the Vision, PDF and PNG pages. Every ar and fr factual sentence, including the round 2 changes, matches the English and its source with no change to limits or numbers. Code blocks byte-identical; the 3 claim scripts give 2691, 1404.5 and 0.30000000000000004; quiz answers right in all three. Minor: fr goal still says 10 MB; ar المُدارة can read as managed; \"the other order\" narrows \"other orders\"."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "f6f923c6ef7fcf42",
+   "notes": "Round 3. All 27 quotes are on the Vision, PDF and PNG pages. Every changed sentence in ar and fr (base64 signs, the 32 MB limit that varies by platform, the math.ceil and big-endian glosses, المائلة, 1404,5, quiz q2 and q3, the exercise goal) is faithful to en.md and the sources. Code blocks identical; the claim scripts print 2691, 1404.5 and 0.30000000000000004; quiz answers right in all three. Minor: the q5 rubric says blurry in English, low quality in ar and fr."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "f6f923c6ef7fcf42",
+   "notes": "Round 3. Checked 37 citations against 27 sources (3 pages fetched); all quotes are on their pages and every recent edit checks out. The claim scripts give 0.30000000000000004, 2691 and 1404.5; Try it matches; starter 20 errors, solution 20 OK; constants match the sources; quiz correct. Minor: the application/pdf sentence has no citation; the JPEG, GIF, WebP and PDF signatures are not sourced."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "a017807c760bc870",
+   "notes": "Round 4. Checked 36 cited sentences against 28 sources (3 pages fetched); all quotes are on their pages. The 3 claim scripts and the Try it output match the text; starter 20 errors, solution 20 OK; the exercise text matches the starter and tests; quiz correct. Minor: the over-20 rule also counts PDFs on Bedrock and Google Cloud; the p-type quote lacks \"type\": \"document\"; \"the media type must match the bytes\" has no API source."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "a017807c760bc870",
+   "notes": "Round 4. All 28 quotes are on the fetched pages, including the new application/pdf and Bedrock/Google Cloud quotes. The cloud-service sentence, \"every service\" and \"other services differ\" mean the same in ar and fr; all limits and numbers match. Code blocks byte-identical; claims print their expected values; quiz answers right in all three; the solution passes 20 tests. Minor: fr \"autant de fois que vous voulez\" says a little more than \"many times\"; ar المائلة for rotated."
+  }
+ ],
+ "teaching": [
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "a11728306d1d9768",
+   "notes": "Round 1. Checked 1-9; 18 tests fail on the starter and pass on the solution; Try it and both claims run; code identical. Fail on 2: the text leans on tool_result from the tool lessons, which are not prerequisites. Fail on 7: Python bytes (b\"...\", \\x89, .decode(\"ascii\")) never taught; \"tier\" and \"downscaled\" in quiz q2 and the starter. Minor: French MB for Mo; the source check matches substrings (250.00 inside 1250.00); the 0.005 tolerance is floating-point error, not rounding."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "7b0c3abce102acd0",
+   "notes": "Round 2. Checked 1-9; 19 tests fail on the starter and pass on the solution; Try it runs as described; code identical. Round 1 problems fixed. Fail on 7: the starter says \"as a whole number\", which the prerequisite taught as integer; \"big-endian\" untaught; exercise.json goal still says downscale; ar المُدارة reads as managed. Minor: ceil never named; fr 1404.5 with a decimal point; the 32 MB limit drops \"varies by platform\"; the invoice number is matched as a substring."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "f6f923c6ef7fcf42",
+   "notes": "Round 3. Checked 1-9; 20 tests fail on the starter and pass on the solution; Try it output matches; code identical. Round 2 problems fixed. Fail on 7: \"platform\" (\"to be safe on every platform\", \"it varies by platform\") is never taught; a learner may read it as an operating system. Minor: the optional call prints content[0].text, which l1-first-api-call calls a mistake; the zero-size ValueError is not documented; visual tokens are not tied to input tokens."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "a017807c760bc870",
+   "notes": "Round 4. Checked 1-9 from scratch; 20 tests fail on the starter and pass on the solution; Try it prints 1296, 2691 and 1404.5 as the text says; the 3 claim scripts match; code and headings match in en/ar/fr. Point 7 passes: the Bedrock/Google Cloud sentence fixes the platform gap. No point fails. Minor: \"The main limits on the Claude API.\" is a fragment; the many-image rule counts document blocks too; the starter suggests re, which no prerequisite teaches."
+  }
+ ],
+ "learners": {
+  "attempts": 0,
+  "passes": 0,
+  "hash": ""
+ },
+ "experts": []
+}

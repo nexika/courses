@@ -1,0 +1,13 @@
+{
+ "schema": "nexika.claims/1",
+ "claims": [
+  {
+   "id": "local-servers",
+   "says": "2 of the 5 servers run a command on your computer",
+   "says_ar": "2 من الخوادم الخمسة تشغّل أمرًا على حاسوبك",
+   "says_fr": "2 des 5 serveurs exécutent une commande sur votre ordinateur",
+   "check": "local_servers.py",
+   "expect": 2
+  }
+ ]
+}

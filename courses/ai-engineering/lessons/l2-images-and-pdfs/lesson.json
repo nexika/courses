@@ -1,0 +1,18 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l2-images-and-pdfs",
+ "title": {
+  "en": "Images and PDFs",
+  "ar": "الصور وملفات PDF",
+  "fr": "Images et PDF"
+ },
+ "module": "m2-tools",
+ "level": 2,
+ "minutes": 40,
+ "competencies": [
+  "c2.multimodal"
+ ],
+ "prerequisites": [
+  "l2-structured-output"
+ ]
+}

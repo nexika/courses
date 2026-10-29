@@ -1,0 +1,18 @@
+{
+ "schema": "nexika.lesson/1",
+ "id": "l2-what-is-mcp",
+ "title": {
+  "en": "What MCP is",
+  "ar": "ما هو MCP",
+  "fr": "Ce qu'est MCP"
+ },
+ "module": "m2-tools",
+ "level": 2,
+ "minutes": 40,
+ "competencies": [
+  "c2.mcp-concepts"
+ ],
+ "prerequisites": [
+  "l2-tool-errors"
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "resultType": "complete",
+    "content": [
+      {"type": "text", "text": "Order A-1042: shipped."},
+      {"type": "text", "text": "Expected delivery in 2 days."}
+    ],
+    "isError": false
+  }
+}

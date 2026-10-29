@@ -1,0 +1,139 @@
+{
+ "schema": "nexika.review/1",
+ "fact_checks": [
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "f44426c6cfb1abe3",
+   "notes": "Round 1. Fetched the 6 source pages; all 31 quotes are on them and support the ar and fr sentences. Every factual sentence matches en.md, hedges kept (can expose, can hide, the claude -p exception, review is not a security check). The 6 code blocks are byte-identical; claim phrases present and the script prints 2. Quiz answers and exercise goals right in all three. Minor: fr translates placeholder names in inline code; one awkward Arabic sentence; one Arabic code span breaks across a line."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "f44426c6cfb1abe3",
+   "notes": "Round 1. Checked 31 cited sentences against 31 sources (6 pages fetched); all quotes are on their pages. Claim script prints 2; Try it output matches; quiz correct. Fail: two uncited facts (--env passes a value to a local server; choose the scope with --scope). It also found the exercise text asking for four functions while the starter and tests asked for six: the author had started the next revision while this check ran. Minor: \"Teams use this\" for \"allows teams\"; rm -rf gloss."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "597c7d7283f08523",
+   "notes": "Round 2. Fetched 7 pages; all 40 quotes are on them. The ar and fr sentences match en.md, including the new parts on secret tokens, headers, HTTPS, scope vs transport, startup commands and permission rules. The 7 code blocks are byte-identical; the claim script prints 2; the solution passes 22 tests. Quiz and exercise goal right in all three. Minor: two Arabic quiz phrasings; fr job/tâche; denying a server's tools does not stop a harmful startup command; the credential-variable exception is not mentioned."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "597c7d7283f08523",
+   "notes": "Round 2. Checked 52 citations against 40 sources (7 pages fetched); all quotes are on their pages and the round 1 fixes hold. Claim prints 2; Try it matches; starter 22 errors, solution 22 OK. Fail: rule_matches says any other rule does not match, so mcp__* fails although the lesson and the docs say it matches every MCP tool; \"Claude Code names each tool mcp__<server>__<tool>\" is uncited; the q5 rubric offers denying tools as if that stopped a harmful startup command. Minor: manual mode does not ask before read-only actions."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "9cebe9e3a0ef88d1",
+   "notes": "Round 3. Checked about 45 cited sentences against 42 sources (7 pages fetched); all quotes are on their pages. Claim prints 2; Try it matches; starter 23 errors, solution 23 OK; quiz correct. Fail: \"mcp__* matches every MCP tool\" is presented for any rule, but the docs say an allow glob like mcp__* is skipped and approves nothing; \"a project's own settings cannot approve its servers\" drops the source's condition, in an untrusted folder. Also the exercise text does not say --scope is always written."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "9cebe9e3a0ef88d1",
+   "notes": "Round 3. Fetched all 7 pages; every quote is on them. The round 3 changes (wildcard rules, deny-first allow and deny examples, the startup-command sentence, the clone, wget and regex glosses, the approval, HTTPS and manual-mode wording, the q5 rubric) mean the same in ar and fr. Code blocks byte-identical; claim prints 2; solution passes 23 tests; quiz answers right in all three. Minor: the approval sentence is broader than its quote in all three languages."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "fdcff7c05d7e83ea",
+   "notes": "Round 4. All 45 quotes are on their 7 pages. Code blocks byte-identical; says phrases present; the claim script prints 2 and the 23 tests pass. The new trust-dialog, wildcard, HTTPS, list-unpacking and exercise sentences match the English and the sources in ar and fr. Quiz answers right in all three; token and course wording correct. Minor: a comma before a capital in the French approval bullet; ar \"المحفوظة في المشروع\" loses \"committed to git\"."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "fdcff7c05d7e83ea",
+   "notes": "Round 4. Checked 54 cited sentences against 45 sources (7 pages fetched); all quotes are on their pages and the round 3 fixes hold. Claim prints 2; Try it matches; starter 23 errors, solution 23 OK; quiz correct. Fail: \"An allow rule may use * only after mcp__<server>__\" drops the source's \"tool-name\" limit; allow rules such as Bash(npm run *) use * elsewhere. Minor: the filesystem server's read_file tool is marked deprecated; \"first\" run is not in the quote."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "2d6397fa558e095b",
+   "notes": "Round 5 (the first round 5 run stopped on a rate limit before reporting and is not counted). Fetched 7 pages; all quotes are on them. The rewritten permission rules (three kinds, deny first, the deny and ask glob, the allow glob only after mcp__<server>__, the mcp__files__* example) and the other edits say the same in ar and fr and match the sources. Code blocks byte-identical; claim prints 2; solution passes 23 tests; quiz answers right in all three. Minor: ar طرفية is terminal, not shell."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "2d6397fa558e095b",
+   "notes": "Round 5 (the first round 5 run stopped on a rate limit before reporting and is not counted). Checked 59 citations against 45 sources (7 pages fetched); all quotes are on their pages. The allow-rule glob sentence now limits * to MCP tool names after mcp__<server>__, as the source says. Claim prints 2; Try it matches; starter 23 errors, solution 23 OK; quiz correct. Minor: two example sentences rely on earlier citations; \"often needs a token\" is a little broad; the perm-prompts quote is weak support."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "095df3fa908c691b",
+   "notes": "Round 6. Fetched all 7 pages; all 45 quotes are on them. ar and fr match en.md sentence by sentence, including the new trust bullet (enabledMcpjsonServers in .claude/settings.json, ignored while the folder is untrusted), the ${...} pointer and the new glosses. The 8 code blocks are byte-identical; claim prints 2; the solution passes 23 tests; quiz answers right in all three. Arabic uses قواعد الأذونات as in l0. Minor: one loose Arabic pronoun."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "095df3fa908c691b",
+   "notes": "Round 6. Checked about 54 cited sentences against 45 sources (7 pages fetched); all quotes are on their pages, and the new trust bullet, cc-notype, read-only user and HTTPS wording are supported. Claim prints 2; Try it matches; starter 23 errors, solution 23 OK; the exercise text matches the docstrings and tests; quiz correct. Minor: \"reports a configuration error\" and \"when you first run claude\" go slightly past the quoted words but match the pages."
+  }
+ ],
+ "teaching": [
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "f44426c6cfb1abe3",
+   "notes": "Round 1. Checked 1-9; 18 tests fail on the starter and pass on the solution; offline Try it runs (2 of 5 servers run a command). Fail on 2 and 7: HTTP headers (Authorization, Bearer) and why https matters are used but never taught; \"a local server stays private\" mixes local scope with stdio servers; en \"token\" now means a secret; disabledMcpjsonServers, --mcp-config and permission rules not explained; base64 unknown in quiz q3. Minor: \"use it\" not in the objectives; the real part does not say to start in manual mode."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "597c7d7283f08523",
+   "notes": "Round 2. Checked 1-9; 22 tests fail on the starter and pass on the solution; Try it and the claim give 2 of 5; code identical. Round 1 problems fixed. Fail on 7: \"a cloned repository cannot approve its own servers\", \"clone\" and \"wget\" not explained. Fail on 9: rule_matches says mcp__* does not match, though the lesson says it denies every MCP tool; the q5 rubric credits denying a server's tools, which does not stop its startup command. Minor: no allow rule shown; the Try it regex is not explained."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "9cebe9e3a0ef88d1",
+   "notes": "Round 3. Checked 1-9; 23 tests fail on the starter and pass on the solution; Try it and claim give 2 of 5; 8 code blocks identical. Round 2 problems fixed. Fail on 9: \"a project's own settings cannot approve its servers\" drops the source's \"in an untrusted folder\"; after the workspace trust dialog, committed settings can approve every server. Fail on 7: the list unpacking in Try it is not explained. Minor: the fnmatch hint is not named in the text; a double colon in the HTTPS sentence."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "fdcff7c05d7e83ea",
+   "notes": "Round 4. Checked 1-9; 23 tests fail on the starter and pass on the solution; Try it and claim give 2 of 5; code identical. Point 9 now passes and list unpacking is explained. Fail on 7: \"ask rule\" is never defined; allow and deny rules are used before they are defined; \"it loads them\" now has an unclear referent; sh is not glossed. Minor: a French comma typo; four objectives where the guide asks for two or three."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "fail",
+   "hash": "2d6397fa558e095b",
+   "notes": "Round 5 (the first round 5 run stopped on a rate limit before reporting and is not counted). Checked 1-9; 23 tests fail on the starter and pass on the solution; Try it gives 2 of 5; code identical. Round 4 items fixed. Fail on 7: the lesson never says a project's .claude/settings.json can approve its .mcp.json servers in advance, so \"committed approvals\" is unclear; ar glosses sh as a terminal. Fail on 8: ar says قواعد الصلاحيات where l0 says قواعد الأذونات. Minor: ${...} shown before it is explained; match.group(0) unexplained."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-10-09",
+   "result": "pass",
+   "hash": "095df3fa908c691b",
+   "notes": "Round 6. Checked 1-9, all pass. 23 tests fail on the starter and pass on the solution; Try it shows 2 of 5 servers running a command; code identical in en/ar/fr. The point 7 list is empty: the .claude/settings.json pre-approval and the trust dialog are explained, and sh is glossed correctly; point 8 fixed (قواعد الأذونات). Minor: the bare * in add_command's signature is unexplained; fr \"fait demander Claude Code\" is awkward; quiz q4 leaves out --transport."
+  }
+ ],
+ "learners": {
+  "attempts": 0,
+  "passes": 0,
+  "hash": ""
+ },
+ "experts": []
+}

@@ -1,0 +1,9 @@
+{
+ "schema": "nexika.exercise/1",
+ "runner": "python-unittest",
+ "goal": {
+  "en": "In mcp_host.py, write the host's side of MCP: request() builds a JSON-RPC 2.0 request; claude_tools() turns a server's tools/list response into Claude tool definitions with unique, valid names and a map back to each server's own tool name; call_request() turns Claude's tool_use block into a tools/call request for the right server; tool_result() turns the server's response into a tool_result, checking the id, with is_error for a protocol error or for a result whose isError is true. Everything runs offline on sample responses.",
+  "ar": "في الملف mcp_host.py، اكتب جانب المضيف من MCP: تبني request() طلب JSON-RPC 2.0؛ وتحوّل claude_tools() جواب الخادم عن tools/list إلى تعريفات أدوات لـ Claude بأسماء فريدة وصالحة، مع قاموس يربط كل اسم بخادمه وباسم أداته الأصلي؛ وتحوّل call_request() كتلة tool_use من Claude إلى طلب tools/call للخادم الصحيح؛ وتحوّل tool_result() جواب الخادم إلى كتلة tool_result بعد التحقق من المعرّف id، مع is_error لخطأ البروتوكول أو لنتيجة فيها isError مضبوطة على true. كل شيء يعمل دون اتصال على أجوبة نموذجية.",
+  "fr": "Dans mcp_host.py, écrivez le côté hôte de MCP : request() construit une requête JSON-RPC 2.0 ; claude_tools() transforme la réponse d'un serveur à tools/list en définitions d'outils pour Claude, avec des noms uniques et valides et une table qui renvoie chaque nom vers son serveur et le nom d'origine de l'outil ; call_request() transforme le bloc tool_use de Claude en requête tools/call pour le bon serveur ; tool_result() transforme la réponse du serveur en tool_result, en vérifiant l'id, avec is_error pour une erreur de protocole ou pour un résultat dont isError vaut true. Tout fonctionne hors ligne sur des réponses d'exemple."
+ }
+}
