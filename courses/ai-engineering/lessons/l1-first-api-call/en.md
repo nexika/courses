@@ -53,7 +53,7 @@ the model used here[^prefill]. Such a request returns an error[^prefill-error].
 You may meet `temperature` in older examples: it sets how much randomness goes into the answer[^temperature].
 On Claude 4.7 and later models, including Claude Opus 5.5, `temperature` and the other sampling settings,
 `top_p` and `top_k`, are not supported[^sampling], and a value other than the default makes the request
-fail[^sampling-error]. Guide the answer with your prompt
+fail. From API version 2026-10-21 on, sending them at all fails, on every model[^sampling-error]. Guide the answer with your prompt
 instead.
 
 Here is a reply, shown as JSON. It is a sample shaped like a real reply, not a recording of a real call,
@@ -251,7 +251,7 @@ Take the quiz for this lesson. If a question is hard, read the part of "The idea
 [^stateless]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^prefill]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^prefill-error]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
-[^temperature]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
+[^temperature]: Glossary, "Temperature", <https://platform.claude.com/docs/en/about-claude/glossary>
 [^sampling]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^sampling-error]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^thinking-blocks]: Building with thinking, <https://platform.claude.com/docs/en/build-with-claude/thinking>

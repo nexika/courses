@@ -15,8 +15,8 @@ units a computer stores text in. Using pieces smaller than words is what lets a 
 uncommon or never-before-seen words[^rare]. For example, a common word may be a single token, while a
 rare word or a name may be cut into several.
 
-How much text fits in one token depends on the text. For Claude, a token is about 3.5 English
-characters, and the number varies with the language[^chars]. If you write in Arabic or French, do not
+How much text fits in one token depends on the text. On Claude models before Claude 4.7, a token is
+about 3.5 English characters; the number depends on the model and the language[^chars]. If you write in Arabic or French, do not
 assume the English ratio: measure your own text.
 
 The count also depends on the model. The tokenizer, the part that cuts text into tokens, can change
@@ -79,9 +79,11 @@ per MTok:
 | Claude Sonnet 5.5[^price-sonnet] | 2 | 10 |
 | Claude Haiku 4.5[^price-haiku] | 1 | 5 |
 
-On Claude 4.6 and later models, the price of a token does not grow with the size of the request:
+On Claude 4.6 and later models, except Claude Haiku 5.5, the price of a token does not grow with the size of the request:
 "A 900k-token request is billed at the same per-token rate as a 9k-token request"[^flat]. Claude
 Haiku 4.5, in the table above, is not one of those models: the page makes no such promise for it.
+Claude Haiku 5.5, a newer model, is priced by prompt length instead: a request whose prompt is over
+100,000 tokens pays higher prices[^haiku55-long].
 
 A worked example. On Claude Sonnet 5.5, a call that sends 2,000 input tokens and gets 500 output tokens back costs $0.009.
 The 500 output tokens alone cost $0.005: a fifth of the tokens, but more than half of the cost.
@@ -144,7 +146,7 @@ for model, price in PRICES.items():
     one = call_cost(usage, price)
     print(f"{model}: one call ${one:.4f}, 10,000 calls ${one * 10_000:.2f}")
 
-# A rough guess for English text only: about 3.5 characters per token.
+# A rough guess for English text only, on models before Claude 4.7: about 3.5 characters per token.
 text = "x" * 7000  # stands in for 7,000 characters of English
 print("rough guess:", round(len(text) / 3.5), "tokens")
 ```
@@ -159,6 +161,7 @@ rough guess: 2000 tokens
 ```
 
 The last line is a rough guess: 7,000 characters of English text come to about 2,000 tokens.
+On Claude 4.7 and later models, expect about 30 percent more[^tokenizer].
 Use it for a sense of scale, never to fill a budget to the last token. Change the usage numbers
 and see how much more the output tokens move the cost than the input tokens.
 
@@ -232,6 +235,7 @@ example by hand: input and output tokens, each at its own price per million.
 [^price-sonnet]: Anthropic, Pricing.
 [^price-haiku]: Anthropic, Pricing.
 [^flat]: Anthropic, Pricing.
+[^haiku55-long]: Anthropic, Pricing, "Long context pricing".
 [^count]: Anthropic, Token counting.
 [^estimate]: Anthropic, Token counting.
 [^count-free]: Anthropic, Token counting.

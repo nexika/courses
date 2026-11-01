@@ -53,7 +53,8 @@ Python الوصول إلى Claude API[^sdk].
 قد تصادف `temperature` في أمثلة قديمة: وهو يحدد مقدار العشوائية في الإجابة[^temperature]. على
 Claude 4.7 والنماذج الأحدث، ومنها Claude Opus 5.5، لا يُدعم `temperature` ولا إعدادات أخذ العيّنات
 (sampling) الأخرى `top_p` و`top_k`[^sampling]، وأي قيمة
-غير القيمة الافتراضية تُفشل الطلب[^sampling-error]. وجّه الإجابة بالموجّه (prompt) بدلًا من ذلك.
+غير القيمة الافتراضية تُفشل الطلب. وابتداءً من إصدار الواجهة البرمجية 2026-10-21 يفشل الطلب إن أرسلتها
+أصلًا، على كل النماذج[^sampling-error]. وجّه الإجابة بالموجّه (prompt) بدلًا من ذلك.
 
 هذه إجابة معروضة بصيغة JSON. إنها عيّنة على شكل الإجابة الحقيقية، وليست تسجيلًا لاستدعاء حقيقي،
 فأعداد الرموز فيها للتوضيح فقط.
@@ -246,7 +247,7 @@ python3 -m unittest discover -s ../tests
 [^stateless]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^prefill]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^prefill-error]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
-[^temperature]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
+[^temperature]: Glossary, "Temperature", <https://platform.claude.com/docs/en/about-claude/glossary>
 [^sampling]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^sampling-error]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^thinking-blocks]: Building with thinking, <https://platform.claude.com/docs/en/build-with-claude/thinking>

@@ -57,7 +57,8 @@ Vous croiserez peut-être `temperature` dans d'anciens exemples : ce paramètre 
 dans la réponse[^temperature]. Sur Claude 4.7 et les modèles plus récents, dont Claude Opus 5.5,
 `temperature` et les autres paramètres d'échantillonnage (*sampling*), `top_p` et `top_k`, ne sont pas
 pris en charge[^sampling], et toute valeur autre que la valeur par défaut fait échouer
-la requête[^sampling-error]. Guidez plutôt la réponse avec votre prompt.
+la requête. À partir de la version 2026-10-21 de l'API, les envoyer suffit à faire échouer la requête,
+sur tous les modèles[^sampling-error]. Guidez plutôt la réponse avec votre prompt.
 
 Voici une réponse, affichée en JSON. C'est un exemple qui a la forme d'une vraie réponse, pas
 l'enregistrement d'un vrai appel : ses nombres de tokens sont donnés à titre d'illustration.
@@ -266,7 +267,7 @@ de la requête, sur `stop_reason` ou sur le streaming.
 [^stateless]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^prefill]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^prefill-error]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
-[^temperature]: Create a Message - Claude API reference, <https://platform.claude.com/docs/en/api/messages/create>
+[^temperature]: Glossary, "Temperature", <https://platform.claude.com/docs/en/about-claude/glossary>
 [^sampling]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^sampling-error]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^thinking-blocks]: Building with thinking, <https://platform.claude.com/docs/en/build-with-claude/thinking>

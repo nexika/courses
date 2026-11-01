@@ -6,7 +6,7 @@
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
    "quote": "Think of Claude as a brilliant but new employee who lacks context on your norms and workflows.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "golden": {
@@ -14,7 +14,7 @@
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
    "quote": "Show your prompt to a colleague with minimal context on the task and ask them to follow it. If they'd be confused, Claude will be too.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "clear": {
@@ -22,15 +22,15 @@
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
    "quote": "Claude responds well to clear, explicit instructions.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "context": {
    "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
-   "quote": "Providing context or motivation behind your instructions, such as explaining to Claude why such behavior is important, can help Claude better understand your goals and deliver more targeted responses.",
-   "retrieved": "2026-10-06",
+   "quote": "Providing context or motivation behind your instructions, such as explaining to Claude why such behavior is important, can give Claude more information about your goals and help it deliver more targeted responses.",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "examples": {
@@ -38,7 +38,7 @@
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
    "quote": "Examples are one of the most reliable ways to steer Claude's output format, tone, and structure.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "count": {
@@ -46,7 +46,7 @@
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
    "quote": "Include 3–5 examples for best results.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": true
   },
   "diverse": {
@@ -54,15 +54,15 @@
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
    "quote": "Diverse: Cover edge cases and vary enough that Claude doesn't pick up unintended patterns.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "format": {
    "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
-   "quote": "Be specific about the desired output format and constraints.",
-   "retrieved": "2026-10-06",
+   "quote": "Be specific about the output format and constraints you want.",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "positive": {
@@ -70,7 +70,7 @@
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
    "quote": "Tell Claude what to do instead of what not to do",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "xml": {
@@ -78,7 +78,7 @@
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
    "quote": "XML tags help Claude parse complex prompts unambiguously, especially when your prompt mixes instructions, context, examples, and variable inputs.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "example-tags": {
@@ -86,7 +86,7 @@
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
    "quote": "Wrap examples in <example> tags (multiple examples in <examples> tags) so Claude can distinguish them from instructions.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "tag-names": {
@@ -94,15 +94,15 @@
    "title": "Anthropic: Prompting best practices",
    "kind": "doc",
    "quote": "Use consistent, descriptive tag names across your prompts.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "not-always": {
    "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview",
    "title": "Anthropic: Prompt engineering overview",
    "kind": "doc",
-   "quote": "Not every success criteria or failing eval is best solved by prompt engineering. For example, you can sometimes improve latency and cost more easily by selecting a different model.",
-   "retrieved": "2026-10-06",
+   "quote": "Not every success criterion or failing eval is best solved by prompt engineering. For example, you can sometimes improve latency and cost more easily by choosing a different model.",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "languages": {
@@ -110,7 +110,7 @@
    "title": "Anthropic: Multilingual support",
    "kind": "doc",
    "quote": "Claude excels at tasks across multiple languages, maintaining strong cross-lingual performance relative to English.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": true
   },
   "random": {
@@ -118,7 +118,7 @@
    "title": "Anthropic: Glossary",
    "kind": "doc",
    "quote": "Temperature is a parameter that controls the randomness of a model's predictions during text generation.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   }
  }

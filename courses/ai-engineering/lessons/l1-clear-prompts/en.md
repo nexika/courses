@@ -65,8 +65,8 @@ It makes five moves. Each one comes from Anthropic's prompting guide.
 action and the answers you accept: "classify into exactly one category: billing, bug or
 feature_request", not "sort this".
 
-**Give the context Claude lacks.** Explaining the reason behind an instruction can help Claude
-understand your goals and give more targeted answers[^context]. Here the context says who the
+**Give the context Claude lacks.** Explaining the reason behind an instruction gives Claude
+more information about your goals and can help it give more targeted answers[^context]. Here the context says who the
 company is and what a wrong category costs. Claude cannot know either fact unless you write it.
 
 **Show examples.** Examples are one of the most reliable ways to steer the format, tone and
