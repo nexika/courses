@@ -29,7 +29,8 @@ Python الوصول إلى Claude API[^sdk].
 - `system` (اختياري): موجّه النظام، وهو طريقة لتعطي Claude سياقًا وتعليمات، مثل هدف أو دور
   يؤديه[^system].
 - `messages`: المحادثة حتى الآن، من الأقدم إلى الأحدث. لكل جولة `role`، أي `user` أو `assistant`،
-  ومحتوى `content`. في الطلب، يمكن أن يكون `content` نصًا عاديًا كما في المثال أدناه[^content-string]؛
+  ومحتوى `content`. وبعض النماذج الأحدث، ومنها Claude Opus 5.5، تقبل أيضًا جولة `system` لاحقًا في
+  المحادثة[^system-role]؛ وهذا الدرس لا يستخدم إلا `user` و`assistant`. في الطلب، يمكن أن يكون `content` نصًا عاديًا كما في المثال أدناه[^content-string]؛
   أما في الإجابة فهو قائمة من الكتل[^reply-blocks]، كما سترى لاحقًا. دُرّبت النماذج على جولات تتناوب بين المستخدم
   والمساعد[^alternating]، فرتّب جولاتك على هذا النحو: المستخدم، ثم المساعد، ثم المستخدم، وهكذا.
 
@@ -83,7 +84,7 @@ Claude 4.7 والنماذج الأحدث، ومنها Claude Opus 5.5، لا ي�
 أهم ثلاثة أجزاء:
 
 - `content` قائمة من الكتل (blocks)، وليس نصًا واحدًا[^reply-blocks]. كتلة `text` تحمل كلمات الإجابة. وهناك أنواع
-  أخرى من الكتل. فمثلًا، حين يكون التفكير (thinking) مفعّلًا، يفكّر Claude في كتل تفكير قبل أن يجيب،
+  أخرى من الكتل. فمثلًا، حين يكون التفكير (thinking) مفعّلًا، قد يفكّر Claude في كتل تفكير قبل أن يجيب،
   وتصل هذه الكتل قبل كتل النص[^thinking-blocks]. لذلك اجمع الكتل التي نوعها `text` بدل أن تفترض أن
   الكتلة الأولى هي الإجابة.
 - `stop_reason` يخبرك لماذا توقف Claude عن الكتابة[^stop-every]. القيمة `end_turn` تعني أن Claude أنهى
@@ -250,6 +251,7 @@ python3 -m unittest discover -s ../tests
 [^temperature]: Glossary, "Temperature", <https://platform.claude.com/docs/en/about-claude/glossary>
 [^sampling]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^sampling-error]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
+[^system-role]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^thinking-blocks]: Building with thinking, <https://platform.claude.com/docs/en/build-with-claude/thinking>
 [^stop-every]: Stop reasons and fallback, <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>
 [^stop-end]: Stop reasons and fallback, <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>

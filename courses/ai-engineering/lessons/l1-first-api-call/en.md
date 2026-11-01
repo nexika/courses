@@ -29,7 +29,8 @@ quotes, each followed by a colon and a value. These are the fields you will use 
 - `system` (optional): the system prompt, a way to give Claude context and instructions, such as a goal or
   a role[^system].
 - `messages`: the conversation so far, oldest first. Each turn has a `role`, `user` or `assistant`, and its
-  `content`. In a request, `content` can be a plain string, as in the example below[^content-string]; in a
+  `content`. Some newer models, including Claude Opus 5.5, also accept a `system` turn later in the
+  conversation[^system-role]; this lesson uses only `user` and `assistant`. In a request, `content` can be a plain string, as in the example below[^content-string]; in a
   reply it is a list of blocks[^reply-blocks], as you will see further down. The models are trained on alternating user
   and assistant turns[^alternating], so put your turns in that order: user, assistant, user, and so on.
 
@@ -83,7 +84,7 @@ so its token counts are illustrative.
 Three parts matter most:
 
 - `content` is a list of blocks, not one string[^reply-blocks]. A `text` block holds words of the answer. Other kinds of
-  blocks exist. For example, when thinking is turned on, Claude reasons in thinking blocks before it
+  blocks exist. For example, when thinking is turned on, Claude may reason in thinking blocks before it
   answers, and they arrive before the text blocks[^thinking-blocks]. So collect the blocks whose type is
   `text` instead of assuming the first block is the answer.
 - `stop_reason` says why Claude stopped writing[^stop-every]. `end_turn` means Claude finished its answer
@@ -254,6 +255,7 @@ Take the quiz for this lesson. If a question is hard, read the part of "The idea
 [^temperature]: Glossary, "Temperature", <https://platform.claude.com/docs/en/about-claude/glossary>
 [^sampling]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^sampling-error]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
+[^system-role]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^thinking-blocks]: Building with thinking, <https://platform.claude.com/docs/en/build-with-claude/thinking>
 [^stop-every]: Stop reasons and fallback, <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>
 [^stop-end]: Stop reasons and fallback, <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>

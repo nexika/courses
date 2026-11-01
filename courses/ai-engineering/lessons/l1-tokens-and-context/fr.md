@@ -47,7 +47,7 @@ fenêtre, l'API refuse la requête avec une erreur 400 (400 est le numéro de ce
 d'une réponse du modèle, et la requête n'est pas exécutée. Une fenêtre plus grande ne garantit pas de
 meilleures réponses pour autant : plus le nombre de tokens augmente, plus la précision et le rappel
 (*recall*) se dégradent, ce qu'Anthropic appelle le *context rot*[^rot]. Le rappel, ici, veut dire
-que le modèle retrouve et utilise moins bien ce qui est dans son contexte.
+la fiabilité avec laquelle le modèle retrouve et utilise ce qui est dans son contexte.
 
 **Tokens d'entrée et tokens de sortie.** Les tokens d'entrée sont tout ce que vous envoyez. Les
 tokens de sortie sont ce que Claude écrit. Vous ne pouvez pas connaître d'avance la longueur de la

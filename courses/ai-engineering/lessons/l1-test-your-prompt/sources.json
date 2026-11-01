@@ -112,6 +112,14 @@
    "quote": "sampling parameters are not supported on Claude 4.7 and later models",
    "retrieved": "2026-11-01",
    "volatile": true
+  },
+  "temperature-def": {
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
+   "title": "Glossary: Temperature",
+   "kind": "doc",
+   "quote": "Temperature is a parameter that controls the randomness of a model's predictions during text generation",
+   "retrieved": "2026-11-01",
+   "volatile": false
   }
  }
 }

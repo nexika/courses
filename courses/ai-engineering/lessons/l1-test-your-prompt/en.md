@@ -11,7 +11,7 @@
 In the last lesson you wrote a clear prompt. How do you know it works? Most people try it once, see a
 good answer and move on. That one answer proves very little. It tells you about one input, on one run.
 Your users will send inputs you never tried. And the same prompt can answer differently on another run.
-*Temperature* is a setting for how much randomness goes into an answer. Anthropic's glossary says that even
+*Temperature* is a setting for how much randomness goes into an answer[^temperature-def]. Anthropic's glossary says that even
 with temperature set to 0, the results will not be fully deterministic[^nondet]: the same prompt can still give a
 different answer. On recent models you cannot
 lower it at all: Claude 4.7 and later models do not support setting temperature[^temperature].
@@ -270,6 +270,7 @@ Answer the quiz for this lesson. If it feels hard, read "The idea" again, then c
 "Try it" case by case.
 
 [^nondet]: Glossary, "Temperature" (Claude Platform Docs), <https://platform.claude.com/docs/en/about-claude/glossary>
+[^temperature-def]: Glossary, "Temperature" (Claude Platform Docs), <https://platform.claude.com/docs/en/about-claude/glossary>
 [^temperature]: Using the Messages API (Claude Platform Docs), <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^cycle]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
 [^before]: Prompt engineering overview (Claude Platform Docs), <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview>

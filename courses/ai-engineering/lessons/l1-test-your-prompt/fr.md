@@ -13,7 +13,7 @@ Dans la leçon précédente, vous avez écrit un prompt clair. Comment savoir s'
 gens l'essaient une fois, voient une bonne réponse et passent à autre chose. Cette réponse prouve très
 peu. Elle vous renseigne sur une entrée, lors d'une exécution. Vos utilisateurs enverront des entrées que
 vous n'avez jamais essayées. Et le même prompt peut répondre autrement à l'exécution suivante.
-La *température* est un réglage qui fixe la part de hasard dans une réponse. Le glossaire d'Anthropic indique
+La *température* est un réglage qui fixe la part de hasard dans une réponse[^temperature-def]. Le glossaire d'Anthropic indique
 que, même avec une température réglée à 0, les résultats ne seront pas entièrement déterministes[^nondet] : le même prompt peut donner une autre réponse.
 Sur les modèles récents, vous ne pouvez même pas la baisser : Claude 4.7 et les modèles suivants ne
 permettent pas de régler la température[^temperature].
@@ -289,6 +289,7 @@ Répondez au quiz de cette leçon. S'il vous semble difficile, relisez « L'idé
 sorties d'« Essayez » cas par cas.
 
 [^nondet]: Glossary, "Temperature" (Claude Platform Docs), <https://platform.claude.com/docs/en/about-claude/glossary>
+[^temperature-def]: Glossary, "Temperature" (Claude Platform Docs), <https://platform.claude.com/docs/en/about-claude/glossary>
 [^temperature]: Using the Messages API (Claude Platform Docs), <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^cycle]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
 [^before]: Prompt engineering overview (Claude Platform Docs), <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview>

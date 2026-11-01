@@ -133,6 +133,8 @@ make likely, and likely is not the same as true.
   give outputs "that stick to the most probable phrasing and answers"[^temperature]. Most probable is what
   our toy predictor always picks, and it still said Monday. And "even with temperature set to 0, the
   results will not be fully deterministic"[^temperature-zero]: the same question can get different answers.
+  On Claude 4.7 and later models, including Claude Opus 5.5, you cannot set temperature at all[^sampling-off]:
+  what is said here applies to older models and to other providers.
 - **"A few prompt tricks remove hallucinations."** They reduce them; the guide advises you to "always
   validate critical information, especially for high-stakes decisions"[^halluc-validate].
 
@@ -171,6 +173,7 @@ Try it.
 [^temperature]: Anthropic, Glossary, "Temperature".
 [^temperature-def]: Anthropic, Glossary, "Temperature".
 [^temperature-zero]: Anthropic, Glossary, "Temperature".
+[^sampling-off]: Anthropic, Using the Messages API.
 [^models]: Anthropic, Models overview.
 [^h45-training]: Anthropic, Claude Haiku 4.5.
 [^reliable]: Anthropic, Claude Haiku 4.5.

@@ -133,6 +133,8 @@ after 'tuesday': None
   "تلتزم بالصياغة والإجابات الأكثر احتمالًا"[^temperature]. والأكثر احتمالًا هو بالضبط ما تختاره أداتنا
   الصغيرة دائمًا، ومع ذلك قالت إن الاجتماع يوم الاثنين. بل "حتى مع ضبط درجة الحرارة على 0، لن تكون النتائج
   حتمية تمامًا"[^temperature-zero]: قد يحصل السؤال نفسه على إجابات مختلفة.
+  وعلى نماذج Claude 4.7 وما بعدها، ومنها Claude Opus 5.5، لا يمكنك ضبط درجة الحرارة أصلًا[^sampling-off]:
+  ما قيل هنا ينطبق على النماذج الأقدم وعلى مزوّدين آخرين.
 - **"بعض حيل الموجّه تزيل الهلوسة."** إنها تقلّلها؛ والدليل ينصحك بأن "تتحقق دائمًا من المعلومات الحرجة،
   خصوصًا في القرارات عالية المخاطر"[^halluc-validate].
 
@@ -168,6 +170,7 @@ python3 -m unittest discover -s ../tests
 [^temperature]: Anthropic، المسرد، "Temperature".
 [^temperature-def]: Anthropic، المسرد، "Temperature".
 [^temperature-zero]: Anthropic، المسرد، "Temperature".
+[^sampling-off]: Anthropic، استخدام Messages API (Using the Messages API).
 [^models]: Anthropic، نظرة عامة على النماذج (Models overview).
 [^h45-training]: Anthropic، صفحة Claude Haiku 4.5.
 [^reliable]: Anthropic، صفحة Claude Haiku 4.5.

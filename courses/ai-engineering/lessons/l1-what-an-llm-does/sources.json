@@ -13,7 +13,7 @@
    "url": "https://platform.claude.com/docs/en/about-claude/glossary",
    "title": "Glossary: Pretraining",
    "kind": "doc",
-   "quote": "are pretrained to predict the next word, given the previous context of text in the document",
+   "quote": "autoregressive language models (such as Claude's underlying model) are pretrained to predict the next word, given the previous context of text in the document",
    "retrieved": "2026-11-01",
    "volatile": false
   },
@@ -150,6 +150,14 @@
    "title": "Claude Haiku 4.5: training data cutoff",
    "kind": "doc",
    "quote": "Training data cutoff Jul 2025",
+   "retrieved": "2026-11-01",
+   "volatile": true
+  },
+  "sampling-off": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+   "title": "Using the Messages API",
+   "kind": "doc",
+   "quote": "sampling parameters are not supported on Claude 4.7 and later models",
    "retrieved": "2026-11-01",
    "volatile": true
   }

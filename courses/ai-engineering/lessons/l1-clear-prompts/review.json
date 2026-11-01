@@ -70,6 +70,13 @@
    "result": "pass",
    "hash": "0216ab42ff06ad5f",
    "notes": "Fetched all 4 cited pages; all 15 quotes are present (diverse/example-tags differ only by markdown bold/backticks) and support ar/fr sentences as written. Hedges kept (can/may/sometimes → قد/أحيانًا, peut/parfois); 3–5 examples is current. Code identical across en/ar/fr except the translated comments. Extra ar/fr glosses are accurate. Quiz answers (2,0,3,1) and explanations are correct in all 3 languages."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-11-01",
+   "result": "pass",
+   "hash": "223ee526e6c09b7b",
+   "notes": "Source re-read for #6. Checked about 18 cited factual sentences in en.md, the 5 quiz items and the exercise goal against 15 sources. Fetched all 4 cited pages as .md: best practices, overview, multilingual support, glossary. All 15 quotes are on their pages word for word; every sentence keeps its quote's strength and hedges. Quiz answers correct. Optional: the random quote could also include the glossary's non-determinism sentence to back 'two calls can guess differently' more directly."
   }
  ],
  "teaching": [

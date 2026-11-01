@@ -21,7 +21,7 @@
    "url": "https://platform.claude.com/docs/en/about-claude/glossary",
    "title": "Glossary",
    "kind": "doc",
-   "quote": "Claude 4.7 and later models and Claude Mythos Preview use a newer tokenizer that produces approximately 30 percent more tokens for the same text than earlier models, on which a token represents approximately 3.5 English characters.",
+   "quote": "For Claude, the number of characters a token represents depends on the model and the language. Claude 4.7 and later models and Claude Mythos Preview use a newer tokenizer that produces approximately 30 percent more tokens for the same text than earlier models, on which a token represents approximately 3.5 English characters.",
    "retrieved": "2026-11-01",
    "volatile": false
   },

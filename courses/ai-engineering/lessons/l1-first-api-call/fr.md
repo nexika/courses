@@ -29,7 +29,8 @@ Python : des noms entre guillemets, chacun suivi de deux-points et d'une valeur.
 - `system` (facultatif) : le prompt système, qui sert à donner à Claude du contexte et des consignes,
   par exemple un objectif ou un rôle[^system].
 - `messages` : la conversation jusqu'ici, du plus ancien au plus récent. Chaque tour a un `role`, `user`
-  ou `assistant`, et un `content`. Dans une requête, `content` peut être une simple chaîne, comme dans
+  ou `assistant`, et un `content`. Certains modèles récents, dont Claude Opus 5.5, acceptent aussi un tour
+  `system` plus loin dans la conversation[^system-role] ; cette leçon n'utilise que `user` et `assistant`. Dans une requête, `content` peut être une simple chaîne, comme dans
   l'exemple ci-dessous[^content-string] ; dans une réponse, c'est une liste de blocs[^reply-blocks], comme vous le verrez
   plus loin. Les modèles sont entraînés sur des tours qui alternent entre utilisateur et
   assistant[^alternating] : placez donc vos tours dans cet ordre, utilisateur, assistant, utilisateur, etc.
@@ -88,7 +89,7 @@ Trois parties comptent le plus :
 
 - `content` est une liste de blocs, pas une seule chaîne[^reply-blocks]. Un bloc `text` contient des mots de la réponse.
   Il existe d'autres sortes de blocs. Par exemple, quand la réflexion (*thinking*) est activée, Claude
-  réfléchit dans des blocs de réflexion avant de répondre, et ces blocs arrivent avant les blocs de
+  peut réfléchir dans des blocs de réflexion avant de répondre, et ces blocs arrivent avant les blocs de
   texte[^thinking-blocks]. Rassemblez donc les blocs de type `text` au lieu de supposer que le premier
   bloc est la réponse.
 - `stop_reason` indique pourquoi Claude a cessé d'écrire[^stop-every]. `end_turn` signifie que Claude a
@@ -270,6 +271,7 @@ de la requête, sur `stop_reason` ou sur le streaming.
 [^temperature]: Glossary, "Temperature", <https://platform.claude.com/docs/en/about-claude/glossary>
 [^sampling]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^sampling-error]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
+[^system-role]: Using the Messages API, <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^thinking-blocks]: Building with thinking, <https://platform.claude.com/docs/en/build-with-claude/thinking>
 [^stop-every]: Stop reasons and fallback, <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>
 [^stop-end]: Stop reasons and fallback, <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>

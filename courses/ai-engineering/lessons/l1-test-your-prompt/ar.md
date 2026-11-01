@@ -11,7 +11,7 @@
 كتبت في الدرس السابق موجّهًا واضحًا. كيف تعرف أنه يعمل؟ يجرّبه أغلب الناس مرة واحدة، فيرون إجابة جيدة
 وينتقلون إلى غيره. لكن إجابة واحدة لا تثبت إلا القليل. إنها تخبرك عن مُدخل واحد، في تشغيل واحد. سيرسل
 المستخدمون مُدخلات لم تجرّبها قط. والموجّه نفسه قد يجيب إجابة مختلفة في تشغيل آخر.
-درجة الحرارة (temperature) إعداد يحدّد مقدار العشوائية في الإجابة. يقول مسرد المصطلحات (Glossary) لدى Anthropic إن
+درجة الحرارة (temperature) إعداد يحدّد مقدار العشوائية في الإجابة[^temperature-def]. يقول مسرد المصطلحات (Glossary) لدى Anthropic إن
 النتائج لن تكون حتمية تمامًا حتى مع ضبط درجة الحرارة على 0[^nondet]، أي إن الموجّه نفسه قد يعطي إجابة مختلفة. ولا يمكنك خفضها أصلًا في النماذج الحديثة: نماذج
 Claude 4.7 وما بعدها لا تدعم ضبط درجة الحرارة[^temperature].
 
@@ -261,6 +261,7 @@ python3 -m unittest discover -s ../tests
 أجب عن اختبار هذا الدرس. إن وجدته صعبًا، فاقرأ "الفكرة" من جديد، ثم قارن مُخرجَي "جرّبها" حالةً حالة.
 
 [^nondet]: Glossary, "Temperature" (Claude Platform Docs), <https://platform.claude.com/docs/en/about-claude/glossary>
+[^temperature-def]: Glossary, "Temperature" (Claude Platform Docs), <https://platform.claude.com/docs/en/about-claude/glossary>
 [^temperature]: Using the Messages API (Claude Platform Docs), <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^cycle]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
 [^before]: Prompt engineering overview (Claude Platform Docs), <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview>

@@ -150,7 +150,9 @@ motifs rendent probable, et probable ne veut pas dire vrai.
   réponses les plus probables »[^temperature]. Le plus probable, c'est exactement ce que choisit toujours
   notre petit prédicteur, et il a quand même répondu lundi. Et « même avec une température réglée à 0, les
   résultats ne seront pas entièrement déterministes »[^temperature-zero] : la même question peut recevoir
-  des réponses différentes.
+  des réponses différentes. Sur Claude 4.7 et les modèles suivants, dont Claude Opus 5.5, vous ne pouvez
+  pas régler la température du tout[^sampling-off] : ce qui est dit ici vaut pour les modèles plus anciens
+  et pour d'autres fournisseurs.
 - **« Quelques astuces de prompt suppriment les hallucinations. »** Elles les réduisent ; le guide vous
   conseille de « toujours valider les informations critiques, surtout pour les décisions à fort
   enjeu »[^halluc-validate].
@@ -190,6 +192,7 @@ L'idée et la fin de la partie Essayez.
 [^temperature]: Anthropic, Glossary, « Temperature ».
 [^temperature-def]: Anthropic, Glossary, « Temperature ».
 [^temperature-zero]: Anthropic, Glossary, « Temperature ».
+[^sampling-off]: Anthropic, Using the Messages API.
 [^models]: Anthropic, Models overview.
 [^h45-training]: Anthropic, Claude Haiku 4.5.
 [^reliable]: Anthropic, Claude Haiku 4.5.

@@ -41,8 +41,8 @@ The window has a size, in tokens. Many current models, including Claude Opus 5.5
 Sonnet 4.5, have 200K tokens, where K stands for thousand[^sizes-200k]. If the input alone is larger than the window, the API
 refuses the request with a 400 error (400 is the number of that kind of error)[^too-long]: you get an error response instead of an answer, and
 the request is not run. A bigger window does not mean better answers either: as the token count
-grows, accuracy and recall degrade, which Anthropic calls context rot[^rot]. Here "recall" means that
-the model finds and uses what is in its context less reliably.
+grows, accuracy and recall degrade, which Anthropic calls context rot[^rot]. Here "recall" means how
+reliably the model finds and uses what is in its context.
 
 **Input and output tokens.** Input tokens are everything you send. Output tokens are what Claude
 writes. You cannot know in advance how long the answer will be, but you can cap it with `max_tokens`, a setting you put in the request. It is
