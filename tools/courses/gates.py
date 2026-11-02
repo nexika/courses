@@ -316,15 +316,25 @@ def _page_text(url: str, budget: float = 30.0) -> str:
 
 def _html_text(raw: str) -> str:
     raw = re.sub(r"(?is)<(script|style).*?</\1>", " ", raw)
+    # Text only screen readers get (hover-card hints such as "Preview with links...") sits inside the sentence
+    # a reader sees, so it would break every quote that runs across it.
+    raw = re.sub(r"(?is)<span\b[^>]*\bclass=\"[^\"]*\bsr-only\b[^\"]*\"[^>]*>[^<]*</span>", "", raw)
     return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", raw)))
+
+
+TYPOGRAPHY = str.maketrans({"\u2018": "'", "\u2019": "'", "\u201c": '"', "\u201d": '"', "\u2013": "-",
+                            "\u00a0": " "})
 
 
 def _normal(text: str) -> str:
     """Whitespace folded; case kept, so a quote must match the page exactly ("200k" is not "200K").
 
+    Curly and straight quotes, an en dash and a hyphen, and a no-break space and a space count as the same:
+    pages change these when they are restyled, and the words stay the same.
+
     Spaces before closing punctuation and after an opening bracket are dropped on both sides, because
     removing HTML tags leaves them ("<code>x</code>, y" reads "x , y")."""
-    text = re.sub(r"\s+", " ", text)
+    text = re.sub(r"\s+", " ", text.translate(TYPOGRAPHY))
     return re.sub(r"\s+(?=[,.;:!?)\]])|(?<=[(\[])\s+", "", text).strip()
 
 
@@ -383,7 +393,15 @@ def check_sources(course: Course, lesson: Lesson, online: bool = False,
             except Exception as error:  # noqa: BLE001 (any network failure is reported, not raised)
                 problems.append(Problem("sources", where, f"source {sid}: could not read {url}: {error}"))
                 continue
-            if _normal(src.get("quote", "")) not in page:
+            quote = _normal(src.get("quote", ""))
+            if quote in page:
+                continue
+            words = set(re.findall(r"\w{5,}", quote.lower()))
+            if words and len(words & set(re.findall(r"\w{5,}", page.lower()))) * 2 < len(words):
+                problems.append(Problem("sources", where, f"source {sid}: the quote is not on {url}, and most of "
+                                        "its words are not either: the page may load its text with JavaScript, "
+                                        "so read it in a browser"))
+            else:
                 problems.append(Problem("sources", where, f"source {sid}: the quote is not on {url}"))
     return problems
 

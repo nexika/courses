@@ -391,3 +391,35 @@ def test_every_citation_has_its_footnote_line(root):
     text = path.read_text(encoding="utf-8")
     path.write_text("\n".join(line for line in text.splitlines() if not line.startswith("[^tok]:")) + "\n", encoding="utf-8")
     assert any("no [^tok]: line" in p.message for p in problems(root))
+
+
+def online_problems(root, monkeypatch, page_html: str) -> list[str]:
+    monkeypatch.setattr(gates, "_page_text", lambda url, budget=30.0: gates._html_text(page_html))
+    course = pack.load_course(root)
+    return [p.message for p in gates.check_sources(course, course.lessons[0], online=True)]
+
+
+def test_curly_and_straight_quotes_and_dashes_count_as_the_same():
+    page = gates._normal(gates._html_text("<p>Claude’s “tokens” cost 1,500–3,000 each.</p>"))
+    assert gates._normal("Claude's \"tokens\" cost 1,500-3,000 each.") in page
+
+
+def test_text_hidden_from_readers_is_not_part_of_the_page():
+    raw = ('<p>Every response includes a <a href="#x"><code>stop_reason</code></a><span id="h" '
+           'data-find-omitted="" class="sr-only select-none">Preview with links, press Tab.</span> field.</p>')
+    page = gates._normal(gates._html_text(raw))
+    assert gates._normal("Every response includes a stop_reason field.") in page
+
+
+def test_a_quote_on_the_page_passes_online(root, monkeypatch):
+    assert online_problems(root, monkeypatch, "<p>Models process text in units called tokens.</p>") == []
+
+
+def test_a_page_without_most_of_the_quoted_words_says_so(root, monkeypatch):
+    messages = online_problems(root, monkeypatch, "<html><body><div id='app'>Loading</div></body></html>")
+    assert any("most of its words" in m for m in messages), messages
+
+
+def test_a_changed_quote_is_still_reported_as_not_on_the_page(root, monkeypatch):
+    messages = online_problems(root, monkeypatch, "<p>Models now process text in units known as tokens.</p>")
+    assert any("the quote is not on" in m and "most of its words" not in m for m in messages), messages
