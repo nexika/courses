@@ -33,10 +33,11 @@ trained on text[^llm], and two limits follow from that.
 
 **First limit: no live knowledge.** A model learns from data collected up to some date: its *training data
 cutoff*. Anthropic's model overview lists this date for each model in its comparison table[^models]. It gives Jun 2026
-for Claude Fable 5.1, Claude Opus 5.5 and Claude Sonnet 5.5, and Jul 2025 for Claude Haiku 4.5[^models].
+for Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5 and Claude Haiku 5.5[^models]. Older models have
+earlier dates: the page for Claude Haiku 4.5 gives Jul 2025[^h45-training].
 About anything after that date, the model has seen no text, so it has no patterns to draw on.
 
-The same page also gives a *reliable knowledge cutoff*, which can be earlier: Feb 2025 for Claude Haiku
+Each model also has a *reliable knowledge cutoff*, which can be earlier: Feb 2025 for Claude Haiku
 4.5[^reliable]. So do not count on a model knowing the last months before its training data cutoff well.
 
 The model can only work with newer facts if you give them to it. You can paste a document into the
@@ -132,6 +133,9 @@ make likely, and likely is not the same as true.
   give outputs "that stick to the most probable phrasing and answers"[^temperature]. Most probable is what
   our toy predictor always picks, and it still said Monday. And "even with temperature set to 0, the
   results will not be fully deterministic"[^temperature-zero]: the same question can get different answers.
+  On Claude 4.7 and later models, including Claude Opus 5.5, and on every model from API version
+  2026-10-21, the API rejects temperature[^sampling-off]: what is said here applies to older models on older
+  API versions and to other providers.
 - **"A few prompt tricks remove hallucinations."** They reduce them; the guide advises you to "always
   validate critical information, especially for high-stakes decisions"[^halluc-validate].
 
@@ -170,8 +174,10 @@ Try it.
 [^temperature]: Anthropic, Glossary, "Temperature".
 [^temperature-def]: Anthropic, Glossary, "Temperature".
 [^temperature-zero]: Anthropic, Glossary, "Temperature".
+[^sampling-off]: Anthropic, Using the Messages API.
 [^models]: Anthropic, Models overview.
-[^reliable]: Anthropic, Models overview.
+[^h45-training]: Anthropic, Claude Haiku 4.5.
+[^reliable]: Anthropic, Claude Haiku 4.5.
 [^websearch]: Anthropic, Web search tool.
 [^halluc]: Anthropic, Reduce hallucinations.
 [^halluc-docs]: Anthropic, Reduce hallucinations, "External knowledge restriction".

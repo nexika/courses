@@ -33,11 +33,11 @@
 
 **الحدّ الأول: لا معرفة آنية.** يتعلّم النموذج من بيانات جُمعت حتى تاريخ معيّن: *تاريخ انتهاء بيانات
 التدريب* (training data cutoff). تذكر صفحة نظرة عامة على النماذج لدى Anthropic هذا التاريخ لكل نموذج
-في جدول المقارنة فيها[^models]. فهي تذكر يونيو/حزيران 2026 لكل من Claude Fable 5.1 و Claude Opus 5.5 و Claude Sonnet 5.5، ويوليو/تموز
-2025 لـ Claude Haiku 4.5[^models]. أمّا ما جرى بعد ذلك التاريخ فلم يرَ النموذج عنه أي نص، فلا أنماط لديه
+في جدول المقارنة فيها[^models]. فهي تذكر يونيو/حزيران 2026 لكل من Claude Fable 5.1 و Claude Opus 5.5 و Claude Sonnet 5.5 و Claude Haiku 5.5[^models].
+وللنماذج الأقدم تواريخ أبكر: صفحة Claude Haiku 4.5 تذكر يوليو/تموز 2025[^h45-training]. أمّا ما جرى بعد ذلك التاريخ فلم يرَ النموذج عنه أي نص، فلا أنماط لديه
 يعتمد عليها.
 
-وتذكر الصفحة نفسها أيضًا *تاريخ انتهاء المعرفة الموثوقة* (reliable knowledge cutoff)، وقد يكون أبكر:
+ولكل نموذج أيضًا *تاريخ انتهاء المعرفة الموثوقة* (reliable knowledge cutoff)، وقد يكون أبكر:
 فبراير/شباط 2025 لـ Claude Haiku 4.5[^reliable]. لذلك لا تعتمد على أن النموذج يعرف جيدًا الأشهر الأخيرة
 التي تسبق تاريخ انتهاء بيانات تدريبه.
 
@@ -133,6 +133,9 @@ after 'tuesday': None
   "تلتزم بالصياغة والإجابات الأكثر احتمالًا"[^temperature]. والأكثر احتمالًا هو بالضبط ما تختاره أداتنا
   الصغيرة دائمًا، ومع ذلك قالت إن الاجتماع يوم الاثنين. بل "حتى مع ضبط درجة الحرارة على 0، لن تكون النتائج
   حتمية تمامًا"[^temperature-zero]: قد يحصل السؤال نفسه على إجابات مختلفة.
+  وعلى نماذج Claude 4.7 وما بعدها، ومنها Claude Opus 5.5، وعلى كل النماذج ابتداءً من إصدار الواجهة البرمجية
+  2026-10-21، ترفض الواجهة البرمجية درجة الحرارة[^sampling-off]: ما قيل هنا ينطبق على النماذج الأقدم مع
+  إصدارات الواجهة الأقدم، وعلى مزوّدين آخرين.
 - **"بعض حيل الموجّه تزيل الهلوسة."** إنها تقلّلها؛ والدليل ينصحك بأن "تتحقق دائمًا من المعلومات الحرجة،
   خصوصًا في القرارات عالية المخاطر"[^halluc-validate].
 
@@ -168,8 +171,10 @@ python3 -m unittest discover -s ../tests
 [^temperature]: Anthropic، المسرد، "Temperature".
 [^temperature-def]: Anthropic، المسرد، "Temperature".
 [^temperature-zero]: Anthropic، المسرد، "Temperature".
+[^sampling-off]: Anthropic، استخدام Messages API (Using the Messages API).
 [^models]: Anthropic، نظرة عامة على النماذج (Models overview).
-[^reliable]: Anthropic، نظرة عامة على النماذج (Models overview).
+[^h45-training]: Anthropic، صفحة Claude Haiku 4.5.
+[^reliable]: Anthropic، صفحة Claude Haiku 4.5.
 [^websearch]: Anthropic، أداة البحث في الويب (Web search tool).
 [^halluc]: Anthropic، تقليل الهلوسة (Reduce hallucinations).
 [^halluc-docs]: Anthropic، تقليل الهلوسة، "External knowledge restriction".

@@ -11,10 +11,10 @@
 In the last lesson you wrote a clear prompt. How do you know it works? Most people try it once, see a
 good answer and move on. That one answer proves very little. It tells you about one input, on one run.
 Your users will send inputs you never tried. And the same prompt can answer differently on another run.
-*Temperature* is a setting for how much randomness goes into an answer. The API reference says that even
-at temperature 0.0 the results will not be fully deterministic[^nondet]: the same prompt can still give a
+*Temperature* is a setting for how much randomness goes into an answer[^temperature-def]. Anthropic's glossary says that even
+with temperature set to 0, the results will not be fully deterministic[^nondet]: the same prompt can still give a
 different answer. On recent models you cannot
-lower it at all: models released after Claude Opus 4.6 do not support setting temperature[^temperature].
+lower it at all: Claude 4.7 and later models do not support setting temperature[^temperature].
 
 So treat a prompt like code, and test it. Anthropic's guide says that building an application on a large language model (LLM) starts
 with clearly defining your success criteria and then designing evaluations to measure performance against
@@ -216,7 +216,7 @@ reason not to trust a single answer.
 - **Reporting only the number.** The pass rate tells you how often; the failing cases tell you why.
 - **Thinking exact match is enough for every task.** It suits short, clear-cut answers such as labels. For
   answers that need judgment, later lessons use a model as the grader: the guide calls LLM-based grading
-  fast and flexible, scalable and suitable for complex judgment, and adds: "Test to ensure reliability first
+  fast and flexible, scalable and suitable for complex judgment, and adds: "Test to ensure reliability first,
   then scale."[^llmgrade] To scale here means to use it on many more cases.
 
 ## Your exercise
@@ -269,8 +269,9 @@ model" below that line, and run `python3 real_eval.py` (it needs your API key). 
 Answer the quiz for this lesson. If it feels hard, read "The idea" again, then compare the two outputs in
 "Try it" case by case.
 
-[^nondet]: Create a Message (Claude API reference), <https://platform.claude.com/docs/en/api/messages/create>
-[^temperature]: Create a Message (Claude API reference), <https://platform.claude.com/docs/en/api/messages/create>
+[^nondet]: Glossary, "Temperature" (Claude Platform Docs), <https://platform.claude.com/docs/en/about-claude/glossary>
+[^temperature-def]: Glossary, "Temperature" (Claude Platform Docs), <https://platform.claude.com/docs/en/about-claude/glossary>
+[^temperature]: Using the Messages API (Claude Platform Docs), <https://platform.claude.com/docs/en/build-with-claude/working-with-messages>
 [^cycle]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
 [^before]: Prompt engineering overview (Claude Platform Docs), <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview>
 [^taskspecific]: Define success criteria and build evaluations (Claude Platform Docs), <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>

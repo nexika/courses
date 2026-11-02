@@ -72,8 +72,8 @@ Il fait cinq choses. Chacune vient du guide de *prompting* d'Anthropic.
 Nommez l'action et les réponses que vous acceptez : « classe dans une seule catégorie : billing, bug
 ou feature_request », pas « trie ça ».
 
-**Donnez le contexte qui manque à Claude.** Expliquer la raison d'une instruction peut aider Claude à
-comprendre vos objectifs et à donner des réponses plus ciblées[^context]. Ici, le contexte dit qui est
+**Donnez le contexte qui manque à Claude.** Expliquer la raison d'une instruction donne à Claude plus
+d'informations sur vos objectifs et peut l'aider à donner des réponses plus ciblées[^context]. Ici, le contexte dit qui est
 l'entreprise et ce que coûte une mauvaise catégorie. Claude ne peut connaître ni l'un ni l'autre si
 vous ne l'écrivez pas.
 

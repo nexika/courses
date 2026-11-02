@@ -39,11 +39,12 @@ texte[^llm], et deux limites en découlent.
 **Première limite : aucune connaissance en temps réel.** Un modèle apprend à partir de données collectées
 jusqu'à une certaine date : sa *date limite des données d'entraînement* (*training data cutoff*). La page
 de présentation des modèles d'Anthropic indique cette date pour chaque modèle de son tableau comparatif[^models]. Elle donne
-juin 2026 pour Claude Fable 5.1, Claude Opus 5.5 et Claude Sonnet 5.5, et juillet 2025 pour Claude Haiku 4.5[^models].
+juin 2026 pour Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5 et Claude Haiku 5.5[^models]. Les modèles
+plus anciens ont des dates plus anciennes : la page de Claude Haiku 4.5 donne juillet 2025[^h45-training].
 Sur tout ce qui s'est passé après cette date, le modèle n'a lu aucun texte : il n'a aucun motif sur
 lequel s'appuyer.
 
-La même page donne aussi une *date limite des connaissances fiables* (*reliable knowledge cutoff*), qui
+Chaque modèle a aussi une *date limite des connaissances fiables* (*reliable knowledge cutoff*), qui
 peut être plus ancienne : février 2025 pour Claude Haiku 4.5[^reliable]. Ne comptez donc pas sur un modèle
 pour bien connaître les derniers mois avant sa date limite des données d'entraînement.
 
@@ -149,7 +150,10 @@ motifs rendent probable, et probable ne veut pas dire vrai.
   réponses les plus probables »[^temperature]. Le plus probable, c'est exactement ce que choisit toujours
   notre petit prédicteur, et il a quand même répondu lundi. Et « même avec une température réglée à 0, les
   résultats ne seront pas entièrement déterministes »[^temperature-zero] : la même question peut recevoir
-  des réponses différentes.
+  des réponses différentes. Sur Claude 4.7 et les modèles suivants, dont Claude Opus 5.5, et sur tous
+  les modèles à partir de la version 2026-10-21 de l'API, l'API refuse la température[^sampling-off] : ce qui
+  est dit ici vaut pour les modèles plus anciens avec des versions plus anciennes de l'API, et pour d'autres
+  fournisseurs.
 - **« Quelques astuces de prompt suppriment les hallucinations. »** Elles les réduisent ; le guide vous
   conseille de « toujours valider les informations critiques, surtout pour les décisions à fort
   enjeu »[^halluc-validate].
@@ -189,8 +193,10 @@ L'idée et la fin de la partie Essayez.
 [^temperature]: Anthropic, Glossary, « Temperature ».
 [^temperature-def]: Anthropic, Glossary, « Temperature ».
 [^temperature-zero]: Anthropic, Glossary, « Temperature ».
+[^sampling-off]: Anthropic, Using the Messages API.
 [^models]: Anthropic, Models overview.
-[^reliable]: Anthropic, Models overview.
+[^h45-training]: Anthropic, Claude Haiku 4.5.
+[^reliable]: Anthropic, Claude Haiku 4.5.
 [^websearch]: Anthropic, Web search tool.
 [^halluc]: Anthropic, Reduce hallucinations.
 [^halluc-docs]: Anthropic, Reduce hallucinations, « External knowledge restriction ».

@@ -6,7 +6,7 @@
    "title": "Get started with Claude",
    "kind": "doc",
    "quote": "Export your API key as an environment variable.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "start-env": {
@@ -14,7 +14,7 @@
    "title": "Get started with Claude",
    "kind": "doc",
    "quote": "The SDK reads ANTHROPIC_API_KEY automatically.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "sdk": {
@@ -22,7 +22,7 @@
    "title": "Claude SDK for Python (README)",
    "kind": "repo",
    "quote": "The Claude SDK for Python provides access to the",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "models-start": {
@@ -30,7 +30,7 @@
    "title": "Models overview",
    "kind": "doc",
    "quote": "If you're unsure which model to use, start with Claude Opus 5.5 for most workloads.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": true
   },
   "model-id": {
@@ -38,7 +38,7 @@
    "title": "Claude SDK for Python (README)",
    "kind": "repo",
    "quote": "model=\"claude-opus-5-5\",",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": true
   },
   "max-tokens": {
@@ -46,7 +46,7 @@
    "title": "Create a Message - Claude API reference",
    "kind": "doc",
    "quote": "The maximum number of tokens to generate before stopping.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "max-early": {
@@ -54,7 +54,7 @@
    "title": "Create a Message - Claude API reference",
    "kind": "doc",
    "quote": "Note that our models may stop before reaching this maximum.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "max-zero": {
@@ -62,7 +62,7 @@
    "title": "Create a Message - Claude API reference",
    "kind": "doc",
    "quote": "Set to 0 to populate the prompt cache without generating a response.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "system": {
@@ -70,7 +70,7 @@
    "title": "Create a Message - Claude API reference",
    "kind": "doc",
    "quote": "A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "system-top": {
@@ -78,7 +78,7 @@
    "title": "Using the Messages API",
    "kind": "doc",
    "quote": "Use the top-level system field for instructions that apply from the start.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "alternating": {
@@ -86,7 +86,7 @@
    "title": "Create a Message - Claude API reference",
    "kind": "doc",
    "quote": "Our models are trained to operate on alternating user and assistant conversational turns.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "content-string": {
@@ -94,7 +94,7 @@
    "title": "Create a Message - Claude API reference",
    "kind": "doc",
    "quote": "Each input message content may be either a single string or an array of content blocks",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stateless": {
@@ -102,7 +102,7 @@
    "title": "Using the Messages API",
    "kind": "doc",
    "quote": "The Messages API is stateless, which means that you always send the full conversational history to the API.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "prefill": {
@@ -110,7 +110,7 @@
    "title": "Using the Messages API",
    "kind": "doc",
    "quote": "Prefilling is not supported on Claude 4.6 and later models",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": true
   },
   "prefill-error": {
@@ -118,15 +118,15 @@
    "title": "Using the Messages API",
    "kind": "doc",
    "quote": "Requests using prefill with these models return a 400 error.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": true
   },
   "temperature": {
-   "url": "https://platform.claude.com/docs/en/api/messages/create",
-   "title": "Create a Message - Claude API reference",
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
+   "title": "Glossary: Temperature",
    "kind": "doc",
-   "quote": "Amount of randomness injected into the response.",
-   "retrieved": "2026-10-06",
+   "quote": "Temperature is a parameter that controls the randomness of a model's predictions during text generation",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "sampling": {
@@ -134,15 +134,15 @@
    "title": "Using the Messages API",
    "kind": "doc",
    "quote": "sampling parameters are not supported on Claude 4.7 and later models",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": true
   },
   "sampling-error": {
    "url": "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
    "title": "Using the Messages API",
    "kind": "doc",
-   "quote": "Setting them to a non-default value returns a 400 error.",
-   "retrieved": "2026-10-06",
+   "quote": "The temperature, top_p, and top_k sampling parameters are not supported on Claude 4.7 and later models and Claude Mythos Preview, or on any model starting with API version 2026-10-21. Setting them to a non-default value returns a 400 error, and starting with 2026-10-21 any value does.",
+   "retrieved": "2026-11-01",
    "volatile": true
   },
   "thinking-blocks": {
@@ -150,7 +150,7 @@
    "title": "Building with thinking",
    "kind": "doc",
    "quote": "one or more thinking content blocks arrive before the text blocks.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stop-every": {
@@ -158,15 +158,15 @@
    "title": "Stop reasons and fallback",
    "kind": "doc",
    "quote": "Every Messages API response includes a stop_reason field that tells you why Claude stopped generating.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stop-end": {
    "url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
    "title": "Stop reasons and fallback",
    "kind": "doc",
-   "quote": "Indicates Claude finished its response naturally.",
-   "retrieved": "2026-10-06",
+   "quote": "Indicates Claude completed its response naturally.",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stop-max": {
@@ -174,7 +174,7 @@
    "title": "Stop reasons and fallback",
    "kind": "doc",
    "quote": "Claude stopped because it reached the max_tokens limit specified in your request.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stop-max-do": {
@@ -182,7 +182,7 @@
    "title": "Stop reasons and fallback",
    "kind": "doc",
    "quote": "The response reached your max_tokens limit. Raise max_tokens",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stop-not-error": {
@@ -190,7 +190,7 @@
    "title": "Stop reasons and fallback",
    "kind": "doc",
    "quote": "Unlike errors, which indicate failures in processing your request, stop_reason tells you why Claude completed its response generation.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "usage": {
@@ -198,7 +198,7 @@
    "title": "anthropic-sdk-python: types/usage.py",
    "kind": "repo",
    "quote": "The number of input tokens which were used.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "usage-output": {
@@ -206,7 +206,7 @@
    "title": "anthropic-sdk-python: types/usage.py",
    "kind": "repo",
    "quote": "The number of output tokens which were used.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "usage-billing": {
@@ -214,23 +214,23 @@
    "title": "anthropic-sdk-python: types/usage.py",
    "kind": "repo",
    "quote": "`output_tokens` remains the inclusive, authoritative total used for billing. This object provides a read-only decomposition for observability — for example, how many of the billed output tokens were spent on internal reasoning",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "pricing": {
    "url": "https://platform.claude.com/docs/en/about-claude/pricing",
-   "title": "Pricing",
+   "title": "Pricing: model pricing",
    "kind": "doc",
-   "quote": "These token counts are added to your normal input and output tokens to calculate the total cost of a request.",
-   "retrieved": "2026-10-06",
-   "volatile": false
+   "quote": "Claude Opus 5.5 For long-running agentic coding and knowledge work $4 / MTok $20 / MTok",
+   "retrieved": "2026-11-01",
+   "volatile": true
   },
   "stream-sse": {
    "url": "https://platform.claude.com/docs/en/build-with-claude/streaming",
    "title": "Streaming Messages",
    "kind": "doc",
    "quote": "to incrementally stream the response using server-sent events (SSE).",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stream-timeout": {
@@ -238,7 +238,7 @@
    "title": "Streaming Messages",
    "kind": "doc",
    "quote": "the SDK requires streaming to avoid HTTP timeouts.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stream-start": {
@@ -246,7 +246,7 @@
    "title": "Streaming Messages",
    "kind": "doc",
    "quote": "contains a Message object with empty content",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stream-flow": {
@@ -254,7 +254,7 @@
    "title": "Streaming Messages",
    "kind": "doc",
    "quote": "one or more content_block_delta events, and a content_block_stop event.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stream-delta": {
@@ -262,7 +262,7 @@
    "title": "Streaming Messages",
    "kind": "doc",
    "quote": "Each content_block_delta event contains a delta of a type that updates the content block at a given index",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stream-cumulative": {
@@ -270,15 +270,15 @@
    "title": "Streaming Messages",
    "kind": "doc",
    "quote": "The token counts shown in the usage field of the message_delta event are cumulative",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stream-ping": {
    "url": "https://platform.claude.com/docs/en/build-with-claude/streaming",
    "title": "Streaming Messages",
    "kind": "doc",
-   "quote": "Event streams may also include any number of ping events.",
-   "retrieved": "2026-10-06",
+   "quote": "Event streams might also include any number of ping events.",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stream-unknown": {
@@ -286,7 +286,7 @@
    "title": "Streaming Messages",
    "kind": "doc",
    "quote": "your code should handle unknown event types gracefully.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stream-text-delta": {
@@ -294,7 +294,7 @@
    "title": "Streaming Messages",
    "kind": "doc",
    "quote": "\"type\": \"text_delta\", \"text\": \"Hello\"",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "stream-end": {
@@ -302,7 +302,7 @@
    "title": "Streaming Messages",
    "kind": "doc",
    "quote": "One or more message_delta events, indicating top-level changes to the final Message object. A final message_stop event.",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
   },
   "reply-blocks": {
@@ -310,8 +310,16 @@
    "title": "anthropic-sdk-python: types/message.py",
    "kind": "repo",
    "quote": "Content generated by the model. This is an array of content blocks",
-   "retrieved": "2026-10-06",
+   "retrieved": "2026-11-01",
    "volatile": false
+  },
+  "system-role": {
+   "url": "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+   "title": "Using the Messages API: system role in messages",
+   "kind": "doc",
+   "quote": "Claude Opus 5.5, Claude Opus 4.8, Claude Opus 5, Claude Sonnet 5.5, and Claude Haiku 5.5, you can include messages with \"role\": \"system\" after a user turn",
+   "retrieved": "2026-11-01",
+   "volatile": true
   }
  }
 }
