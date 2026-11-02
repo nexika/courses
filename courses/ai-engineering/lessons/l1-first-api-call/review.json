@@ -70,6 +70,13 @@
    "result": "pass",
    "hash": "a579e8bee9a35e18",
    "notes": "I checked 40 cited sentences in en.md against 39 sources.json entries. I fetched all 11 pages (8 docs, README, usage.py, message.py). Every quote is on its page, with only markdown or table formatting in between, and each one supports its sentence as written. I found no uncited world claim. The SDK code matches the README and the streaming doc. The claims scripts give 41, 28, 16 and 6, which match the text and the samples in exercise/tests."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-11-02",
+   "result": "pass",
+   "hash": "bb323299e975cef5",
+   "notes": "Source re-read for #6, second pass after fixes. Checked about 45 factual sentences in en.md, 5 quiz items and exercise.json against 40 sources. Fetched all 12 cited pages (9 docs pages as .md and HTML, SDK README, usage.py, message.py); all 40 quotes are on their pages. Each sentence no stronger than its quote; sample-file numbers match; quiz correct. Minor: 'for most workloads' dropped; cite the models overview for the model ID; system turn 'after a user turn'; API key sentence uncited; text_delta quote is only a JSON fragment."
   }
  ],
  "teaching": [

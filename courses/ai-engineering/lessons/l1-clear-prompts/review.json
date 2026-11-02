@@ -77,6 +77,13 @@
    "result": "pass",
    "hash": "223ee526e6c09b7b",
    "notes": "Source re-read for #6. Checked about 18 cited factual sentences in en.md, the 5 quiz items and the exercise goal against 15 sources. Fetched all 4 cited pages as .md: best practices, overview, multilingual support, glossary. All 15 quotes are on their pages word for word; every sentence keeps its quote's strength and hedges. Quiz answers correct. Optional: the random quote could also include the glossary's non-determinism sentence to back 'two calls can guess differently' more directly."
+  },
+  {
+   "by": "agent: fact check B (Claude Opus 5.5, Arabic and French against English and sources)",
+   "date": "2026-11-02",
+   "result": "pass",
+   "hash": "223ee526e6c09b7b",
+   "notes": "Source re-read for #6. Compared every factual sentence in ar.md, fr.md and the ar/fr strings in quiz.json and exercise.json with en.md and sources.json. Fetched all 4 cited pages as .md on 2026-11-02; all 15 quotes are on them. Hedges kept in both languages; numbers, names and footnotes match; code identical apart from two translated comments; quiz answers 2/0/3/1 correct in all three languages. Minor: ar/fr omit tabs and line breaks in the blank-part rule; 'borderline' narrowed to 'between two categories'; ar/fr summary says 'sends' where the prompt says 'makes wait'."
   }
  ],
  "teaching": [
@@ -121,6 +128,13 @@
    "result": "pass",
    "hash": "0216ab42ff06ad5f",
    "notes": "All 9 checked: objective=c1.prompting; prereqs (what-an-llm-does/tokens/first-api-call) cover API, thinking, randomness; idea before code; Try-it runs, output equals The idea; 9 tests pass on solution, fail on starter; 6 misconceptions; beginner pass clean; ar/fr natural, same headings; honest. Minor: <input> vs advice for descriptive names; next() not taught; ar/fr 'spaces' drops tabs/newlines."
+  },
+  {
+   "by": "agent: teaching review (Claude Opus 5.5, REVIEWING.md rubric with beginner pass)",
+   "date": "2026-11-02",
+   "result": "fail",
+   "hash": "223ee526e6c09b7b",
+   "notes": "Source re-read for #6. Blocking (point 7, beginner pass): 'examples that share an accident' reads as a mishap; XML tags used before XML is defined; 'five moves' and 'five parts' are two different lists; next() is untaught and raises StopIteration with no text block (the prerequisite joins text blocks). Minor: tag() and .strip() unexplained; ar/fr blank-part rule omits tabs and line breaks; ar singular/plural mix; exercise grades only assembly; 'quiz.json' instead of 'take the quiz'."
   }
  ],
  "learners": {

@@ -70,6 +70,13 @@
    "result": "pass",
    "hash": "ec30b921b52bcfe9",
    "notes": "Fetched all 5 source pages (develop-tests, PE overview, messages/create, models overview, SDK README); every quote is present and supports the en/ar/fr sentences with no overreach (temp 0.0 non-determinism, temperature deprecated after Opus 4.6, claude-opus-5-5 listed). The code blocks diff identical across the three languages, and running them gives exactly the printed 40%/80% output. The cases match in all three languages. All 5 quiz answers and explanations are correct and consistent."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-11-02",
+   "result": "pass",
+   "hash": "6941e3f3f808463f",
+   "notes": "Source re-read for #6, second pass after fixes. Checked 19 factual sentences in en.md, the 5 quiz questions and exercise.json against 14 sources. Fetched all 6 cited pages on 2026-11-02 (glossary, working-with-messages, develop-tests, prompt-engineering overview, models overview, SDK README); every quote is on its page. Hedges kept; claude-opus-5-5 listed; quiz correct. Minor: mention that from API version 2026-10-21 any model rejects temperature; cite 'short, clear-cut answers such as labels'; API key comment uncited."
   }
  ],
  "teaching": [

@@ -150,9 +150,10 @@ motifs rendent probable, et probable ne veut pas dire vrai.
   réponses les plus probables »[^temperature]. Le plus probable, c'est exactement ce que choisit toujours
   notre petit prédicteur, et il a quand même répondu lundi. Et « même avec une température réglée à 0, les
   résultats ne seront pas entièrement déterministes »[^temperature-zero] : la même question peut recevoir
-  des réponses différentes. Sur Claude 4.7 et les modèles suivants, dont Claude Opus 5.5, vous ne pouvez
-  pas régler la température du tout[^sampling-off] : ce qui est dit ici vaut pour les modèles plus anciens
-  et pour d'autres fournisseurs.
+  des réponses différentes. Sur Claude 4.7 et les modèles suivants, dont Claude Opus 5.5, et sur tous
+  les modèles à partir de la version 2026-10-21 de l'API, l'API refuse la température[^sampling-off] : ce qui
+  est dit ici vaut pour les modèles plus anciens avec des versions plus anciennes de l'API, et pour d'autres
+  fournisseurs.
 - **« Quelques astuces de prompt suppriment les hallucinations. »** Elles les réduisent ; le guide vous
   conseille de « toujours valider les informations critiques, surtout pour les décisions à fort
   enjeu »[^halluc-validate].

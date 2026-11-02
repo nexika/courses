@@ -28,6 +28,13 @@
    "result": "pass",
    "hash": "60eff92700e73ef9",
    "notes": "Fetched all 6 source pages (glossary, token-counting, context-windows, messages/create, pricing, SDK usage.py). All 27 quotes are present: 23 matched verbatim, and caching plus the 3 price rows were confirmed by hand after the Markdown formatting got in the way. Prices 4/20, 2/10, 1/5, the 30%, 1M/200K/128k, 400 error and batch 50% match. EN/AR/FR give the same facts, numbers, model IDs and code; the cost math and the 4 quiz answer keys are correct in all three languages."
+  },
+  {
+   "by": "agent: fact check A (Claude Opus 5.5, English text against sources)",
+   "date": "2026-11-02",
+   "result": "pass",
+   "hash": "b60727ab9c213620",
+   "notes": "Source re-read for #6, second pass after fixes. Checked about 32 factual sentences in en.md, the 5 quiz questions and exercise.json against all 28 sources. Fetched 6 cited pages on 2026-11-02 (glossary, token-counting, context-windows, messages/create, pricing .md and HTML, SDK usage.py); all 28 quotes are on their pages. Prices 4/20, 2/10 and 1/5; hedges kept; quiz correct. Minor: Sonnet 4.5 is now marked deprecated; 'Long answers are often the expensive part' is uncited."
   }
  ],
  "teaching": [
